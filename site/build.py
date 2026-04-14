@@ -48,15 +48,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html">
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#22c55e"/><stop offset="1" stop-color="#0f766e"/>
-          </linearGradient>
-        </defs>
-        <path class="v-fill" fill="#0b1220" d="M20 4 L36 32 L30 32 L20 14 L10 32 L4 32 Z"/>
-        <circle cx="20" cy="22" r="3" fill="#22c55e"/>
-      </svg>
+      <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp" alt="DigiVeritaz">
       <b>Digi</b><span>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -66,44 +58,67 @@ HEAD_TPL = """<!doctype html>
 """
 
 FOOT = """<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="brand" style="color:#fff">Digi<span>Veritaz</span></div>
-      <p style="color:#cbd5e1;margin-top:10px">A performance-driven digital marketing agency headquartered in Mumbai, helping brands grow through SEO, paid media, and creative strategy.</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="foot-brand" href="index.html">
+          <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp" alt="DigiVeritaz">
+          <b>Digi</b><span>Veritaz</span>
+        </a>
+        <div class="foot-socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.4c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.5V12h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.5 1s.8.9 1 1.5c.1.4.3 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-1 1.5s-.9.8-1.5 1c-.4.1-1 .3-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.5-1s-.8-.9-1-1.5c-.1-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 1-1.5s.9-.8 1.5-1c.4-.1 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8s-.6.8-.8 1.3c-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3s.8.6 1.3.8c.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8s.6-.8.8-1.3c.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3s-.8-.6-1.3-.8c-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.3-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5V9h3v10zM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM19 19h-3v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V19h-3V9h2.9v1.4h0a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.7V19z"/></svg></a>
+        </div>
+        <p class="foot-copy">© Copyright 2026 DigiVeritaz.<br>All rights reserved.</p>
+      </div>
+
+      <div>
+        <h4>Our Services</h4>
+        <div class="foot-services">
+          <ul>
+            <li><a href="organic-marketing-services.html">Organic Marketing Services</a></li>
+            <li><a href="paid-social-media-advertising.html">Paid Social Media Advertising</a></li>
+            <li><a href="pay-per-click.html">Pay Per Click</a></li>
+            <li><a href="performance-marketing-agency.html">Performance Marketing Agency</a></li>
+          </ul>
+          <ul>
+            <li><a href="ecommerce-marketing.html">E-Commerce Platforms</a></li>
+            <li><a href="data-strategy-consulting-services.html">Data Strategy &amp; Consulting</a></li>
+            <li><a href="native-advertising.html">Native Advertising</a></li>
+            <li><a href="whatsapp-marketing-services.html">WhatsApp Marketing Services</a></li>
+          </ul>
+          <ul>
+            <li><a href="branding-and-design.html">Branding and Design</a></li>
+            <li><a href="seo.html">Search Engine Optimization</a></li>
+            <li><a href="generative-search-optimisation.html">Generative Search Optimisation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about-us.html">Who We Are</a></li>
+          <li><a href="services.html">What We Do</a></li>
+          <li><a href="services.html">Our Service Expertise</a></li>
+          <li><a href="case-study.html">Our Partnerships</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h4>Company</h4>
-      <ul>
-        <li><a href="about-us.html">About Us</a></li>
-        <li><a href="case-study.html">Case Studies</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact-us.html">Contact</a></li>
-      </ul>
+
+    <div class="foot-bottom">
+      <a href="faq.html">FAQ</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms and Conditions</a>
     </div>
-    <div>
-      <h4>Services</h4>
-      <ul>
-        <li><a href="seo.html">SEO</a></li>
-        <li><a href="pay-per-click.html">Pay Per Click</a></li>
-        <li><a href="performance-marketing-agency.html">Performance Marketing</a></li>
-        <li><a href="ecommerce-marketing.html">E-Commerce</a></li>
-        <li><a href="whatsapp-marketing-services.html">WhatsApp Marketing</a></li>
-        <li><a href="branding-and-design.html">Branding &amp; Design</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p style="color:#cbd5e1">1st Floor, Office 06, Raghuvanshi Mansion,<br>Senapati Bapat Marg, Lower Parel,<br>Mumbai – 400013</p>
-      <p style="color:#cbd5e1">📞 +91 9930070767 / +91 9956655662<br>✉ info@digiveritaz.com</p>
-    </div>
-  </div>
-  <div class="container foot-bottom">
-    © 2026 DigiVeritaz. All rights reserved. ·
-    <a href="privacy-policy.html">Privacy Policy</a> ·
-    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
   </div>
 </footer>
+
+<button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
+
 <script src="js/main.js"></script>
 </body></html>
 """

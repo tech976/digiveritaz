@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(function (c) { co.observe(c); });
   }
 
+  // Back-to-top button
+  var top = document.querySelector('.to-top');
+  if (top) {
+    var toggleTop = function () { top.classList.toggle('show', window.scrollY > 400); };
+    toggleTop();
+    window.addEventListener('scroll', toggleTop, { passive: true });
+    top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
   // Scroll-state for floating header
   var hdr = document.querySelector('.site-header');
   if (hdr) {

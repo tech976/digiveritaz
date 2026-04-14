@@ -69,13 +69,12 @@ p{margin:0 0 1em;color:#374151}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:0;gap:18px}
 .brand{
   display:flex;align-items:center;gap:10px;
-  font-family:"Playfair Display",serif;font-weight:800;font-size:1.55rem;
-  color:#0b1220;letter-spacing:-.01em;white-space:nowrap;
+  font-family:"Inter",sans-serif;font-weight:800;font-size:1.55rem;
+  color:#0b1220;letter-spacing:-.02em;white-space:nowrap;
 }
-.brand svg{width:30px;height:30px;flex-shrink:0}
+.brand img,.brand svg{width:36px;height:36px;flex-shrink:0;object-fit:contain}
 .brand b{font-weight:800;color:#0b1220}
 .brand span{color:#0b1220;font-weight:700}
-.brand:hover svg .v-fill{fill:url(#brandGrad)}
 .nav ul{
   list-style:none;display:flex;gap:4px;margin:0;padding:0;align-items:center;
   flex:1;justify-content:center;
@@ -115,9 +114,10 @@ p{margin:0 0 1em;color:#374151}
   .nav .cta{display:none}
 }
 
-/* hero */
+/* hero — extends up behind the floating navbar */
 .hero{
-  padding:90px 0 80px;position:relative;overflow:hidden;
+  margin-top:-90px;padding:170px 0 80px;
+  position:relative;overflow:hidden;
   background:
     radial-gradient(900px 420px at 85% 10%, rgba(34,197,94,.16), transparent 60%),
     radial-gradient(700px 360px at 10% 90%, rgba(15,118,110,.10), transparent 60%),
@@ -373,8 +373,8 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
 .check-grid label{font-weight:500;display:flex;gap:8px;align-items:center;background:#f9fafb;padding:10px 12px;border-radius:8px;border:1px solid var(--border)}
 @media (max-width:700px){.check-grid{grid-template-columns:1fr}}
 
-/* page hero */
-.page-hero{padding:70px 0 40px;background:linear-gradient(180deg,#f0fdf4,#fff);border-bottom:1px solid var(--border)}
+/* page hero — same trick: extend gradient up behind the navbar */
+.page-hero{margin-top:-90px;padding:160px 0 50px;background:linear-gradient(180deg,#f0fdf4,#fff);border-bottom:1px solid var(--border)}
 .breadcrumb{color:var(--muted);font-size:.9rem;margin-bottom:10px}
 
 /* footer — light theme */
@@ -389,7 +389,7 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
 .site-footer ul li a:hover{color:var(--green-dark)}
 
 .foot-brand{display:flex;align-items:center;gap:10px;font-family:"Inter",sans-serif;font-weight:800;font-size:1.4rem;color:#0b1220}
-.foot-brand svg{width:32px;height:32px}
+.foot-brand img,.foot-brand svg{width:42px;height:42px;object-fit:contain}
 .foot-brand b{color:#0b1220}
 .foot-brand span{color:#0b1220}
 .foot-socials{display:flex;gap:12px;margin-top:18px}
@@ -432,3 +432,112 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
 .list-check li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
 .prose h2{margin-top:1.4em}
 .prose p,.prose li{color:#374151}
+
+/* ========= MOBILE RESPONSIVE PASS ========= */
+@media (max-width:1100px){
+  .stats .container{grid-template-columns:repeat(3,1fr);gap:24px}
+  section{padding:60px 0}
+  .panel{padding:48px 32px 36px}
+}
+@media (max-width:900px){
+  /* spacing */
+  section{padding:48px 0}
+  .container{padding:0 18px}
+  .panel{padding:36px 22px 28px;border-radius:24px}
+  .panel .section-head{margin-bottom:24px}
+
+  /* hero */
+  .hero{margin-top:-80px;padding:120px 0 40px}
+  .page-hero{margin-top:-80px;padding:110px 0 30px}
+  .hero-grid{gap:30px}
+  .hero h1{font-size:2.1rem;line-height:1.15}
+  .hero p.lead{font-size:1rem}
+  .hero-cta{justify-content:flex-start}
+  .hero-logo{order:-1}
+  .hero-logo img{max-width:300px}
+  .hero-reviews{justify-content:flex-start;gap:22px}
+  .hero-reviews .rev img{max-height:30px}
+  .hero-reviews .stars{font-size:.8rem}
+  .hero-reviews .count{font-size:.75rem}
+  .hero:before,.hero:after{filter:blur(60px);opacity:.4}
+
+  /* stats — keep 2 cols, smaller numbers */
+  .stats .container{grid-template-columns:1fr 1fr;gap:22px}
+  .stats h3{font-size:2rem}
+  .stats p{font-size:.85rem}
+
+  /* contact form layout collapse */
+  section > .container[style*="grid-template-columns:1.2fr"],
+  section > .container[style*="1.2fr .8fr"]{
+    grid-template-columns:1fr !important;
+  }
+  .check-grid{grid-template-columns:1fr}
+
+  .page-hero h1{font-size:2rem}
+
+  /* CTA section */
+  section[style*="linear-gradient(135deg,#16a34a"]{padding:50px 0}
+
+  /* footer */
+  .site-footer{padding:48px 0 24px;margin-top:50px}
+  .footer-grid{gap:30px}
+  .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:10px}
+
+  /* brand tiles smaller */
+  .brand-tile{flex:0 0 170px;height:100px;padding:18px}
+  .brand-tile img{max-height:46px}
+
+  /* navbar */
+  .site-header{top:10px;padding:0 12px}
+  .site-header .container{padding:6px 8px 6px 16px}
+  .brand{font-size:1.25rem}
+  .brand svg{width:26px;height:26px}
+}
+@media (max-width:600px){
+  /* hero further tightening */
+  .hero h1{font-size:1.85rem}
+  .hero-logo img{max-width:240px}
+  .hero-reviews{gap:16px}
+  .hero-cta .btn{width:100%;text-align:center}
+
+  /* stats — 1 col on tiny screens */
+  .stats .container{grid-template-columns:1fr 1fr}
+  .stats h3{font-size:1.8rem}
+
+  /* services hub grid auto */
+  .services-grid{grid-template-columns:1fr}
+
+  /* why & wwd cards smaller */
+  .why-card{min-height:220px;padding:28px 22px}
+  .why-card h3{font-size:1.4rem}
+  .wwd-card{min-height:280px;padding:26px 22px}
+
+  /* case study grid */
+  .cs-grid{gap:18px}
+  .cs-card .logo-tile{height:120px;padding:24px 20px}
+  .cs-card .logo-tile img{max-height:50px}
+
+  /* page hero */
+  .page-hero h1{font-size:1.7rem}
+
+  /* footer logo center */
+  .foot-brand{justify-content:flex-start}
+  .foot-services{grid-template-columns:1fr}
+
+  /* back to top */
+  .to-top{right:14px;bottom:14px;width:42px;height:42px}
+
+  /* buttons wider tap target */
+  .btn{padding:13px 22px}
+
+  /* prose pages */
+  .prose h2{font-size:1.3rem}
+
+  /* tcard testimonials */
+  .tcard{padding:22px}
+}
+@media (max-width:380px){
+  .hero h1{font-size:1.65rem}
+  .panel{padding:28px 16px 22px}
+  .stats h3{font-size:1.6rem}
+}
