@@ -15,6 +15,12 @@ NAV_ITEMS = [
     ("contact-us.html", "Contact Us"),
 ]
 
+THEME_TOGGLE = """      <li><button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button></li>
+"""
+
 def build_nav(current):
     # mark active: direct match, or services.html active for any service sub-page
     def is_active(href):
@@ -29,7 +35,7 @@ def build_nav(current):
     )
     return f"""    <ul>
       {lis}
-      <li class="cta"><a class="btn" href="contact-us.html">Book A Call</a></li>
+{THEME_TOGGLE}      <li class="cta"><a class="btn" href="contact-us.html">Book A Call</a></li>
     </ul>"""
 
 HEAD_TPL = """<!doctype html>
@@ -43,6 +49,7 @@ HEAD_TPL = """<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script>(function(){{var t=localStorage.getItem('dv-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}})();</script>
 </head>
 <body>
 <header class="site-header">

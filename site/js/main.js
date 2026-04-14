@@ -40,6 +40,18 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(function (c) { co.observe(c); });
   }
 
+  // Theme toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      if (next === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      else document.documentElement.removeAttribute('data-theme');
+      try { localStorage.setItem('dv-theme', next); } catch (e) {}
+    });
+  }
+
   // Back-to-top button
   var top = document.querySelector('.to-top');
   if (top) {
