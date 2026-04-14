@@ -40,6 +40,81 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(function (c) { co.observe(c); });
   }
 
+  // What We Do interactive index
+  var wwdData = {
+    seo: {
+      num: '01', title: 'SEO &amp; Organic Growth',
+      desc: 'Rank, engage and grow sustainably with technical SEO, content strategy and authority links that compound over time.',
+      tags: ['Technical SEO','Content Strategy','Link Building','Local SEO'],
+      cta: 'Explore SEO Services', href: 'seo.html',
+      icon: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+    },
+    paid: {
+      num: '02', title: 'Paid Advertising',
+      desc: 'From Meta to Google, we turn ad spend into profit with creative that stops the scroll and funnels that convert.',
+      tags: ['Meta Ads','Google Ads','LinkedIn','Pinterest','Snapchat'],
+      cta: 'Explore Paid Ads', href: 'paid-social-media-advertising.html',
+      icon: '<svg viewBox="0 0 24 24"><path d="M3 6h14l4 4v6a2 2 0 0 1-2 2H3z"/><circle cx="8" cy="16" r="2"/><circle cx="17" cy="16" r="2"/></svg>'
+    },
+    perf: {
+      num: '03', title: 'Performance Marketing',
+      desc: 'Smart funnels, smarter conversions across search, display, shopping and video — fully attributed and reported.',
+      tags: ['Search','Shopping','Display','Video','PMax'],
+      cta: 'Explore Performance', href: 'performance-marketing-agency.html',
+      icon: '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg>'
+    },
+    ecom: {
+      num: '04', title: 'E-Commerce Management',
+      desc: 'End-to-end Amazon, Flipkart and D2C growth — from listing optimization and ads to retention and loyalty.',
+      tags: ['Amazon','Flipkart','Shopify','D2C','CRO'],
+      cta: 'Explore E-Commerce', href: 'ecommerce-marketing.html',
+      icon: '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>'
+    },
+    wa: {
+      num: '05', title: 'WhatsApp &amp; Native Ads',
+      desc: 'Conversational commerce and premium native placements that drive direct response and high engagement.',
+      tags: ['WhatsApp API','Swiggy','Zomato','Blinkit','Zepto'],
+      cta: 'Explore WhatsApp', href: 'whatsapp-marketing-services.html',
+      icon: '<svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg>'
+    },
+    brand: {
+      num: '06', title: 'Branding &amp; Design',
+      desc: 'Research-led branding, identity systems and creative direction that converts at every touchpoint.',
+      tags: ['Strategy','Identity','Content','Creative','Web'],
+      cta: 'Explore Branding', href: 'branding-and-design.html',
+      icon: '<svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>'
+    }
+  };
+  var wwdList = document.getElementById('wwdList');
+  var wwdPreview = document.getElementById('wwdPreview');
+  if (wwdList && wwdPreview) {
+    var renderPreview = function (key) {
+      var d = wwdData[key]; if (!d) return;
+      wwdPreview.innerHTML = '<div class="pv-icon">' + d.icon + '</div>'
+        + '<div><div class="pv-eyebrow">Service ' + d.num + '</div>'
+        + '<h3>' + d.title + '</h3>'
+        + '<p>' + d.desc + '</p>'
+        + '<div class="pv-tags">' + d.tags.map(function(t){return '<span>'+t+'</span>'}).join('') + '</div></div>'
+        + '<a class="pv-cta" href="' + d.href + '">' + d.cta + '</a>';
+      wwdPreview.classList.remove('wwd-fade');
+      void wwdPreview.offsetWidth;
+      wwdPreview.classList.add('wwd-fade');
+    };
+    var rows = wwdList.querySelectorAll('.wwd-row');
+    var setActive = function (row) {
+      rows.forEach(function (r) { r.classList.remove('active'); });
+      row.classList.add('active');
+      renderPreview(row.getAttribute('data-svc'));
+    };
+    rows.forEach(function (row) {
+      row.addEventListener('mouseenter', function () { setActive(row); });
+      row.addEventListener('click', function () {
+        var d = wwdData[row.getAttribute('data-svc')];
+        if (d) window.location.href = d.href;
+      });
+    });
+  }
+
   // Theme toggle
   var themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
