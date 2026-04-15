@@ -7,12 +7,12 @@ import os, pathlib
 OUT = pathlib.Path(__file__).parent
 
 NAV_ITEMS = [
-    ("index.html", "Home"),
-    ("about-us.html", "About Us"),
-    ("services.html", "Services"),
-    ("case-study.html", "Case Study"),
-    ("blog.html", "Blog"),
-    ("contact-us.html", "Contact Us"),
+    ("index.html", "Home", "nav.home"),
+    ("about-us.html", "About Us", "nav.about"),
+    ("services.html", "Services", "nav.services"),
+    ("case-study.html", "Case Study", "nav.cases"),
+    ("blog.html", "Blog", "nav.blog"),
+    ("contact-us.html", "Contact Us", "nav.contact"),
 ]
 
 THEME_TOGGLE = """      <li><button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
@@ -30,41 +30,142 @@ def build_nav(current):
             return current in service_slugs
         return False
     lis = "\n      ".join(
-        f'<li><a class="navlink{" active" if is_active(h) else ""}" href="{h}">{t}</a></li>'
-        for h,t in NAV_ITEMS
+        f'<li><a class="navlink{" active" if is_active(h) else ""}" href="{h}" data-i18n="{k}">{t}</a></li>'
+        for h,t,k in NAV_ITEMS
     )
     return f"""    <ul>
       {lis}
-{THEME_TOGGLE}      <li class="cta"><a class="btn" href="contact-us.html">Book A Call</a></li>
+{THEME_TOGGLE}      <li class="cta"><a class="btn" href="contact-us.html" data-i18n="nav.cta">Book A Call</a></li>
     </ul>"""
 
+SITE_URL = "https://digiveritaz.com"
+DEFAULT_OG_IMAGE = "https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp"
+
+ORG_SCHEMA = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": ["Organization","LocalBusiness","ProfessionalService"],
+            "@id": SITE_URL + "/#organization",
+            "name": "DigiVeritaz",
+            "alternateName": "DigiVeritaz Digital Marketing Agency",
+            "url": SITE_URL,
+            "logo": DEFAULT_OG_IMAGE,
+            "image": DEFAULT_OG_IMAGE,
+            "description": "DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.",
+            "telephone": "+91-9930070767",
+            "email": "info@digiveritaz.com",
+            "priceRange": "$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1st Floor, Office 06, Raghuvanshi Mansion, Raghuvanshi Mill Compound, Senapati Bapat Marg, Lower Parel",
+                "addressLocality": "Mumbai",
+                "addressRegion": "Maharashtra",
+                "postalCode": "400013",
+                "addressCountry": "IN"
+            },
+            "geo": {"@type":"GeoCoordinates","latitude":19.0078,"longitude":72.8309},
+            "areaServed": ["IN","US","AE","GB","SG","AU","CA"],
+            "sameAs": [
+                "https://www.facebook.com/digiveritaz",
+                "https://www.instagram.com/digiveritaz",
+                "https://www.linkedin.com/company/digiveritaz",
+                "https://twitter.com/digiveritaz"
+            ],
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "600",
+                "bestRating": "5",
+                "worstRating": "1"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": SITE_URL + "/#website",
+            "url": SITE_URL,
+            "name": "DigiVeritaz",
+            "publisher": {"@id": SITE_URL + "/#organization"},
+            "inLanguage": "en-IN"
+        }
+    ]
+}
+
+import json
+ORG_JSONLD = json.dumps(ORG_SCHEMA, separators=(",",":"))
+ORG_JSONLD_ESC = ORG_JSONLD.replace("{","{{").replace("}","}}")
+
 HEAD_TPL = """<!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<meta name="keywords" content="{keywords}">
+<meta name="author" content="DigiVeritaz">
+<meta name="publisher" content="DigiVeritaz">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<meta name="theme-color" content="#22c55e">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://digiveritaz.com/{canonical}">
+<link rel="alternate" hreflang="en-IN" href="https://digiveritaz.com/{canonical}">
+<link rel="alternate" hreflang="x-default" href="https://digiveritaz.com/{canonical}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DigiVeritaz">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="https://digiveritaz.com/{canonical}">
+<meta property="og:image" content="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+<meta property="og:image:alt" content="DigiVeritaz — Digital Marketing Agency">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@digiveritaz">
+<meta name="twitter:creator" content="@digiveritaz">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+
+<!-- Favicon -->
+<link rel="icon" type="image/webp" href="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+<link rel="apple-touch-icon" href="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+
+<!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://digiveritaz.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.simpleicons.org">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Organization + Website schema -->
+<script type="application/ld+json">""" + ORG_JSONLD_ESC + """</script>
+{extra_jsonld}
 <script>(function(){{var t=localStorage.getItem('dv-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}})();</script>
 </head>
 <body>
-<header class="site-header">
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="index.html">
       <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
+    <nav aria-label="Primary" role="navigation">
 {nav}
+    </nav>
   </div>
 </header>
 """
 
-FOOT = """<footer class="site-footer">
+FOOT = """<footer class="site-footer" role="contentinfo">
   <div class="container">
 
     <div class="foot-main">
@@ -151,8 +252,10 @@ FOOT = """<footer class="site-footer">
   </div>
 </footer>
 
+<div class="lang-switcher" id="langSwitcher"></div>
 <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body></html>
 """
@@ -167,9 +270,30 @@ def page_hero(title, crumb, intro=""):
 </section>
 """
 
-def write(name, title, desc, body):
-    head = HEAD_TPL.format(title=title, desc=desc, nav=build_nav(name))
-    (OUT / name).write_text(head + body + FOOT)
+DEFAULT_KEYWORDS = "digital marketing agency India, digital marketing Mumbai, SEO agency India, PPC agency, performance marketing India, paid social media advertising, e-commerce marketing, WhatsApp marketing India, branding and design, data strategy consulting, DigiVeritaz"
+
+def breadcrumb_jsonld(name, title):
+    slug = name.replace(".html","")
+    if slug == "index": return ""
+    items = [
+        {"@type":"ListItem","position":1,"name":"Home","item":SITE_URL+"/"},
+        {"@type":"ListItem","position":2,"name":title.split("|")[0].strip(),"item":SITE_URL+"/"+slug+"/"}
+    ]
+    data = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":items}
+    return '<script type="application/ld+json">' + json.dumps(data, separators=(",",":")) + '</script>'
+
+def write(name, title, desc, body, keywords=None, extra_jsonld=""):
+    kw = keywords or DEFAULT_KEYWORDS
+    canonical = name.replace("index.html","") if name == "index.html" else name.replace(".html","/")
+    crumb = breadcrumb_jsonld(name, title)
+    head = HEAD_TPL.format(
+        title=title, desc=desc, keywords=kw, canonical=canonical,
+        nav="{nav}", extra_jsonld=(crumb + extra_jsonld),
+    )
+    head = head.replace("{nav}", build_nav(name))
+    main = '\n<main id="main" role="main">\n'
+    closemain = '\n</main>\n'
+    (OUT / name).write_text(head + main + body + closemain + FOOT)
 
 # ---------- ABOUT ----------
 about_body = page_hero(
@@ -212,7 +336,11 @@ about_body = page_hero(
   </div>
 </section>
 """
-write("about-us.html", "About Us | DigiVeritaz", "Learn about DigiVeritaz — a Mumbai-based digital marketing agency delivering performance-first growth.", about_body)
+write("about-us.html",
+      "About DigiVeritaz | Performance-First Digital Marketing Agency in Mumbai",
+      "Learn about DigiVeritaz — a Mumbai-based digital marketing agency with 65+ years of combined experience helping 60+ brands across India achieve measurable ROI through SEO, paid media and performance marketing.",
+      about_body,
+      keywords=DEFAULT_KEYWORDS + ", about DigiVeritaz, digital marketing agency Mumbai, marketing team India, performance marketing experts, growth agency India")
 
 # ---------- CONTACT ----------
 contact_body = page_hero(
@@ -266,7 +394,18 @@ contact_body = page_hero(
   </div>
 </section>
 """
-write("contact-us.html", "Contact Us | DigiVeritaz", "Get in touch with DigiVeritaz for a free digital marketing proposal.", contact_body)
+contact_jsonld = '<script type="application/ld+json">' + json.dumps({
+    "@context":"https://schema.org","@type":"ContactPage",
+    "url": SITE_URL + "/contact-us/",
+    "name": "Contact DigiVeritaz",
+    "mainEntity": {"@id": SITE_URL + "/#organization"}
+}, separators=(",",":")) + '</script>'
+write("contact-us.html",
+      "Contact DigiVeritaz | Get a Free Digital Marketing Proposal",
+      "Contact DigiVeritaz for a free digital marketing proposal. Call +91 99300 70767 or email info@digiveritaz.com. Based in Mumbai, serving clients across India and globally.",
+      contact_body,
+      keywords=DEFAULT_KEYWORDS + ", contact digital marketing agency, marketing agency Mumbai contact, free marketing proposal, digital marketing consultation",
+      extra_jsonld=contact_jsonld)
 
 # ---------- THANK YOU ----------
 ty_body = """<section class="hero"><div class="container text-center">
@@ -274,7 +413,9 @@ ty_body = """<section class="hero"><div class="container text-center">
 <p class="lead" style="margin:0 auto">We've received your message and will get back to you shortly. If your inquiry is urgent, please call us directly at +91 9930070767.</p>
 <div class="mt-20"><a class="btn" href="index.html">Back to Home</a></div>
 </div></section>"""
-write("thank-you.html", "Thank You | DigiVeritaz", "Thank you for contacting DigiVeritaz.", ty_body)
+write("thank-you.html", "Thank You | DigiVeritaz",
+      "Thank you for contacting DigiVeritaz. We'll respond within one business day.",
+      ty_body)
 
 # ---------- SERVICES HUB ----------
 ICON = {
@@ -311,13 +452,19 @@ svc_body = page_hero("Our <span class=\"green_text\">Services</span>", "Home / S
     "A full-stack suite of digital marketing services — pick one, or let us run your entire growth engine.") + f"""
 <section class="services"><div class="container"><div class="services-grid">{svc_cards}</div></div></section>
 """
-write("services.html", "Services | DigiVeritaz", "Explore DigiVeritaz services: SEO, PPC, performance marketing, e-commerce, branding and more.", svc_body)
+write("services.html",
+      "Digital Marketing Services in India | SEO, PPC, Performance, E-Commerce | DigiVeritaz",
+      "Full-stack digital marketing services from DigiVeritaz: SEO, PPC, performance marketing, paid social, e-commerce, WhatsApp marketing, branding, data strategy and generative search optimization.",
+      svc_body,
+      keywords=DEFAULT_KEYWORDS + ", digital marketing services, marketing services India, full service marketing agency, marketing packages Mumbai")
 
 # ---------- INDIVIDUAL SERVICE PAGES ----------
 service_pages = {
     "seo.html": {
-        "title": "SEO Services | DigiVeritaz",
-        "desc": "Enterprise-grade SEO services — technical SEO, content, and link building that grow organic revenue.",
+        "title": "SEO Services in India | Technical SEO &amp; Content Strategy | DigiVeritaz",
+        "desc": "Enterprise-grade SEO services in India — technical SEO audits, content strategy, keyword research and authority link building that grow organic revenue.",
+        "keywords": "SEO services India, technical SEO, on-page SEO, off-page SEO, keyword research, content strategy, link building, SEO agency Mumbai, local SEO, Google ranking, organic growth, SERP optimization",
+        "service_name": "Search Engine Optimization",
         "h1": "SEO Services That <span class=\"green_text\">Grow Revenue</span>",
         "crumb": "Home / Services / SEO",
         "intro": "We engineer organic growth through technical audits, content strategy, and trustworthy link building.",
@@ -441,9 +588,40 @@ def svc_template(h1, crumb, intro, img, points):
 </div></section>
 """
 
+def service_jsonld(fname, title, desc):
+    name = title.split("|")[0].strip()
+    data = {
+        "@context":"https://schema.org",
+        "@type":"Service",
+        "serviceType": name,
+        "name": name,
+        "description": desc,
+        "provider": {"@id": SITE_URL + "/#organization"},
+        "areaServed": {"@type":"Country","name":"India"},
+        "url": SITE_URL + "/" + fname.replace(".html","/"),
+        "offers": {"@type":"Offer","priceCurrency":"INR","availability":"https://schema.org/InStock"}
+    }
+    return '<script type="application/ld+json">' + json.dumps(data, separators=(",",":")) + '</script>'
+
+SERVICE_KEYWORD_EXTRA = {
+    "seo.html": "SEO services India, technical SEO, SEO agency Mumbai, local SEO, keyword research, link building",
+    "pay-per-click.html": "PPC services India, Google Ads management, Bing Ads, pay per click agency Mumbai, Shopping Ads",
+    "performance-marketing-agency.html": "performance marketing agency India, ROAS optimization, CAC reduction, full funnel marketing, ROI marketing",
+    "paid-social-media-advertising.html": "paid social media advertising, Meta Ads, Facebook Ads, Instagram Ads, LinkedIn Ads, Pinterest Ads India",
+    "ecommerce-marketing.html": "ecommerce marketing India, Amazon marketing, Flipkart ads, Shopify marketing, D2C growth, marketplace management",
+    "whatsapp-marketing-services.html": "WhatsApp marketing India, WhatsApp Business API, bulk messaging, chatbot automation, conversational commerce",
+    "native-advertising.html": "native advertising India, sponsored content, discovery ads, Swiggy ads, Zomato ads, Blinkit advertising",
+    "organic-marketing-services.html": "organic marketing services, content marketing India, community building, SEO strategy, organic social",
+    "branding-and-design.html": "branding and design services, brand strategy, identity design, creative direction, content design Mumbai",
+    "generative-search-optimisation.html": "generative search optimization, GSO, AI search ranking, ChatGPT SEO, Gemini SEO, Perplexity visibility",
+    "data-strategy-consulting-services.html": "data strategy consulting, GA4 setup, attribution modeling, analytics consulting, CDP integration",
+}
+
 for fname, p in service_pages.items():
     body = svc_template(p["h1"], p["crumb"], p["intro"], p["img"], p["points"])
-    write(fname, p["title"], p["desc"], body)
+    kw = DEFAULT_KEYWORDS + ", " + SERVICE_KEYWORD_EXTRA.get(fname, "")
+    sjsonld = service_jsonld(fname, p["title"], p["desc"])
+    write(fname, p["title"], p["desc"], body, keywords=kw, extra_jsonld=sjsonld)
 
 # ---------- CASE STUDY ----------
 case_items = [
@@ -465,7 +643,11 @@ cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Ca
     "Real brands, real numbers. Explore how we've delivered measurable growth across industries.") + f"""
 <section><div class="container"><div class="card-grid">{case_cards}</div></div></section>
 """
-write("case-study.html", "Case Studies | DigiVeritaz", "Explore DigiVeritaz case studies across education, D2C, real estate, automotive and more.", cs_body)
+write("case-study.html",
+      "Case Studies | DigiVeritaz Digital Marketing Success Stories",
+      "Real results from DigiVeritaz clients — Hyundai, JK Shah, Khyber Cement, EBCO, MY BID and more. See case studies across education, D2C, real estate, automotive and F&amp;B.",
+      cs_body,
+      keywords=DEFAULT_KEYWORDS + ", digital marketing case studies, marketing success stories, Hyundai case study, JK Shah case study, Mumbai agency portfolio")
 
 # ---------- BLOG ----------
 blog_posts = [
@@ -484,7 +666,11 @@ blog_body = page_hero("Blog &amp; <span class=\"green_text\">Insights</span>", "
     "Tactical playbooks, industry trends and behind-the-scenes from our team.") + f"""
 <section><div class="container"><div class="card-grid">{blog_cards}</div></div></section>
 """
-write("blog.html", "Blog | DigiVeritaz", "Marketing insights, playbooks and case studies from the DigiVeritaz team.", blog_body)
+write("blog.html",
+      "Digital Marketing Blog &amp; Insights | DigiVeritaz",
+      "Digital marketing playbooks, SEO tips, PPC strategies and growth insights from the DigiVeritaz team. Learn what works in 2026 and beyond.",
+      blog_body,
+      keywords=DEFAULT_KEYWORDS + ", digital marketing blog, SEO tips, PPC tips, marketing insights India, growth marketing blog")
 
 # ---------- FAQ ----------
 faqs = [
@@ -504,7 +690,22 @@ faq_body = page_hero("Frequently Asked <span class=\"green_text\">Questions</spa
     "Everything you wanted to know about working with DigiVeritaz.") + f"""
 <section><div class="container" style="max-width:820px">{faq_html}</div></section>
 """
-write("faq.html", "FAQ | DigiVeritaz", "Frequently asked questions about DigiVeritaz services, process and engagement models.", faq_body)
+import re as _re
+def _strip_tags(s): return _re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
+faq_schema = {
+    "@context":"https://schema.org","@type":"FAQPage",
+    "mainEntity":[{
+        "@type":"Question","name":_strip_tags(q),
+        "acceptedAnswer":{"@type":"Answer","text":_strip_tags(a)}
+    } for q,a in faqs]
+}
+faq_jsonld = '<script type="application/ld+json">' + json.dumps(faq_schema, separators=(",",":")) + '</script>'
+write("faq.html",
+      "FAQ | DigiVeritaz — Digital Marketing Agency Questions Answered",
+      "Frequently asked questions about DigiVeritaz — services, engagement models, pricing, reporting and how we measure ROI for digital marketing campaigns.",
+      faq_body,
+      keywords=DEFAULT_KEYWORDS + ", digital marketing FAQ, marketing agency questions, marketing pricing, ROI measurement",
+      extra_jsonld=faq_jsonld)
 
 # ---------- PRIVACY ----------
 privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Home / Privacy Policy", "") + """
@@ -524,7 +725,11 @@ privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Ho
 <h2>12. Updates</h2><p>We may update this policy from time to time. Material changes will be communicated via our website.</p>
 </div></section>
 """
-write("privacy-policy.html", "Privacy Policy | DigiVeritaz", "DigiVeritaz privacy policy.", privacy_body)
+write("privacy-policy.html",
+      "Privacy Policy | DigiVeritaz",
+      "DigiVeritaz privacy policy — how we collect, use, and protect your personal information.",
+      privacy_body,
+      keywords="privacy policy, data protection, DigiVeritaz privacy")
 
 # ---------- TERMS ----------
 terms_body = page_hero("Terms &amp; <span class=\"green_text\">Conditions</span>", "Home / Terms", "") + """
@@ -537,7 +742,11 @@ terms_body = page_hero("Terms &amp; <span class=\"green_text\">Conditions</span>
 <h2>6. Termination</h2><p>Either party may terminate with 30 days' written notice. Fees for work already delivered remain payable.</p>
 </div></section>
 """
-write("terms-and-conditions.html", "Terms &amp; Conditions | DigiVeritaz", "DigiVeritaz terms and conditions.", terms_body)
+write("terms-and-conditions.html",
+      "Terms &amp; Conditions | DigiVeritaz",
+      "DigiVeritaz terms and conditions governing the use of our services and engagements.",
+      terms_body,
+      keywords="terms and conditions, service agreement, DigiVeritaz terms")
 
 print("Built pages:")
 for f in sorted(OUT.glob("*.html")):

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you/
+Disallow: /wp-admin/
+
+Sitemap: https://digiveritaz.com/sitemap.xml
+Host: https://digiveritaz.com

@@ -49,6 +49,91 @@ p{margin:0 0 1em;color:#374151}
 .btn-outline{background:transparent;border:2px solid var(--green);color:var(--green)}
 .btn-outline:hover{background:var(--green);color:#fff}
 
+/* === Floating language switcher (bottom-left) === */
+.lang-switcher{
+  position:fixed;left:24px;bottom:24px;z-index:60;
+}
+.lang-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 16px;border-radius:999px;
+  background:#fff;border:1px solid var(--border);
+  color:#0b1220;font-weight:700;font-size:.85rem;letter-spacing:.02em;
+  box-shadow:0 12px 28px rgba(17,24,39,.12), 0 2px 6px rgba(17,24,39,.06);
+  cursor:pointer;font-family:inherit;transition:.25s ease;
+}
+.lang-btn:hover{
+  transform:translateY(-2px);
+  border-color:var(--green);color:var(--green-dark);
+  box-shadow:0 16px 32px rgba(22,163,74,.22), 0 3px 8px rgba(17,24,39,.08);
+}
+.lang-btn svg{width:16px;height:16px;flex-shrink:0}
+.lang-btn .lang-label{font-weight:700}
+.lang-btn .lang-caret{opacity:.65;transition:transform .25s}
+.lang-btn[aria-expanded="true"] .lang-caret{transform:rotate(180deg);opacity:1;color:var(--green-dark)}
+
+.lang-menu{
+  position:absolute;left:0;bottom:calc(100% + 12px);
+  list-style:none;margin:0;padding:8px;min-width:240px;
+  background:#fff;border:1px solid var(--border);border-radius:18px;
+  box-shadow:0 30px 60px -10px rgba(17,24,39,.22), 0 8px 20px rgba(17,24,39,.08);
+  display:none;max-height:calc(100vh - 120px);overflow-y:auto;
+}
+.lang-menu.open{display:block;animation:langFade .25s cubic-bezier(.2,.7,.3,1)}
+@keyframes langFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.lang-menu li{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 14px;border-radius:12px;cursor:pointer;
+  font-size:.9rem;transition:background .2s ease, color .2s ease;
+  position:relative;
+}
+.lang-menu li:hover{background:#f6f8fb}
+.lang-menu li.on{background:#ecfdf5}
+.lang-menu li.on:after{
+  content:"✓";position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--green-dark);font-weight:800;font-size:.95rem;
+}
+.lang-flag{font-size:1.2rem;line-height:1;flex-shrink:0}
+.lang-native{flex:1;color:#0b1220;font-weight:600;white-space:nowrap}
+.lang-menu li.on .lang-native{color:var(--green-dark)}
+.lang-en{font-size:.72rem;color:var(--muted);font-weight:500;margin-right:18px}
+.lang-menu li.on .lang-en{margin-right:26px}
+
+/* mobile positioning */
+@media (max-width:600px){
+  .lang-switcher{left:14px;bottom:14px}
+  .lang-btn{padding:10px 14px;font-size:.8rem}
+  .lang-menu{min-width:220px}
+}
+
+[data-theme="dark"] .lang-btn{background:#111827;border-color:#1e293b;color:#f1f5f9}
+[data-theme="dark"] .lang-btn:hover{color:#34d399;border-color:#34d399}
+[data-theme="dark"] .lang-menu{background:#0f172a;border-color:#1e293b;box-shadow:0 30px 60px -10px rgba(0,0,0,.6)}
+[data-theme="dark"] .lang-menu li:hover{background:#1e293b}
+[data-theme="dark"] .lang-menu li.on{background:rgba(34,197,94,.12)}
+[data-theme="dark"] .lang-native{color:#f1f5f9}
+[data-theme="dark"] .lang-menu li.on .lang-native{color:#86efac}
+[data-theme="dark"] .lang-menu li.on:after{color:#34d399}
+
+/* avoid collision with to-top button which is at right */
+.to-top{right:24px;bottom:24px}
+
+/* RTL adjustments for Arabic */
+[dir="rtl"] .why-item:hover{transform:translateX(-6px)}
+[dir="rtl"] .rev-card2:hover{transform:translateX(-6px)}
+[dir="rtl"] .btn:after,[dir="rtl"] .view-more:after,[dir="rtl"] .more-link:after,[dir="rtl"] .wwd-preview .pv-cta:after{content:"←"}
+[dir="rtl"] .btn:hover:after,[dir="rtl"] .view-more:hover:after,[dir="rtl"] .more-link:hover:after{transform:translateX(-4px)}
+[dir="rtl"] .site-footer ul li a:hover{transform:translateX(-3px)}
+[dir="rtl"] .lang-menu{left:0;right:auto}
+[dir="rtl"] .marquee{direction:ltr}
+
+/* accessibility skip link */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  padding:12px 18px;background:#0b1220;color:#fff;border-radius:0 0 12px 0;
+  font-weight:700;text-decoration:none;
+}
+.skip-link:focus{left:0}
+
 /* floating pill header */
 .site-header{
   position:sticky;top:22px;z-index:50;
