@@ -296,51 +296,285 @@ def write(name, title, desc, body, keywords=None, extra_jsonld=""):
     (OUT / name).write_text(head + main + body + closemain + FOOT)
 
 # ---------- ABOUT ----------
-about_body = page_hero(
-    "About <span class=\"green_text\">DigiVeritaz</span>",
-    "Home / About Us",
-    "We are a performance-first digital marketing agency headquartered in Mumbai, partnering with brands across India and beyond to deliver measurable growth."
-) + """
-<section>
-  <div class="container grid-2">
-    <div>
-      <h2>Our <span class="green_text">Story</span></h2>
-      <p>DigiVeritaz was founded on a simple belief — marketing should be accountable. In a world where vanity metrics often drown out what really matters, we built an agency that obsesses over ROI, customer lifetime value, and real business outcomes.</p>
-      <p>Today, our team of 65+ seasoned specialists combines startup agility with enterprise-grade experience, delivering full-funnel campaigns across search, social, performance, and brand.</p>
-    </div>
-    <div><img src="https://digiveritaz.com/wp-content/uploads/2025/07/2-2-scaled.jpg" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80'" alt="Our team" style="border-radius:20px;box-shadow:var(--shadow)"></div>
-  </div>
-</section>
-
-<section class="services">
+about_body = """
+<section class="about-hero">
   <div class="container">
-    <div class="section-head"><h2>What Drives <span class="green_text">Us</span></h2></div>
-    <div class="services-grid">
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><h3>Performance First</h3><p>Every campaign is measured, optimized, and tied to KPIs that matter — CPA, ROAS, LTV.</p></div>
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v1a4 4 0 0 0-2 7 4 4 0 0 0 7 3 4 4 0 0 0 7-3 4 4 0 0 0-2-7V8a5 5 0 0 0-5-5z"/></svg></div><h3>Data-Led Strategy</h3><p>We let numbers shape decisions, not assumptions. From attribution to incrementality.</p></div>
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L5 14h6l-2 8 10-14h-6z"/></svg></div><h3>Creative Muscle</h3><p>Performance is amplified by strong creative. Our team builds thumb-stopping work that converts.</p></div>
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 18c0-2.4 2-4 4.5-4s2.5 1.6 2.5 4"/></svg></div><h3>Partnership Mindset</h3><p>We embed with your team and treat your goals as our own. No silos, no surprises.</p></div>
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Startup Agility</h3><p>Enterprise experience with the speed of a startup — we ship, learn, and iterate fast.</p></div>
-      <div class="svc-card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></div><h3>Global Reach</h3><p>13+ global partnerships spanning 7 industries, from education to automotive to D2C.</p></div>
+    <span class="kicker">About DigiVeritaz</span>
+    <h1>Growth-Driven <span class="green_text">Digital Agency</span></h1>
+    <p class="lead">We believe in marketing that <em>moves metrics</em> — not just minds. A performance marketing powerhouse fusing data, creativity, and accountability to deliver measurable business outcomes.</p>
+    <div class="hero-sub">
+      <span class="chip">15+ Years Experience</span>
+      <span class="chip">AI-Infused Agility</span>
+      <span class="chip">Performance-First</span>
     </div>
   </div>
 </section>
 
-<section class="stats">
+<section class="about-stats">
   <div class="container">
-    <div><h3>60<span>+</span></h3><p>Clients served</p></div>
-    <div><h3>13<span>+</span></h3><p>Global partners</p></div>
-    <div><h3>65<span>+</span></h3><p>Years combined experience</p></div>
-    <div><h3>1.15L<span>+</span></h3><p>Qualified leads delivered</p></div>
-    <div><h3>4–10<span>x</span></h3><p>Average ROI</p></div>
+    <div class="stat reveal"><div class="num">60<b>+</b></div><div class="lbl">Clients Across India</div></div>
+    <div class="stat reveal delay-1"><div class="num">13<b>+</b></div><div class="lbl">Global Clients</div></div>
+    <div class="stat reveal delay-2"><div class="num">15<b>+</b></div><div class="lbl">Years Experience</div></div>
+    <div class="stat reveal delay-3"><div class="num">₹65Cr<b>+</b></div><div class="lbl">Revenue Generated</div></div>
+    <div class="stat reveal delay-3"><div class="num">1.15L<b>+</b></div><div class="lbl">Leads Delivered</div></div>
+    <div class="stat reveal delay-3"><div class="num">4–10<b>×</b></div><div class="lbl">ROAS Achieved</div></div>
+  </div>
+</section>
+
+<section class="about-sec">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Who We Are</span>
+      <h2>Where marketing <span class="green_text">wisdom</span> meets modern <span class="green_text">agility</span></h2>
+    </div>
+    <div class="intro-lead reveal">We are a <strong>next-gen marketing agency</strong> that bridges the legacy of marketing wisdom with modern AI-infused agility. Our foundation rests on <strong>15+ years of cumulative experience</strong>, but our vision is future-forward — to drive real, measurable growth in a digital-first world.</div>
+    <div class="mv-wrap reveal">
+      <div class="mv-grid">
+        <div class="mv-card mv-vision">
+          <span class="mv-deco" aria-hidden="true">
+            <svg viewBox="0 0 240 170">
+              <path d="M28 120 C 24 96, 28 78, 44 70 C 54 64, 68 62, 80 66 C 86 60, 96 58, 106 62 C 116 66, 120 74, 118 84 M 122 84 C 122 74, 130 66, 142 62 C 154 58, 168 60, 178 68 C 196 76, 202 96, 198 118 C 194 138, 178 148, 160 144 C 140 138, 128 120, 124 104"/>
+              <circle cx="82" cy="104" r="22"/>
+              <circle cx="82" cy="104" r="10"/>
+              <circle cx="158" cy="104" r="22"/>
+              <circle cx="158" cy="104" r="10"/>
+              <path d="M104 104 L136 104"/>
+              <path d="M40 130 L 50 152 M 200 130 L 190 152"/>
+            </svg>
+          </span>
+          <h3>Our Vision</h3>
+          <p>To become a <strong>global benchmark in performance marketing</strong> by blending time-tested expertise, disruptive innovation, and data-driven intelligence — transforming how brands grow, engage, and convert in the digital age.</p>
+        </div>
+        <div class="mv-card mv-mission">
+          <span class="mv-deco" aria-hidden="true">
+            <svg viewBox="0 0 220 200">
+              <ellipse cx="110" cy="150" rx="82" ry="16"/>
+              <path d="M110 148 L110 92 L150 72 L150 128 Z"/>
+              <path d="M110 148 L70 128 L70 72 L110 92 Z"/>
+              <path d="M150 72 L110 92 L70 72"/>
+              <circle cx="110" cy="108" r="6"/>
+              <circle cx="110" cy="108" r="14"/>
+              <circle cx="110" cy="108" r="22"/>
+              <path d="M60 40 L104 100 M50 56 L98 108 M70 26 L112 96"/>
+              <path d="M56 42 L60 52 L68 48 Z M46 58 L50 68 L58 64 Z M66 28 L70 38 L78 34 Z"/>
+              <path d="M110 164 L96 188 M110 164 L124 188 M96 188 L124 188"/>
+            </svg>
+          </span>
+          <h3>Our Mission</h3>
+          <p>To <strong>empower businesses with performance-driven marketing</strong> by leveraging AI, full-funnel strategies, and transparent accountability — ensuring every digital touchpoint drives real, measurable value.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-sec values-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">What We Stand For</span>
+      <h2>Our Core <span class="green_text">Values</span></h2>
+      <p>Six principles that shape every campaign we ship.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="val-num">01</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg></div>
+        <h3>Integrity Through Data</h3>
+        <p>We let results speak — metrics and outcomes guide every decision we make.</p>
+      </div>
+      <div class="value-card reveal delay-1">
+        <span class="val-num">02</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Legacy-Driven Innovation</h3>
+        <p>We respect deep marketing principles while embracing new tools and methods.</p>
+      </div>
+      <div class="value-card reveal delay-2">
+        <span class="val-num">03</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M13 2L5 14h6l-2 8 10-14h-6z"/></svg></div>
+        <h3>Agility at the Core</h3>
+        <p>We move fast, learn fast, and adapt quickly to every market shift.</p>
+      </div>
+      <div class="value-card reveal delay-1">
+        <span class="val-num">04</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+        <h3>Client-Centric Growth</h3>
+        <p>Every decision, campaign, and pivot centers on your customer's journey.</p>
+      </div>
+      <div class="value-card reveal delay-2">
+        <span class="val-num">05</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/></svg></div>
+        <h3>Tech-Led Excellence</h3>
+        <p>Automation, attribution, and analytics form the backbone of everything we do.</p>
+      </div>
+      <div class="value-card reveal delay-3">
+        <span class="val-num">06</span>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Transparent Partnerships</h3>
+        <p>Open dashboards, clear KPIs, and full visibility into our entire process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Our Process</span>
+      <h2>What We <span class="green_text">Do</span></h2>
+      <p>A three-phase approach — Launch → Optimize → Scale — with defined steps to ensure consistency, clarity, and growth.</p>
+    </div>
+    <div class="process-track">
+      <div class="phase-card reveal">
+        <div class="phase-badge">01</div>
+        <h3>Launch</h3>
+        <ul>
+          <li>Acquire platform, data and account access</li>
+          <li>Perform audits across every platform</li>
+          <li>Define campaign structures</li>
+          <li>Develop creatives and copy</li>
+          <li>Execute and launch campaigns</li>
+        </ul>
+      </div>
+      <div class="phase-card reveal delay-1">
+        <div class="phase-badge">02</div>
+        <h3>Optimize</h3>
+        <ul>
+          <li>Ongoing audits and analytics</li>
+          <li>Refine media planning and strategy</li>
+          <li>Monitor daily performance and fine-tune</li>
+          <li>Bi-weekly client review calls</li>
+          <li>Reallocate or pause under-performers</li>
+        </ul>
+      </div>
+      <div class="phase-card reveal delay-2">
+        <div class="phase-badge">03</div>
+        <h3>Scale</h3>
+        <ul>
+          <li>Identify top-performing campaigns</li>
+          <li>Develop a roadmap and scaling plan</li>
+          <li>Scale vertically (budget) and horizontally (reach)</li>
+          <li>Deploy advanced reporting systems</li>
+          <li>Execute the scaling roadmap strategically</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-expertise">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Our Expertise</span>
+      <h2>Full-Stack <span class="green_text">Service Suite</span></h2>
+      <p>A broad set of digital marketing services, tailored to every stage of growth.</p>
+    </div>
+    <div class="expertise-grid">
+      <a class="exp-card reveal" href="organic-marketing-services.html">
+        <span class="exp-num">01</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg></div>
+        <h3>Organic Marketing</h3>
+        <p>SEO, content, and social working together for long-term compounding growth.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-1" href="paid-social-media-advertising.html">
+        <span class="exp-num">02</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></div>
+        <h3>Paid Social Advertising</h3>
+        <p>Meta, LinkedIn, Pinterest and Snapchat ads engineered to convert.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-2" href="pay-per-click.html">
+        <span class="exp-num">03</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Pay-Per-Click (PPC)</h3>
+        <p>High-intent traffic via Google, Bing, Shopping and performance search.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal" href="performance-marketing-agency.html">
+        <span class="exp-num">04</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg></div>
+        <h3>Performance Marketing</h3>
+        <p>Full-funnel campaigns tied to CAC, ROAS and real revenue.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-1" href="ecommerce-marketing.html">
+        <span class="exp-num">05</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+        <h3>E-Commerce Platforms</h3>
+        <p>Amazon, Flipkart, Shopify and D2C growth from listing to loyalty.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-2" href="data-strategy-consulting-services.html">
+        <span class="exp-num">06</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Data Strategy &amp; Consulting</h3>
+        <p>Attribution, analytics and a measurement stack that drives decisions.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal" href="native-advertising.html">
+        <span class="exp-num">07</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="7.5" r="0.7"/></svg></div>
+        <h3>Native Advertising</h3>
+        <p>Premium publisher and marketplace placements that feel organic.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-1" href="whatsapp-marketing-services.html">
+        <span class="exp-num">08</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg></div>
+        <h3>WhatsApp Marketing</h3>
+        <p>Conversational commerce, broadcasts and chatbot automation.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-2" href="branding-and-design.html">
+        <span class="exp-num">09</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg></div>
+        <h3>Branding &amp; Design</h3>
+        <p>Research-led identity systems and creative direction that convert.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+      <a class="exp-card reveal delay-3" href="generative-search-optimisation.html">
+        <span class="exp-num">10</span>
+        <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/><path d="M2 12h2M20 12h2"/></svg></div>
+        <h3>Generative Search Optimisation</h3>
+        <p>Surface your brand in ChatGPT, Gemini, Perplexity and AI Overviews.</p>
+        <span class="exp-link">Explore</span>
+      </a>
+    </div>
+    <p class="svc-closing reveal delay-1">Whether you need to build awareness, drive conversions, or scale profits — we structure and sequence services based on what your business needs now… and in six months.</p>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Why DigiVeritaz</span>
+      <h2>Why brands <span class="green_text">choose us</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-tile reveal"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>We tie every campaign to business metrics — not vanity KPIs</p></div>
+      <div class="why-tile reveal delay-1"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>We back up strategies with data, not guesses</p></div>
+      <div class="why-tile reveal delay-2"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Full visibility into performance via transparent dashboards</p></div>
+      <div class="why-tile reveal delay-1"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>AI and automation deployed to optimize at scale</p></div>
+      <div class="why-tile reveal delay-2"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Agile methodology — we respond to market shifts quickly</p></div>
+      <div class="why-tile reveal delay-3"><div class="tile-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Deep experience balanced with fresh thinking</p></div>
+    </div>
+    <div class="why-promise reveal">We don't just promise performance — we guarantee <span class="green_text">direction, accountability, and growth.</span></div>
+  </div>
+</section>
+
+<section class="about-cta">
+  <div class="container reveal">
+    <h2>Your brand's next big move <span>starts here</span></h2>
+    <p>Let's talk growth. Book a discovery call and get a custom proposal within 48 hours.</p>
+    <a class="btn" href="contact-us.html">Contact Us Today</a>
   </div>
 </section>
 """
 write("about-us.html",
-      "About DigiVeritaz | Performance-First Digital Marketing Agency in Mumbai",
-      "Learn about DigiVeritaz — a Mumbai-based digital marketing agency with 65+ years of combined experience helping 60+ brands across India achieve measurable ROI through SEO, paid media and performance marketing.",
+      "About DigiVeritaz | Growth-Driven Digital Marketing Agency in Mumbai",
+      "DigiVeritaz is a performance marketing powerhouse based in Mumbai — 60+ clients, 15+ years combined experience, 1.15L+ leads delivered and 4–10x ROAS across India and globally.",
       about_body,
-      keywords=DEFAULT_KEYWORDS + ", about DigiVeritaz, digital marketing agency Mumbai, marketing team India, performance marketing experts, growth agency India")
+      keywords=DEFAULT_KEYWORDS + ", about DigiVeritaz, digital marketing agency Mumbai, performance marketing powerhouse, growth agency India, AI marketing agency")
 
 # ---------- CONTACT ----------
 contact_body = page_hero(
@@ -461,134 +695,479 @@ write("services.html",
 # ---------- INDIVIDUAL SERVICE PAGES ----------
 service_pages = {
     "seo.html": {
-        "title": "SEO Services in India | Technical SEO &amp; Content Strategy | DigiVeritaz",
-        "desc": "Enterprise-grade SEO services in India — technical SEO audits, content strategy, keyword research and authority link building that grow organic revenue.",
-        "keywords": "SEO services India, technical SEO, on-page SEO, off-page SEO, keyword research, content strategy, link building, SEO agency Mumbai, local SEO, Google ranking, organic growth, SERP optimization",
-        "service_name": "Search Engine Optimization",
-        "h1": "SEO Services That <span class=\"green_text\">Grow Revenue</span>",
+        "title": "SEO Services in India | Sustainable Organic Growth | DigiVeritaz",
+        "desc": "Performance-driven SEO company in India — technical audits, content strategy, ethical link building and localized targeting that cuts ad dependency and grows long-term organic revenue.",
+        "h1": "SEO Company in India That Powers <span class=\"green_text\">Sustainable Growth</span>",
         "crumb": "Home / Services / SEO",
-        "intro": "We engineer organic growth through technical audits, content strategy, and trustworthy link building.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/marketing.jpg",
-        "points": ["Technical SEO audits &amp; Core Web Vitals","Keyword research &amp; content strategy","On-page optimization","Authority link building","Local &amp; international SEO","Reporting with business KPIs"],
-    },
-    "pay-per-click.html": {
-        "title": "Pay Per Click (PPC) | DigiVeritaz",
-        "desc": "PPC services that drive high-intent traffic and ROI-positive conversions.",
-        "h1": "Pay-Per-Click <span class=\"green_text\">Advertising</span>",
-        "crumb": "Home / Services / Pay Per Click",
-        "intro": "Get in front of buyers the moment they're searching — with Google Ads, Bing Ads and Shopping campaigns built for ROI.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/ppc-Advertising.jpg",
-        "points": ["Google Search &amp; Display","Shopping &amp; Performance Max","Remarketing funnels","Bid strategy &amp; budget pacing","Landing page CRO","Weekly performance reviews"],
-    },
-    "performance-marketing-agency.html": {
-        "title": "Performance Marketing Agency | DigiVeritaz",
-        "desc": "Full-funnel performance marketing across search, display, shopping and video.",
-        "h1": "Performance <span class=\"green_text\">Marketing</span>",
-        "crumb": "Home / Services / Performance Marketing",
-        "intro": "Smart funnels, smarter conversions. We blend creative, media, and analytics to hit your CAC and ROAS targets.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/performance-Marketing.jpg",
-        "points": ["Cross-channel media planning","Attribution &amp; incrementality","Creative testing at scale","Funnel &amp; CRO optimization","Automated reporting","Dedicated growth team"],
-    },
-    "paid-social-media-advertising.html": {
-        "title": "Paid Social Media Advertising | DigiVeritaz",
-        "desc": "Facebook, Instagram, LinkedIn, Pinterest and Snapchat advertising that drives measurable outcomes.",
-        "h1": "Paid Social <span class=\"green_text\">Advertising</span>",
-        "crumb": "Home / Services / Paid Social",
-        "intro": "From Meta to LinkedIn, we turn ad spend into profitable growth with creative that stops the scroll.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/ads-desktop.jpg",
-        "points": ["Meta Ads (Facebook &amp; Instagram)","LinkedIn B2B campaigns","Pinterest &amp; Snapchat","Creative production","Audience building &amp; lookalikes","Conversion API integration"],
-    },
-    "ecommerce-marketing.html": {
-        "title": "E-Commerce Marketing Services | DigiVeritaz",
-        "desc": "Managed e-commerce marketing across Amazon, Flipkart, Shopify and D2C.",
-        "h1": "E-Commerce <span class=\"green_text\">Marketing</span>",
-        "crumb": "Home / Services / E-Commerce",
-        "intro": "End-to-end Amazon, Flipkart and D2C growth — from listings and ads to conversion optimization.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/ecommerce-Platforms-1.jpg",
-        "points": ["Amazon Ads &amp; SEO","Flipkart &amp; Myntra management","Shopify growth","CRO &amp; A/B testing","Retention &amp; loyalty","Marketplace analytics"],
-    },
-    "whatsapp-marketing-services.html": {
-        "title": "WhatsApp Marketing Services | DigiVeritaz",
-        "desc": "WhatsApp Business API marketing, automation and bulk messaging.",
-        "h1": "WhatsApp <span class=\"green_text\">Marketing</span>",
-        "crumb": "Home / Services / WhatsApp Marketing",
-        "intro": "Direct, personal, conversational — WhatsApp is the highest-converting channel you're underusing.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/10/WhatsApp-Marketing.jpg",
-        "points": ["WhatsApp Business API setup","Bulk messaging &amp; broadcasts","Chatbot automation","Campaign management","Catalogue &amp; commerce","CRM integration"],
-    },
-    "native-advertising.html": {
-        "title": "Native Advertising Services | DigiVeritaz",
-        "desc": "Premium native advertising placements that drive brand awareness and engagement.",
-        "h1": "Native <span class=\"green_text\">Advertising</span>",
-        "crumb": "Home / Services / Native Advertising",
-        "intro": "Reach audiences on Amazon, Flipkart, Swiggy, Zomato, Blinkit, Zepto, Myntra and premium publishers.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/whats-app-Desktop.jpg",
-        "points": ["Premium publisher placements","Marketplace native ads","Branded content","Sponsored discovery","Performance tracking","Programmatic buying"],
+        "kicker": "Search Engine Optimization",
+        "intro": "We're a performance-driven SEO company helping businesses cut ad dependency and achieve long-term organic growth — with proven expertise across industries and transparent reporting on every metric that matters.",
+        "benefits": [
+            ("ROI-Focused Approach", "Qualified leads over vanity traffic — every tactic tied to revenue."),
+            ("Industry-Proven Expertise", "Campaigns across startups, SMEs, and enterprises with measurable results."),
+            ("Technical Precision", "Core Web Vitals fixes, structured data and crawl efficiency baked in."),
+            ("Ethical Link Building", "High-authority backlinks via genuine outreach — no black-hat shortcuts."),
+            ("Localized Targeting", "Geo-optimized content and GMB strategy that wins local intent."),
+            ("Transparent Reporting", "Monthly dashboards with business KPIs, not vanity numbers."),
+        ],
+        "deliverables": [
+            "On-Page SEO (keyword mapping, meta optimization, content alignment)",
+            "Technical SEO (speed, structured data, crawl efficiency)",
+            "Off-Page &amp; Authority Building (ethical link outreach)",
+            "Local SEO (GMB optimization, reviews strategy)",
+            "E-Commerce SEO (product &amp; category rankings)",
+            "Enterprise SEO (scalable strategies for complex sites)",
+        ],
+        "process": [
+            ("Comprehensive Audit", "We identify visibility gaps, site-health issues and competitor benchmarks."),
+            ("Strategy Development", "A tailored SEO roadmap aligned with your business goals and priorities."),
+            ("On-Page &amp; Technical Execution", "Ranking improvements, structured data and content alignment shipped."),
+            ("Off-Page &amp; Authority Building", "Genuine outreach to build durable trust signals and citations."),
+            ("Performance Tracking", "Transparent monthly reports with growth insights and next actions."),
+        ],
+        "faqs": [
+            ("How long does it take to see SEO results?", "Typically 3–6 months depending on your website's current state, domain authority and industry competition. Foundational wins often appear in weeks, while ranking consolidation takes longer."),
+            ("Do you handle international or multilingual SEO?", "Yes — we specialize in multilingual and international SEO strategies including hreflang, regional content, and geo-specific link profiles."),
+            ("What makes your SEO approach different?", "We combine technical precision, content excellence and transparent reporting to deliver results that impact your bottom line — not just Search Console charts."),
+        ],
     },
     "organic-marketing-services.html": {
-        "title": "Organic Marketing Services | DigiVeritaz",
-        "desc": "Long-term organic growth via SEO, social and content.",
-        "h1": "Organic <span class=\"green_text\">Marketing</span>",
+        "title": "Organic Marketing Services | Sustainable Growth Without Paid Ads | DigiVeritaz",
+        "desc": "Drive sustainable growth without paid ads. SEO, content marketing, social media optimization and analytics that build long-term audiences and compounding ROI.",
+        "h1": "Drive Sustainable Growth Without <span class=\"green_text\">Paid Ads</span>",
         "crumb": "Home / Services / Organic Marketing",
-        "intro": "Sustainable growth built on earned audiences — search, social and content working together.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/marketing.jpg",
-        "points": ["SEO &amp; content","Organic social strategy","Community building","Influencer partnerships","PR &amp; outreach","Brand monitoring"],
+        "kicker": "Organic Marketing",
+        "intro": "We help brands expand naturally using SEO, content marketing, social media optimization and analytics — instead of relying solely on paid advertisements.",
+        "benefits": [
+            ("Long-Term Brand Authority", "Compounding credibility as organic presence builds trust over time."),
+            ("Lower Acquisition Costs", "Reduced dependency on paid media means healthier unit economics."),
+            ("Consistent Website Traffic", "A steady pipeline of qualified visitors — not rented attention."),
+            ("Improved SEO Rankings", "Higher visibility across search, video and social surfaces."),
+            ("Quality Organic Leads", "Visitors who arrive through intent convert better and stay longer."),
+            ("Audience Loyalty", "Earned audiences stick around — and advocate for your brand."),
+        ],
+        "deliverables": [
+            "Organic SEO (keyword research, on-page, backlinks)",
+            "Content Marketing (blogs, infographics, videos)",
+            "Social Media Organic Marketing (posting, storytelling, engagement)",
+            "Organic Lead Generation (optimized funnels)",
+            "YouTube &amp; Video Optimization",
+        ],
+        "process": [
+            ("Audit &amp; Strategy Building", "Evaluate website and competition to shape the plan."),
+            ("Keyword Mapping &amp; Content Planning", "Identify high-volume, low-difficulty keywords and content pillars."),
+            ("On-Page SEO Optimization", "Improve meta tags, structure and user experience."),
+            ("Content Creation &amp; Distribution", "Blogs, landing pages, and social posts built for reach."),
+            ("Engagement &amp; Outreach", "Build trust through organic engagement and community."),
+            ("Tracking &amp; Reporting", "Monitor analytics for traffic, engagement and ROI."),
+        ],
+        "faqs": [],
     },
-    "branding-and-design.html": {
-        "title": "Branding and Design Services | DigiVeritaz",
-        "desc": "Brand strategy, identity and design systems that convert.",
-        "h1": "Branding &amp; <span class=\"green_text\">Design</span>",
-        "crumb": "Home / Services / Branding &amp; Design",
-        "intro": "A strong brand is your best sales tool. We build identity systems that scale across every touchpoint.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/branding-and-Design.jpg",
-        "points": ["Brand research &amp; insights","Strategy &amp; positioning","Identity &amp; visual systems","Content &amp; copywriting","Audits &amp; analytics","Creative direction"],
+    "paid-social-media-advertising.html": {
+        "title": "Paid Social Media Advertising | Meta, LinkedIn, YouTube Ads | DigiVeritaz",
+        "desc": "Paid social media advertising that drives real ROI. Facebook, Instagram, LinkedIn and YouTube campaigns blending video-led creative with precise targeting and retargeting funnels.",
+        "h1": "Paid Social <span class=\"green_text\">Advertising</span>",
+        "crumb": "Home / Services / Paid Social",
+        "kicker": "Paid Social Advertising",
+        "intro": "In today's competitive landscape, organic reach alone isn't enough. Paid advertising on social media lets you connect with the right audience, at the right time, with precision targeting — and creative that stops the scroll.",
+        "benefits": [
+            ("Wider Reach &amp; Visibility", "Go beyond existing followers and reach new qualified audiences."),
+            ("Faster Results", "Immediate visibility and conversions versus slower organic growth."),
+            ("Precise Targeting", "Demographic, behavioral and intent-based audience layers."),
+            ("Budget Flexibility", "Start small, test, and scale what works."),
+            ("Higher Engagement", "Creative formats — video, carousel, story — drive interaction."),
+            ("Remarketing &amp; Data Insights", "Retarget warm audiences and refine strategy with rich data."),
+        ],
+        "deliverables": [
+            "Facebook &amp; Instagram (Meta) Ads",
+            "LinkedIn Ads (B2B targeting)",
+            "YouTube &amp; Video Ads",
+            "Creative production (video-led)",
+            "Audience building &amp; lookalikes",
+            "Retargeting funnels &amp; Conversion API setup",
+        ],
+        "process": [
+            ("Audience &amp; Goals Research", "Understand buyer personas and campaign objectives."),
+            ("Creative Development", "Video-led ad concepts, storyboards and production."),
+            ("Campaign Launch &amp; Monitoring", "Ship, instrument and start collecting signal from day one."),
+            ("Continuous Optimization", "Adjust targeting, bidding and creatives weekly for ROI."),
+        ],
+        "faqs": [
+            ("What is paid advertising on social media?", "Targeted paid campaigns on platforms like Facebook, Instagram, LinkedIn and YouTube — delivering faster results for leads, sales, or brand awareness than organic alone."),
+            ("How does paid differ from organic posts?", "Paid campaigns guarantee visibility through targeting and budget, while organic posts rely on algorithmic reach that's declined significantly across platforms."),
+            ("Which platforms work best?", "Facebook/Instagram for broad reach and direct response; LinkedIn for B2B; YouTube for storytelling and consideration."),
+            ("What's the recommended budget?", "Campaigns typically start from ₹20,000/month. Focus should be on ROI and unit economics over absolute spend."),
+            ("How do you measure success?", "Impressions, clicks, conversions, cost per lead, and return on ad spend — reported in a transparent dashboard."),
+        ],
     },
-    "generative-search-optimisation.html": {
-        "title": "Generative Search Optimisation (GSO) | DigiVeritaz",
-        "desc": "Get discovered in ChatGPT, Gemini, Perplexity and AI-powered search.",
-        "h1": "Generative Search <span class=\"green_text\">Optimisation</span>",
-        "crumb": "Home / Services / GSO",
-        "intro": "The future of search is AI. We help your brand surface in ChatGPT, Gemini, Perplexity and Google AI Overviews.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/marketing.jpg",
-        "points": ["AI search visibility audits","Entity &amp; schema optimization","Content for LLMs","Brand authority signals","Citation building","GSO analytics &amp; tracking"],
+    "pay-per-click.html": {
+        "title": "PPC Agency in India | Google Ads Management | DigiVeritaz",
+        "desc": "Pay-Per-Click advertising that turns clicks into customers. End-to-end Google Ads, Shopping, Display and Video campaigns with full-funnel tracking, CRO and ROI-focused optimization.",
+        "h1": "Drive Instant Visibility and Conversions with <span class=\"green_text\">PPC</span>",
+        "crumb": "Home / Services / Pay Per Click",
+        "kicker": "Pay-Per-Click (PPC)",
+        "intro": "PPC turns clicks into customers — not just traffic. We serve startups through established businesses with measurable, ROI-focused campaign management across Google, Shopping and Display.",
+        "benefits": [
+            ("Immediate Top-of-SERP Presence", "Appear where buyers are searching the moment you launch."),
+            ("Controlled Budgeting", "Pay only on clicks or conversions — full cost control."),
+            ("Precise Targeting", "Location, device, keyword and behavior-level targeting."),
+            ("Measurable Outcomes", "Track CPC, CTR, CPA, ROAS and Quality Score in real time."),
+            ("Rapid Experimentation", "Test ad copies, landing pages and bidding strategies at speed."),
+            ("Scalable Growth", "Double down on ROI-positive campaigns with confidence."),
+        ],
+        "deliverables": [
+            "Strategy &amp; Planning",
+            "Campaign Setup (Google Ads, Display, Shopping, Video)",
+            "Creative Development (copy, banners, A/B testing)",
+            "Landing Page &amp; Conversion Optimization",
+            "Bid Management &amp; Budget Allocation",
+            "Ongoing Optimization, Tracking &amp; Reporting",
+        ],
+        "process": [
+            ("Discovery &amp; Audit", "Business goals, competitors and existing campaign assessment."),
+            ("Keyword &amp; Market Research", "Uncover profitable keywords, trends and seasonality."),
+            ("Strategy &amp; Campaign Architecture", "Structure accounts by objective, theme and funnel stage."),
+            ("Ad Copy, Creative &amp; Extensions", "Compelling copy, visuals, video and ad extensions."),
+            ("Tracking &amp; Infrastructure", "Conversion tracking, GA4 and server-side setup."),
+            ("Launch &amp; Monitor", "Dial in bids, pacing and early-signal optimization."),
+            ("Optimization &amp; Scaling", "Refine keywords, test creatives and scale winners."),
+        ],
+        "faqs": [
+            ("What is PPC campaign management?", "The end-to-end process of planning, launching, monitoring, optimizing and scaling paid campaigns. Expert management prevents wasted spend on irrelevant clicks and poor targeting."),
+            ("How soon will I see results?", "Initial results appear immediately; meaningful conversions and stable ROAS typically take 2–4 weeks of optimization cycles."),
+            ("Which keywords should we target?", "Intent-driven keywords and long-tail variants (e.g. 'buy shoes online'). We avoid generic queries with low conversion intent."),
+            ("How is success measured?", "CPC, CTR, CPA, conversion rate, ROAS, Quality Score and impression share — shown in transparent dashboards, not cherry-picked screenshots."),
+        ],
+    },
+    "performance-marketing-agency.html": {
+        "title": "Performance Marketing Agency in India &amp; Mumbai | DigiVeritaz",
+        "desc": "Performance marketing agency delivering measurable growth across search, social, display and app. Full-funnel CRO, lead gen, media buying and ROI-focused optimization.",
+        "h1": "Driving Measurable Growth with <span class=\"green_text\">Performance Marketing</span>",
+        "crumb": "Home / Services / Performance Marketing",
+        "kicker": "Performance Marketing",
+        "intro": "In a crowded digital marketplace, you need more than visibility — you need performance. Our performance marketing agency in Mumbai delivers results tied to CPL, CPA and ROAS, not vanity metrics.",
+        "benefits": [
+            ("Revenue-Driven Campaigns", "Every channel tied to CPL, CPA and ROAS targets."),
+            ("Data-First Approach", "Decisions backed by attribution and tested hypotheses."),
+            ("Full-Funnel Optimization", "TOFU awareness through MOFU nurture to BOFU conversion."),
+            ("Cross-Channel Synergy", "Coordinated media buys across search, social, display, video."),
+            ("Agile &amp; Transparent Execution", "Weekly sprints and open dashboards — no black boxes."),
+            ("Dedicated Growth Team", "A specialist pod: strategist, media buyer, creative, analyst."),
+        ],
+        "deliverables": [
+            "Paid Media (Search, Social, Display)",
+            "Conversion Rate Optimization (CRO)",
+            "Lead Generation Specialist Support",
+            "App Installs &amp; Mobile Marketing",
+            "Social Media Performance Boost",
+            "Transparent Pricing &amp; ROI Forecasts",
+        ],
+        "process": [
+            ("Discovery &amp; Audit", "Current-state analysis of accounts, funnels and tracking."),
+            ("Strategy Planning", "Channel mix, budget allocation and KPI framework."),
+            ("Creative &amp; Copy Development", "Performance creative built to test and scale."),
+            ("Execution &amp; Media Buying", "Ship campaigns with proper instrumentation."),
+            ("CRO Service", "Landing page optimization and funnel experiments."),
+            ("Tracking, Analytics &amp; Reporting", "Dashboards, attribution, and weekly insights."),
+            ("Iterative Optimization", "Weekly test cycles — kill losers, scale winners."),
+        ],
+        "faqs": [
+            ("How is performance marketing different from traditional digital marketing?", "Traditional digital marketing often optimizes for awareness, traffic and followers. Performance marketing ties every rupee of spend to measurable outcomes — leads, purchases, revenue."),
+            ("What's the realistic timeline to see ROI?", "Initial testing takes 2–4 weeks; significant compounding results typically appear in 8–12 weeks as optimization cycles mature."),
+            ("Is there a minimum budget?", "It depends on industry, competition and channel mix. We customize based on expected outcomes — and won't take on accounts where spend can't meet CAC targets."),
+            ("Is this full-service?", "Yes — creative, media buying, CRO, analytics and reporting are all handled end-to-end by the same pod."),
+            ("Which industries do you serve?", "E-commerce, SaaS, startups, apps, retail, education, hospitality and local businesses across India and overseas."),
+        ],
+    },
+    "ecommerce-marketing.html": {
+        "title": "E-Commerce Managed Services | Amazon, Flipkart, Shopify | DigiVeritaz",
+        "desc": "E-commerce platforms managed services that scale your online business across Amazon, Flipkart, Shopify and D2C. Listings, ads, fulfillment, analytics and growth.",
+        "h1": "Managed Services That Scale Your <span class=\"green_text\">Online Business</span>",
+        "crumb": "Home / Services / E-Commerce",
+        "kicker": "E-Commerce Platforms",
+        "intro": "We partner with you to thrive. Our e-commerce management services empower brands to compete, convert and scale across marketplaces and independent webstores — with the analytics and operational rigor your board expects.",
+        "benefits": [
+            ("End-to-End Capability", "Platform, product, ads and operations under one roof."),
+            ("White-Label Operations", "Your brand, our operations — no service gaps."),
+            ("Data-Driven Decisions", "Sales, margin and inventory insights informing every move."),
+            ("Scalable for Any Size", "From launch to enterprise — the model flexes."),
+            ("Compliance &amp; Risk Mitigation", "Marketplace policy, returns and disputes handled."),
+            ("Dedicated Account Management", "A named lead accountable for growth and SLAs."),
+        ],
+        "deliverables": [
+            "Platform &amp; marketplace setup with optimization",
+            "Product &amp; catalog management with SEO",
+            "Order, inventory and fulfillment oversight",
+            "E-commerce advertising (Amazon Ads, Sponsored Products, Meta Shops)",
+            "Custom analytics dashboards (sales, AOV, ROAS, ACOS)",
+            "Returns, reviews and marketplace compliance",
+        ],
+        "process": [
+            ("Discovery &amp; Audit", "Evaluate existing presence and map to business goals."),
+            ("Strategic Roadmap", "Propose platforms, priorities and tech stack."),
+            ("Implementation &amp; Setup", "Deploy platforms, configure dashboards, integrate partners."),
+            ("Launch &amp; Go-Live Support", "Optimize store, monitor real-time, fix issues."),
+            ("Ongoing Management &amp; Growth", "Account management, campaigns, optimization and scaling."),
+        ],
+        "faqs": [
+            ("What does 'e-commerce managed service' include?", "End-to-end support: platform setup, product &amp; inventory management, order fulfilment, returns/logistics, ad campaigns, analytics, compliance and ongoing optimization."),
+            ("What is a white-label e-commerce platform?", "A store branded as yours with your logo and design, while the backend operations and tech are handled by our team."),
+            ("Which KPIs do you track?", "Conversion rate, AOV, repeat purchase rate, return rate, ROAS/ACOS, inventory turnover, gross margin and customer lifetime value."),
+            ("Can you manage both marketplaces and standalone stores?", "Yes — we cover Amazon, Flipkart and independent platforms like Shopify and WooCommerce."),
+            ("How quickly do we see results?", "Setup takes 1–2 weeks; early traffic in weeks; sustainable performance typically in 3–6 months."),
+        ],
     },
     "data-strategy-consulting-services.html": {
-        "title": "Data Strategy &amp; Consulting | DigiVeritaz",
-        "desc": "Data strategy, attribution and analytics consulting for growth-stage brands.",
+        "title": "Data Strategy &amp; Consulting Services | Analytics, GA4 &amp; Dashboards | DigiVeritaz",
+        "desc": "Data strategy and consulting for growth-stage brands — GA4 setup, attribution, dashboards (Looker, Power BI, Tableau) and measurement frameworks that drive decisions.",
         "h1": "Data Strategy &amp; <span class=\"green_text\">Consulting</span>",
         "crumb": "Home / Services / Data Strategy",
-        "intro": "Know what's working, what isn't, and what to do next — with a measurement stack built for growth decisions.",
-        "img": "https://digiveritaz.com/wp-content/uploads/2025/06/data-Strategy-and-Consulting.jpg",
-        "points": ["Analytics &amp; GA4 setup","Server-side tracking","Attribution modeling","Dashboards &amp; reporting","Data warehousing","CDP &amp; CRM integration"],
+        "kicker": "Data Strategy &amp; Consulting",
+        "intro": "In an environment overflowing with data, what matters is extracting real insight — and using it to fuel growth. Our Data Strategy &amp; Consulting service is designed exactly for that purpose.",
+        "benefits": [
+            ("Aligned Business Objectives", "KPIs and metrics tied directly to business goals."),
+            ("Trustworthy Reporting", "Consistency and accuracy across every data source."),
+            ("Scalable Frameworks", "Measurement that evolves with your market and scale."),
+            ("Competitive Advantage", "Faster insights and trend prediction than your competitors."),
+            ("Higher Marketing ROI", "Spend decisions backed by real measurement, not instinct."),
+            ("Cross-Team Alignment", "Unified definitions mean everyone's optimizing the same thing."),
+        ],
+        "deliverables": [
+            "Data pipeline setup &amp; platform integration",
+            "Dashboards in GA4, Looker Studio, Power BI, Tableau",
+            "KPI definition and governance policies",
+            "Content strategy shaped by performance insights",
+            "Regular reporting and trend analysis meetings",
+            "Team training on data literacy and dashboard interpretation",
+        ],
+        "process": [
+            ("Discovery Call", "Understand business challenges and data sources."),
+            ("Audit of Current State", "Review existing tools, dashboards and tracking."),
+            ("Strategy Workshop", "Define goals, metrics and an implementation roadmap."),
+            ("Implementation Phase", "Set up tracking, dashboards and data integrations."),
+            ("Insight &amp; Analytics Phase", "Regular reporting and trend analysis meetings."),
+            ("Optimization &amp; Scaling", "Iterate, introduce advanced analytics, refine."),
+            ("Training &amp; Transition", "Build internal team capability to sustain."),
+        ],
+        "faqs": [
+            ("How long does implementation take?", "For SMEs, a complete audit, roadmap and initial setup usually takes 6–10 weeks. For large enterprises with multiple departments, it can extend to a few months."),
+            ("Which tools do you use?", "Google Analytics (GA4), Looker Studio, Power BI and Tableau — plus CRM integrations and ETL tools when needed."),
+            ("Is this only for large companies?", "No — the approach scales for startups, SMEs and enterprises alike."),
+            ("Can you train internal teams?", "Yes — we provide workshops and hands-on training on data literacy, dashboard reading and content strategy."),
+            ("What ROI should we expect?", "Stronger spend-to-conversion alignment, improved decision efficiency and reduced campaign wastage."),
+        ],
+    },
+    "native-advertising.html": {
+        "title": "Native Advertising Services in India | DigiVeritaz",
+        "desc": "Leading native advertising company in India combining platform expertise, creative finesse and programmatic optimization to deliver campaigns that move the needle.",
+        "h1": "Native Advertising Services by <span class=\"green_text\">DigiVeritaz</span>",
+        "crumb": "Home / Services / Native Advertising",
+        "kicker": "Native Advertising",
+        "intro": "As a leading native advertising company in India, we combine platform expertise, creative finesse and performance optimization to deliver native advertising services that move the needle — without feeling like ads.",
+        "benefits": [
+            ("Seamless Integration", "Ads blend with content, reducing interruption and boosting receptivity."),
+            ("Higher Engagement &amp; CTR", "Outperform traditional display formats significantly."),
+            ("Better Brand Perception", "Value-driven content builds trust, not ad fatigue."),
+            ("Ad-Blocker Resilient", "Native formats bypass common blockers."),
+            ("Programmatic Scalability", "Automated bidding and optimization at scale."),
+            ("Strong ROI", "Lower CPC and higher engagement translate to better unit economics."),
+        ],
+        "deliverables": [
+            "Native ad campaign planning &amp; execution",
+            "Creative content production (articles, infographics, visual stories)",
+            "Native display and in-feed ads",
+            "Recommendation widget placements",
+            "Sponsored content &amp; advertorials",
+            "Programmatic native buying",
+            "Platform partnerships &amp; publisher deals",
+            "Multilingual &amp; regional campaigns",
+        ],
+        "process": [
+            ("Research &amp; Platform Mapping", "Identify where native works for your audience and goals."),
+            ("Creative &amp; Content Design", "Headlines and visuals that match each platform's aesthetic."),
+            ("Campaign Setup &amp; Targeting", "Configure bidding, placements and audience segments."),
+            ("Testing &amp; Optimization", "A/B test creatives and monitor engagement metrics."),
+            ("Analytics &amp; Insights", "Conversion path analysis and performance dashboards."),
+            ("Scaling &amp; Expansion", "Roll out winners across new publishers and regions."),
+        ],
+        "faqs": [
+            ("How is native different from display advertising?", "Native ads blend into content environments visually and functionally — focused on integration and context. Display ads (banners, sidebars) feel overtly promotional."),
+            ("Is native affordable for startups?", "Yes — with flexible budgets, strategic targeting, testing and gradual scaling, it works at many budget levels."),
+            ("Timeline to results?", "Initial engagement metrics appear within days; meaningful conversions typically require 2–4 weeks of optimization."),
+            ("How is compliance handled?", "Disclosure labels ('Sponsored', 'Promoted') and adherence to platform policies maintain user trust and regulatory alignment."),
+            ("Can attribution be tracked?", "Yes — via UTM parameters, pixel integrations and conversion modeling."),
+        ],
+    },
+    "whatsapp-marketing-services.html": {
+        "title": "WhatsApp Marketing Services in India | Bulk Messaging &amp; Automation | DigiVeritaz",
+        "desc": "WhatsApp Marketing services that drive real conversations — bulk messaging, AI chatbots, CRM integration and official WhatsApp Business API automation.",
+        "h1": "WhatsApp Marketing Services That Drive <span class=\"green_text\">Real Conversations</span>",
+        "crumb": "Home / Services / WhatsApp Marketing",
+        "kicker": "WhatsApp Marketing",
+        "intro": "In today's fast-moving digital world, your customers don't want another email — they want real-time communication. Our WhatsApp Marketing services help your business connect instantly, build trust and boost engagement through the world's most popular messaging app.",
+        "benefits": [
+            ("Bulk Messaging at Scale", "Reach thousands of contacts safely via the official API."),
+            ("1:1 Personalization", "Names, purchase details and segment-specific messaging."),
+            ("Automation &amp; Scheduling", "Greeting, order confirmation and feedback flows on autopilot."),
+            ("AI-Powered Chatbots", "Convert inquiries into sales through intelligent chat flows."),
+            ("CRM &amp; Landing Page Integration", "Closed-loop data from ad click to conversion."),
+            ("Real-Time Analytics", "Delivery rates, responses and conversions tracked live."),
+        ],
+        "deliverables": [
+            "Official WhatsApp Business API setup",
+            "Bulk messaging platform &amp; campaign manager",
+            "Audience segmentation &amp; personalization",
+            "Chatbot automation &amp; AI chat flows",
+            "Catalogue &amp; commerce integration",
+            "CRM integration &amp; dedicated support",
+        ],
+        "process": [
+            ("Discovery &amp; Use-Case Mapping", "Identify high-impact conversational touchpoints in your funnel."),
+            ("WhatsApp Business API Setup", "Verified business number, API provisioning and compliance."),
+            ("Audience &amp; Template Strategy", "Segment lists and design approved message templates."),
+            ("Automation &amp; Chatbot Build", "Flows for greetings, confirmations, support and sales."),
+            ("Launch, Monitor &amp; Optimize", "Campaign dashboards with real-time iteration."),
+        ],
+        "faqs": [],
+    },
+    "branding-and-design.html": {
+        "title": "Branding &amp; Design Services That Build Timeless Brands | DigiVeritaz",
+        "desc": "Branding and design services that build timeless brands — strategy, identity, logo, packaging and brand systems crafted by experienced design professionals in Mumbai.",
+        "h1": "Branding and Design Services That Build <span class=\"green_text\">Timeless Brands</span>",
+        "crumb": "Home / Services / Branding &amp; Design",
+        "kicker": "Branding &amp; Design",
+        "intro": "We create brands that stand out, connect emotionally and convert. Our branding and design services go beyond a logo — we build a complete brand identity system that defines who you are, what you stand for, and how your audience remembers you.",
+        "benefits": [
+            ("Full-Service Creative Agency", "Concept to launch — strategy, identity, collateral, digital."),
+            ("Custom-Built Identity", "Original ideas, not templates or mood-board clichés."),
+            ("Cross-Industry Expertise", "Experienced designers across D2C, B2B, F&amp;B, education and more."),
+            ("Strategy Meets Creativity", "Research-led positioning paired with bold visual execution."),
+            ("Local Presence, Global Standards", "Based in Mumbai, delivering work at international quality."),
+            ("Scalable Brand Systems", "Guidelines and templates so teams can ship on-brand at speed."),
+        ],
+        "deliverables": [
+            "Brand Strategy Development",
+            "Logo Design &amp; Brand Identity",
+            "Rebranding Services",
+            "Visual &amp; Corporate Identity Design",
+            "Packaging &amp; Marketing Collateral",
+            "Brand Guidelines &amp; Templates",
+        ],
+        "process": [
+            ("Brand Discovery", "Understanding goals, audience and competitive landscape."),
+            ("Strategy &amp; Positioning", "Defining the foundation for visual identity."),
+            ("Design Exploration", "Presenting multiple design directions and routes."),
+            ("Refinement &amp; Finalization", "Perfecting the chosen direction with brand guidelines."),
+            ("Implementation Support", "Rolling out the brand across digital and offline platforms."),
+        ],
+        "faqs": [],
+    },
+    "generative-search-optimisation.html": {
+        "title": "Generative Search Optimisation (GEO) | Rank in AI Search | DigiVeritaz",
+        "desc": "Generative Search Optimisation (GEO) services to rank your brand in ChatGPT, Google SGE, Perplexity, Bing Copilot and AI Overviews. Future-proof your organic visibility.",
+        "h1": "Generative Search Optimisation <span class=\"green_text\">(GEO)</span>",
+        "crumb": "Home / Services / GEO",
+        "kicker": "Generative Search Optimisation",
+        "intro": "The search landscape is changing fast. Traditional SEO was built around ranking for keywords — but today, users get their answers from AI-powered platforms like Google SGE, ChatGPT, Perplexity and Bing Copilot. We help your brand get cited in those answers.",
+        "benefits": [
+            ("Appear in AI Answers", "Citations in ChatGPT, Bing Copilot and Google SGE responses."),
+            ("Enhanced Brand Authority", "Credible citations build generative trust signals."),
+            ("Future-Proof SEO", "Stay visible as AI-driven search reshapes discovery."),
+            ("Qualified Organic Conversions", "AI-referred users arrive with high intent."),
+            ("Knowledge Graph Presence", "Strong entity signals that AIs can understand and cite."),
+        ],
+        "deliverables": [
+            "Generative Visibility Audit",
+            "Semantic content optimization",
+            "Schema markup &amp; entity linking",
+            "Generative Traffic Dashboard",
+            "Continuous AI-model monitoring &amp; adaptation",
+        ],
+        "process": [
+            ("Research &amp; Audit", "Identify AI visibility gaps and map competitor citations."),
+            ("AI-Ready Content Structuring", "Semantic hierarchy and citation-friendly answers."),
+            ("Technical GEO Implementation", "Schema markup and knowledge graph linking."),
+            ("Generative Content Strategy", "Content engineered for AI summaries and chatbots."),
+            ("Monitor, Analyze &amp; Adapt", "Track citations and adjust as AI models evolve."),
+        ],
+        "faqs": [],
     },
 }
 
-def svc_template(h1, crumb, intro, img, points):
-    bullets = "".join(f"<li>{p}</li>" for p in points)
-    return page_hero(h1, crumb, intro) + f"""
-<section><div class="container grid-2">
-  <div><img src="{img}" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80'" alt="" style="border-radius:20px;box-shadow:var(--shadow)"></div>
-  <div>
-    <h2>What's <span class="green_text">Included</span></h2>
-    <ul class="list-check">{bullets}</ul>
-    <div class="mt-20"><a class="btn" href="contact-us.html">Get a Proposal</a></div>
+def svc_template(p):
+    # Hero
+    hero = f"""<section class="about-hero">
+  <div class="container">
+    <div class="breadcrumb">{p["crumb"]}</div>
+    <span class="kicker">{p["kicker"]}</span>
+    <h1>{p["h1"]}</h1>
+    <p class="lead">{p["intro"]}</p>
+    <div class="hero-sub"><a class="btn" href="contact-us.html">Book A Free Consultation</a></div>
   </div>
-</div></section>
-
-<section class="services"><div class="container">
-  <div class="section-head"><h2>Our <span class="green_text">Process</span></h2></div>
-  <div class="services-grid">
-    <div class="svc-card"><div class="icon">1</div><h3>Discover</h3><p>We audit your current state, goals, and competitors to shape a custom strategy.</p></div>
-    <div class="svc-card"><div class="icon">2</div><h3>Plan</h3><p>Channel mix, budget allocation, creative brief and KPI framework — all aligned.</p></div>
-    <div class="svc-card"><div class="icon">3</div><h3>Launch</h3><p>We ship campaigns, instrument tracking, and start collecting signal from day one.</p></div>
-    <div class="svc-card"><div class="icon">4</div><h3>Optimize</h3><p>Weekly testing, creative rotation and bid adjustments to push CAC down and ROAS up.</p></div>
-    <div class="svc-card"><div class="icon">5</div><h3>Report</h3><p>Transparent dashboards, business-metric reporting and strategic reviews.</p></div>
-    <div class="svc-card"><div class="icon">6</div><h3>Scale</h3><p>Once unit economics are proven, we unlock new markets and budgets with confidence.</p></div>
-  </div>
-</div></section>
+</section>
 """
+    # Benefits
+    bene_icons = ["M3 20h18M5 12v7M11 8v11M17 4v15","M12 2a10 10 0 1 0 10 10M12 6v6l4 2","M13 2L5 14h6l-2 8 10-14h-6z","M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z","M20 6L9 17l-5-5","M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"]
+    bene_cards = "".join(
+        f'<div class="value-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><span class="val-num">{(i+1):02d}</span><div class="val-icon"><svg viewBox="0 0 24 24"><path d="{bene_icons[i%len(bene_icons)]}"/></svg></div><h3>{t}</h3><p>{d}</p></div>'
+        for i, (t, d) in enumerate(p["benefits"])
+    )
+    benefits = f"""<section class="about-sec values-section">
+  <div class="container">
+    <div class="sec-head reveal"><span class="kicker">Why Choose Us</span><h2>Key <span class="green_text">Benefits</span></h2></div>
+    <div class="values-grid">{bene_cards}</div>
+  </div>
+</section>
+"""
+    # Deliverables
+    deliver_tiles = "".join(
+        f'<div class="svc-deliver reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>{d}</p></div>'
+        for i, d in enumerate(p["deliverables"])
+    )
+    deliverables = f"""<section class="why-section">
+  <div class="container">
+    <div class="sec-head reveal"><span class="kicker">Deliverables</span><h2>What's <span class="green_text">Included</span></h2></div>
+    <div class="svc-deliver-grid">{deliver_tiles}</div>
+  </div>
+</section>
+"""
+    # Process
+    proc_cards = "".join(
+        f'<div class="phase-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="phase-badge">{(i+1):02d}</div><h3>{t}</h3><p>{d}</p></div>'
+        for i, (t, d) in enumerate(p["process"])
+    )
+    process = f"""<section class="process-section">
+  <div class="container">
+    <div class="sec-head reveal"><span class="kicker">Our Process</span><h2>How <span class="green_text">We Work</span></h2></div>
+    <div class="process-track auto">{proc_cards}</div>
+  </div>
+</section>
+"""
+    # FAQs
+    faqs_section = ""
+    if p.get("faqs"):
+        faq_html = "".join(
+            f'<div class="faq-item"><div class="faq-q">{q}</div><div class="faq-a">{a}</div></div>'
+            for q, a in p["faqs"]
+        )
+        faqs_section = f"""<section class="about-sec">
+  <div class="container svc-faq-wrap">
+    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>
+    {faq_html}
+  </div>
+</section>
+"""
+    # CTA
+    cta = """<section class="about-cta">
+  <div class="container reveal">
+    <h2>Ready to grow your <span>brand?</span></h2>
+    <p>Book a free consultation and get a custom proposal within 48 hours.</p>
+    <a class="btn" href="contact-us.html">Start Your Project</a>
+  </div>
+</section>
+"""
+    return hero + benefits + deliverables + process + faqs_section + cta
 
-def service_jsonld(fname, title, desc):
+def service_jsonld(fname, title, desc, faqs=None):
     name = title.split("|")[0].strip()
     data = {
         "@context":"https://schema.org",
@@ -601,7 +1180,14 @@ def service_jsonld(fname, title, desc):
         "url": SITE_URL + "/" + fname.replace(".html","/"),
         "offers": {"@type":"Offer","priceCurrency":"INR","availability":"https://schema.org/InStock"}
     }
-    return '<script type="application/ld+json">' + json.dumps(data, separators=(",",":")) + '</script>'
+    out = '<script type="application/ld+json">' + json.dumps(data, separators=(",",":")) + '</script>'
+    if faqs:
+        faq_data = {
+            "@context":"https://schema.org","@type":"FAQPage",
+            "mainEntity":[{"@type":"Question","name":_strip_tags(q),"acceptedAnswer":{"@type":"Answer","text":_strip_tags(a)}} for q,a in faqs]
+        }
+        out += '<script type="application/ld+json">' + json.dumps(faq_data, separators=(",",":")) + '</script>'
+    return out
 
 SERVICE_KEYWORD_EXTRA = {
     "seo.html": "SEO services India, technical SEO, SEO agency Mumbai, local SEO, keyword research, link building",
@@ -613,14 +1199,18 @@ SERVICE_KEYWORD_EXTRA = {
     "native-advertising.html": "native advertising India, sponsored content, discovery ads, Swiggy ads, Zomato ads, Blinkit advertising",
     "organic-marketing-services.html": "organic marketing services, content marketing India, community building, SEO strategy, organic social",
     "branding-and-design.html": "branding and design services, brand strategy, identity design, creative direction, content design Mumbai",
-    "generative-search-optimisation.html": "generative search optimization, GSO, AI search ranking, ChatGPT SEO, Gemini SEO, Perplexity visibility",
+    "generative-search-optimisation.html": "generative search optimization, GSO, GEO, AI search ranking, ChatGPT SEO, Gemini SEO, Perplexity visibility",
     "data-strategy-consulting-services.html": "data strategy consulting, GA4 setup, attribution modeling, analytics consulting, CDP integration",
 }
 
+# _strip_tags is defined later (in FAQ section); ensure it exists here by importing forward
+import re as _pre_re
+def _strip_tags(s): return _pre_re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
+
 for fname, p in service_pages.items():
-    body = svc_template(p["h1"], p["crumb"], p["intro"], p["img"], p["points"])
+    body = svc_template(p)
     kw = DEFAULT_KEYWORDS + ", " + SERVICE_KEYWORD_EXTRA.get(fname, "")
-    sjsonld = service_jsonld(fname, p["title"], p["desc"])
+    sjsonld = service_jsonld(fname, p["title"], p["desc"], p.get("faqs"))
     write(fname, p["title"], p["desc"], body, keywords=kw, extra_jsonld=sjsonld)
 
 # ---------- CASE STUDY ----------
