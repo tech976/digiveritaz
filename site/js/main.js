@@ -151,6 +151,48 @@ document.addEventListener('DOMContentLoaded', function () {
     hamb.addEventListener('click', function () { menu.classList.toggle('open'); });
   }
 
+  // Services dropdown — hover intent on desktop + tap-to-expand on mobile
+  document.querySelectorAll('.has-dd').forEach(function (parent) {
+    var link = parent.querySelector(':scope > .navlink');
+    var hideTimer = null;
+    var isMobile = function () { return window.matchMedia('(max-width: 960px)').matches; };
+
+    // Mobile tap: toggle instead of navigating on first tap
+    if (link) {
+      link.addEventListener('click', function (e) {
+        if (isMobile() && !parent.classList.contains('open')) {
+          e.preventDefault();
+          document.querySelectorAll('.has-dd.open').forEach(function (el) {
+            if (el !== parent) el.classList.remove('open');
+          });
+          parent.classList.add('open');
+        }
+      });
+    }
+
+    // Desktop hover: open instantly, close with 260ms grace so small cursor wobbles don't dismiss
+    parent.addEventListener('mouseenter', function () {
+      if (isMobile()) return;
+      if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      parent.classList.add('open');
+    });
+    parent.addEventListener('mouseleave', function () {
+      if (isMobile()) return;
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(function () {
+        parent.classList.remove('open');
+        hideTimer = null;
+      }, 260);
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.has-dd')) {
+      document.querySelectorAll('.has-dd.open').forEach(function (el) { el.classList.remove('open'); });
+    }
+  });
+
   // Carousel pagination dots
   document.querySelectorAll('[data-carousel]').forEach(function (car) {
     var dots = car.parentElement.querySelector('[data-dots]');
@@ -184,25 +226,65 @@ document.addEventListener('DOMContentLoaded', function () {
     if (q) q.addEventListener('click', function () { item.classList.toggle('open'); });
   });
 
-  // Contact form validation (mirrors original CF7 fields)
+  // Contact form — validates, submits to FormSubmit.co (AJAX), falls back to mailto
   var form = document.getElementById('contact-form');
   if (form) {
+    var CONTACT_EMAIL = 'poojanvig.pv@gmail.com';
+
+    var openMailtoFallback = function () {
+      var fd = new FormData(form);
+      var lines = [];
+      fd.forEach(function (v, k) {
+        if (k.charAt(0) === '_' || k === '_honey') return;
+        if (!v) return;
+        if (k === 'services[]') { lines.push('Service: ' + v); return; }
+        var label = k.charAt(0).toUpperCase() + k.slice(1);
+        lines.push(label + ': ' + v);
+      });
+      var subject = encodeURIComponent('New lead from DigiVeritaz website');
+      var body = encodeURIComponent(lines.join('\n'));
+      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+    };
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = form.fullname.value.trim();
-      var email = form.email.value.trim();
-      var phone = form.phone.value.trim();
+      var name = (form.fullname && form.fullname.value || '').trim();
+      var email = (form.email && form.email.value || '').trim();
+      var phone = (form.phone && form.phone.value || '').trim();
       var ok = true;
       var errs = form.querySelectorAll('.error_frm');
       errs.forEach(function (el) { el.textContent = ''; });
-      if (!name) { form.querySelector('#error_fname').textContent = 'Please enter your name'; ok = false; }
+      if (!name) { var en = form.querySelector('#error_fname'); if (en) en.textContent = 'Please enter your name'; ok = false; }
       if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        form.querySelector('#error_email').textContent = 'Please enter a valid email'; ok = false;
+        var ee = form.querySelector('#error_email'); if (ee) ee.textContent = 'Please enter a valid email'; ok = false;
       }
       if (!phone || phone.replace(/\D/g, '').length < 10) {
-        form.querySelector('#error_phone').textContent = 'Please enter a valid phone number'; ok = false;
+        var ep = form.querySelector('#error_phone'); if (ep) ep.textContent = 'Please enter a valid phone number'; ok = false;
       }
-      if (ok) { window.location.href = 'thank-you.html'; }
+      if (!ok) return;
+
+      var btn = form.querySelector('button[type=submit]');
+      var origHTML = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Sending…'; }
+
+      var data = new FormData(form);
+      fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      }).then(function (res) {
+        return res.json().then(function (j) { return { ok: res.ok, body: j }; });
+      }).then(function (result) {
+        if (result.ok && (result.body.success === 'true' || result.body.success === true)) {
+          window.location.href = 'thank-you.html';
+        } else {
+          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+          openMailtoFallback();
+        }
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        openMailtoFallback();
+      });
     });
   }
 });
