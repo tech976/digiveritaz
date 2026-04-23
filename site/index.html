@@ -284,40 +284,88 @@
         <div class="pill-stat"><span class="ps-num">13<em>+</em></span><span class="ps-label" data-i18n="clients.stat3">Global partnerships</span></div>
       </div>
 
-      <div class="marquee">
-        <div class="marquee-track">
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/hyundai-2.webp" alt="Hyundai"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/Jk-Shah-1.webp" alt="JK Shah Classes"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/Khyber.webp" alt="Khyber Cement"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/ebco-1.webp" alt="EBCO"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/legal_junction.webp" alt="Legal Junction"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/transcon.webp" alt="Transcon Triumph"></div>
-          <!-- duplicate -->
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/hyundai-2.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/Jk-Shah-1.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/Khyber.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/ebco-1.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/legal_junction.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/transcon.webp" alt=""></div>
-        </div>
+      <div class="client-filter" role="tablist" aria-label="Filter clients by category">
+        <button type="button" class="pill is-active" role="tab" aria-selected="true" data-filter="all">
+          All <span class="pill-count">44</span>
+        </button>
+        <button type="button" class="pill" role="tab" aria-selected="false" data-filter="real-estate">
+          Real Estate &amp; Construction <span class="pill-count">13</span>
+        </button>
+        <button type="button" class="pill" role="tab" aria-selected="false" data-filter="automotive">
+          Automotive <span class="pill-count">5</span>
+        </button>
+        <button type="button" class="pill" role="tab" aria-selected="false" data-filter="education-finance">
+          Education &amp; Finance <span class="pill-count">6</span>
+        </button>
+        <button type="button" class="pill" role="tab" aria-selected="false" data-filter="healthcare-wellness">
+          Healthcare &amp; Wellness <span class="pill-count">13</span>
+        </button>
+        <button type="button" class="pill" role="tab" aria-selected="false" data-filter="lifestyle-services">
+          Lifestyle &amp; Services <span class="pill-count">7</span>
+        </button>
       </div>
 
-      <div class="marquee reverse">
-        <div class="marquee-track">
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/mybid-1-1.webp" alt="MyBid"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/Tulsi_logo_-638x282-2.webp" alt="Tulsi"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/mauve_logo_-638x282-2.webp" alt="Mauve"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/mayapuri-logo_-638x282-2.webp" alt="Mayapuri"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/shiamak.jpg" alt="Shiamak"></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/10/Ashton-Cro.webp" alt="Ashton"></div>
-          <!-- duplicate -->
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/mybid-1-1.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/Tulsi_logo_-638x282-2.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/mauve_logo_-638x282-2.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/12/mayapuri-logo_-638x282-2.webp" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/06/shiamak.jpg" alt=""></div>
-          <div class="brand-tile"><img src="https://digiveritaz.com/wp-content/uploads/2025/10/Ashton-Cro.webp" alt=""></div>
-        </div>
+      <div class="marquee client-marquee">
+        <div class="marquee-track" data-marquee-track="top"></div>
+      </div>
+      <div class="marquee client-marquee reverse">
+        <div class="marquee-track" data-marquee-track="bottom"></div>
+      </div>
+
+      <div data-client-source hidden aria-hidden="true">
+        <!-- Real Estate & Construction -->
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/lodha.png" alt="Lodha"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/godrej-properties.png" alt="Godrej Properties"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/rustomjee.png" alt="Rustomjee Projects"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/raymond-realty.png" alt="Raymond Realty"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/runwal-realty.png" alt="Runwal Realty"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/raunak-group.png" alt="Raunak Group"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/tulsi-realty.png" alt="Tulsi Realty"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/karolina.png" alt="Karolina Corporation"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/transcon.png" alt="Transcon"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/sugee.png" alt="Sugee"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/oystersaket-city.png" alt="Oystersaket City"></div>
+        <div class="brand-tile" data-category="real-estate"><img src="assets/clients/real-estate/khyber-cement.png" alt="Khyber Cement"></div>
+        <div class="brand-tile brand-tile--dark" data-category="real-estate"><img src="assets/clients/real-estate/ashlar-spaces.png" alt="Ashlar Spaces"></div>
+
+        <!-- Automotive -->
+        <div class="brand-tile" data-category="automotive"><img src="assets/clients/automotive/hyundai.png" alt="Hyundai"></div>
+        <div class="brand-tile" data-category="automotive"><img src="assets/clients/automotive/zedex.png" alt="Zedex"></div>
+        <div class="brand-tile" data-category="automotive"><img src="assets/clients/automotive/zedex-tata.png" alt="Zedex Tata"></div>
+        <div class="brand-tile" data-category="automotive"><img src="assets/clients/automotive/zedex-skoda.png" alt="Zedex Skoda"></div>
+        <div class="brand-tile" data-category="automotive"><img src="assets/clients/automotive/zedex-kia.png" alt="Zedex Kia"></div>
+
+        <!-- Education & Finance -->
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/hdfc-ergo.png" alt="HDFC Ergo"></div>
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/neoble.png" alt="Neoble"></div>
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/jk-shah-classes.png" alt="J.K. Shah Classes"></div>
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/siws.png" alt="SIWS"></div>
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/aadme.png" alt="Aadme"></div>
+        <div class="brand-tile" data-category="education-finance"><img src="assets/clients/education-finance/shiamak.png" alt="Shiamak"></div>
+
+        <!-- Healthcare & Wellness -->
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/wockhardt.png" alt="Wockhardt"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/stem-rx.png" alt="StemRx"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/shape-u.png" alt="Shape-U Obesity Clinic"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/perfora.png" alt="Perfora"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/south-park-clinic.png" alt="South Park Clinic &amp; Pharmacy"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/neurogen.png" alt="NeuroGen Brain &amp; Spine Institute"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/2ndro.png" alt="2nDr.O"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/papchem.png" alt="PapChem Lifesciences"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/green-regime.png" alt="Green Regime"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/releaf.png" alt="Releaf Live Life"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/ais-fitnation.png" alt="AIS Fitnation"></div>
+        <div class="brand-tile" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/chevron-c.png" alt="Healthcare partner"></div>
+        <div class="brand-tile brand-tile--dark" data-category="healthcare-wellness"><img src="assets/clients/healthcare-wellness/mai.png" alt="MAI"></div>
+
+        <!-- Lifestyle & Services -->
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/mauve.png" alt="Mauve"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/gy3.png" alt="GY3"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/legal-junction.png" alt="Legal Junction"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/raw-wood-shed.png" alt="The Raw Wood Shed"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/intervue-box.png" alt="Intervue Box"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/fete-events.png" alt="Fête Events"></div>
+        <div class="brand-tile" data-category="lifestyle-services"><img src="assets/clients/lifestyle-services/crest-shield.png" alt="Client partner"></div>
       </div>
     </div>
   </div>
