@@ -50,7 +50,7 @@
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1776778427">
+<link rel="stylesheet" href="css/style.css?v=1776778432">
 
 <!-- Organization + Website + LocalBusiness schema -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","LocalBusiness","ProfessionalService"],"@id":"https://digiveritaz.com/#organization","name":"DigiVeritaz","alternateName":"DigiVeritaz Digital Marketing Agency","url":"https://digiveritaz.com/","logo":"https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp","image":"https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp","description":"DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.","telephone":"+91-9956655662","email":"info@digiveritaz.com","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"1st Floor, Ujagar Chambers, Bus Depot, Sion-Trombay Rd, opp. Deonar, Deonar, Chembur","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400088","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":19.0432,"longitude":72.9086},"areaServed":["IN","US","AE","GB","SG","AU","CA"],"sameAs":["https://www.facebook.com/digiveritaz","https://www.instagram.com/digiveritaz","https://www.linkedin.com/company/digiveritaz","https://twitter.com/digiveritaz"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"600","bestRating":"5","worstRating":"1"}},{"@type":"WebSite","@id":"https://digiveritaz.com/#website","url":"https://digiveritaz.com/","name":"DigiVeritaz","publisher":{"@id":"https://digiveritaz.com/#organization"},"inLanguage":"en-IN","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://digiveritaz.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://digiveritaz.com/#webpage","url":"https://digiveritaz.com/","name":"Digital Marketing Agency in India — SEO, PPC & Performance Growth | DigiVeritaz","isPartOf":{"@id":"https://digiveritaz.com/#website"},"about":{"@id":"https://digiveritaz.com/#organization"},"inLanguage":"en-IN"},{"@type":"ItemList","name":"DigiVeritaz Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://digiveritaz.com/seo/","name":"SEO Services"},{"@type":"ListItem","position":2,"url":"https://digiveritaz.com/pay-per-click/","name":"Pay Per Click"},{"@type":"ListItem","position":3,"url":"https://digiveritaz.com/performance-marketing-agency/","name":"Performance Marketing"},{"@type":"ListItem","position":4,"url":"https://digiveritaz.com/paid-social-media-advertising/","name":"Paid Social Advertising"},{"@type":"ListItem","position":5,"url":"https://digiveritaz.com/ecommerce-marketing/","name":"E-Commerce Marketing"},{"@type":"ListItem","position":6,"url":"https://digiveritaz.com/whatsapp-marketing-services/","name":"WhatsApp Marketing"},{"@type":"ListItem","position":7,"url":"https://digiveritaz.com/native-advertising/","name":"Native Advertising"},{"@type":"ListItem","position":8,"url":"https://digiveritaz.com/branding-and-design/","name":"Branding & Design"},{"@type":"ListItem","position":9,"url":"https://digiveritaz.com/generative-search-optimisation/","name":"Generative Search Optimisation"},{"@type":"ListItem","position":10,"url":"https://digiveritaz.com/data-strategy-consulting-services/","name":"Data Strategy & Consulting"}]}]}</script>
@@ -86,16 +86,110 @@
 
 <main id="main" role="main">
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container hero-grid">
-    <div>
+<!-- HERO — Active variant: A (Bold centered).
+     B (Stats bento) and C (Client wall) are kept below for future use.
+     To switch, change data-variant on this section to "b" or "c". -->
+<section class="hero hero-multi" data-variant="a" aria-labelledby="hero-title">
+
+  <!-- ============== VARIANT A — Bold centered typography (no big logo) ============== -->
+  <div class="container hv hv-a">
+    <span class="eyebrow" data-i18n="hero.badge">Mumbai · India · Worldwide</span>
+    <h1 id="hero-title" class="hv-a-title" data-i18n="hero.title.html">
+      Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>
+    </h1>
+    <p class="lead hv-a-lead" data-i18n="hero.lead">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, paid media, and performance marketing.</p>
+    <div class="hero-cta hv-a-cta">
+      <a class="btn" href="contact-us.html" data-i18n="hero.cta">Get My Free Proposal</a>
+      <a class="btn-outline btn-ghost" href="case-study.html">See Our Work →</a>
+    </div>
+    <div class="hero-reviews hv-a-reviews">
+      <div class="rev">
+        <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-google.png" alt="Google Reviews">
+        <div class="stars">★★★★★</div>
+        <div class="count" data-i18n="hero.reviews.google">150+ Reviews</div>
+      </div>
+      <div class="rev">
+        <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-clutch.png" alt="Clutch Reviews">
+        <div class="stars">★★★★★</div>
+        <div class="count" data-i18n="hero.reviews.clutch">250+ Reviews</div>
+      </div>
+      <div class="rev">
+        <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-upcity.png" alt="UpCity Reviews">
+        <div class="stars">★★★★★</div>
+        <div class="count" data-i18n="hero.reviews.upcity">200+ Reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== VARIANT B — Bento stats grid (numbers tell the story) ============== -->
+  <div class="container hv hv-b">
+    <div class="hv-b-text">
       <span class="eyebrow" data-i18n="hero.badge">Mumbai · India · Worldwide</span>
-      <h1 id="hero-title" class="play" data-i18n="hero.title.html">Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span></h1>
+      <h1 class="hv-b-title" data-i18n="hero.title.html">
+        Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>
+      </h1>
       <p class="lead" data-i18n="hero.lead">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, paid media, and performance marketing.</p>
       <div class="hero-cta">
         <a class="btn" href="contact-us.html" data-i18n="hero.cta">Get My Free Proposal</a>
+        <a class="btn-outline btn-ghost" href="services.html">Explore Services</a>
       </div>
-      <div class="hero-reviews">
+      <div class="hero-reviews hv-b-reviews">
+        <div class="rev">
+          <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-google.png" alt="Google Reviews">
+          <div class="stars">★★★★★</div>
+          <div class="count" data-i18n="hero.reviews.google">150+ Reviews</div>
+        </div>
+        <div class="rev">
+          <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-clutch.png" alt="Clutch Reviews">
+          <div class="stars">★★★★★</div>
+          <div class="count" data-i18n="hero.reviews.clutch">250+ Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="bento" aria-hidden="true">
+      <div class="bento-cell bento-hero">
+        <div class="bento-eyebrow">Avg. ROI</div>
+        <div class="bento-num">4–10<span>x</span></div>
+        <svg class="bento-spark" viewBox="0 0 200 60" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bgg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#22c55e" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,48 L25,42 L50,46 L80,32 L110,36 L140,20 L170,24 L200,8 L200,60 L0,60 Z" fill="url(#bgg)"/>
+          <path d="M0,48 L25,42 L50,46 L80,32 L110,36 L140,20 L170,24 L200,8" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="bento-foot">Across 60+ live campaigns</div>
+      </div>
+      <div class="bento-cell">
+        <div class="bento-num small">60<span>+</span></div>
+        <div class="bento-foot">Clients delivered</div>
+      </div>
+      <div class="bento-cell">
+        <div class="bento-num small">1.15<span>L+</span></div>
+        <div class="bento-foot">Qualified leads</div>
+      </div>
+      <div class="bento-cell">
+        <div class="bento-num small">13<span>+</span></div>
+        <div class="bento-foot">Global partners</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== VARIANT C — Headline + client logo wall (social proof) ============== -->
+  <div class="container hv hv-c">
+    <div class="hv-c-text">
+      <span class="eyebrow" data-i18n="hero.badge">Mumbai · India · Worldwide</span>
+      <h1 class="hv-c-title" data-i18n="hero.title.html">
+        Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>
+      </h1>
+      <p class="lead" data-i18n="hero.lead">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, paid media, and performance marketing.</p>
+      <div class="hero-cta">
+        <a class="btn" href="contact-us.html" data-i18n="hero.cta">Get My Free Proposal</a>
+        <a class="btn-outline btn-ghost" href="case-study.html">See Case Studies</a>
+      </div>
+      <div class="hero-reviews hv-c-reviews">
         <div class="rev">
           <img src="https://digiveritaz.com/wp-content/uploads/2025/11/272x92-google.png" alt="Google Reviews">
           <div class="stars">★★★★★</div>
@@ -113,12 +207,66 @@
         </div>
       </div>
     </div>
-    <div class="hero-logo">
-      <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp"
-           onerror="this.onerror=null;this.src='https://digiveritaz.com/wp-content/uploads/2025/10/home-banner.png'"
-           alt="DigiVeritaz 3D logo">
+
+    <div class="logo-wall" aria-label="Brands we work with">
+      <div class="logo-wall-glow" aria-hidden="true"></div>
+      <div class="logo-wall-head">
+        <div class="logo-wall-tag">
+          <span class="lw-dot"></span>
+          Trusted by <strong>60+ brands</strong>
+        </div>
+        <div class="logo-wall-meta">
+          <div class="lw-stat"><strong>5+</strong><span>Industries</span></div>
+          <div class="lw-stat"><strong>4.9★</strong><span>Avg rating</span></div>
+        </div>
+      </div>
+      <div class="logo-wall-grid">
+        <div class="lw-cell lw-featured"><img loading="lazy" src="assets/clients/automotive/hyundai.png" alt="Hyundai"><span class="lw-chip">5,000+ leads</span></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/real-estate/godrej-properties.png" alt="Godrej Properties"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/real-estate/lodha.png" alt="Lodha"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/education-finance/hdfc-ergo.png" alt="HDFC ERGO"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/real-estate/raymond-realty.png" alt="Raymond Realty"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/real-estate/rustomjee.png" alt="Rustomjee"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/healthcare-wellness/wockhardt.png" alt="Wockhardt"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/healthcare-wellness/perfora.png" alt="Perfora"></div>
+        <div class="lw-cell lw-featured"><img loading="lazy" src="assets/clients/healthcare-wellness/stem-rx.png" alt="Stem-Rx"><span class="lw-chip">3× ROAS</span></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/education-finance/jk-shah-classes.png" alt="JK Shah Classes"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/education-finance/shiamak.png" alt="Shiamak"></div>
+        <div class="lw-cell"><img loading="lazy" src="assets/clients/real-estate/transcon.png" alt="Transcon"></div>
+      </div>
+      <div class="logo-marquee" aria-hidden="true">
+        <div class="lm-track">
+          <img loading="lazy" src="assets/clients/automotive/zedex-tata.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/runwal-realty.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/raunak-group.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/neurogen.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/mauve.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/shape-u.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/legal-junction.png" alt="">
+          <img loading="lazy" src="assets/clients/automotive/zedex-kia.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/sugee.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/green-regime.png" alt="">
+          <img loading="lazy" src="assets/clients/education-finance/siws.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/gy3.png" alt="">
+          <!-- duplicate set for seamless loop -->
+          <img loading="lazy" src="assets/clients/automotive/zedex-tata.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/runwal-realty.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/raunak-group.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/neurogen.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/mauve.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/shape-u.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/legal-junction.png" alt="">
+          <img loading="lazy" src="assets/clients/automotive/zedex-kia.png" alt="">
+          <img loading="lazy" src="assets/clients/real-estate/sugee.png" alt="">
+          <img loading="lazy" src="assets/clients/healthcare-wellness/green-regime.png" alt="">
+          <img loading="lazy" src="assets/clients/education-finance/siws.png" alt="">
+          <img loading="lazy" src="assets/clients/lifestyle-services/gy3.png" alt="">
+        </div>
+      </div>
+      <a class="logo-wall-cta" href="case-study.html">View case studies <span aria-hidden="true">→</span></a>
     </div>
   </div>
+
 </section>
 
 <section>

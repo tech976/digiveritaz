@@ -43,6 +43,10 @@ def build_nav(current):
         if href == current: return True
         if href == "services.html" and current in SERVICE_SLUGS:
             return True
+        if href == "blog.html" and current.startswith("blog-"):
+            return True
+        if href == "case-study.html" and current.startswith("case-study-"):
+            return True
         return False
 
     def dropdown_html():
@@ -1884,18 +1888,44 @@ write("case-study.html",
       keywords=DEFAULT_KEYWORDS + ", digital marketing case studies, marketing success stories, Hyundai case study, JK Shah case study, Mumbai agency portfolio")
 
 # ---------- BLOG ----------
-blog_posts = [
-    ("The 2026 Guide to Generative Search Optimization", "Learn how to rank in ChatGPT, Gemini and Perplexity as AI reshapes discovery."),
-    ("Why Performance Marketing Needs Brand", "The CAC spiral is real — here's how brand investment lowers your blended cost per acquisition."),
-    ("WhatsApp Commerce Is the Next Growth Channel", "Why Indian D2C brands are shifting retention budgets to conversational channels."),
-    ("Amazon Ads: 7 Tactics That Still Work in 2026", "Proven tactics our team uses to drive ROAS on India's largest marketplace."),
-    ("Attribution Is Broken. Here's What We Do Instead", "Move beyond last-click with incrementality testing and MMM-lite frameworks."),
-    ("Creative Testing at Scale", "How to design a creative testing engine that produces winners week after week."),
-]
-blog_cards = "".join(
-    f'<a class="card" href="#"><div class="thumb" style="background-image:url(\'https://images.unsplash.com/photo-{i}?auto=format&fit=crop&w=800&q=80\')"></div><div class="body"><span class="tag">Insights</span><h3>{t}</h3><p>{d}</p></div></a>'
-    for i,(t,d) in zip(["1432888622747-4eb9a8efeb07","1460925895917-afdab827c52f","1551288049-bebda4e38f71","1556761175-5973dc0f32e7","1552664730-d307ca884978","1542744173-8e7e53415bb0"], blog_posts)
-)
+# Posts are sourced from _blog_data.json (scraped from the live WP blog).
+BLOG_DATA_FILE = OUT / "_blog_data.json"
+blog_data = json.loads(BLOG_DATA_FILE.read_text()) if BLOG_DATA_FILE.exists() else []
+
+# Stock thumbnails by category for posts that don't have a featured_image.
+BLOG_FALLBACK_IMG = {
+    "Search Engine Optimization": "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=80",
+    "Performance Marketing": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "AI-Powered Branding": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+    "Digital Marketing": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+    "SEM": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+}
+BLOG_DEFAULT_IMG = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80"
+
+def blog_image(post):
+    return post.get("featured_image") or BLOG_FALLBACK_IMG.get(post.get("category",""), BLOG_DEFAULT_IMG)
+
+def blog_card(post):
+    img = blog_image(post)
+    cat = post.get("category","Insights")
+    title = post["title"]
+    excerpt = post.get("excerpt","")
+    date_disp = post.get("date_display","")
+    rt = post.get("reading_time_min")
+    rt_html = f'<span class="dot"></span><span>{rt} min read</span>' if rt else ""
+    return (
+        f'<a class="card" href="blog-{post["slug"]}.html">'
+        f'<div class="thumb" style="background-image:url(\'{img}\')"></div>'
+        f'<div class="body">'
+        f'<span class="tag">{cat}</span>'
+        f'<h3>{title}</h3>'
+        f'<p>{excerpt}</p>'
+        f'<div class="meta"><span>{date_disp}</span>{rt_html}</div>'
+        f'</div></a>'
+    )
+
+# ---------- BLOG LISTING ----------
+blog_cards = "".join(blog_card(p) for p in blog_data) if blog_data else ""
 blog_body = page_hero("Blog &amp; <span class=\"green_text\">Insights</span>", "Home / Blog",
     "Tactical playbooks, industry trends and behind-the-scenes from our team.") + f"""
 <section><div class="container"><div class="card-grid">{blog_cards}</div></div></section>
@@ -1905,6 +1935,150 @@ write("blog.html",
       "Digital marketing playbooks, SEO tips, PPC strategies and growth insights from the DigiVeritaz team. Learn what works in 2026 and beyond.",
       blog_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing blog, SEO tips, PPC tips, marketing insights India, growth marketing blog")
+
+# ---------- BLOG DETAIL PAGES ----------
+def _twitter_share(title, url):
+    import urllib.parse as _u
+    q = _u.urlencode({"text": title, "url": url})
+    return f"https://twitter.com/intent/tweet?{q}"
+def _linkedin_share(url):
+    import urllib.parse as _u
+    return "https://www.linkedin.com/sharing/share-offsite/?" + _u.urlencode({"url": url})
+def _facebook_share(url):
+    import urllib.parse as _u
+    return "https://www.facebook.com/sharer/sharer.php?" + _u.urlencode({"u": url})
+def _whatsapp_share(title, url):
+    import urllib.parse as _u
+    return "https://wa.me/?" + _u.urlencode({"text": f"{title} {url}"})
+
+def blog_post_body(post, related):
+    slug = post["slug"]
+    page_url = f"{SITE_URL}/blog-{slug}.html"
+    title = post["title"]
+    cat = post.get("category","Insights")
+    date_disp = post.get("date_display","")
+    author = post.get("author") or "DigiVeritaz"
+    rt = post.get("reading_time_min")
+    rt_html = f'<span class="sep"></span><span>{rt} min read</span>' if rt else ""
+    img = post.get("featured_image")
+    feature_html = (
+        f'<section class="blog-feature"><div class="container"><img src="{img}" alt="{_strip_tags(title)}" loading="eager" decoding="async"></div></section>'
+        if img else ""
+    )
+    body_html = post.get("body_html","")
+
+    share_html = (
+        '<div class="blog-share">'
+        '<span class="lbl">Share:</span>'
+        f'<a href="{_twitter_share(title, page_url)}" target="_blank" rel="noopener" aria-label="Share on Twitter"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.5 8.6L23.5 22h-6.9l-5.4-7-6.2 7H2l8-9.2L1.7 2h7l4.9 6.5z"/></svg></a>'
+        f'<a href="{_linkedin_share(page_url)}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5V9h3v10zM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM19 19h-3v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V19h-3V9h2.9v1.4h0a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.7V19z"/></svg></a>'
+        f'<a href="{_facebook_share(page_url)}" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.4c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.5V12h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/></svg></a>'
+        f'<a href="{_whatsapp_share(title, page_url)}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10z"/></svg></a>'
+        '</div>'
+    )
+
+    related_html = ""
+    if related:
+        cards = "".join(blog_card(r) for r in related)
+        related_html = f"""
+<section class="blog-related">
+  <div class="container">
+    <h2 class="play">Related <span class="green_text">reads</span></h2>
+    <div class="card-grid">{cards}</div>
+  </div>
+</section>
+"""
+
+    return f"""
+<section class="blog-hero">
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> &rsaquo;
+      <a href="blog.html">Blog</a> &rsaquo;
+      <span>{_strip_tags(title)[:60]}</span>
+    </nav>
+    <span class="post-tag">{cat}</span>
+    <h1 class="play">{title}</h1>
+    <div class="post-meta">
+      <span>By {author}</span>
+      <span class="sep"></span>
+      <span>{date_disp}</span>
+      {rt_html}
+    </div>
+  </div>
+</section>
+{feature_html}
+<section class="blog-article">
+  <div class="container">
+    <article class="prose">
+      {body_html}
+    </article>
+    {share_html}
+  </div>
+</section>
+{related_html}
+<section class="cta-band">
+  <div class="container">
+    <h2 class="play">Want results like <span class="green_text">these?</span></h2>
+    <p class="lead">Let's turn insights into measurable growth. Book a free strategy call with the DigiVeritaz team.</p>
+    <a class="btn" href="contact-us.html">Book A Call</a>
+  </div>
+</section>
+"""
+
+def blog_jsonld(post):
+    img = post.get("featured_image") or DEFAULT_OG_IMAGE
+    page_url = f"{SITE_URL}/blog-{post['slug']}.html"
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": page_url},
+        "headline": _strip_tags(post["title"])[:110],
+        "description": post.get("excerpt",""),
+        "image": img,
+        "datePublished": post["date"],
+        "dateModified": post["date"],
+        "author": {"@type": "Organization", "name": post.get("author") or "DigiVeritaz", "url": SITE_URL},
+        "publisher": {"@id": SITE_URL + "/#organization"},
+        "articleSection": post.get("category",""),
+        "inLanguage": "en-IN",
+    }
+    crumbs = {
+        "@context":"https://schema.org","@type":"BreadcrumbList",
+        "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":SITE_URL+"/"},
+            {"@type":"ListItem","position":2,"name":"Blog","item":SITE_URL+"/blog.html"},
+            {"@type":"ListItem","position":3,"name":_strip_tags(post["title"])[:80],"item":page_url},
+        ]
+    }
+    return ('<script type="application/ld+json">' + json.dumps(data, separators=(",",":")) + '</script>'
+            + '<script type="application/ld+json">' + json.dumps(crumbs, separators=(",",":")) + '</script>')
+
+BLOG_KEYWORDS_BY_CAT = {
+    "Search Engine Optimization": "SEO blog India, SEO tips, technical SEO, local SEO, keyword research, organic growth",
+    "Performance Marketing": "performance marketing blog, ROAS optimization, CAC reduction, paid media insights",
+    "AI-Powered Branding": "AI marketing, generative search optimization, ChatGPT marketing, AI branding",
+    "Digital Marketing": "digital marketing blog India, online marketing tips, multi-channel marketing",
+    "SEM": "search engine marketing, SEM blog, Google Ads insights, paid search strategy",
+}
+
+for i, post in enumerate(blog_data):
+    # Pick up to 3 related posts: same category first, fall back to others.
+    same_cat = [p for j, p in enumerate(blog_data) if j != i and p.get("category") == post.get("category")]
+    others = [p for j, p in enumerate(blog_data) if j != i and p.get("category") != post.get("category")]
+    related = (same_cat + others)[:3]
+    body = blog_post_body(post, related)
+    cat = post.get("category","")
+    kw = DEFAULT_KEYWORDS + ", " + BLOG_KEYWORDS_BY_CAT.get(cat, "digital marketing blog")
+    desc = post.get("excerpt") or _strip_tags(post["title"])
+    write(
+        f"blog-{post['slug']}.html",
+        f"{post['title']} | DigiVeritaz",
+        desc,
+        body,
+        keywords=kw,
+        extra_jsonld=blog_jsonld(post),
+    )
 
 # ---------- FAQ ----------
 faqs = [
