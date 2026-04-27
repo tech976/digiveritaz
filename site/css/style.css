@@ -186,18 +186,64 @@ p{margin:0 0 1em;color:#374151}
   filter:brightness(1.08);transform:translateY(-2px);
   box-shadow:0 14px 30px rgba(22,163,74,.42), inset 0 1px 0 rgba(255,255,255,.3);
 }
-.hamb{display:none;background:none;border:0;font-size:26px;cursor:pointer;padding:8px 14px;border-radius:999px}
+.hamb{
+  display:none;background:none;border:0;cursor:pointer;
+  width:42px;height:42px;border-radius:999px;
+  position:relative;font-size:0;
+  transition:background .2s ease;
+}
 .hamb:hover{background:#f3f4f6}
+.hamb:before,.hamb:after,.hamb span{
+  content:"";position:absolute;left:11px;right:11px;height:2px;
+  background:#0b1220;border-radius:2px;
+  transition:transform .25s ease, opacity .2s ease, top .25s ease;
+}
+.hamb:before{top:14px}
+.hamb span{top:20px;display:block}
+.hamb:after{top:26px}
+.hamb.is-open:before{top:20px;transform:rotate(45deg)}
+.hamb.is-open span{opacity:0}
+.hamb.is-open:after{top:20px;transform:rotate(-45deg)}
+[data-theme="dark"] .hamb:before,
+[data-theme="dark"] .hamb:after,
+[data-theme="dark"] .hamb span{background:#f1f5f9}
 @media (max-width: 1050px){
   .site-header{top:14px;padding:0 16px}
   .site-header .container{padding:8px 10px 8px 20px}
-  .nav ul{position:absolute;top:72px;left:16px;right:16px;background:#fff;flex-direction:column;gap:4px;border-radius:24px;display:none;box-shadow:0 20px 50px rgba(17,24,39,.15);padding:14px}
-  .nav ul.open{display:flex}
+  .nav ul{
+    position:absolute;top:calc(100% + 10px);left:16px;right:16px;
+    background:#fff;flex-direction:column;gap:4px;
+    border-radius:24px;border:1px solid var(--border);
+    box-shadow:0 24px 60px rgba(17,24,39,.18), 0 4px 14px rgba(17,24,39,.06);
+    padding:14px;
+    display:flex;
+    opacity:0;visibility:hidden;pointer-events:none;
+    transform:translateY(-8px) scale(.985);transform-origin:top center;
+    transition:opacity .22s ease, transform .25s cubic-bezier(.2,.7,.3,1), visibility 0s linear .25s;
+    max-height:calc(100vh - 110px);overflow-y:auto;-webkit-overflow-scrolling:touch;
+    z-index:51;
+  }
+  .nav ul.open{
+    opacity:1;visibility:visible;pointer-events:auto;
+    transform:translateY(0) scale(1);
+    transition:opacity .22s ease, transform .25s cubic-bezier(.2,.7,.3,1), visibility 0s linear 0s;
+  }
   .nav ul li{padding:0;width:100%}
-  .nav a.navlink{display:block;width:100%;text-align:left}
-  .hamb{display:block}
+  .nav a.navlink{display:block;width:100%;text-align:left;padding:12px 16px;font-size:1rem}
+  .nav a.navlink.active{background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:var(--green-dark)}
+  .hamb{display:flex;align-items:center;justify-content:center}
   .nav .cta{display:none}
+  /* full-screen backdrop when nav is open */
+  body.nav-open{overflow:hidden}
+  body.nav-open:before{
+    content:"";position:fixed;inset:0;z-index:40;
+    background:rgba(11,18,32,.45);backdrop-filter:blur(2px);
+    animation:navFade .22s ease;
+  }
+  [data-theme="dark"] .nav ul{background:#0f172a;border-color:#1e293b;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  [data-theme="dark"] .nav a.navlink.active{background:linear-gradient(135deg,#0b3520,#0f2a1c);color:#86efac}
 }
+@keyframes navFade{from{opacity:0}to{opacity:1}}
 
 /* hero — extends up behind the floating navbar */
 .hero{
@@ -2405,8 +2451,9 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
 @media (max-width:960px){
   .dd-menu{position:static;transform:none;min-width:0;box-shadow:none;border:none;padding:4px 0 8px 14px;background:transparent;opacity:1;visibility:visible;pointer-events:auto;display:none;transition:none}
   .dd-menu:before,.dd-bridge{display:none}
-  .has-dd.open .dd-menu{display:flex}
-  .dd-menu a{padding:10px 12px;font-size:.9rem}
+  /* must override the desktop open-state transform/position that yanks the menu off-screen */
+  .has-dd:focus-within .dd-menu,.has-dd.open .dd-menu{display:flex;position:static;transform:none}
+  .dd-menu a{padding:10px 12px;font-size:.9rem;white-space:normal}
 }
 
 /* ===================== SERVICE OPTIONAL SECTIONS ===================== */

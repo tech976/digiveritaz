@@ -144,11 +144,55 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Mobile nav toggle
+  // Mobile nav toggle — hamburger morph, body scroll lock, backdrop, auto-close
   var hamb = document.querySelector('.hamb');
   var menu = document.querySelector('.nav ul');
   if (hamb && menu) {
-    hamb.addEventListener('click', function () { menu.classList.toggle('open'); });
+    if (!hamb.querySelector('span')) hamb.appendChild(document.createElement('span'));
+    hamb.setAttribute('aria-expanded', 'false');
+    hamb.setAttribute('aria-controls', 'primary-nav-list');
+    if (!menu.id) menu.id = 'primary-nav-list';
+
+    var setNavOpen = function (open) {
+      menu.classList.toggle('open', open);
+      hamb.classList.toggle('is-open', open);
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hamb.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      document.body.classList.toggle('nav-open', open);
+    };
+
+    hamb.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setNavOpen(!menu.classList.contains('open'));
+    });
+
+    // close when tapping a real link (not the dropdown toggle)
+    menu.querySelectorAll('a.navlink').forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (a.closest('.has-dd') && window.matchMedia('(max-width: 960px)').matches) return;
+        setNavOpen(false);
+      });
+    });
+    menu.querySelectorAll('.dd-menu a').forEach(function (a) {
+      a.addEventListener('click', function () { setNavOpen(false); });
+    });
+
+    // close on backdrop tap or Escape
+    document.addEventListener('click', function (e) {
+      if (!menu.classList.contains('open')) return;
+      if (e.target.closest('.nav ul') || e.target.closest('.hamb')) return;
+      setNavOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setNavOpen(false);
+    });
+
+    // close if resized back to desktop
+    window.addEventListener('resize', function () {
+      if (!window.matchMedia('(max-width: 1050px)').matches && menu.classList.contains('open')) {
+        setNavOpen(false);
+      }
+    });
   }
 
   // Services dropdown — hover intent on desktop + tap-to-expand on mobile
@@ -162,10 +206,18 @@ document.addEventListener('DOMContentLoaded', function () {
       link.addEventListener('click', function (e) {
         if (isMobile() && !parent.classList.contains('open')) {
           e.preventDefault();
+          var navList = document.querySelector('.nav ul');
+          var prevScroll = navList ? navList.scrollTop : 0;
           document.querySelectorAll('.has-dd.open').forEach(function (el) {
             if (el !== parent) el.classList.remove('open');
           });
           parent.classList.add('open');
+          // Drop focus so the browser doesn't auto-scroll the parent item to the top
+          if (link.blur) link.blur();
+          if (navList) {
+            // Restore scroll on next frame in case anything tried to shift it
+            requestAnimationFrame(function () { navList.scrollTop = prevScroll; });
+          }
         }
       });
     }
