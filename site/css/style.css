@@ -3059,3 +3059,325 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
   .logo-wall .lw-cell:nth-child(n+10){display:none}
   .lw-cell img{max-height:36px}
 }
+
+/* ================================================================
+   GLOBAL MOBILE RESPONSIVE PASS — comprehensive fixes
+   Added to repair layout issues across all pages on small screens.
+   ================================================================ */
+
+/* prevent horizontal overflow on every page */
+html,body{max-width:100%;overflow-x:hidden}
+img,svg,video,iframe{max-width:100%;height:auto}
+
+/* tablet & below */
+@media (max-width:1024px){
+  :root{--max:100%}
+  .container{padding:0 22px}
+  /* services hub on tablets — go to 2 columns instead of 3 */
+  .wwd-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* phones — primary mobile breakpoint */
+@media (max-width:760px){
+  /* typography rhythm */
+  h1{font-size:clamp(1.85rem,7vw,2.5rem)}
+  h2{font-size:clamp(1.5rem,5vw,2rem)}
+  h3{font-size:1.1rem}
+  p{font-size:.98rem}
+
+  /* tighter container gutters on small screens */
+  .container{padding:0 16px}
+
+  /* sections — reduce vertical padding */
+  section{padding:44px 0}
+  .panel{padding:32px 18px 26px;border-radius:20px}
+  .panel .section-head{margin-bottom:22px}
+  .section-head{margin-bottom:30px}
+  .section-head h2{font-size:clamp(1.5rem,5vw,2rem)}
+  .section-head p{font-size:.95rem}
+
+  /* ---- HEADER / NAV ---- */
+  .site-header{top:8px;padding:0 10px}
+  .site-header .container{padding:6px 6px 6px 14px;border-radius:24px}
+  .brand{font-size:1.1rem;gap:8px}
+  .brand img,.brand svg{width:28px;height:28px}
+  /* mobile menu — make scrollable so dropdown content fits */
+  .nav ul{
+    top:calc(100% + 8px);left:10px;right:10px;
+    max-height:calc(100vh - 90px);overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:12px;border-radius:18px;
+  }
+  [data-theme="dark"] .nav ul{background:#0f172a;border:1px solid #1e293b}
+  .nav ul.open{display:flex}
+  .nav a.navlink{padding:12px 14px;font-size:.95rem}
+  /* show CTA inside the mobile menu */
+  .nav .cta{display:block;width:100%;margin:8px 0 4px}
+  .nav .cta .btn{display:flex;width:100%;justify-content:center;padding:13px 18px}
+  /* hide separate theme toggle inside the mobile menu list to save space */
+  .nav ul li:has(.theme-toggle){padding:4px 0}
+  .theme-toggle{margin-right:4px}
+  /* mobile dropdown — indented list */
+  .has-dd .dd-menu{padding:4px 0 8px 12px;background:transparent;border:0;box-shadow:none;min-width:0}
+  .has-dd .dd-menu a{padding:9px 10px;font-size:.88rem}
+
+  /* ---- HERO ---- */
+  .hero{margin-top:-72px;padding:108px 0 36px}
+  .hero:before,.hero:after{filter:blur(50px);opacity:.35}
+  .hero h1,.hv-a-title,.hv-b-title,.hv-c-title{font-size:clamp(1.85rem,7vw,2.4rem);line-height:1.12;letter-spacing:-.02em}
+  .hero p.lead,.hv-a-lead{font-size:1rem}
+  .hv-a-cta,.hero-cta{justify-content:center;gap:10px}
+  .hv-a-cta .btn,.hv-a-cta .btn-ghost,
+  .hero-cta .btn,.hero-cta .btn-outline{width:100%;text-align:center;justify-content:center}
+  .hv-a{padding:0 4px}
+  .hv-a-reviews,.hero-reviews{gap:18px;justify-content:center;margin-top:30px}
+  .hero-reviews .rev img{max-height:28px}
+  .hero-reviews .stars{font-size:.78rem;letter-spacing:1px}
+  .hero-reviews .count{font-size:.72rem}
+
+  /* page hero */
+  .page-hero{margin-top:-72px;padding:96px 0 28px}
+  .page-hero h1{font-size:clamp(1.7rem,6vw,2.2rem)}
+
+  /* hero variant b/c — stack */
+  .hv-b,.hv-c{grid-template-columns:1fr;gap:30px}
+  .hv-b-title,.hv-c-title{font-size:clamp(1.85rem,6.5vw,2.4rem)}
+
+  /* about hero */
+  .about-hero{padding:110px 0 60px}
+  .about-hero h1{font-size:clamp(2rem,7vw,2.7rem)}
+  .about-hero .lead{font-size:1rem;padding:0 4px}
+  .about-hero .hero-sub{gap:8px;margin-top:24px}
+  .about-hero .hero-sub .chip{padding:6px 12px;font-size:.78rem}
+
+  /* ---- BUTTONS ---- */
+  .btn{padding:12px 22px;font-size:.95rem}
+  .btn-outline,.btn-ghost{padding:12px 22px;font-size:.95rem}
+
+  /* ---- IMPACT / STATS ---- */
+  .impact{padding:60px 0}
+  .impact-head{margin-bottom:36px}
+  .impact-head h2{font-size:clamp(1.5rem,5vw,1.9rem)}
+  .impact-cell{padding:30px 16px}
+  .impact-num{font-size:clamp(2.2rem,9vw,3.2rem)}
+  .impact-label{font-size:.82rem}
+  .stats .container{grid-template-columns:1fr 1fr;gap:18px}
+  .stats h3{font-size:1.6rem}
+
+  /* ---- PROCESS ---- */
+  .process{padding:60px 0}
+  .proc-step{padding:30px 22px 24px}
+  .proc-step h3{font-size:1.1rem}
+  .proc-step .step-num{width:42px;height:42px;font-size:.95rem;top:-15px;left:22px}
+
+  /* ---- WHY / WWD ---- */
+  .why-split{gap:30px}
+  .why-visual{padding:36px 26px;min-height:auto}
+  .why-visual h3{font-size:1.3rem}
+  .why-visual .mini-stats{grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .why-visual .mini-stats .ms-num{font-size:1.2rem}
+  .why-item{padding:18px;gap:14px}
+  .why-item h4{font-size:1rem}
+  .why-item p{font-size:.9rem}
+  .wwd-preview{padding:36px 26px;min-height:auto}
+  .wwd-preview .pv-icon{width:60px;height:60px}
+  .wwd-row{padding:16px 18px}
+  .wwd-tile{padding:26px 22px;min-height:auto}
+
+  /* ---- CASE STUDIES ---- */
+  .cs-tile{min-height:auto}
+  .cs-tile .head{height:130px;padding:24px}
+  .cs-tile .body{padding:20px 22px 22px}
+  .cs-featured{padding:36px 26px;min-height:auto}
+  .cs-featured h3{font-size:1.3rem}
+  .cs-featured .metric{font-size:clamp(2.6rem,9vw,3.6rem)}
+  .cs-mini{padding:22px;min-height:auto}
+  .cs-card .logo-tile{height:120px;padding:22px 18px}
+  .cs-card .logo-tile img{max-height:48px}
+
+  /* case study detail */
+  .cs-hero{padding:70px 0 44px}
+  .cs-hero h1{font-size:clamp(1.8rem,6.5vw,2.4rem)}
+  .cs-meta{padding:18px 0}
+  .cs-section{padding:50px 0}
+  .cs-section h2{font-size:clamp(1.4rem,5vw,1.8rem)}
+  .cs-section p{font-size:.98rem}
+  .cs-section blockquote{padding:16px 18px;font-size:1rem;margin:22px 0}
+  .cs-results{padding:54px 0}
+
+  /* ---- REVIEWS / RATINGS / TESTIMONIALS ---- */
+  .rating-card{padding:30px 24px 26px;gap:18px}
+  .rating-card .rate-block .num{font-size:clamp(2.6rem,9vw,3.6rem)}
+  .rev-hero{padding:36px 26px;min-height:auto}
+  .rev-card2{padding:18px 20px;gap:16px}
+  .rev-card2 .logo-box{width:72px;height:52px}
+  .tcard2{padding:28px 22px 24px}
+  .tcard2 blockquote{font-size:.98rem}
+  .tcard2 .quote-mark{font-size:3.6rem;top:14px;right:18px}
+
+  /* ---- ABOUT PAGE ---- */
+  .about-stats{padding:36px 0}
+  .about-stats .stat{padding:16px 12px}
+  .about-stats .stat .num{font-size:clamp(1.5rem,5.5vw,2rem)}
+  .about-stats .stat .lbl{font-size:.72rem}
+  .about-sec{padding:60px 0}
+  .about-sec .sec-head{margin-bottom:36px}
+  .about-sec .sec-head h2{font-size:clamp(1.6rem,5vw,2.1rem)}
+  .about-sec .sec-head p{font-size:.98rem}
+  .mv-card{padding:36px 26px}
+  .mv-card h3{font-size:clamp(1.9rem,7vw,2.6rem)}
+  .mv-card p{font-size:.98rem;line-height:1.65}
+  .intro-lead{font-size:1.05rem;padding:24px 22px;margin-bottom:36px}
+  .value-card{padding:26px 22px}
+  .value-card .val-num{font-size:2.6rem!important;top:10px!important;right:16px!important}
+  .process-section{padding:60px 0}
+  .phase-card{padding:30px 22px 26px}
+  .phase-card h3{font-size:1.2rem;margin-bottom:14px}
+  .phase-card .phase-badge{width:60px;height:60px;font-size:1.25rem;margin-bottom:16px}
+  .services-expertise{padding:60px 0}
+  .exp-card{padding:26px 22px;min-height:auto}
+  .why-section{padding:60px 0}
+  .why-tile{padding:22px}
+  .why-promise{padding:24px 20px;font-size:1.05rem;margin-top:30px}
+  .about-cta{padding:60px 18px}
+  .about-cta h2{font-size:clamp(1.7rem,5.5vw,2.2rem)}
+  .about-cta p{font-size:1rem}
+
+  /* ---- SERVICE PAGES ---- */
+  .svc-hero .hero-subtitle{font-size:1rem}
+  .svc-hero .hero-subtitle:before,.svc-hero .hero-subtitle:after{width:14px;margin:0 8px}
+  .svc-whatis-card{padding:60px 24px 32px!important;font-size:.98rem}
+  .svc-whatis-card:before{font-size:5rem;left:18px}
+  .svc-deliver{padding:14px 16px}
+  .sub-svc-card{padding:24px 20px;gap:14px}
+  .sub-svc-card .ss-icon{width:48px;height:48px}
+  .platforms-section{padding:60px 0}
+  .platform-card{padding:32px 22px}
+  .simple-benefits-wrap{padding:50px 0}
+
+  /* ---- CONTACT ---- */
+  .contact-hero{padding:70px 0 36px}
+  .contact-hero h1{font-size:clamp(1.9rem,6.5vw,2.6rem)}
+  .contact-strip{padding:0 0 36px}
+  .contact-strip .strip-row{padding:6px 0}
+  .contact-main{padding:24px 0 50px}
+  .c-form-card{padding:24px 18px}
+  .c-form-card .form-head h2{font-size:clamp(1.2rem,4.5vw,1.5rem)}
+  .c-form-card .field input,.c-form-card .field select,.c-form-card .field textarea{padding:12px 14px;font-size:16px} /* 16px prevents iOS zoom */
+  .c-form-card .input-wrap input,.c-form-card .input-wrap select{padding-left:38px}
+  .c-info-card{padding:26px 22px}
+  .c-info-card h3{font-size:1.15rem;margin-bottom:16px}
+  .c-map .map-wrap{height:320px;border-radius:18px}
+
+  /* ---- FORMS — prevent iOS zoom ---- */
+  form input[type=text],form input[type=email],form input[type=tel],
+  form select,form textarea{font-size:16px;padding:12px 14px}
+
+  /* ---- FOOTER ---- */
+  .foot-cta{padding:32px 24px;margin:50px 0 40px;border-radius:24px;text-align:left}
+  .foot-cta-text h2{font-size:clamp(1.5rem,5vw,2rem)}
+  .foot-cta-text p{font-size:.95rem}
+  .foot-cta .btn{padding:14px 26px;font-size:.95rem}
+  .foot-main{padding:50px 0 30px}
+  .footer-grid{gap:32px}
+  .foot-tag{font-size:.92rem;margin:14px 0 18px}
+  .foot-mark{padding-top:14px;margin-top:14px}
+  .foot-bottom{padding:18px 0;font-size:.82rem;flex-direction:column;gap:10px;text-align:center}
+  .foot-bottom-links{justify-content:center;gap:16px}
+
+  /* ---- MARQUEE / BRAND TILES ---- */
+  .clients-stat{gap:14px;margin-bottom:22px}
+  .clients-stat .pill-stat{padding:10px 16px}
+  .clients-stat .pill-stat .ps-num{font-size:1.2rem}
+  .clients-stat .pill-stat .ps-label{font-size:.78rem}
+  .brand-tile{flex:0 0 150px;height:88px;padding:14px}
+  .brand-tile img{max-height:42px}
+  .client-marquee .brand-tile{flex:0 0 160px;height:96px;padding:14px}
+  .client-marquee .brand-tile img{max-height:60px}
+  .client-filter{gap:8px;margin:6px auto 22px}
+  .client-filter .pill{padding:8px 14px;font-size:.82rem}
+  .marquee-strip{padding:18px 0}
+  .marquee-strip .marquee-item{font-size:1.1rem;gap:16px}
+
+  /* ---- BLOG ---- */
+  .blog-hero{padding:96px 0 22px}
+  .blog-hero h1{font-size:clamp(1.6rem,5.5vw,2.2rem)}
+  .blog-feature{padding:18px 0 0}
+  .blog-article{padding:30px 0 40px}
+  .blog-article .prose{font-size:.98rem;line-height:1.72}
+  .blog-article .prose h2{font-size:clamp(1.25rem,5vw,1.6rem)}
+  .blog-article .prose h3{font-size:clamp(1.1rem,4.5vw,1.3rem)}
+  .blog-article .prose blockquote{padding:14px 18px;margin:1.4em 0}
+  .blog-article .prose table{font-size:.88rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .blog-related{padding:44px 0}
+
+  /* ---- FAQ ---- */
+  .faq-q{padding:14px 16px;font-size:.95rem;line-height:1.4}
+  .faq-a{padding:0 16px 16px;font-size:.94rem}
+
+  /* ---- LANG SWITCHER + BACK TO TOP — avoid collision ---- */
+  .to-top{right:14px;bottom:70px;width:40px;height:40px}
+  .lang-switcher{left:14px;bottom:14px}
+  .lang-menu{min-width:200px;max-width:calc(100vw - 28px)}
+
+  /* ---- HERO IMAGE ---- */
+  .hero-grid{gap:24px}
+  .hero-logo img{max-width:240px}
+
+  /* ---- ENSURE LONG WORDS WRAP ---- */
+  h1,h2,h3,h4,p,li,a,span{overflow-wrap:break-word;word-wrap:break-word}
+
+  /* ---- HORIZONTAL GRID FALLBACK ---- */
+  .grid-2{gap:24px}
+
+  /* timeline */
+  .process-timeline{padding:0}
+  .tl-step .tl-content p{font-size:.95rem}
+}
+
+/* very small phones */
+@media (max-width:420px){
+  .container{padding:0 14px}
+  h1{font-size:1.7rem}
+  .hero h1,.hv-a-title{font-size:1.7rem;line-height:1.15}
+  .page-hero h1,.about-hero h1{font-size:1.6rem}
+  .section-head h2{font-size:1.35rem}
+  .btn,.btn-outline,.btn-ghost{padding:11px 18px;font-size:.92rem}
+
+  /* stats single column on tiny screens */
+  .stats .container{grid-template-columns:1fr;gap:14px}
+
+  /* impact label tighter */
+  .impact-num{font-size:2.4rem}
+  .impact-cell{padding:24px 12px}
+
+  /* footer cta stack tighter */
+  .foot-cta{padding:26px 20px}
+  .foot-cta .btn{width:100%;justify-content:center}
+
+  /* hero reviews single row scroll */
+  .hero-reviews,.hv-a-reviews{gap:14px}
+  .hero-reviews .rev{flex:1;min-width:0}
+
+  /* footer brand */
+  .foot-brand{font-size:1.25rem}
+  .foot-brand img,.foot-brand svg{width:34px;height:34px}
+
+  /* contact form */
+  .c-form-card{padding:20px 14px;border-radius:18px}
+  .c-form-card .submit-row .btn{padding:14px 20px}
+
+  /* logos grid */
+  .logo-wall{padding:12px}
+  .logo-wall-grid{grid-template-columns:repeat(2,1fr)}
+  .logo-wall .lw-cell:nth-child(n+7){display:none}
+
+  /* lang switcher very small */
+  .lang-btn{padding:8px 12px;font-size:.75rem}
+  .lang-btn .lang-label{display:none}
+}
+
+/* landscape phones — keep nav usable */
+@media (max-width:900px) and (orientation:landscape){
+  .nav ul{max-height:calc(100vh - 80px)}
+  .hero{padding:100px 0 30px}
+}
