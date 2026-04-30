@@ -2,7 +2,7 @@
 """Static page builder for DigiVeritaz recreation.
 Generates all HTML pages from shared header/footer + per-page content blocks.
 """
-import os, pathlib
+import os, pathlib, re as _pre_re
 
 OUT = pathlib.Path(__file__).parent
 
@@ -21,22 +21,56 @@ THEME_TOGGLE = """      <li><button class="theme-toggle" aria-label="Toggle them
       </button></li>
 """
 
-SERVICES_DROPDOWN = [
-    ("services.html", "All Services"),
-    ("organic-marketing-services.html", "Organic Marketing Services"),
-    ("paid-social-media-advertising.html", "Paid Social Media Advertising"),
-    ("pay-per-click.html", "Pay Per Click"),
-    ("performance-marketing-agency.html", "Performance Marketing Agency"),
-    ("ecommerce-marketing.html", "E-Commerce Platforms"),
-    ("data-strategy-consulting-services.html", "Data Strategy &amp; Consulting"),
-    ("native-advertising.html", "Native Advertising"),
-    ("whatsapp-marketing-services.html", "WhatsApp Marketing Services"),
-    ("branding-and-design.html", "Branding and Design"),
-    ("seo.html", "Search Engine Optimization"),
-    ("generative-search-optimisation.html", "Generative Search Optimisation"),
-]
+# Doc-driven service data (41 services, grouped categories, card metadata)
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from services_data import SERVICES as DOC_SERVICES, CATEGORIES as SVC_CATEGORIES, CARD_META as SVC_CARD_META
 
-SERVICE_SLUGS = {"seo.html","pay-per-click.html","performance-marketing-agency.html","paid-social-media-advertising.html","ecommerce-marketing.html","whatsapp-marketing-services.html","native-advertising.html","organic-marketing-services.html","branding-and-design.html","generative-search-optimisation.html","data-strategy-consulting-services.html","services.html"}
+SERVICE_TITLE_MAP = {
+    "seo.html": "SEO",
+    "social-media-management.html": "Social Media Management",
+    "influencer-marketing.html": "Influencer Marketing",
+    "digital-pr.html": "Digital PR",
+    "online-reputation-management.html": "Online Reputation Management",
+    "organic-marketing-services.html": "Content Marketing",
+    "whatsapp-marketing-services.html": "WhatsApp Marketing",
+    "performance-marketing-agency.html": "Performance Marketing",
+    "ecommerce-marketing.html": "E-Commerce Marketing",
+    "generative-search-optimisation.html": "Generative Engine Optimisation",
+    "pay-per-click.html": "Search PPC",
+    "display-advertising.html": "Display Advertising",
+    "facebook-instagram-advertising.html": "Facebook &amp; Instagram Ads",
+    "shopping-ads.html": "Shopping Ads",
+    "paid-social-media-advertising.html": "Social Media Advertising",
+    "amazon-marketing.html": "Amazon Marketing",
+    "native-advertising.html": "Native Advertising",
+    "ui-ux-design.html": "UI/UX Design",
+    "product-design.html": "Product Design",
+    "branding-and-design.html": "Brand Identity",
+    "communication-design.html": "Communication Design",
+    "content-copy-writing.html": "Content &amp; Copywriting",
+    "conversion-rate-optimisation.html": "Conversion Rate Optimisation",
+    "revenue-generation.html": "Revenue Generation",
+    "lead-generation.html": "Lead Generation",
+    "cmo-consultancy.html": "CMO Consultancy",
+    "landing-page-design.html": "Landing Page Design",
+    "real-estate-lead-generation.html": "Real Estate Lead Generation",
+    "research-and-insights.html": "Research &amp; Insights",
+    "strategy-and-planning.html": "Strategy &amp; Planning",
+    "analytics-configuration.html": "Analytics Configuration",
+    "google-tag-manager.html": "Google Tag Manager",
+    "data-strategy-consulting-services.html": "Data Strategy",
+    "website-development.html": "Website Development",
+    "custom-software-development.html": "Custom Software",
+    "ecommerce-development.html": "E-Commerce Development",
+    "wordpress-development.html": "WordPress Development",
+    "mobile-app-development.html": "Mobile App Development",
+    "linux-hosting.html": "Linux Hosting",
+    "business-email.html": "Business Email",
+    "crm-services.html": "CRM Services",
+}
+
+SERVICE_SLUGS = set(SERVICE_TITLE_MAP.keys()) | {"services.html"}
 
 def build_nav(current):
     def is_active(href):
@@ -50,18 +84,28 @@ def build_nav(current):
         return False
 
     def dropdown_html():
-        items = "".join(
-            f'<a href="{h}"{" class=\"active\"" if h == current else ""}>{label}</a>'
-            for h, label in SERVICES_DROPDOWN
+        cols = []
+        for cat, slugs in SVC_CATEGORIES:
+            items = "".join(
+                f'<a href="{slug}" role="menuitem"{" class=\"active\"" if slug == current else ""}>{SERVICE_TITLE_MAP.get(slug, slug)}</a>'
+                for slug in slugs
+            )
+            cols.append(f'<div class="mm-col"><div class="mm-head">{cat}</div>{items}</div>')
+        view_all = f'<a class="mm-all" href="services.html"{" data-active=\"1\"" if current == "services.html" else ""}>View all services →</a>'
+        return (
+            '<div class="dd-menu mega-menu" role="menu">'
+            '<span class="dd-bridge" aria-hidden="true"></span>'
+            '<div class="mm-grid">' + "".join(cols) + '</div>'
+            f'<div class="mm-foot">{view_all}</div>'
+            '</div>'
         )
-        return f'<div class="dd-menu" role="menu"><span class="dd-bridge" aria-hidden="true"></span>{items}</div>'
 
     lis_parts = []
     for h, t, k in NAV_ITEMS:
         active_cls = " active" if is_active(h) else ""
         if h == "services.html":
             lis_parts.append(
-                f'<li class="has-dd"><a class="navlink{active_cls}" href="{h}" data-i18n="{k}">{t} <span class="dd-caret" aria-hidden="true">▾</span></a>{dropdown_html()}</li>'
+                f'<li class="has-dd has-mega"><a class="navlink{active_cls}" href="{h}" data-i18n="{k}">{t} <span class="dd-caret" aria-hidden="true">▾</span></a>{dropdown_html()}</li>'
             )
         else:
             lis_parts.append(
@@ -777,725 +821,183 @@ write("thank-you.html", "Thank You | DigiVeritaz",
       ty_body)
 
 # ---------- SERVICES HUB ----------
-ICON = {
-    "seo":       '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
-    "ppc":       '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-    "perf":      '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg>',
-    "social":    '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>',
-    "ecom":      '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
-    "whatsapp":  '<svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg>',
-    "native":    '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="7.5" r="0.7"/></svg>',
-    "organic":   '<svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg>',
-    "brand":     '<svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>',
-    "ai":        '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/><path d="M2 12h2M20 12h2"/></svg>',
-    "data":      '<svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>',
+# Card-icon SVGs keyed by SVC_CARD_META[..][0] (icon-key from services_data).
+SVC_ICON = {
+    "seo":        '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+    "ppc":        '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    "perf":       '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg>',
+    "social":     '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>',
+    "ecom":       '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
+    "cart":       '<svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l3 12h11l2-8H6"/></svg>',
+    "whatsapp":   '<svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg>',
+    "native":     '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="7.5" r="0.7"/></svg>',
+    "organic":    '<svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg>',
+    "brand":      '<svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>',
+    "ai":         '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/><path d="M2 12h2M20 12h2"/></svg>',
+    "data":       '<svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>',
+    "influencer": '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/><path d="M19 4l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg>',
+    "pr":         '<svg viewBox="0 0 24 24"><path d="M3 11l13-7v16L3 13z"/><rect x="6" y="11" width="3" height="5"/><path d="M16 8a3 3 0 0 1 0 8"/></svg>',
+    "orm":        '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M9 12l2 2 4-4"/></svg>',
+    "content":    '<svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h16"/></svg>',
+    "uiux":       '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>',
+    "product":    '<svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>',
+    "comm":       '<svg viewBox="0 0 24 24"><path d="M3 5h12l5 5-5 5H3z"/><path d="M7 9h6M7 12h4"/></svg>',
+    "copy":       '<svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
+    "display":    '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    "meta":       '<svg viewBox="0 0 24 24"><path d="M3 12c2-6 7-7 9-1 2 6 7 5 9-1"/><circle cx="6" cy="11" r="1.5"/><circle cx="18" cy="13" r="1.5"/></svg>',
+    "shopping":   '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
+    "cro":        '<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>',
+    "revenue":    '<svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>',
+    "lead":       '<svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/><path d="M10 10l4 4"/></svg>',
+    "cmo":        '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/><path d="M9 8l2 2 4-4"/></svg>',
+    "page":       '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+    "realestate": '<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg>',
+    "research":   '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M9 11h4M11 9v4"/></svg>',
+    "strategy":   '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    "analytics":  '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M5 16l4-6 4 4 6-9"/></svg>',
+    "gtm":        '<svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/><path d="M9 12l2 2 4-4"/></svg>',
+    "web":        '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18 13 13 0 0 1 0-18z"/></svg>',
+    "software":   '<svg viewBox="0 0 24 24"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4M14 4l-4 16"/></svg>',
+    "wp":         '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 12L9 21M14.5 4L19 18M9 21l4-12 4 9"/></svg>',
+    "mobile":     '<svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>',
+    "server":     '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="1"/><circle cx="7" cy="17" r="1"/></svg>',
+    "email":      '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+    "crm":        '<svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3 21c0-3 3-6 6-6s6 3 6 6"/><path d="M16 11l3 3 4-4"/></svg>',
 }
-services_list = [
-    ("SEO", "seo.html", ICON["seo"], "Rank, engage, and grow sustainably with on-page, technical and content SEO."),
-    ("Pay Per Click", "pay-per-click.html", ICON["ppc"], "High-intent traffic through Google Ads, Bing Ads and performance PPC campaigns."),
-    ("Performance Marketing", "performance-marketing-agency.html", ICON["perf"], "Full-funnel growth through measurable, ROI-first campaigns."),
-    ("Paid Social Advertising", "paid-social-media-advertising.html", ICON["social"], "Meta, LinkedIn, Pinterest and Snapchat ads that convert."),
-    ("E-Commerce Marketing", "ecommerce-marketing.html", ICON["ecom"], "Amazon, Flipkart and D2C growth from listing to loyalty."),
-    ("WhatsApp Marketing", "whatsapp-marketing-services.html", ICON["whatsapp"], "Conversational commerce that drives direct response."),
-    ("Native Advertising", "native-advertising.html", ICON["native"], "Reach users where they read — premium native placements."),
-    ("Organic Marketing", "organic-marketing-services.html", ICON["organic"], "Long-term organic growth across search, social and content."),
-    ("Branding &amp; Design", "branding-and-design.html", ICON["brand"], "Research-led branding, identity systems and creative direction."),
-    ("Generative Search Optimisation", "generative-search-optimisation.html", ICON["ai"], "Get discovered in ChatGPT, Gemini and AI search."),
-    ("Data Strategy &amp; Consulting", "data-strategy-consulting-services.html", ICON["data"], "Attribution, analytics and a data stack that drives decisions."),
-]
-svc_cards = "\n".join(
-    f'<div class="svc-card"><div class="icon">{i}</div><h3>{t}</h3><p>{d}</p><a class="more" href="{u}">Learn more →</a></div>'
-    for (t,u,i,d) in services_list
+
+def _svc_card(slug):
+    icon_key, blurb = SVC_CARD_META.get(_doc_slug_for(slug), ("seo", ""))
+    title = SERVICE_TITLE_MAP.get(slug, slug)
+    return (
+        f'<a class="svc-card" href="{slug}">'
+        f'<div class="icon">{SVC_ICON.get(icon_key, SVC_ICON["seo"])}</div>'
+        f'<h3>{title}</h3><p>{blurb}</p>'
+        f'<span class="more">Learn more →</span>'
+        f'</a>'
+    )
+
+# Build a reverse map: site_slug -> doc_slug, used to find icon/blurb in CARD_META.
+_SLUG_REVERSE = {svc["site_slug"]: svc["doc_slug"] for svc in DOC_SERVICES}
+def _doc_slug_for(site_slug):
+    return _SLUG_REVERSE.get(site_slug, "/SEO")
+
+def _cat_key(name):
+    return _pre_re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+_TAB_ICONS = {
+    "all":               '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+    "marketing":         '<svg viewBox="0 0 24 24"><path d="M3 11l16-7v18l-16-7z"/><path d="M3 11h6l3 8"/></svg>',
+    "advertising":       '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    "design-content":    '<svg viewBox="0 0 24 24"><path d="M12 2c-5 0-9 4-9 9 0 4 3 7 7 7 1 0 2-1 2-2 0-2 2-2 2-4 0-3 4-3 4-5 0-3-3-5-6-5z"/><circle cx="7" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="14" cy="7" r="1.2"/><circle cx="17" cy="11" r="1.2"/></svg>',
+    "strategy-data":     '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx=".6"/><rect x="11" y="7" width="3" height="12" rx=".6"/><rect x="17" y="3" width="3" height="16" rx=".6"/></svg>',
+    "tech-development":  '<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14.5" y1="4" x2="9.5" y2="20"/></svg>',
+}
+
+# Total service count
+_svc_count_total = sum(len(s) for _, s in SVC_CATEGORIES)
+
+def _svc_tab_html(key, label, count, active=False):
+    icon = _TAB_ICONS.get(key, _TAB_ICONS["all"])
+    cls = "svc-tab" + (" active" if active else "")
+    aria = "true" if active else "false"
+    return (
+        f'<button type="button" class="{cls}" data-target="{key}" role="tab" aria-selected="{aria}">'
+        f'<span class="svc-tab-icon">{icon}</span>'
+        f'<span class="svc-tab-label">{label}</span>'
+        f'<span class="svc-tab-count">{count}</span>'
+        f'</button>'
+    )
+
+_svc_tabs_html = (
+    '<div class="svc-tabs reveal" role="tablist">'
+    + _svc_tab_html("all", "All Services", _svc_count_total, active=True)
+    + "".join(
+        _svc_tab_html(_cat_key(_cat), _cat, len(_slugs))
+        for _cat, _slugs in SVC_CATEGORIES
+    )
+    + '</div>'
 )
+
+cat_groups_html = []
+for _cat, _slugs in SVC_CATEGORIES:
+    cards = "".join(_svc_card(s) for s in _slugs)
+    key = _cat_key(_cat)
+    cat_groups_html.append(
+        f'<div class="svc-cat-group reveal" data-cat="{key}">'
+        f'<div class="svc-cat-head-row">'
+        f'<h2 class="svc-cat-head"><span class="green_text">{_cat}</span></h2>'
+        f'<span class="svc-cat-count">{len(_slugs)} services</span>'
+        f'</div>'
+        f'<div class="services-grid">{cards}</div>'
+        f'</div>'
+    )
+svc_groups_html = "".join(cat_groups_html)
+
+# Inline JS — toggles which category groups are visible based on the active tab.
+_svc_tabs_script = """
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.svc-tab');
+  var groups = document.querySelectorAll('.svc-cat-group');
+  function activate(target){
+    tabs.forEach(function(t){
+      var on = t.dataset.target === target;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    groups.forEach(function(g){
+      var show = (target === 'all') || (g.dataset.cat === target);
+      g.style.display = show ? '' : 'none';
+      if (show){
+        g.classList.remove('svc-fade-in');
+        // re-trigger fade-in animation
+        // eslint-disable-next-line no-unused-expressions
+        void g.offsetWidth;
+        g.classList.add('svc-fade-in');
+      }
+    });
+    // Persist via hash so links can deep-link to a category
+    if (target && target !== 'all'){
+      history.replaceState(null, '', '#' + target);
+    } else {
+      history.replaceState(null, '', location.pathname);
+    }
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.dataset.target); });
+  });
+  // Honour deep-link hash on load
+  var initial = (location.hash || '').replace('#','');
+  if (initial){
+    var ok = Array.prototype.some.call(tabs, function(t){ return t.dataset.target === initial; });
+    if (ok){ activate(initial); }
+  }
+})();
+</script>
+"""
+
 svc_body = page_hero("Our <span class=\"green_text\">Services</span>", "Home / Services",
-    "A full-stack suite of digital marketing services — pick one, or let us run your entire growth engine.") + f"""
-<section class="services"><div class="container"><div class="services-grid">{svc_cards}</div></div></section>
+    "41 services across marketing, advertising, design, strategy, data and development — pick one, or let us run your entire growth engine.") + f"""
+<section class="services svc-hub">
+  <div class="container">
+    {_svc_tabs_html}
+    <div class="svc-cat-wrap">{svc_groups_html}</div>
+  </div>
+</section>
+{_svc_tabs_script}
 """
 write("services.html",
       "Digital Marketing Services in India | SEO, PPC, Performance, E-Commerce | DigiVeritaz",
-      "Full-stack digital marketing services from DigiVeritaz: SEO, PPC, performance marketing, paid social, e-commerce, WhatsApp marketing, branding, data strategy and generative search optimization.",
+      "Full-stack digital marketing services from DigiVeritaz: 41 services across marketing, advertising, design, strategy, data and development. SEO, PPC, performance marketing, paid social, e-commerce, WhatsApp, branding and more.",
       svc_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing services, marketing services India, full service marketing agency, marketing packages Mumbai")
 
 # ---------- INDIVIDUAL SERVICE PAGES ----------
-service_pages = {
-    "seo.html": {
-        "title": "SEO Services in India | Sustainable Organic Growth | DigiVeritaz",
-        "desc": "Performance-driven SEO company in India — technical audits, content strategy, ethical link building and localized targeting that cuts ad dependency and grows long-term organic revenue.",
-        "h1": "SEO Company in India That Powers <span class=\"green_text\">Sustainable Growth</span>",
-        "crumb": "Home / Services / SEO",
-        "kicker": "Search Engine Optimization",
-        "intro": "We're a performance-driven SEO company helping businesses cut ad dependency and achieve long-term organic growth — with proven expertise across industries and transparent reporting on every metric that matters.",
-        "benefits": [
-            ("ROI-Focused Approach", "Qualified leads over vanity traffic — every tactic tied to revenue."),
-            ("Industry-Proven Expertise", "Campaigns across startups, SMEs, and enterprises with measurable results."),
-            ("Technical Precision", "Core Web Vitals fixes, structured data and crawl efficiency baked in."),
-            ("Ethical Link Building", "High-authority backlinks via genuine outreach — no black-hat shortcuts."),
-            ("Localized Targeting", "Geo-optimized content and GMB strategy that wins local intent."),
-            ("Transparent Reporting", "Monthly dashboards with business KPIs, not vanity numbers."),
-        ],
-        "deliverables": [
-            "On-Page SEO (keyword mapping, meta optimization, content alignment)",
-            "Technical SEO (speed, structured data, crawl efficiency)",
-            "Off-Page &amp; Authority Building (ethical link outreach)",
-            "Local SEO (GMB optimization, reviews strategy)",
-            "E-Commerce SEO (product &amp; category rankings)",
-            "Enterprise SEO (scalable strategies for complex sites)",
-        ],
-        "process": [
-            ("Comprehensive Audit", "We identify visibility gaps, site-health issues and competitor benchmarks."),
-            ("Strategy Development", "A tailored SEO roadmap aligned with your business goals and priorities."),
-            ("On-Page &amp; Technical Execution", "Ranking improvements, structured data and content alignment shipped."),
-            ("Off-Page &amp; Authority Building", "Genuine outreach to build durable trust signals and citations."),
-            ("Performance Tracking", "Transparent monthly reports with growth insights and next actions."),
-        ],
-        "faqs": [
-            ("How long does it take to see SEO results?", "Typically 3–6 months depending on your website's current state, domain authority and industry competition. Foundational wins often appear in weeks, while ranking consolidation takes longer."),
-            ("Do you handle international or multilingual SEO?", "Yes — we specialize in multilingual and international SEO strategies including hreflang, regional content, and geo-specific link profiles."),
-            ("What makes your SEO approach different?", "We combine technical precision, content excellence and transparent reporting to deliver results that impact your bottom line — not just Search Console charts."),
-        ],
-    },
-    "organic-marketing-services.html": {
-        "title": "Organic Marketing Services | Sustainable Growth Without Paid Ads | DigiVeritaz",
-        "desc": "Drive sustainable growth without paid ads. SEO, content marketing, social media optimization and data-driven strategies that build long-term visibility, trust and traffic that converts.",
-        "h1": "Organic Marketing <span class=\"green_text\">Services</span>",
-        "crumb": "Home / Services / Organic Marketing",
-        "kicker": "Drive Sustainable Growth Without Paid Ads",
-        "intro": "At DigiVeritaz, our <strong>organic marketing services</strong> help your brand grow naturally — without depending solely on paid ads. We use SEO, content marketing, social media optimization, and data-driven strategies to build long-term visibility, trust, and traffic that converts. Whether you're a startup, small business, or enterprise, our <strong>organic marketing agency in India</strong> focuses on one goal — helping your brand attract the right audience consistently.",
-        "highlights": [
-            {
-                "heading": "What Is <span class=\"green_text\">Organic Marketing?</span>",
-                "body1": "Organic marketing is the art of growing your business using <strong>non-paid, strategic channels</strong> such as search engines, social media, blogs, and community engagement.",
-                "body2": "Unlike paid ads that disappear when the budget stops, organic marketing builds lasting visibility. It involves optimizing your online presence, creating valuable content, and engaging authentically with your audience to gain trust, awareness, and loyalty.",
-                "body3": "<em>In short: paid marketing brings traffic; organic marketing builds relationships that last.</em>",
-                "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-                "side": "right",
-            },
-        ],
-        "sub_services": [
-            ("seo", "Organic SEO (Search Engine Optimization)", "We help your website rank higher on Google using ethical SEO practices. From keyword research and on-page optimization to backlink building, we ensure your site gains organic visibility and sustainable traffic over time."),
-            ("content", "Content Marketing for Organic Growth", "Quality content is at the heart of every successful organic campaign. We create SEO-optimized blogs, website content, infographics, and videos that educate, engage, and convert. Our team focuses on content marketing for organic growth — designed to attract users and boost brand authority."),
-            ("social", "Social Media Organic Marketing", "We craft organic social media strategies that increase your brand's reach without heavy ad spend. Our approach involves consistent posting, storytelling, engagement, and community building."),
-            ("lead", "Organic Lead Generation", "Through optimized funnels, SEO content, and engagement strategies, we help you generate qualified leads organically. No spam, no bots — just real people interested in your brand."),
-            ("video", "YouTube &amp; Video Organic Marketing", "We optimize your YouTube and video content for search visibility — ensuring you get organic traffic and engagement. From keyword tagging to compelling descriptions, every detail is optimized."),
-        ],
-        # "Why Choose" as split panel with bullets + CTA
-        "highlight": {
-            "heading": "Why Choose DigiVeritaz For <span class=\"green_text\">Organic Marketing?</span>",
-            "intro": "Choosing the right organic marketing agency can be the difference between short-term hype and long-term success.<br><br><strong>Here's what makes us different:</strong>",
-            "bullets": [
-                ("Data-Driven Strategy", "Every campaign starts with deep analytics and market research."),
-                ("Ethical SEO Practices", "100% white-hat, no shortcuts — only sustainable growth."),
-                ("Personalized Campaigns", "Tailored to your business goals and audience intent."),
-                ("Integrated Content &amp; SEO", "Our team aligns content, keywords, and strategy to maximize organic reach."),
-                ("Proven Results", "Our clients have seen up to <strong>5× organic traffic growth</strong> within months."),
-            ],
-            "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-            "cta_text": "Launch Your Brand With Us",
-        },
-        "process": [
-            ("Audit &amp; Strategy Building", "We evaluate your website, content and competition to shape the plan."),
-            ("Keyword Mapping &amp; Content Planning", "Identify <strong>high-volume, low-difficulty keywords</strong> to rank faster."),
-            ("On-Page SEO Optimization", "Improve meta tags, content structure and user experience."),
-            ("Content Creation &amp; Distribution", "Create valuable blogs, landing pages and social posts."),
-            ("Engagement &amp; Outreach", "Build trust and backlinks through organic engagement."),
-            ("Tracking &amp; Reporting", "Monitor analytics to measure traffic, leads and ROI."),
-        ],
-        "simple_benefits": {
-            "heading": "Benefits of <span class=\"green_text\">Organic Marketing</span>",
-            "items": [
-                "<strong>Builds long-term trust</strong> &amp; brand authority",
-                "<strong>Saves cost</strong> vs paid ads",
-                "Drives <strong>consistent website traffic</strong>",
-                "Improves <strong>SEO rankings</strong> &amp; visibility",
-                "Generates <strong>quality organic leads</strong>",
-                "Enhances <strong>audience loyalty</strong>",
-            ],
-        },
-        "industries": ["E-commerce &amp; Retail", "Real Estate", "Education &amp; EdTech", "Healthcare &amp; Wellness", "Finance &amp; Insurance", "Technology &amp; SaaS"],
-        "cta": ("Ready to Grow <span>Organically?</span>", "Let's build your brand presence the right way — naturally, strategically, and sustainably. Contact DigiVeritaz today to discuss your organic marketing strategy."),
-        "faqs": [
-            ("How is organic marketing different from paid marketing?", "Paid marketing buys visibility — the moment spend stops, traffic stops. Organic marketing builds assets (rankings, content, communities) that keep working long after the initial investment. Paid is rented attention; organic is owned attention."),
-            ("How long before I see results from organic marketing?", "You'll see early signals — rankings improvements, traffic lifts, engagement — within 2–3 months. Meaningful compounding growth typically shows in months 4–6. Our clients have seen up to 5× organic traffic growth within that window."),
-            ("Do I still need paid ads if I invest in organic?", "Not necessarily, but the two work best together. Paid can validate messaging fast; organic compounds cheaply over time. We often start with both, then shift budget toward whichever channel wins on unit economics."),
-            ("What's included in your organic marketing retainer?", "Audits, keyword &amp; content strategy, on-page SEO, content production, organic social, link building outreach, analytics dashboards and monthly reviews — all tied to business KPIs, not vanity metrics."),
-            ("Will organic marketing work for my industry?", "Almost always — but approach and timelines differ. E-commerce, SaaS, local services and B2B all respond to organic, though intent and content formats vary. We tailor the plan to your specific vertical and competitors."),
-            ("Do you follow white-hat SEO practices?", "Yes — 100%. No PBNs, no link farms, no cloaking. Only editorial links, quality content and technical fundamentals. Google penalties are not a risk worth taking with your brand."),
-        ],
-    },
-    "paid-social-media-advertising.html": {
-        "title": "Paid Social Media Advertising | Meta, LinkedIn, YouTube Ads | DigiVeritaz",
-        "desc": "Paid social media advertising that drives real ROI. Facebook, Instagram, LinkedIn and YouTube campaigns blending video-led creative with precise targeting and retargeting funnels.",
-        "h1": "Paid Social Media <span class=\"green_text\">Advertising</span>",
-        "crumb": "Home / Services / Paid Social",
-        "kicker": "Paid Social Advertising",
-        "intro": "In today's competitive landscape, organic reach alone isn't enough to keep your brand visible. <strong>Paid advertising on social media</strong> allows you to connect with the right audience, at the right time, with precision targeting. At DigiVeritaz, our <strong>paid social media agency</strong> team designs impactful <strong>social media campaigns</strong> that not only build awareness but also generate measurable business outcomes.",
-        "highlight": {
-            "heading": "Why Paid Social Media Advertising <span class=\"green_text\">Matters?</span>",
-            "body": "Every brand wants to stand out on platforms like Facebook, Instagram, LinkedIn, and YouTube. But with constant content overload, only the right <strong>social ad campaigns</strong> can capture attention. Paid campaigns give your business the edge to break through the clutter. From building trust to driving conversions, <strong>social media digital marketing</strong> is the fastest way to amplify your presence and scale results.",
-            "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-            "cta_text": "Launch Your Brand With Us",
-            "side": "right",
-        },
-        "approach": {
-            "heading": "Our Approach To Social Media <span class=\"green_text\">Ad Campaigns</span>",
-            "body1": "We believe effective campaigns come from a mix of strategy, creativity, and continuous optimization. Before launching any campaign, our team dives deep into audience research and business goals. This ensures that your ads speak directly to the people who matter most.",
-            "body2": "Once strategy is set, we create compelling ad creatives—often video-led—that stop the scroll and inspire action. Every campaign is monitored closely, with regular adjustments in targeting, bidding, and creatives to ensure maximum ROI. This full-funnel approach makes our <strong>social media campaigns</strong> both impactful and cost-efficient.",
-            "img": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-        },
-        "platforms_intro": "Our expertise covers a wide range of platforms, allowing us to design <strong>the best social media ad campaigns</strong> tailored to each business.",
-        "platforms": [
-            ("fb", "Facebook &amp; Instagram Ads", "Ideal for mass awareness and targeted engagement across Meta's ecosystem."),
-            ("ln", "LinkedIn Ads", "Perfect for B2B brands looking to generate high-quality leads at scale."),
-            ("yt", "YouTube &amp; Video Ads", "Great for storytelling and building a stronger emotional connection with your audience."),
-        ],
-        "platforms_outro": "No matter the platform, we ensure your message reaches the right audience in the most effective way.",
-        "benefits_intro": "Investing in <strong>paid advertising social media</strong> campaigns gives your brand an edge over competitors. Unlike organic marketing, these campaigns are targeted, measurable, and scalable. Partnering with the right <strong>paid social media agency</strong> ensures that your investment translates into real business growth.",
-        "benefits": [
-            ("Wider Reach &amp; Visibility", "Your ads are shown to people who fit your ideal customer profile, boosting awareness beyond your existing followers.", "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"),
-            ("Faster Results", "While organic posts take time, <strong>social ad campaigns</strong> generate quick traffic, leads, and sales.", "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80"),
-            ("Precise Targeting", "Ads can be targeted based on location, demographics, interests, and behaviors — ensuring your spend reaches the right audience.", "https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=800&q=80"),
-            ("Budget Flexibility", "Start with a small budget and scale up once you see results — making it cost-effective for all business sizes.", "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"),
-            ("Better Brand Awareness", "Consistent exposure through <strong>social media campaigns</strong> builds trust and recognition in the minds of your audience.", "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"),
-            ("Higher Engagement", "Creative formats like videos, carousels, and stories capture attention and drive meaningful interactions.", "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80"),
-            ("Lead Generation &amp; Sales", "Paid ads help you collect leads, drive website traffic, and improve conversions with measurable ROI.", "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"),
-            ("Remarketing Opportunities", "Retarget people who already interacted with your brand — turning interest into action.", "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"),
-            ("Data &amp; Insights", "Every campaign delivers analytics — helping you refine strategies and create the <strong>best social media ad campaigns</strong>.", "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=800&q=80"),
-        ],
-        "best_campaigns": {
-            "heading": "Best Social Media Ad Campaigns That <span class=\"green_text\">Deliver</span>",
-            "body": "What sets our work apart is the way we combine creativity with analytics. We don't just run ads — we build campaigns that leave a lasting impression. Whether it's a video campaign designed to generate buzz or a retargeting strategy that brings back interested buyers, our focus is always on creating the <strong>best social media ad campaigns</strong> for long-term success.",
-            "sub_heading": "Let's Build Your Next Campaign",
-            "sub_body": "Ready to make your brand stand out with <strong>paid advertising social media</strong> strategies? Our team is here to help you design, launch, and scale campaigns that drive real impact. Connect with our <strong>paid social media agency</strong> today and take the first step toward growing your business with confidence.",
-            "img": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-        },
-        "faqs": [
-            ("What is paid advertising on social media?", "Paid advertising on social media involves running social ad campaigns on platforms like Facebook, Instagram, LinkedIn, and YouTube targeting specific audiences. Unlike organic posts, paid ads are targeted, measurable, and designed for faster results including leads, sales, or brand awareness."),
-            ("Why should I choose a paid social media agency?", "Working with specialists ensures campaigns are backed by strategy, creative design, and continuous optimization. Rather than blind spending, experts help establish goals, identify target audiences, and run campaigns maximizing ROI."),
-            ("How are paid social media campaigns different from organic posts?", "Organic posts develop long-term engagement but struggle with limited reach due to algorithms. Paid campaigns guarantee visibility by targeting users based on demographics, interests, and behaviors — delivering quicker, more scalable outcomes."),
-            ("Which platforms are best for social media ad campaigns?", "Platform selection depends on goals and audience. Facebook and Instagram work best for broad consumer reach; LinkedIn excels for B2B lead generation; YouTube video ads suit storytelling and brand visibility. Strong strategy often combines multiple platforms."),
-            ("How much should I budget for social media campaigns?", "Budgets vary by industry, goals, and competition. Some start at ₹20,000 monthly; others scale into larger amounts. The key is focusing on ROI — well-structured campaigns often generate returns exceeding spend."),
-            ("How do you measure the success of social media ad campaigns?", "Key metrics tracked include impressions, clicks, conversions, cost per lead (CPL), and return on ad spend (ROAS). Detailed reporting shows exactly how campaigns perform and where improvements can occur."),
-            ("What makes DigiVeritaz different from other agencies?", "Our focus is on creating campaigns blending creativity with performance. From video-led ads to retargeting funnels, innovation combines with data-driven insights — ensuring brands receive results, not vanity metrics."),
-        ],
-        "cta": ("Ready to grow your <span>brand?</span>", "Book your free consultation today and let's design campaigns that deliver measurable impact."),
-    },
-    "pay-per-click.html": {
-        "title": "PPC Agency in India | Google Ads Management &amp; PPC Campaign Optimization | DigiVeritaz",
-        "desc": "Pay-Per-Click advertising that turns clicks into customers. End-to-end Google Ads management, Shopping, Display &amp; Video campaigns with full-funnel tracking, CRO and ROI-focused optimization.",
-        "h1": "Pay-Per-Click (PPC) <span class=\"green_text\">Advertising</span>",
-        "crumb": "Home / Services / Pay Per Click",
-        "kicker": "Drive Instant Visibility and Conversions with PPC",
-        "intro": "When you want fast, measurable results, there is nothing quite like Pay-Per-Click. At DigiVeritaz, we turn clicks into customers — not just traffic. Whether you're a small startup or an established business, our <strong>PPC campaign management</strong> services ensure that every rupee you spend delivers value by targeting ready-to-buy audiences and optimising for maximum ROI.",
-        # Why PPC Is Essential — split panel with bullets + CTA, image on right
-        "highlights": [
-            {
-                "heading": "Why PPC Advertising Is <span class=\"green_text\">Essential For Your Business?</span>",
-                "intro": "PPC gives your business the speed, precision and accountability that organic channels can't deliver. Five reasons it belongs in every growth plan:",
-                "bullets": [
-                    ("Immediate Presence", "Appear at the top of search engine results the moment you launch a campaign."),
-                    ("Controlled Budgeting", "Only pay when users click (or convert), ensuring efficient spend."),
-                    ("Highly Targeted", "Reach people by location, device, keyword and behaviour — no more shooting in the dark."),
-                    ("Measurable Results", "Track everything — from clicks and impressions to CPA and ROAS."),
-                    ("Flexibility &amp; Testability", "Test ad copies, landing pages, bid strategies and creatives — then scale what works."),
-                ],
-                "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-                "side": "right",
-                "cta_text": "Launch Your Brand With Us",
-            },
-        ],
-        # Our PPC Services — 6 sub-service cards (merged tracking into optimization)
-        "sub_services": [
-            ("strategy", "Strategy &amp; Planning", "Keyword research, competitor audits, target audience profiling and defining conversion paths for every campaign."),
-            ("ppc", "Campaign Setup", "Setting up Google Ads, Display Network, Shopping Ads and Video Ads — structured by theme, ad group and keyword match types."),
-            ("brand", "Creative Development", "Ad copywriting, designing banners &amp; display creatives, video script + assets, and rigorous A/B testing."),
-            ("growth", "Landing Page &amp; Conversion Optimization", "Ensuring landing pages are relevant, fast, mobile-friendly and persuasive; optimising forms and CTAs for conversion."),
-            ("perf", "Bid Management &amp; Budget Allocation", "Smart bidding strategies (manual, automated, ROAS-based) — adjusting bids by device, time and geography."),
-            ("data", "Ongoing Optimisation &amp; Reporting", "Refining negatives, rotating creatives, testing extensions, and transparent dashboards for KPIs like CPC, CPA and ROAS."),
-        ],
-        # Why Choose DigiVeritaz — split panel with bullets + CTA, image on left
-        "highlight": {
-            "heading": "Why Choose DigiVeritaz As Your <span class=\"green_text\">PPC Partner?</span>",
-            "intro": "We combine Mumbai roots with global PPC playbooks — backed by certified experts and a framework built around continuous optimisation:",
-            "bullets": [
-                ("Google Ads Agency In Mumbai, India-Wide Reach", "We understand local, national and international markets — combining global best practices with local insight."),
-                ("Certified Google Ads Experts", "Certified Google Ads experts, seasoned PPC specialists and consultants who live &amp; breathe paid search."),
-                ("Proven Track Record", "Improving Quality Score, lowering CPC, boosting CTR and increasing conversion rates — monitor daily, refine weekly, scale monthly."),
-                ("Hands-On Google Ads Consultant", "Advising on budget, strategy and growth — responsive and accessible whenever you need us."),
-                ("Transparent Reporting", "No hidden fees. You know where every rupee goes and what it delivers."),
-            ],
-            "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-            "cta_text": "Launch Your Brand With Us",
-        },
-        # Process — 8 steps
-        "process": [
-            ("Discovery &amp; Audit", "We begin by understanding your business, goals, cash flow, competition and existing digital footprint — auditing current PPC campaigns, website and conversion paths."),
-            ("Keyword &amp; Market Research", "Using tools and human insight, we find profitable, relevant keywords (including long-tail) — understanding search trends, volume, region and seasonality."),
-            ("Strategy &amp; Campaign Architecture", "Define the structure: campaigns per objective (brand awareness, sales, lead gen), ad groups per theme, match-types and targeting."),
-            ("Ad Copy, Creative &amp; Extensions", "Craft compelling ad copy aligned with user intent. Use ad extensions (sitelinks, callouts, calls) and design display/video creatives."),
-            ("Tracking &amp; Infrastructure Setup", "Proper conversion tracking (form fills, calls, purchases), GA4, tagging, audience lists and remarketing setup."),
-            ("Launch &amp; Monitor", "Launch with initial bids and budgets. Monitor impressions, clicks, spend and early conversions — adjust for budget pacing."),
-            ("Optimisation &amp; Scaling", "Refine negative keywords, pause under-performers, test copy/creative, adjust bids by time/device/geo, and scale up where ROI is positive."),
-            ("Reporting &amp; Insights", "Regular reports showing spend, CPC, CPA, conversion rate, ROAS with insights and recommendations — dashboards for full transparency."),
-        ],
-        # Types of Ads &amp; Platforms — 6 cards
-        "platforms_intro": "Our expertise spans every major ad format and placement — matching the right channel to your objective.",
-        "platforms": [
-            ("search", "Search Ads", "Google Search &amp; Bing — reach users actively searching for your product or service."),
-            ("display", "Display Ads", "Visual banners across Google Display Network and partner websites — ideal for awareness &amp; remarketing."),
-            ("shopping", "Shopping Ads", "For e-commerce — show product image, title and price directly in search engine results."),
-            ("yt", "Video Ads", "YouTube and video placements to tell brand stories or product demos at scale."),
-            ("remarket", "Remarketing &amp; Retargeting", "Re-engage users who visited but didn't convert — the highest-ROI segment on any account."),
-            ("app", "App Install Ads", "If you have an app, we run campaigns to acquire users cost-effectively across Google and YouTube."),
-        ],
-        "platforms_outro": "No matter the ad format, every campaign is tuned for your business objective — not vanity metrics.",
-        # How We Ensure ROI
-        "simple_benefits": {
-            "heading": "How We Ensure <span class=\"green_text\">ROI &amp; Continual Growth</span>",
-            "items": [
-                "<strong>Quality Score Improvements</strong> — better QS means lower CPC and better ad rank.",
-                "<strong>Ad Relevance &amp; UX</strong> — copy-to-landing-page alignment, fast pages and mobile optimisation.",
-                "<strong>Smart Bidding</strong> — Google's machine learning (target CPA, ROAS) applied where the data supports it.",
-                "<strong>Budget Efficiency</strong> — shift spend from low-ROI to high-performing campaigns; cut waste via negative keywords.",
-                "<strong>Creative Refresh</strong> — new visuals and copy to combat ad fatigue.",
-                "<strong>Trend &amp; Seasonal Adjustments</strong> — sale seasons, festivals and market shifts factored in.",
-            ],
-        },
-        "faqs": [
-            ("What is PPC campaign management, and why do I need it?", "PPC campaign management is the end-to-end process of planning, launching, monitoring, optimizing and scaling paid campaigns (Google Ads, Bing, Display/Video). Without expert management, ad spend gets wasted on irrelevant clicks, poor creatives or wrong targeting. We structure campaigns for efficient performance, track metrics and adjust strategies to ensure real business results."),
-            ("How soon will I see results from a PPC campaign?", "You'll see initial results (impressions, clicks) almost immediately after launch. However, meaningful outcomes like stable conversions, lower CPA and good ROAS usually take 2–4 weeks of data gathering and optimization. Some verticals may need longer to test creatives and keywords."),
-            ("What makes a good Google Ads agency?", "Look for Google certifications/partner status, case studies relevant to your industry and location, transparent reporting with clear metrics (CPC, CPA, ROAS), experience in PPC campaign optimization, and strong communication with ability to adjust quickly."),
-            ("How do you determine budget and bidding strategy?", "We assess your business goals (leads, sales, brand awareness), industry competition, keyword costs, expected conversion rates and profit margins. From there we recommend a realistic monthly budget. For bidding, depending on data and campaign maturity, we use manual, enhanced CPC, target CPA or target ROAS bidding."),
-            ("Which keywords should I pay for, and which ones should I avoid?", "Pay for keywords aligned with intent (e.g. 'buy shoes online', 'best accounting software'), long-tail keywords, local keywords where relevant, and branded terms. Avoid generic queries with low conversion intent ('download free', 'info about'), irrelevant match types, and competitor brand names when not beneficial."),
-            ("Are there common PPC mistakes to watch out for?", "Not using negative keywords, allowing ad fatigue (same ads too long), poor landing page experience, mismatched ad copy and landing page messaging, overbidding without monitoring return, and failing to track conversions properly."),
-            ("How do you measure success of a PPC campaign?", "Key metrics include Cost Per Click (CPC), Click-Through Rate (CTR), Cost Per Acquisition (CPA), Conversion Rate, Return On Ad Spend (ROAS), Quality Score and Impression Share — all reported via dashboards so you understand what's working and what's not."),
-            ("Is PPC expensive? How much should I expect to invest?", "PPC isn't cheap but when done right it pays off. Costs vary by industry, keyword competitiveness and geography. Small businesses often start at ₹30,000–₹60,000/month; larger brands investing across multiple channels spend significantly more. What matters is ROI — a well-managed campaign typically pays for itself many times over."),
-            ("Can small or local businesses benefit from PPC?", "Absolutely. Local businesses see excellent results targeting 'near me' keywords, geo-targeted ads and mobile audiences. As a Google Ads agency in Mumbai, we understand those local levers deeply."),
-            ("Do you offer ongoing optimization or just initial setup?", "Continuous improvement is built into every engagement — analysing performance, refining based on data, scaling what works and cutting what doesn't. Setup is the starting line, not the finish."),
-        ],
-        "cta": ("Ready to stop leaving clicks <span>on the table?</span>", "Get a free PPC audit — we'll benchmark your current campaigns, identify what's working and what's not, and give you actionable recommendations with budget estimates."),
-    },
-    "performance-marketing-agency.html": {
-        "title": "Performance Marketing Agency in India &amp; Mumbai | DigiVeritaz",
-        "desc": "Performance marketing agency in Mumbai &amp; India delivering measurable growth — CRO, lead generation, paid media, app installs and revenue-driven campaigns tied to CPL, CPA and ROAS.",
-        "h1": "Performance Marketing <span class=\"green_text\">Agency</span>",
-        "crumb": "Home / Services / Performance Marketing",
-        "kicker": "Driving Measurable Growth With Performance Marketing",
-        "intro": "In a crowded digital marketplace, you need more than visibility — you need performance. Our <strong>performance marketing agency in India</strong>, specifically in Mumbai, delivers results that matter. We don't chase impressions or likes — we focus on conversion, retention and revenue. If you're looking for a <strong>lead generation specialist</strong>, an agency that nails <strong>conversion rate optimization</strong>, or someone to meaningfully boost your social media reach, you've come to the right place.",
-        # What Is Performance Marketing — split panel with body + bullets
-        "highlights": [
-            {
-                "heading": "What Is <span class=\"green_text\">Performance Marketing?</span>",
-                "body1": "Performance marketing refers to digital marketing strategies and campaigns driven by results — typically measurable actions like leads, sales and app installs. <strong>Every rupee spent is tied to a KPI.</strong>",
-                "body2": "If we don't deliver results, you don't pay (or you don't invest much beyond guaranteed minimums). Core pillars:",
-                "bullets": [
-                    ("Tracking &amp; Analytics", "Every campaign instrumented before launch."),
-                    ("Optimisation", "Landing pages, funnels and UX continuously refined."),
-                    ("Precise Audience Targeting", "Reach only the people who can convert."),
-                    ("A/B Testing &amp; Experimentation", "Data-led decisions, not opinions."),
-                    ("ROI-Focused Budget Allocation", "Every rupee chases a measurable outcome."),
-                ],
-                "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-                "side": "right",
-            },
-        ],
-        # Our Services — 6 cards
-        "sub_services": [
-            ("growth", "Conversion Rate Optimization (CRO)", "Improve your website and landing pages to get more of your existing traffic to take desired actions — form fills, purchases, sign-ups and beyond."),
-            ("lead", "Lead Generation Agency Support", "We act as your <strong>lead generation specialist</strong> — doing everything from audience research to campaigns that produce high-quality leads, not just traffic."),
-            ("ppc", "Paid Media (Search / Social / Display)", "Targeted ads on Google, Facebook, Instagram, LinkedIn — budget management, creative testing and bid optimisation baked in."),
-            ("app", "App Installs &amp; Mobile Marketing", "Drive new users to your mobile app with performance-driven campaigns tuned for install cost and Day-7 retention."),
-            ("social", "Social Media Boost", "Not just engagement — we boost reach, conversions and audience growth through organic + paid strategies aligned with your funnel."),
-            ("revenue", "Revenue-Driven Campaigns", "Campaigns engineered for real business growth — more transactions, higher order value and repeat purchases."),
-        ],
-        # Why Choose Us — split panel with bullets + CTA, image on left
-        "highlight": {
-            "heading": "Why Choose Us As Your <span class=\"green_text\">Performance Marketing Agency</span>",
-            "intro": "We combine local Mumbai roots with global performance frameworks — and a commitment to full-funnel thinking, not last-click worship:",
-            "bullets": [
-                ("Data-First Approach", "Every campaign begins with research, analytics and KPI setup — we measure what matters, not vanity metrics."),
-                ("Local Expertise, Global Standards", "As a performance marketing agency in Mumbai, we understand local audiences and culture while applying world-class frameworks."),
-                ("Full-Funnel Optimisation", "We don't stop at clicks — we see the full journey from awareness → consideration → conversion → retention."),
-                ("Agile &amp; Transparent Execution", "Frequent reporting, testing and iteration. You always know what's working, what isn't, and where your budget is going."),
-                ("Cross-Channel Synergy", "Search, social, native, display and app — all working together for compound impact, not siloed outcomes."),
-            ],
-            "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-            "cta_text": "Launch Your Brand With Us",
-        },
-        # Our Process — 7 steps
-        "process": [
-            ("Discovery &amp; Audit", "Understanding your business, target audience, competitors — plus an audit of your current digital footprint, landing pages, ads and analytics."),
-            ("Strategy Planning", "Define KPIs (leads, conversion rate, CPL, CPA). Build channel strategy (search, social, display, remarketing) with budget and media plan."),
-            ("Creative &amp; Copy Development", "Engaging creatives and messaging designed to convert — not just catch the eye. Includes landing page design and optimisation."),
-            ("Execution &amp; Media Buying", "Launch campaigns, monitor performance, apply bid strategies, audience targeting and retargeting funnels from day one."),
-            ("Conversion Rate Optimisation Service", "A/B test landing pages and ad copy. UX/UI improvements. Funnel drop-off analysis until the numbers move."),
-            ("Tracking, Analytics &amp; Reporting", "Full-funnel tracking (first click, last click, assisted conversions). Regular dashboards with insights on what to scale and what to cut."),
-            ("Iterative Optimization", "Based on data, refine audiences, creative and channels. Reallocate budget to best performers. Continuous improvement every sprint."),
-        ],
-        # Case Use-Scenarios
-        "simple_benefits": {
-            "heading": "Who <span class=\"green_text\">We Help</span>",
-            "items": [
-                "<strong>E-Commerce brands</strong> wanting to reduce cart abandonment and scale sale events.",
-                "<strong>SaaS / B2B companies</strong> needing high-quality leads through search, LinkedIn and content-driven tactics.",
-                "<strong>Apps &amp; Startups</strong> aiming for installs, activation and Day-7 engagement.",
-                "<strong>Local businesses</strong> in Mumbai / India wanting footfall, calls or service bookings.",
-                "<strong>Growth-stage teams</strong> looking for transparent pricing and ROI forecasts.",
-                "<strong>In-house marketing teams</strong> that need a performance pod filling creative, media or analytics gaps.",
-            ],
-        },
-        "faqs": [
-            ("What is the difference between a performance marketing agency and a traditional digital marketing agency?", "Traditional digital marketing often focuses on brand awareness, impressions, traffic and social following. Performance marketing specifically ties spend to measurable outcomes — leads, purchases and conversions. You pay for results, or optimise toward them."),
-            ("How long before I'll see ROI?", "It depends on your industry, competition, product price point, budget and the strength of your current funnel, website and creatives. Initial testing and learning typically takes 2–4 weeks. Significant ROI is usually seen in 8–12 weeks once optimisation cycles are running."),
-            ("How much budget is needed to start?", "Minimum budgets depend on channel and competition. Local Mumbai campaigns may need less; national/international scale or high-CPC verticals (finance, education) need more. We work closely with you to map expected outcomes vs. budget."),
-            ("Will you manage everything — creative, ad spend, optimisation, tracking?", "Yes. We typically offer end-to-end performance marketing services: creative and copy, landing pages, audience targeting, media buying, optimisation, analytics and reporting. If you have in-house resources, we collaborate or fill gaps."),
-            ("What types of businesses do you serve?", "We've worked with e-commerce, local service, SaaS, startups, apps, retail, education and hospitality clients. If your business needs a lead generation agency, social media boost, or CRO service — we have packages tailored for you."),
-            ("Why choose a performance marketing agency in Mumbai / India over overseas or doing it in-house?", "Local presence means better cultural relevance, language nuance, faster communication and a stronger read on consumer behaviour. There's also a cost advantage — combined with global best practices, data-driven tools and cross-border learnings."),
-            ("How is performance tracked and reported?", "We set up dashboards (Google Analytics, Tag Manager, ad-platform dashboards) and define KPIs in advance. Reports are weekly or bi-weekly — you'll always know your cost per lead, cost per acquisition and return on ad spend."),
-        ],
-        "cta": ("Ready to turn spend into <span>measurable growth?</span>", "Book a free consultation and PPC audit — we'll benchmark your current campaigns and return a growth plan within 48 hours."),
-    },
-    "ecommerce-marketing.html": {
-        "title": "E-Commerce Managed Services | Amazon, Flipkart, Shopify | DigiVeritaz",
-        "desc": "E-commerce platforms managed services that scale your online business across Amazon, Flipkart, Shopify and D2C — white-label operations, performance marketing, analytics dashboards and end-to-end growth.",
-        "h1": "E-Commerce <span class=\"green_text\">Platforms</span>",
-        "crumb": "Home / Services / E-Commerce",
-        "kicker": "Managed Services That Scale Your Online Business",
-        "intro": "We don't just help you go live online — we partner with you to thrive. Our <strong>e-commerce management services</strong> are designed to help brands compete, convert and scale across marketplaces and independent webstores. Whether you're an established retailer or an emerging D2C brand, we bring performance marketing, analytics, customer experience and platform operations under one roof — and deliver as a white-label service so your brand always stays front and centre.",
-        "highlights": [
-            {
-                "heading": "Why <span class=\"green_text\">E-Commerce Managed Services</span> Matter Now",
-                "body1": "Consumer expectations keep rising — faster shipping, richer product information, hassle-free returns, omnichannel trust. Marketplaces are getting more competitive, ad costs are climbing, and inventory-fulfilment inefficiencies silently eat into margin.",
-                "body2": "By adopting a managed service model with a <strong>white-label e-commerce platform</strong> and strong <strong>ecommerce dashboard</strong> insights, you position your business to grow smart — not just bigger.",
-                "bullets": [
-                    ("Faster Shipping &amp; Better UX", "Meet rising customer expectations without internal overhead."),
-                    ("Marketplace Competitiveness", "Win visibility and stay compliant across Amazon, Flipkart, Myntra."),
-                    ("Smarter Ad Spend", "Optimise across channels as paid complexity grows."),
-                    ("Inventory &amp; Margin Control", "Fix the silent profit killers — forecasting, 3PL, returns."),
-                ],
-                "img": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80",
-                "side": "right",
-            },
-        ],
-        # What We Offer — 6 core service pillars
-        "sub_services": [
-            ("strategy", "Platform &amp; Marketplace Setup", "Onboarding to marketplaces and webstore platforms. <strong>White-label e-commerce platform</strong> deployment with custom storefront, branding, UI/UX, product catalogs, attribute taxonomies and category structures."),
-            ("content", "Product &amp; Catalog Management", "Product data, variations, description writing and imagery QC. Price management, discounting, promotions and bundling — with SEO for product pages and keyword-optimised titles."),
-            ("data", "Order, Inventory &amp; Fulfillment", "Order processing, stock monitoring and forecast planning. Returns and exchange management plus integration with warehousing, 3PL and logistics partners."),
-            ("ppc", "E-Commerce Advertising", "Sponsored listings on Amazon, Flipkart and more. Display, Social and Google Shopping for your webstore — with A/B testing, bid optimisation and seasonality-aware planning."),
-            ("perf", "Analytics, Dashboards &amp; Reporting", "Ecommerce dashboard covering sales, traffic, conversion, ACOS/ROAS, lifetime value and churn. Regular insights, strategy sessions and competitor benchmarking."),
-            ("chat", "Ongoing Account Management", "Dedicated account managers, inventory alerts, compliance management, seasonal refreshes and reviews/ratings moderation."),
-        ],
-        # Why Choose DigiVeritaz — split panel with bullets + CTA
-        "highlight": {
-            "heading": "Why Choose <span class=\"green_text\">DigiVeritaz</span>",
-            "intro": "Five differentiators that turn a managed service from a cost line into a growth engine:",
-            "bullets": [
-                ("White-Label Approach", "We build your store or marketplace presence under <strong>your brand</strong>. We don't rebrand ourselves — it's your e-commerce platform, powered by us."),
-                ("End-to-End Capability", "Strategy, platform selection, analytics and customer care — a full-stack service where every piece feeds into the next."),
-                ("Data-First, Performance-Driven", "Every decision grounded in data. Your dashboard shows which products drive profit, which campaigns work and what levers to pull."),
-                ("Scalability &amp; Flexibility", "From 10 SKUs to thousands, one marketplace to many, seasonal bursts to year-round growth — we scale with you."),
-                ("Compliance &amp; Risk Mitigation", "Marketplace rules, tax regimes, shipping policies and returns — handled, so you avoid penalties, takedowns and trust issues."),
-            ],
-            "img": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-            "cta_text": "Launch Your Brand With Us",
-        },
-        # Process — 5 stages
-        "process": [
-            ("Discovery &amp; Audit", "We audit your existing presence — webstore, marketplace accounts, ad spend, inventory and operational gaps — then map them to business goals around growth, margin and reach."),
-            ("Strategic Roadmap &amp; Platform Blueprint", "Based on the audit, we propose platforms to use, product lines to prioritise, a promotional calendar, the tech stack and staffing or partner needs."),
-            ("Implementation &amp; Setup", "Deploy chosen platforms, configure dashboards, set up ad accounts, integrate logistics partners, list your products and onboard your staff."),
-            ("Launch &amp; Go-Live Support", "When you're ready to sell, we make sure the store is optimised, promotions are live and the customer experience is smooth — with real-time monitoring to fix issues fast."),
-            ("Ongoing Management &amp; Growth", "The long game — account management, ads &amp; campaigns, regular performance reviews, continuous optimisation and expansion to new channels."),
-        ],
-        # Dashboard deliverables (What You'll Get)
-        "simple_benefits": {
-            "heading": "Your <span class=\"green_text\">Ecommerce Dashboard</span> — A Single Control Centre",
-            "items": [
-                "<strong>Sales</strong> by product, category &amp; channel (marketplace vs. webstore).",
-                "<strong>Conversion metrics</strong> — product page CVR, cart abandonment and checkout drop-off.",
-                "<strong>Ad performance</strong> — spend, impressions, clicks, ROAS and ACOS.",
-                "<strong>Inventory health</strong> — status, forecast and turnover rates.",
-                "<strong>Fulfilment metrics</strong> — shipping time, return rate and customer complaints.",
-                "<strong>Customer metrics</strong> — repeat purchase rate, AOV and lifetime value.",
-            ],
-        },
-        # Typical Engagements & Packages (3 tiers)
-        "packages": {
-            "heading": "Typical Engagements &amp; <span class=\"green_text\">Packages</span>",
-            "intro": "Though each business is unique, here are sample models / tiers to give you an idea:",
-            "tiers": [
-                ("Starter", "Smaller D2C brands, 1 platform, limited SKUs", "3–6 Months", "Platform setup, basic product &amp; catalog management, light advertising, standard dashboard reports."),
-                ("Growth", "Brands scaling SKUs, multiple platforms / marketplaces", "6–12 Months", "Full product &amp; inventory integration, mid-level performance marketing, advanced dashboards, account manager, compliance management."),
-                ("Enterprise", "Big brands, multiple regions, aggressive targets", "1 Year Plus + Continuous Support", "White-label platform customisations, high-spend ad campaigns, localisation, international marketplaces, custom reporting, integrations (ERP, logistics)."),
-            ],
-        },
-        "faqs": [
-            ("What is included under an 'ecommerce managed service'?", "End-to-end support: platform setup, product &amp; inventory management, order fulfilment, returns/logistics coordination, ad campaign management, analytics &amp; reporting, compliance and ongoing optimization — all under one engagement."),
-            ("What does 'white label e-commerce platform' mean?", "A platform or storefront branded as <em>your</em> store — your logo, design, UI/UX, domain — while the backend operations, tech and maintenance are handled by us. The customer-facing interface is yours; the infrastructure and operations are ours."),
-            ("How do you measure success? Which KPIs do you track?", "Key metrics: conversion rate, average order value, repeat purchase rate, return rate, ROAS/ACOS, inventory turnover, gross margin and customer lifetime value. Your ecommerce dashboard gives real-time visibility on all of these."),
-            ("Can you manage both marketplaces and standalone webstores?", "Absolutely. We manage Amazon, Flipkart, Myntra and your own Shopify / WooCommerce / Magento store. Coordinating across channels is critical to avoid stock issues, mismatched branding or conflicting promotions."),
-            ("How quickly can you get started, and when will I see results?", "We begin within 1–2 weeks of agreement. Platform and catalog setup takes a few weeks; early returns (traffic, small sales) can appear quickly with ads; sustainable performance — repeat customers, healthy margins — typically shows in 3–6 months."),
-            ("What do you deliver vs. what I deliver?", "We provide the full backend service. Your team typically contributes decisions on assortment, branding guidelines, pricing and promo approvals. You may also provide product content and photography — or we can source them for you."),
-            ("How do you handle compliance, returns and marketplace policy?", "We monitor marketplace rules closely — listings, content claims, policies. Returns, exchanges and refunds are handled via platform or your logistics partners. We also manage dispute resolution, negative-review moderation and product compliance certifications where required."),
-            ("Is the ecommerce dashboard an extra charge?", "It's included in most plans. Customised dashboards or real-time integrations with external systems (ERP, warehouse) may have additional fees — these are always included transparently in the quote up front."),
-        ],
-        "cta": ("Ready to scale your <span>online business?</span>", "Book your free consultation today — we'll audit your current presence and return a custom growth plan within 48 hours."),
-    },
-    "data-strategy-consulting-services.html": {
-        "title": "Data Strategy &amp; Consulting Services | Analytics, GA4, Dashboards | DigiVeritaz",
-        "desc": "Data strategy and consulting services for growth-stage brands — GA4 setup, dashboards (Looker Studio, Power BI, Tableau), attribution, governance and measurement frameworks that drive real decisions.",
-        "h1": "Data Strategy &amp; <span class=\"green_text\">Consulting Services</span>",
-        "crumb": "Home / Services / Data Strategy",
-        "kicker": "Extract Real Insight — Don't Just Amass Numbers",
-        "intro": "In an environment overflowing with data, what truly matters is <strong>extracting real insight</strong> and using it to fuel growth — not just amassing numbers. At DigiVeritaz, our Data Strategy &amp; Consulting service partners with businesses to build strong data foundations, make sense of complex information, and transform insights into action.",
-        "highlights": [
-            {
-                "heading": "Why Data Strategy <span class=\"green_text\">Matters</span>",
-                "intro": "Without a solid data strategy, metrics disconnect from business goals, insights get lost in silos and decisions default to gut feel. A good strategy fixes all four:",
-                "bullets": [
-                    ("Aligning Purpose With Measurement", "Every KPI traces back to a larger objective — growth, efficiency, satisfaction or retention."),
-                    ("Consistency, Accuracy &amp; Trust", "Unified definitions and clean data hygiene across web analytics, CRM, social and internal logs."),
-                    ("Scalability &amp; Flexibility", "Strategies that accommodate new pipelines and evolve with market shifts without collapsing under complexity."),
-                    ("Competitive Advantage", "Faster insights, trend prediction, optimised operations and more tailored customer responses."),
-                ],
-                "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-                "side": "right",
-                "cta_text": "Launch Your Brand With Us",
-            },
-        ],
-        "sub_services": [
-            ("strategy", "Discovery &amp; Audit", "A deep dive into your current systems, data pipelines and reporting methods — uncovering gaps, redundancies and quick wins with a clear picture of what's working and what needs attention."),
-            ("data", "Strategy &amp; Planning", "We craft a data strategy aligned with your business objectives — defining KPIs, recommending tools, setting governance policies and mapping a phased roadmap for success."),
-            ("perf", "Implementation &amp; Systems", "Reliable data pipelines, platform integrations (CRM, analytics) and dashboards that visualise metrics that matter — with tracking, validation and quality checks baked in."),
-            ("growth", "Analytics &amp; Insights", "Beyond setup — advanced statistical methods, segmentation and predictive models that reveal customer behaviour, trends and growth opportunities."),
-            ("revenue", "Optimization &amp; Ongoing Support", "Data isn't a one-time project. Business analytics consulting on retainer — fine-tuning dashboards, testing campaigns and adjusting strategy as you evolve."),
-            ("content", "Data-Driven Content Support", "Data shows what's happening — words move people. We layer copywriting and content production on top of insights so every asset is shaped by performance data."),
-        ],
-        "highlight": {
-            "heading": "Why Choose <span class=\"green_text\">DigiVeritaz</span>",
-            "intro": "You're not just getting generic dashboards — you're getting partners who blend domain, technical and communication expertise:",
-            "bullets": [
-                ("Integrated Expertise", "Data consulting, content and analytics aren't silos — we weave them together for compounding impact."),
-                ("Accountability &amp; Transparency", "Everything is measurable. KPIs, progress tracking and regular reports — adjusted until outcomes move."),
-                ("Proven Method", "A structured, tested process refined with many clients — we know what works, what stalls and what needs special attention."),
-                ("Clear Communication", "Complex insights are useless if stakeholders don't understand them. We simplify analytics so technical and non-technical teams both get it."),
-                ("Commitment To Your Growth", "You succeed when strategies deliver real business value — higher conversions, lower costs, better engagement."),
-            ],
-            "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-            "side": "left",
-            "cta_text": "Launch Your Brand With Us",
-        },
-        "process": [
-            ("Discovery Call", "Get to know your business, challenges, data sources, decision processes, who uses data and what pain points exist today."),
-            ("Audit Of Current State", "Review your existing tools, dashboards, tracking setup, reports, data sources and content performance for a baseline."),
-            ("Strategy Workshop", "Define goals, metrics, roadmap, responsibilities, pipelines and any new tools required — all aligned to business outcomes."),
-            ("Implementation Phase", "Set up tracking, dashboards and data flows. Integrate platforms. Kick off content based on early insights."),
-            ("Insight &amp; Analytics Phase", "Regular reporting, trend analysis, content performance reviews and meetings to interpret data and propose next actions."),
-            ("Optimization &amp; Scaling", "As results come in, iterate. Introduce predictive models. Scale content and campaigns that perform best."),
-            ("Training &amp; Transition", "We train internal stakeholders so analysis, content and strategy continue confidently even after our engagement ends."),
-        ],
-        "simple_benefits": {
-            "heading": "Key Benefits Of Our <span class=\"green_text\">Data Strategy &amp; Consulting</span>",
-            "items": [
-                "<strong>Clearer visibility</strong> into what's working — and what's not — for faster course corrections.",
-                "<strong>Higher ROI from marketing spend</strong>, because we stop guessing and start measuring.",
-                "<strong>Better alignment across teams</strong> — everyone works off the same data and definitions.",
-                "<strong>More engaging content</strong>, because messaging comes from real consumer insights.",
-                "<strong>Reduced risk</strong> — decisions based on data, not gut feelings.",
-                "<strong>Future-ready measurement</strong> — server-side tracking and privacy-first data models.",
-            ],
-        },
-        "industries": ["Digital Marketing-Heavy Brands", "Scaling SMEs", "Product Launches", "New Market Entry", "Content Publishers", "Enterprise Data Teams"],
-        "faqs": [
-            ("How long does a full strategy implementation take?", "For SMEs, a complete audit, roadmap and initial setup usually takes 6–10 weeks. For large enterprises with multiple departments and complex systems, it can extend to a few months."),
-            ("What tools do you use?", "Google Analytics (GA4), Looker Studio, Power BI and Tableau for reporting and visualisation. CRM integrations (HubSpot, Salesforce, Zoho) and ad platforms for performance tracking. ETL and data-pipeline tools for automation and real-time updates."),
-            ("Do you also provide content writing (blogs, landing pages, ads)?", "Yes — we integrate copywriting and content writing into our service. Content is shaped by data insights (topics, keywords, customer intent) to maximise ROI."),
-            ("Is this just for big companies?", "No — our business analytics consulting is scalable. Startups and SMEs get lean, cost-effective frameworks. Enterprises benefit from advanced data governance, predictive modelling and scalable dashboards."),
-            ("Can you train our internal teams?", "Yes — we provide workshops and hands-on training on data literacy, dashboard reading and content strategy. The goal is to make your team independent and confident with data."),
-            ("What ROI can we expect?", "Stronger alignment of marketing spend with conversions, increased decision-making efficiency, and reduced wastage by cutting underperforming campaigns and doubling down on proven ones."),
-            ("Do you handle server-side tracking and privacy compliance?", "Yes — server-side GA4, Conversion API for Meta/Google, consent-mode integrations and cookie-less tracking frameworks are all part of our modern measurement stack."),
-        ],
-        "cta": ("Ready to turn data into <span>decisions?</span>", "Book your free consultation — we'll audit your current measurement stack and return a strategy roadmap within two weeks."),
-    },
-    "native-advertising.html": {
-        "title": "Native Advertising Services in India | DigiVeritaz",
-        "desc": "Leading native advertising company in India combining platform expertise, creative finesse and programmatic optimization to deliver campaigns that move the needle.",
-        "h1": "Native Advertising Services by <span class=\"green_text\">DigiVeritaz</span>",
-        "crumb": "Home / Services / Native Advertising",
-        "kicker": "Native Advertising",
-        "intro": "As a leading native advertising company in India, we combine platform expertise, creative finesse and performance optimization to deliver native advertising services that move the needle — without feeling like ads.",
-        "benefits": [
-            ("Seamless Integration", "Ads blend with content, reducing interruption and boosting receptivity."),
-            ("Higher Engagement &amp; CTR", "Outperform traditional display formats significantly."),
-            ("Better Brand Perception", "Value-driven content builds trust, not ad fatigue."),
-            ("Ad-Blocker Resilient", "Native formats bypass common blockers."),
-            ("Programmatic Scalability", "Automated bidding and optimization at scale."),
-            ("Strong ROI", "Lower CPC and higher engagement translate to better unit economics."),
-        ],
-        "deliverables": [
-            "Native ad campaign planning &amp; execution",
-            "Creative content production (articles, infographics, visual stories)",
-            "Native display and in-feed ads",
-            "Recommendation widget placements",
-            "Sponsored content &amp; advertorials",
-            "Programmatic native buying",
-            "Platform partnerships &amp; publisher deals",
-            "Multilingual &amp; regional campaigns",
-        ],
-        "process": [
-            ("Research &amp; Platform Mapping", "Identify where native works for your audience and goals."),
-            ("Creative &amp; Content Design", "Headlines and visuals that match each platform's aesthetic."),
-            ("Campaign Setup &amp; Targeting", "Configure bidding, placements and audience segments."),
-            ("Testing &amp; Optimization", "A/B test creatives and monitor engagement metrics."),
-            ("Analytics &amp; Insights", "Conversion path analysis and performance dashboards."),
-            ("Scaling &amp; Expansion", "Roll out winners across new publishers and regions."),
-        ],
-        "faqs": [
-            ("How is native different from display advertising?", "Native ads blend into content environments visually and functionally — focused on integration and context. Display ads (banners, sidebars) feel overtly promotional."),
-            ("Is native affordable for startups?", "Yes — with flexible budgets, strategic targeting, testing and gradual scaling, it works at many budget levels."),
-            ("Timeline to results?", "Initial engagement metrics appear within days; meaningful conversions typically require 2–4 weeks of optimization."),
-            ("How is compliance handled?", "Disclosure labels ('Sponsored', 'Promoted') and adherence to platform policies maintain user trust and regulatory alignment."),
-            ("Can attribution be tracked?", "Yes — via UTM parameters, pixel integrations and conversion modeling."),
-        ],
-    },
-    "whatsapp-marketing-services.html": {
-        "title": "WhatsApp Marketing Services in India | Bulk Messaging &amp; Automation | DigiVeritaz",
-        "desc": "WhatsApp Marketing services that drive real conversations — bulk messaging, AI chatbots, CRM integration and official WhatsApp Business API automation.",
-        "h1": "WhatsApp Marketing Services That Drive <span class=\"green_text\">Real Conversations</span>",
-        "crumb": "Home / Services / WhatsApp Marketing",
-        "kicker": "WhatsApp Marketing",
-        "intro": "In today's fast-moving digital world, your customers don't want another email — they want real-time communication. Our WhatsApp Marketing services help your business connect instantly, build trust and boost engagement through the world's most popular messaging app.",
-        "benefits": [
-            ("Bulk Messaging at Scale", "Reach thousands of contacts safely via the official API."),
-            ("1:1 Personalization", "Names, purchase details and segment-specific messaging."),
-            ("Automation &amp; Scheduling", "Greeting, order confirmation and feedback flows on autopilot."),
-            ("AI-Powered Chatbots", "Convert inquiries into sales through intelligent chat flows."),
-            ("CRM &amp; Landing Page Integration", "Closed-loop data from ad click to conversion."),
-            ("Real-Time Analytics", "Delivery rates, responses and conversions tracked live."),
-        ],
-        "deliverables": [
-            "Official WhatsApp Business API setup",
-            "Bulk messaging platform &amp; campaign manager",
-            "Audience segmentation &amp; personalization",
-            "Chatbot automation &amp; AI chat flows",
-            "Catalogue &amp; commerce integration",
-            "CRM integration &amp; dedicated support",
-        ],
-        "process": [
-            ("Discovery &amp; Use-Case Mapping", "Identify high-impact conversational touchpoints in your funnel."),
-            ("WhatsApp Business API Setup", "Verified business number, API provisioning and compliance."),
-            ("Audience &amp; Template Strategy", "Segment lists and design approved message templates."),
-            ("Automation &amp; Chatbot Build", "Flows for greetings, confirmations, support and sales."),
-            ("Launch, Monitor &amp; Optimize", "Campaign dashboards with real-time iteration."),
-        ],
-        "faqs": [
-            ("What is the WhatsApp Business API and do I need it?", "The official WhatsApp Business API is required for bulk messaging, verified green-tick business accounts, chatbot automation and CRM integrations. If you plan to send more than a few messages a day or automate conversations, yes — you need the API."),
-            ("Is bulk messaging on WhatsApp allowed?", "Only via the official Business API with approved message templates. Sending bulk messages from a regular WhatsApp account violates their terms and leads to number bans. We set you up the right way — fully compliant with Meta's policies."),
-            ("How much does WhatsApp Marketing cost?", "There are two cost components: our setup &amp; management fee, and Meta's per-conversation charges (roughly ₹0.35–₹0.90 per message depending on type &amp; country). We help you forecast costs accurately based on your expected volume."),
-            ("Can WhatsApp actually drive sales — not just notifications?", "Yes. Broadcast offers, abandoned-cart reminders, catalogue commerce and conversational sales flows consistently outperform email. Open rates are 90%+ vs. 20% for email, and click-through is 3–5× higher."),
-            ("How quickly can we go live?", "For most brands, 7–10 business days: Meta business verification, API provisioning, template approvals, chatbot build and first broadcast. Enterprises with more complex CRM integrations may take 2–4 weeks."),
-            ("Can you integrate WhatsApp with our CRM or Shopify?", "Yes — we integrate with Shopify, WooCommerce, HubSpot, Salesforce, Zoho, Freshdesk and custom CRMs via Zapier or direct API. So conversations, orders and customer data stay in sync."),
-        ],
-    },
-    "branding-and-design.html": {
-        "title": "Branding &amp; Design Services That Build Timeless Brands | DigiVeritaz",
-        "desc": "Branding and design services that build timeless brands — strategy, identity, logo, packaging and brand systems crafted by experienced design professionals in Mumbai.",
-        "h1": "Branding and Design Services That Build <span class=\"green_text\">Timeless Brands</span>",
-        "crumb": "Home / Services / Branding &amp; Design",
-        "kicker": "Branding &amp; Design",
-        "intro": "We create brands that stand out, connect emotionally and convert. Our branding and design services go beyond a logo — we build a complete brand identity system that defines who you are, what you stand for, and how your audience remembers you.",
-        "benefits": [
-            ("Full-Service Creative Agency", "Concept to launch — strategy, identity, collateral, digital."),
-            ("Custom-Built Identity", "Original ideas, not templates or mood-board clichés."),
-            ("Cross-Industry Expertise", "Experienced designers across D2C, B2B, F&amp;B, education and more."),
-            ("Strategy Meets Creativity", "Research-led positioning paired with bold visual execution."),
-            ("Local Presence, Global Standards", "Based in Mumbai, delivering work at international quality."),
-            ("Scalable Brand Systems", "Guidelines and templates so teams can ship on-brand at speed."),
-        ],
-        "deliverables": [
-            "Brand Strategy Development",
-            "Logo Design &amp; Brand Identity",
-            "Rebranding Services",
-            "Visual &amp; Corporate Identity Design",
-            "Packaging &amp; Marketing Collateral",
-            "Brand Guidelines &amp; Templates",
-        ],
-        "process": [
-            ("Brand Discovery", "Understanding goals, audience and competitive landscape."),
-            ("Strategy &amp; Positioning", "Defining the foundation for visual identity."),
-            ("Design Exploration", "Presenting multiple design directions and routes."),
-            ("Refinement &amp; Finalization", "Perfecting the chosen direction with brand guidelines."),
-            ("Implementation Support", "Rolling out the brand across digital and offline platforms."),
-        ],
-        "faqs": [
-            ("What's the difference between a logo and a brand identity?", "A logo is a single mark. A brand identity is the entire visual system — logo, colours, typography, imagery style, tone of voice, and the guidelines that keep everything consistent as your team scales."),
-            ("How long does a branding project take?", "Rebrands typically take 6–10 weeks: 1–2 weeks discovery, 2–3 weeks strategy &amp; concepts, 2–3 weeks refinement, 1–2 weeks guidelines &amp; rollout. New brands from scratch are similar; full identity systems with packaging can run 10–14 weeks."),
-            ("Will I get editable files and brand guidelines?", "Yes — you receive full editable source files (Illustrator, Figma), exported formats (SVG, PNG, PDF), and a brand guidelines document covering usage, do's and don'ts, typography, colour palettes and application examples."),
-            ("Do you handle packaging, print collateral and merchandise design?", "Yes — packaging, stationery, marketing collateral, trade-show assets, merchandise and social media templates are all part of our branding offering. We think in systems, not one-offs."),
-            ("Can you rebrand without losing existing equity?", "Absolutely. We run a brand audit first to identify what's worth carrying forward — recognisable marks, colour associations, taglines — and evolve the identity rather than reinventing from zero."),
-        ],
-    },
-    "generative-search-optimisation.html": {
-        "title": "Generative Search Optimisation (GEO) | Rank in AI Search | DigiVeritaz",
-        "desc": "Generative Search Optimisation (GEO) services to rank your brand in ChatGPT, Google SGE, Perplexity, Bing Copilot and AI Overviews. Future-proof your organic visibility.",
-        "h1": "Generative Search Optimisation <span class=\"green_text\">(GEO)</span>",
-        "crumb": "Home / Services / GEO",
-        "kicker": "Generative Search Optimisation",
-        "intro": "The search landscape is changing fast. Traditional SEO was built around ranking for keywords — but today, users get their answers from AI-powered platforms like Google SGE, ChatGPT, Perplexity and Bing Copilot. We help your brand get cited in those answers.",
-        "benefits": [
-            ("Appear in AI Answers", "Citations in ChatGPT, Bing Copilot and Google SGE responses."),
-            ("Enhanced Brand Authority", "Credible citations build generative trust signals."),
-            ("Future-Proof SEO", "Stay visible as AI-driven search reshapes discovery."),
-            ("Qualified Organic Conversions", "AI-referred users arrive with high intent."),
-            ("Knowledge Graph Presence", "Strong entity signals that AIs can understand and cite."),
-        ],
-        "deliverables": [
-            "Generative Visibility Audit",
-            "Semantic content optimization",
-            "Schema markup &amp; entity linking",
-            "Generative Traffic Dashboard",
-            "Continuous AI-model monitoring &amp; adaptation",
-        ],
-        "process": [
-            ("Research &amp; Audit", "Identify AI visibility gaps and map competitor citations."),
-            ("AI-Ready Content Structuring", "Semantic hierarchy and citation-friendly answers."),
-            ("Technical GEO Implementation", "Schema markup and knowledge graph linking."),
-            ("Generative Content Strategy", "Content engineered for AI summaries and chatbots."),
-            ("Monitor, Analyze &amp; Adapt", "Track citations and adjust as AI models evolve."),
-        ],
-        "faqs": [
-            ("What is Generative Search Optimisation (GEO)?", "GEO is the practice of optimising your brand, content and technical footprint so AI-powered answer engines — ChatGPT, Google SGE, Perplexity, Bing Copilot — cite you when users ask relevant questions. It's the evolution of SEO for the AI-search era."),
-            ("Is GEO replacing SEO?", "No — it extends SEO. Traditional rankings still drive traffic; GEO adds visibility in AI answers where users increasingly spend research time. The tactics overlap (authority, schema, structured content) but add semantic structuring and citation-friendly formats on top."),
-            ("How do you measure GEO success?", "Citation frequency across ChatGPT, Perplexity and Google SGE, share-of-voice for target entities, referral traffic from AI platforms, and brand-mention sentiment in AI responses. We report all of this in a Generative Traffic Dashboard."),
-            ("How long does GEO take to show results?", "Faster than traditional SEO in some ways — AI models re-index content frequently. Initial citation pickups can happen in 4–6 weeks; stable presence in the top answers typically takes 3–4 months of consistent content and entity work."),
-            ("Can any business benefit from GEO?", "If users search for information related to your product, category or expertise — yes. B2B, SaaS, professional services, healthcare, finance, education and niche e-commerce all benefit most, because AI-search users are research-heavy and high-intent."),
-        ],
-    },
-}
+# Individual service pages are now generated from doc-driven data
+# (services_data.SERVICES). The old per-service dict has been replaced.
 
-SS_ICONS = {
-    "seo": '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
-    "content": '<svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h16"/></svg>',
-    "social": '<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>',
-    "lead": '<svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/><path d="M10 10l4 4"/></svg>',
-    "video": '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg>',
-    "strategy": '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
-    "growth": '<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>',
-    "chat": '<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6L21 5l-1 4.2A8 8 0 0 1 21 12z"/></svg>',
-    "brand": '<svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>',
-    "data": '<svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>',
-    "ppc": '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-    "perf": '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg>',
-    "app": '<svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/><path d="M10 6h4"/><path d="M9 10l3 3 3-3"/></svg>',
-    "revenue": '<svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>',
-}
+import re as _pre_re
+def _strip_tags(s): return _pre_re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
 
 HERO_ORBS = """  <span class="hero-orb-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
   <span class="hero-orb-2" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 4 C 48 6 56 18 56 30 C 56 44 46 56 30 56 C 14 56 4 44 4 30 C 4 18 12 6 30 4 Z"/></svg></span>
@@ -1505,261 +1007,457 @@ HERO_ORBS = """  <span class="hero-orb-1" aria-hidden="true"><svg viewBox="0 0 2
 
 MARQUEE_ITEMS = ["Performance-First", "Data-Driven", "Results That Compound", "Human + AI", "ROI Over Vanity", "Transparent Dashboards", "15+ Years Experience"]
 
-PLATFORM_SVG = {
-    "fb": '<svg viewBox="0 0 48 48"><defs><linearGradient id="fbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5851DB"/><stop offset=".5" stop-color="#E1306C"/><stop offset="1" stop-color="#F77737"/></linearGradient></defs><rect x="4" y="4" width="40" height="40" rx="10" fill="url(#fbg)"/><path d="M28 24h4l1-5h-5v-3c0-1.5.5-2.5 2.5-2.5H33V9.2C32.5 9.1 31 9 29.3 9c-3.5 0-5.8 2.1-5.8 6v4H19v5h4.5v12h5V24z" fill="#fff"/></svg>',
-    "ln": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#0A66C2"/><path d="M17 19h-4v14h4V19zm-2-6a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6zM36 33h-4v-7c0-1.8-.6-3-2.3-3-1.3 0-2 .9-2.3 1.7-.1.3-.1.7-.1 1.1V33h-4V19h4v2c.5-.8 1.5-2.2 3.8-2.2 2.8 0 4.9 1.8 4.9 5.8V33z" fill="#fff"/></svg>',
-    "yt": '<svg viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="8" fill="#FF0000"/><path d="M20 17v14l12-7-12-7z" fill="#fff"/></svg>',
-    "search": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#4285F4"/><circle cx="22" cy="22" r="7" fill="none" stroke="#fff" stroke-width="3"/><path d="M27 27l7 7" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>',
-    "display": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#FF6B6B"/><rect x="12" y="14" width="24" height="18" rx="2" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M16 20h12M16 24h16M16 28h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>',
-    "shopping": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#FF9F43"/><path d="M13 17h22l-2.5 15a2 2 0 0 1-2 1.7H17.5a2 2 0 0 1-2-1.7L13 17z" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M20 17v-3a4 4 0 0 1 8 0v3" fill="none" stroke="#fff" stroke-width="2.5"/></svg>',
-    "remarket": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#10B981"/><path d="M34 14a10 10 0 1 0 3 12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M34 10v6h-6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    "app": '<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#8B5CF6"/><rect x="17" y="10" width="14" height="28" rx="2" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M24 18v8m-3-3 3 3 3-3" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="32" r="1.2" fill="#fff"/></svg>',
+def render_eeat(rows):
+    if not rows: return ""
+    cards = []
+    for r in rows:
+        cards.append(
+            '<div class="eeat-card reveal">'
+            f'<span class="eeat-marker" aria-hidden="true">{r["marker"]}</span>'
+            f'<span class="eeat-tag">{r["pillar"]}</span>'
+            f'<h3 class="eeat-signal">{r["signal"]}</h3>'
+            f'<p class="eeat-evidence">{r["evidence"]}</p>'
+            '</div>'
+        )
+    return (
+        '<section class="eeat-section">'
+        '<div class="container">'
+        '<div class="sec-head reveal"><span class="kicker">E-E-A-T Trust Signals</span>'
+        '<h2>How We Earn <span class="green_text">Your Confidence</span></h2>'
+        '<p>The four signals below show how we demonstrate Experience, Expertise, '
+        'Authoritativeness, and Trustworthiness on this service — visible to both users and search engines.</p>'
+        '</div>'
+        + '<div class="eeat-grid">' + "".join(cards) + '</div>'
+        + '</div>'
+        + '</section>'
+    )
+
+def _split_label(text):
+    """Split 'Label — body' into (label, body) when a clean dash separator is
+    present; otherwise return (None, text)."""
+    for sep in (" — ", " – "):
+        if sep in text:
+            head, rest = text.split(sep, 1)
+            if 2 <= len(head) <= 70:
+                return head, rest
+    return None, text
+
+def _group_sections(blocks):
+    """Group flat block list into [{heading, kicker, paras, bullets, sub:[(h3,p),...]}, ...]."""
+    sections = []
+    cur = None
+    pending_h3 = None  # current sub-heading awaiting its paragraph
+    def new_section(heading=None):
+        return {"heading": heading, "paras": [], "bullets": [], "sub": []}
+    cur = new_section()
+    for kind, text in blocks:
+        if kind == "h2":
+            if cur["heading"] or cur["paras"] or cur["bullets"] or cur["sub"]:
+                sections.append(cur)
+            cur = new_section(text)
+            pending_h3 = None
+        elif kind == "h3":
+            pending_h3 = text
+        elif kind == "p":
+            if pending_h3 is not None:
+                cur["sub"].append((pending_h3, text))
+                pending_h3 = None
+            else:
+                cur["paras"].append(text)
+        elif kind == "li":
+            if pending_h3 is not None:
+                # rare: a bullet appeared right after an h3 with no paragraph;
+                # treat the h3 itself as a bullet to avoid swallowing the line.
+                cur["bullets"].append(pending_h3)
+                pending_h3 = None
+            cur["bullets"].append(text)
+    if pending_h3 is not None:
+        cur["bullets"].append(pending_h3)
+    if cur["heading"] or cur["paras"] or cur["bullets"] or cur["sub"]:
+        sections.append(cur)
+    return sections
+
+# --------- Section layouts ------------------------------------------
+
+def _intro_html(paras):
+    if not paras: return ""
+    return '<p class="svc-sec-intro">' + paras[0] + '</p>' + (
+        "".join(f'<p>{x}</p>' for x in paras[1:])
+    )
+
+_NUMBER_PATHS = [
+    # 12 distinct minimalist line icons keyed off section index
+    "M3 20h18M5 12v7M11 8v11M17 4v15",
+    "M12 2a10 10 0 1 0 10 10M12 6v6l4 2",
+    "M13 2L5 14h6l-2 8 10-14h-6z",
+    "M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z",
+    "M20 6L9 17l-5-5",
+    "M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z",
+    "M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7zM8 7V5a3 3 0 0 1 6 0v2",
+    "M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z",
+    "M4 4h16v4H4zM4 12h10v4H4zM4 20h16",
+    "M3 17l6-6 4 4 8-8M17 7h4v4",
+    "M12 2v20M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7",
+    "M5 4h14M5 12h14M5 20h14",
+]
+
+def _sec_icon_svg(idx):
+    return f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{_NUMBER_PATHS[idx % len(_NUMBER_PATHS)]}"/></svg>'
+
+def _sec_header(heading, idx):
+    if not heading: return ""
+    num = f'{(idx+1):02d}'
+    return (
+        '<div class="svc-sec-head reveal">'
+        f'<span class="svc-sec-num">{num}</span>'
+        f'<h2>{heading}</h2>'
+        '</div>'
+    )
+
+def _section_wrap(idx, inner, extra_class=""):
+    cls = "svc-doc-sec" + (" alt" if idx % 2 else "") + (f" {extra_class}" if extra_class else "")
+    return f'<section class="{cls}"><div class="container">{inner}</div></section>'
+
+# Layout A: visual process timeline (sub-blocks like Phase/Step/Tier)
+def _layout_subgrid(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    intro = _intro_html(sec["paras"])
+    arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+    steps = []
+    for i, (label, body) in enumerate(sec["sub"]):
+        # Strip the "Phase N — " prefix so the heading reads cleanly.
+        clean = _pre_re.sub(r'^(Phase|Step|Tier|Stage|Module|Level|Track)\s+\w{1,4}\s*[—–:\-]\s*',
+                       '', label, flags=_pre_re.IGNORECASE)
+        kicker_word = label.split()[0].title() if label.split() else "Step"
+        steps.append(
+            f'<div class="svc-tl-step reveal">'
+            f'<div class="svc-tl-marker"><span class="svc-tl-num">{(i+1):02d}</span></div>'
+            f'<span class="svc-tl-arrow">{arrow}</span>'
+            f'<div class="svc-tl-card">'
+            f'<span class="svc-tl-kicker">{kicker_word} {(i+1):02d}</span>'
+            f'<h3>{clean}</h3>'
+            f'<p>{body}</p>'
+            f'</div>'
+            f'</div>'
+        )
+    bullets_html = ""
+    if sec["bullets"]:
+        bullets_html = _layout_bullets_html(sec["bullets"])
+    return _section_wrap(
+        idx,
+        head
+        + (f'<div class="svc-sec-intro-wrap reveal">{intro}</div>' if intro else "")
+        + f'<div class="svc-tl-track">{"".join(steps)}</div>'
+        + bullets_html,
+    )
+
+_INDUSTRY_ICONS = {
+    "e-commerce":   '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
+    "ecommerce":    '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
+    "real estate":  '<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg>',
+    "property":     '<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg>',
+    "healthcare":   '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>',
+    "health":       '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>',
+    "clinic":       '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>',
+    "finance":      '<svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>',
+    "fintech":      '<svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>',
+    "banking":      '<svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>',
+    "education":    '<svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg>',
+    "edtech":       '<svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg>',
+    "b2b":          '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>',
+    "saas":         '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 14h6"/></svg>',
+    "hospitality":  '<svg viewBox="0 0 24 24"><path d="M4 21V8M20 21V8M4 8h16M8 8V4h8v4M10 14h4M10 18h4"/></svg>',
+    "travel":       '<svg viewBox="0 0 24 24"><path d="M2 12c4-6 8-8 10-8s6 2 10 8c-4 6-8 8-10 8s-6-2-10-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    "fashion":      '<svg viewBox="0 0 24 24"><path d="M9 3l3 3 3-3 4 5-3 2v11H8V10L5 8z"/></svg>',
+    "lifestyle":    '<svg viewBox="0 0 24 24"><path d="M9 3l3 3 3-3 4 5-3 2v11H8V10L5 8z"/></svg>',
+    "d2c":          '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/></svg>',
+    "fmcg":         '<svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>',
+    "food":         '<svg viewBox="0 0 24 24"><path d="M5 11a7 7 0 0 1 14 0v3H5z"/><path d="M3 16h18M5 19h14"/></svg>',
+    "beauty":       '<svg viewBox="0 0 24 24"><path d="M12 2C8 5 6 8 6 12a6 6 0 0 0 12 0c0-4-2-7-6-10z"/></svg>',
+    "wellness":     '<svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg>',
+    "fitness":      '<svg viewBox="0 0 24 24"><path d="M2 12h2M20 12h2M6 7v10M18 7v10M9 10h6M9 14h6"/></svg>',
+    "tech":         '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    "gadget":       '<svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>',
+    "professional": '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>',
+    "automotive":   '<svg viewBox="0 0 24 24"><path d="M3 16v-4l3-5h12l3 5v4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>',
+    "manufacturing":'<svg viewBox="0 0 24 24"><path d="M3 21V8l5 3V8l5 3V8l8 3v10z"/></svg>',
+    "consumer":     '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>',
 }
 
-def svc_template(p):
-    # Hero
-    items = (p.get("marquee") or MARQUEE_ITEMS) * 3
+def _industry_icon(label):
+    """Pick an icon SVG for an industry label by keyword match."""
+    low = label.lower()
+    for key, svg in _INDUSTRY_ICONS.items():
+        if key in low:
+            return svg
+    # Default: tag icon
+    return '<svg viewBox="0 0 24 24"><path d="M20 12L12 4H4v8l8 8z"/><circle cx="9" cy="9" r="1.5"/></svg>'
+
+# Layout B: industry/category icon cards (replaces flat pill cloud)
+def _layout_pills(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    intro = _intro_html(sec["paras"])
+    cards = []
+    for b in sec["bullets"]:
+        # Industries are short labels — split on common separators if present
+        cards.append(
+            '<div class="svc-ind-card reveal">'
+            f'<div class="svc-ind-icon">{_industry_icon(b)}</div>'
+            f'<span class="svc-ind-label">{b}</span>'
+            '</div>'
+        )
+    return _section_wrap(
+        idx,
+        head
+        + (f'<div class="svc-sec-intro-wrap reveal">{intro}</div>' if intro else "")
+        + f'<div class="svc-ind-grid reveal">{"".join(cards)}</div>',
+        extra_class="industries",
+    )
+
+_CHECK_SVG = (
+    '<svg viewBox="0 0 24 24" aria-hidden="true">'
+    '<polyline points="20 6 9 17 4 12"/></svg>'
+)
+
+# Layout C: feature card grid (bullets with "Label — body" pattern)
+def _layout_feature_cards(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    intro = _intro_html(sec["paras"])
+    cards = []
+    for b in sec["bullets"]:
+        label, body = _split_label(b)
+        if label:
+            cards.append(
+                '<div class="svc-feat-card reveal">'
+                f'<span class="svc-feat-icon">{_CHECK_SVG}</span>'
+                '<div class="svc-feat-content">'
+                f'<h3>{label}</h3>'
+                f'<p>{body}</p>'
+                '</div>'
+                '</div>'
+            )
+        else:
+            cards.append(
+                '<div class="svc-feat-card reveal plain">'
+                f'<span class="svc-feat-icon">{_CHECK_SVG}</span>'
+                '<div class="svc-feat-content">'
+                f'<p>{b}</p>'
+                '</div>'
+                '</div>'
+            )
+    return _section_wrap(
+        idx,
+        head
+        + (f'<div class="svc-sec-intro-wrap reveal">{intro}</div>' if intro else "")
+        + f'<div class="svc-feat-grid">{"".join(cards)}</div>',
+    )
+
+# Layout D: check-tile grid (short uniform bullets)
+def _layout_checks(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    intro = _intro_html(sec["paras"])
+    tiles = "".join(
+        '<div class="svc-check-tile reveal">'
+        f'<span class="svc-feat-icon">{_CHECK_SVG}</span>'
+        f'<p>{b}</p>'
+        '</div>'
+        for b in sec["bullets"]
+    )
+    return _section_wrap(
+        idx,
+        head
+        + (f'<div class="svc-sec-intro-wrap reveal">{intro}</div>' if intro else "")
+        + f'<div class="svc-check-grid reveal">{tiles}</div>',
+    )
+
+# Layout E: prose only (heading + paragraphs)
+def _layout_prose(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    body = "".join(f'<p>{p}</p>' for p in sec["paras"])
+    return _section_wrap(
+        idx,
+        head + f'<div class="svc-prose reveal">{body}</div>',
+    )
+
+def _layout_bullets_html(bullets):
+    """Reusable bullets renderer when bullets coexist with sub-grid (Layout A)."""
+    items = []
+    for b in bullets:
+        label, body = _split_label(b)
+        if label:
+            items.append(f'<li><strong>{label}</strong> — {body}</li>')
+        else:
+            items.append(f'<li>{b}</li>')
+    return f'<ul class="svc-list reveal">{"".join(items)}</ul>'
+
+# --------- Layout chooser -------------------------------------------
+
+def _is_industries_themed(sec):
+    h = (sec["heading"] or "").lower()
+    return (
+        any(h.startswith(s) for s in ("industries ", "categories ", "sectors ", "verticals ", "creator categories"))
+        or " industries" in h or " categories" in h or " sectors" in h or " verticals" in h
+    )
+
+def _is_pills_section(sec):
+    if not sec["bullets"]: return False
+    if not _is_industries_themed(sec): return False
+    # Plain short labels without em-dash → industry icon grid
+    if all(_split_label(b)[0] is None for b in sec["bullets"]) \
+       and all(len(b) <= 80 for b in sec["bullets"]):
+        return True
+    return False
+
+def _is_feature_cards_section(sec):
+    if len(sec["bullets"]) < 3: return False
+    labelled = sum(1 for b in sec["bullets"] if _split_label(b)[0] is not None)
+    return labelled >= max(3, int(0.6 * len(sec["bullets"])))
+
+def _layout_quote(sec, idx):
+    """Quote-styled lead section — used for the first body section
+    when it has no heading (pre-section narrative)."""
+    paras = sec["paras"]
+    if not paras: return ""
+    primary = paras[0]
+    rest = "".join(f'<p>{p}</p>' for p in paras[1:])
+    return (
+        '<section class="svc-quote-sec">'
+        '<div class="container">'
+        '<div class="svc-quote-card reveal">'
+        '<svg class="svc-quote-mark" viewBox="0 0 32 32" aria-hidden="true">'
+        '<path d="M9 8c-3 0-5 2-5 6v10h8V14H8c0-3 1-4 3-4zM23 8c-3 0-5 2-5 6v10h8V14h-4c0-3 1-4 3-4z"/>'
+        '</svg>'
+        f'<p class="svc-quote-text">{primary}</p>'
+        f'{rest}'
+        '</div>'
+        '</div>'
+        '</section>'
+    )
+
+# Layout F: industry cards with descriptions (industries section + em-dash labels)
+def _layout_industry_features(sec, idx):
+    head = _sec_header(sec["heading"], idx)
+    intro = _intro_html(sec["paras"])
+    cards = []
+    for b in sec["bullets"]:
+        label, body = _split_label(b)
+        if label:
+            cards.append(
+                '<div class="svc-ind-feat-card reveal">'
+                f'<div class="svc-ind-icon">{_industry_icon(label)}</div>'
+                '<div class="svc-ind-feat-content">'
+                f'<h3>{label}</h3>'
+                f'<p>{body}</p>'
+                '</div>'
+                '</div>'
+            )
+        else:
+            cards.append(
+                '<div class="svc-ind-feat-card reveal">'
+                f'<div class="svc-ind-icon">{_industry_icon(b)}</div>'
+                '<div class="svc-ind-feat-content">'
+                f'<h3>{b}</h3>'
+                '</div>'
+                '</div>'
+            )
+    return _section_wrap(
+        idx,
+        head
+        + (f'<div class="svc-sec-intro-wrap reveal">{intro}</div>' if intro else "")
+        + f'<div class="svc-ind-feat-grid reveal">{"".join(cards)}</div>',
+        extra_class="industries",
+    )
+
+def render_doc_blocks(blocks):
+    sections = _group_sections(blocks)
+    out = []
+    for i, sec in enumerate(sections):
+        if i == 0 and not sec["heading"] and sec["paras"] and not sec["bullets"] and not sec["sub"]:
+            out.append(_layout_quote(sec, i))
+            continue
+        if sec["sub"]:
+            out.append(_layout_subgrid(sec, i))
+        elif _is_pills_section(sec):
+            out.append(_layout_pills(sec, i))
+        elif _is_industries_themed(sec) and sec["bullets"]:
+            out.append(_layout_industry_features(sec, i))
+        elif _is_feature_cards_section(sec):
+            out.append(_layout_feature_cards(sec, i))
+        elif sec["bullets"]:
+            out.append(_layout_checks(sec, i))
+        else:
+            out.append(_layout_prose(sec, i))
+    return "".join(out)
+
+SVC_STATS = [
+    ("80+",   "Brands trust us"),
+    ("120+",  "Page-1 keyword rankings"),
+    ("4.9★",  "Google rating (600+ reviews)"),
+    ("6+",    "Years in active client work"),
+]
+
+def render_stats_strip():
+    cells = "".join(
+        f'<div class="svc-stat reveal{(" delay-"+str(i)) if i else ""}">'
+        f'<div class="svc-stat-num">{n}</div>'
+        f'<div class="svc-stat-lbl">{l}</div>'
+        f'</div>'
+        for i,(n,l) in enumerate(SVC_STATS)
+    )
+    return (
+        '<section class="svc-stats-strip">'
+        '<div class="container">'
+        f'<div class="svc-stats-grid">{cells}</div>'
+        '</div>'
+        '</section>'
+    )
+
+def svc_doc_template(svc):
+    items = MARQUEE_ITEMS * 3
     marquee_html = "".join(f'<span class="marquee-item">{m}</span>' for m in items)
-    subtitle_html = f'<p class="hero-subtitle">{p["kicker"]}</p>' if p.get("kicker") else ""
-    hero = f"""<section class="about-hero svc-hero">
-{HERO_ORBS}  <div class="container">
-    <div class="breadcrumb">{p["crumb"]}</div>
-    <h1>{p["h1"]}</h1>
-    {subtitle_html}
-    <p class="lead">{p["intro"]}</p>
-    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>
-  </div>
-</section>
-<section class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">{marquee_html}</div>
-</section>
-"""
-
-    # Split-panel helper (used by highlight, approach, best_campaigns, highlights[])
-    def split_panel(data, extra_class="", extra_body=""):
-        side = data.get("side", "right")
-        side_cls = "right" if side == "right" else ""
-        body_html = ""
-        if "body" in data:
-            body_html = f"<p>{data['body']}</p>"
-        else:
-            for key in ("body1", "body2", "body3"):
-                if data.get(key): body_html += f"<p>{data[key]}</p>"
-        intro_html = f"<p>{data['intro']}</p>" if data.get("intro") else ""
-        bullets_html = ""
-        if data.get("bullets"):
-            items = "".join(f"<li><strong>{b[0]}:</strong> {b[1]}</li>" for b in data["bullets"])
-            bullets_html = f"<ul class=\"split-bullets\">{items}</ul>"
-        cta_html = f'<a class="btn" href="contact-us.html">{data["cta_text"]}</a>' if data.get("cta_text") else ""
-        return f"""<section class="svc-split {side_cls} {extra_class}">
-  <div class="container">
-    <div class="svc-split-img reveal"><img src="{data['img']}" alt="" loading="lazy"></div>
-    <div class="svc-split-copy reveal delay-1"><h2>{data['heading']}</h2>{body_html}{intro_html}{bullets_html}{extra_body}{cta_html}</div>
-  </div>
-</section>
-"""
-    # What Is section (optional)
-    what_is_section = ""
-    if p.get("what_is"):
-        wh_head, wh_body = p["what_is"]
-        what_is_section = f"""<section class="about-sec">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">The Basics</span><h2>{wh_head}</h2></div>
-    <div class="svc-whatis-card reveal">{wh_body}</div>
-  </div>
-</section>
-"""
-    # Sub-services OR deliverables
-    mid_section = ""
-    if p.get("sub_services"):
-        cards = "".join(
-            f'<div class="sub-svc-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="ss-icon">{SS_ICONS.get(ic, SS_ICONS["strategy"])}</div><div><h3>{t}</h3><p>{d}</p></div></div>'
-            for i, (ic, t, d) in enumerate(p["sub_services"])
-        )
-        mid_section = f"""<section class="services-expertise" style="padding:90px 0">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Our Services</span><h2>What We <span class="green_text">Deliver</span></h2></div>
-    <div class="sub-svc-grid">{cards}</div>
-  </div>
-</section>
-"""
-    elif p.get("deliverables"):
-        deliver_tiles = "".join(
-            f'<div class="svc-deliver reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>{d}</p></div>'
-            for i, d in enumerate(p["deliverables"])
-        )
-        mid_section = f"""<section class="why-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Deliverables</span><h2>What's <span class="green_text">Included</span></h2></div>
-    <div class="svc-deliver-grid">{deliver_tiles}</div>
-  </div>
-</section>
-"""
-    # Benefits — either numbered cards (2-tuple) or image cards (3-tuple)
-    benefits = ""
-    if p.get("benefits"):
-        intro_html = f'<p>{p["benefits_intro"]}</p>' if p.get("benefits_intro") else ""
-        # Detect shape: if first item has 3 elements, use image layout
-        if len(p["benefits"][0]) == 3:
-            cards = "".join(
-                f'<div class="benefit-img-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="bi-img" style="background-image:url({img})"></div><div class="bi-body"><h3>{t}</h3><p>{d}</p></div></div>'
-                for i, (t, d, img) in enumerate(p["benefits"])
-            )
-            benefits = f"""<section class="about-sec values-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Why Work With Us</span><h2>Benefits Of Working With A <span class="green_text">Paid Social Media Agency</span></h2>{intro_html}</div>
-    <div class="benefits-img-grid">{cards}</div>
-  </div>
-</section>
-"""
-        else:
-            bene_icons = ["M3 20h18M5 12v7M11 8v11M17 4v15","M12 2a10 10 0 1 0 10 10M12 6v6l4 2","M13 2L5 14h6l-2 8 10-14h-6z","M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z","M20 6L9 17l-5-5","M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"]
-            bene_cards = "".join(
-                f'<div class="value-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><span class="val-num">{(i+1):02d}</span><div class="val-icon"><svg viewBox="0 0 24 24"><path d="{bene_icons[i%len(bene_icons)]}"/></svg></div><h3>{t}</h3><p>{d}</p></div>'
-                for i, (t, d) in enumerate(p["benefits"])
-            )
-            benefits = f"""<section class="about-sec values-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Why Choose DigiVeritaz</span><h2>Key <span class="green_text">Benefits</span></h2>{intro_html}</div>
-    <div class="values-grid">{bene_cards}</div>
-  </div>
-</section>
-"""
-
-    # Optional highlight (why-matters) and approach split panels
-    highlight_section = split_panel(p["highlight"]) if p.get("highlight") else ""
-    approach_section = split_panel(p["approach"]) if p.get("approach") else ""
-
-    # Multiple highlights (list of split-panels) — used when page has several image+text sections
-    highlights_html = ""
-    if p.get("highlights"):
-        highlights_html = "".join(split_panel(h) for h in p["highlights"])
-
-    # Packages / Tier cards
-    packages_section = ""
-    if p.get("packages"):
-        pk = p["packages"]
-        tier_html = "".join(
-            f'<div class="pkg-card reveal{" featured" if featured else ""}{" delay-"+str(i) if i else ""}"><div class="pkg-header"><h3>{name}</h3><p>{profile}</p></div><div class="pkg-duration"><p class="dur">{duration}</p></div><div class="pkg-services"><div class="svc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>{services}</p></div></div>'
-            for i, (name, profile, duration, services, *rest) in enumerate(pk["tiers"])
-            for featured in [rest[0] if rest else (i == 1)]  # default middle tier is featured
-        )
-        intro_html = f'<p>{pk["intro"]}</p>' if pk.get("intro") else ""
-        packages_section = f"""<section class="packages-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Engagement Models</span><h2>{pk.get("heading", "Typical Engagements &amp; <span class=\"green_text\">Packages</span>")}</h2>{intro_html}</div>
-    <div class="pkg-grid">{tier_html}</div>
-  </div>
-</section>
-"""
-
-    # Simple benefits — styled bulleted list in a card
-    simple_benefits_section = ""
-    if p.get("simple_benefits"):
-        sb_head = p["simple_benefits"].get("heading", "Benefits")
-        sb_items = "".join(f"<li>{item}</li>" for item in p["simple_benefits"]["items"])
-        simple_benefits_section = f"""<section class="simple-benefits-wrap">
-  <div class="container">
-    <div class="simple-benefits reveal">
-      <span class="kicker">What You Get</span>
-      <h2>{sb_head}</h2>
-      <ul>{sb_items}</ul>
-    </div>
-  </div>
-</section>
-"""
-
-    # Platforms (3-card)
-    platforms_section = ""
-    if p.get("platforms"):
-        cards = "".join(
-            f'<div class="platform-card reveal{" delay-"+str((i%3)+1) if i%3 else ""}"><div class="pf-logo">{PLATFORM_SVG.get(ic, PLATFORM_SVG["fb"])}</div><h3>{t}</h3><p>{d}</p></div>'
-            for i, (ic, t, d) in enumerate(p["platforms"])
-        )
-        intro = f'<p>{p["platforms_intro"]}</p>' if p.get("platforms_intro") else ""
-        outro = f'<div class="platforms-outro reveal">{p["platforms_outro"]}</div>' if p.get("platforms_outro") else ""
-        platforms_section = f"""<section class="platforms-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Platforms</span><h2>Platforms We <span class="green_text">Specialize In</span></h2>{intro}</div>
-    <div class="platforms-grid">{cards}</div>
-    {outro}
-  </div>
-</section>
-"""
-
-    # Best campaigns (split panel with sub-heading)
-    best_section = ""
-    if p.get("best_campaigns"):
-        bc = p["best_campaigns"]
-        sub = f'<div class="best-sub"><h3>{bc["sub_heading"]}</h3><p>{bc["sub_body"]}</p></div>' if bc.get("sub_heading") else ""
-        best_section = split_panel(bc, extra_class="best-campaigns", extra_body=sub)
-    # Process — vertical editorial timeline (optional)
-    process = ""
-    if p.get("process"):
-        tl_arrow_svg = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
-        proc_steps = "".join(
-            f'<div class="tl-step reveal"><div class="tl-marker"><div class="tl-num">{(i+1):02d}</div></div><span class="tl-arrow">{tl_arrow_svg}</span><div class="tl-content"><span class="tl-kicker">Step {(i+1):02d}</span><h3>{t}</h3><p>{d}</p></div></div>'
-            for i, (t, d) in enumerate(p["process"])
-        )
-        process = f"""<section class="process-section">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Our Process</span><h2>How <span class="green_text">We Work</span></h2><p>A phased engagement, fully transparent — so you always know what's happening next.</p></div>
-    <div class="process-timeline">{proc_steps}</div>
-  </div>
-</section>
-"""
-    # Industries (optional)
-    industries_section = ""
-    if p.get("industries"):
-        pills = "".join(f'<span class="industry-pill">{ind}</span>' for ind in p["industries"])
-        industries_section = f"""<section class="about-sec">
-  <div class="container">
-    <div class="sec-head reveal"><span class="kicker">Who We Serve</span><h2>Industries We <span class="green_text">Serve</span></h2></div>
-    <div class="industries-grid reveal">{pills}</div>
-  </div>
-</section>
-"""
-    # FAQs
-    faqs_section = ""
-    if p.get("faqs"):
-        faq_html = "".join(
+    title_label = SERVICE_TITLE_MAP.get(svc["site_slug"], svc["h1"])
+    crumb = "Home / Services / " + title_label.replace("&amp;", "&")
+    hero = (
+        '<section class="about-hero svc-hero">\n'
+        + HERO_ORBS
+        + '  <div class="container">\n'
+        + f'    <div class="breadcrumb">{crumb}</div>\n'
+        + f'    <h1>{svc["h1"]}</h1>\n'
+        + f'    <p class="hero-subtitle">{title_label}</p>\n'
+        + f'    <p class="lead">{svc["intro"]}</p>\n'
+        + '    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>\n'
+        + '  </div>\n</section>\n'
+        + '<section class="marquee-strip" aria-hidden="true">\n'
+        + f'  <div class="marquee-track">{marquee_html}</div>\n'
+        + '</section>\n'
+    )
+    stats_html = render_stats_strip()
+    eeat_html = render_eeat(svc.get("eeat_signals") or [])
+    body_html = render_doc_blocks(svc.get("blocks") or [])
+    faqs = svc.get("faqs") or []
+    if faqs:
+        items_html = "".join(
             f'<div class="faq-item"><div class="faq-q">{q}</div><div class="faq-a">{a}</div></div>'
-            for q, a in p["faqs"]
+            for q, a in faqs
         )
-        faqs_section = f"""<section class="about-sec">
-  <div class="container svc-faq-wrap">
-    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>
-    {faq_html}
-  </div>
-</section>
-"""
-    # CTA
-    cta_head, cta_body = p.get("cta", ("Ready to grow your <span>brand?</span>", "Book a free consultation and get a custom proposal within 48 hours."))
-    cta = f"""<section class="about-cta">
-  <div class="container reveal">
-    <h2>{cta_head}</h2>
-    <p>{cta_body}</p>
-    <a class="btn" href="contact-us.html">Start Your Project</a>
-  </div>
-</section>
-"""
-    divider = '<div class="svc-divider" aria-hidden="true"></div>\n'
-    parts = [hero]
-    if what_is_section: parts += [what_is_section, divider]
-    if highlights_html: parts.append(highlights_html)
-    if mid_section: parts.append(mid_section)
-    if highlight_section: parts.append(highlight_section)
-    if approach_section: parts.append(approach_section)
-    if process: parts.append(process)
-    if platforms_section: parts.append(platforms_section)
-    if benefits: parts.append(benefits)
-    if simple_benefits_section: parts.append(simple_benefits_section)
-    if packages_section: parts.append(packages_section)
-    if best_section: parts.append(best_section)
-    if industries_section: parts.append(industries_section)
-    if faqs_section: parts.append(faqs_section)
-    parts.append(cta)
-    return "".join(parts)
+        faqs_html = (
+            '<section class="about-sec">\n'
+            + '  <div class="container svc-faq-wrap">\n'
+            + '    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>\n'
+            + '    ' + items_html + '\n'
+            + '  </div>\n</section>\n'
+        )
+    else:
+        faqs_html = ""
+    cta_html = (
+        '<section class="about-cta">\n'
+        '  <div class="container reveal">\n'
+        '    <h2>Ready to grow your <span>brand?</span></h2>\n'
+        '    <p>Book a free consultation and get a custom proposal within 48 hours.</p>\n'
+        '    <a class="btn" href="contact-us.html">Start Your Project</a>\n'
+        '  </div>\n</section>\n'
+    )
+    return hero + stats_html + eeat_html + body_html + faqs_html + cta_html
 
 def service_jsonld(fname, title, desc, faqs=None):
     name = title.split("|")[0].strip()
@@ -1783,30 +1481,20 @@ def service_jsonld(fname, title, desc, faqs=None):
         out += '<script type="application/ld+json">' + json.dumps(faq_data, separators=(",",":")) + '</script>'
     return out
 
-SERVICE_KEYWORD_EXTRA = {
-    "seo.html": "SEO services India, technical SEO, SEO agency Mumbai, local SEO, keyword research, link building",
-    "pay-per-click.html": "PPC services India, Google Ads management, Bing Ads, pay per click agency Mumbai, Shopping Ads",
-    "performance-marketing-agency.html": "performance marketing agency India, ROAS optimization, CAC reduction, full funnel marketing, ROI marketing",
-    "paid-social-media-advertising.html": "paid social media advertising, Meta Ads, Facebook Ads, Instagram Ads, LinkedIn Ads, Pinterest Ads India",
-    "ecommerce-marketing.html": "ecommerce marketing India, Amazon marketing, Flipkart ads, Shopify marketing, D2C growth, marketplace management",
-    "whatsapp-marketing-services.html": "WhatsApp marketing India, WhatsApp Business API, bulk messaging, chatbot automation, conversational commerce",
-    "native-advertising.html": "native advertising India, sponsored content, discovery ads, Swiggy ads, Zomato ads, Blinkit advertising",
-    "organic-marketing-services.html": "organic marketing services, content marketing India, community building, SEO strategy, organic social",
-    "branding-and-design.html": "branding and design services, brand strategy, identity design, creative direction, content design Mumbai",
-    "generative-search-optimisation.html": "generative search optimization, GSO, GEO, AI search ranking, ChatGPT SEO, Gemini SEO, Perplexity visibility",
-    "data-strategy-consulting-services.html": "data strategy consulting, GA4 setup, attribution modeling, analytics consulting, CDP integration",
-}
+def _kw_for(svc):
+    parts = []
+    if svc.get("primary_kw"): parts.append(svc["primary_kw"].replace(" | ", ", "))
+    if svc.get("secondary_kw"): parts.extend(svc["secondary_kw"])
+    if svc.get("lsi_kw"): parts.extend(svc["lsi_kw"][:8])
+    return DEFAULT_KEYWORDS + ", " + ", ".join(parts)
 
-# _strip_tags is defined later (in FAQ section); ensure it exists here by importing forward
-import re as _pre_re
-def _strip_tags(s): return _pre_re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
-
-for fname, p in service_pages.items():
-    body = svc_template(p)
-    kw = DEFAULT_KEYWORDS + ", " + SERVICE_KEYWORD_EXTRA.get(fname, "")
-    sjsonld = service_jsonld(fname, p["title"], p["desc"], p.get("faqs"))
-    write(fname, p["title"], p["desc"], body, keywords=kw, extra_jsonld=sjsonld)
-
+for svc in DOC_SERVICES:
+    fname = svc["site_slug"]
+    title = svc["meta_title"] or svc["h1"]
+    desc = svc["meta_desc"] or _strip_tags(svc.get("intro",""))[:160]
+    body = svc_doc_template(svc)
+    sjsonld = service_jsonld(fname, title, desc, svc.get("faqs"))
+    write(fname, title, desc, body, keywords=_kw_for(svc), extra_jsonld=sjsonld)
 # ---------- CASE STUDY ----------
 # (slug, title, tag, description, image)
 case_items = [
