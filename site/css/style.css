@@ -1656,7 +1656,7 @@ section{padding:72px 0}
 
 .blog-feature{padding:32px 0 0}
 .blog-feature .container{max-width:980px}
-.blog-feature img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:18px;border:1px solid var(--border);background:#eef2f7}
+.blog-feature img{width:100%;aspect-ratio:3/2;object-fit:contain;border-radius:18px;border:1px solid var(--border);background:#eef2f7;display:block}
 
 .blog-article{padding:48px 0 64px}
 .blog-article .container{max-width:760px}
