@@ -1632,6 +1632,7 @@ section{padding:72px 0}
 .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .card .thumb{aspect-ratio:16/10;background:#eef2f7;background-size:cover;background-position:center}
+.card .thumb[style*="Case%20Studies"]{aspect-ratio:4/3}
 .card .body{padding:22px}
 .card h3{font-size:1.15rem}
 .card .tag{display:inline-block;background:#ecfdf5;color:var(--green);padding:4px 10px;border-radius:999px;font-size:.8rem;margin-bottom:10px;font-weight:600}
@@ -2431,7 +2432,7 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
 .dd-menu:before{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:#fff;border-top:1px solid var(--border);border-left:1px solid var(--border);z-index:1}
 /* Invisible bridge that extends hover area from navlink to menu so quick cursor moves don't dismiss it */
 .dd-bridge{position:absolute;top:-18px;left:-18px;right:-18px;height:22px;display:block;pointer-events:auto;background:transparent}
-.has-dd{padding-bottom:6px}
+.has-dd{padding:3px 0}
 .has-dd:focus-within .dd-menu,.has-dd.open .dd-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;transition-delay:0s, 0s, 0s}
 .has-dd:hover .dd-caret{transform:rotate(180deg)}
 .dd-menu a{position:relative;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;color:#0b1220;font-weight:500;font-size:.92rem;text-decoration:none;transition:background .15s, color .15s;white-space:nowrap}
