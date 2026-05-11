@@ -865,14 +865,37 @@ SVC_ICON = {
     "crm":        '<svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3 21c0-3 3-6 6-6s6 3 6 6"/><path d="M16 11l3 3 4-4"/></svg>',
 }
 
-def _svc_card(slug):
+SERVICE_IMAGE_MAP = {
+    slug: "assets/services/" + slug.replace(".html", ".webp")
+    for slug in SERVICE_TITLE_MAP
+}
+
+CATEGORY_BLURBS = {
+    "Marketing": "Organic demand, creator trust, AI visibility and lifecycle channels for brands that want compounding attention.",
+    "Advertising": "Paid media systems built for intent, marketplace demand, retargeting and measurable acquisition.",
+    "Design & Content": "Visual identity, product experience and persuasive content shaped for conversion and recall.",
+    "Strategy & Data": "Planning, analytics and revenue systems that turn scattered activity into a measurable growth engine.",
+    "Tech & Development": "Websites, commerce, apps, hosting, CRM and business systems built to perform after launch.",
+}
+
+def _strip_tags(s): return _pre_re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
+
+def _svc_card(slug, category="", idx=0):
     icon_key, blurb = SVC_CARD_META.get(_doc_slug_for(slug), ("seo", ""))
     title = SERVICE_TITLE_MAP.get(slug, slug)
+    img = SERVICE_IMAGE_MAP.get(slug, "")
+    alt = _strip_tags(title)
+    cls = "svc-card" + (" svc-card-featured" if idx == 0 else "")
+    cat_label = category or "Service"
     return (
-        f'<a class="svc-card" href="{slug}">'
-        f'<div class="icon">{SVC_ICON.get(icon_key, SVC_ICON["seo"])}</div>'
-        f'<h3>{title}</h3><p>{blurb}</p>'
-        f'<span class="more">Learn more →</span>'
+        f'<a class="{cls}" href="{slug}">'
+        f'<span class="svc-card-media"><img src="{img}" alt="{alt}" loading="lazy" decoding="async"></span>'
+        f'<span class="svc-card-body">'
+        f'<span class="svc-card-kicker"><span class="icon">{SVC_ICON.get(icon_key, SVC_ICON["seo"])}</span>{cat_label}</span>'
+        f'<span class="svc-card-title">{title}</span>'
+        f'<span class="svc-card-copy">{blurb}</span>'
+        f'<span class="more">Explore service <span aria-hidden="true">&rarr;</span></span>'
+        f'</span>'
         f'</a>'
     )
 
@@ -920,13 +943,16 @@ _svc_tabs_html = (
 
 cat_groups_html = []
 for _cat, _slugs in SVC_CATEGORIES:
-    cards = "".join(_svc_card(s) for s in _slugs)
+    cards = "".join(_svc_card(s, _cat, i) for i, s in enumerate(_slugs))
     key = _cat_key(_cat)
+    blurb = CATEGORY_BLURBS.get(_cat, "")
     cat_groups_html.append(
-        f'<div class="svc-cat-group reveal" data-cat="{key}">'
+        f'<div class="svc-cat-group reveal" id="{key}" data-cat="{key}">'
         f'<div class="svc-cat-head-row">'
-        f'<h2 class="svc-cat-head"><span class="green_text">{_cat}</span></h2>'
-        f'<span class="svc-cat-count">{len(_slugs)} services</span>'
+        f'<div><span class="svc-cat-eyebrow">{len(_slugs)} services</span>'
+        f'<h2 class="svc-cat-head">{_cat}</h2>'
+        f'<p class="svc-cat-desc">{blurb}</p></div>'
+        f'<a class="svc-cat-jump" href="#{key}">View {len(_slugs)}</a>'
         f'</div>'
         f'<div class="services-grid">{cards}</div>'
         f'</div>'
@@ -976,12 +1002,33 @@ _svc_tabs_script = """
 </script>
 """
 
-svc_body = page_hero("Our <span class=\"green_text\">Services</span>", "Home / Services",
-    "41 services across marketing, advertising, design, strategy, data and development — pick one, or let us run your entire growth engine.") + f"""
-<section class="services svc-hub">
+svc_body = f"""
+<section class="svc-hub-hero">
+  <div class="svc-hub-hero-media" aria-hidden="true">
+    <img src="assets/services/performance-marketing-agency.webp" alt="">
+  </div>
   <div class="container">
+    <nav class="breadcrumb">Home / Services</nav>
+    <span class="svc-hero-kicker">41 services across 5 growth disciplines</span>
+    <h1 class="play">Choose the service stack that moves your next number.</h1>
+    <p>Browse strategy, media, design, data and development offers built around measurable growth. Pick one specialist service or hand us the whole engine.</p>
+    <div class="svc-hero-actions">
+      <a class="btn" href="contact-us.html">Build My Growth Plan</a>
+      <a class="btn-outline btn-ghost" href="#all-services">Browse Services</a>
+    </div>
+  </div>
+</section>
+<section class="services svc-hub">
+  <div class="container" id="all-services">
     {_svc_tabs_html}
     <div class="svc-cat-wrap">{svc_groups_html}</div>
+  </div>
+</section>
+<section class="svc-hub-cta">
+  <div class="container">
+    <h2 class="play">Not sure where to start?</h2>
+    <p>Tell us your target, budget and current stack. We will shape the right service mix before you spend.</p>
+    <a class="btn" href="contact-us.html">Book A Call</a>
   </div>
 </section>
 {_svc_tabs_script}
@@ -1412,6 +1459,236 @@ def render_stats_strip():
         '</section>'
     )
 
+def _svc_img(slug):
+    return SERVICE_IMAGE_MAP.get(slug, "assets/services/seo.webp")
+
+def _find_section(sections, needle):
+    needle = needle.lower()
+    for sec in sections:
+        if needle in (sec.get("heading") or "").lower():
+            return sec
+    return None
+
+def _v2_stat_cards():
+    stats = [
+        ("120+", "Page 1 rankings"),
+        ("80+", "Brands served"),
+        ("₹2Cr+", "Organic revenue attributed"),
+        ("4.9★", "600+ review rating"),
+    ]
+    return "".join(
+        f'<div class="svc2-stat"><strong>{n}</strong><span>{l}</span></div>'
+        for n, l in stats
+    )
+
+def _v2_bullet_cards(sec, limit=None):
+    if not sec: return ""
+    bullets = sec.get("bullets") or []
+    if limit: bullets = bullets[:limit]
+    cards = []
+    for b in bullets:
+        label, body = _split_label(b)
+        if label:
+            cards.append(
+                '<div class="svc2-mini-card reveal">'
+                f'<h3>{label}</h3><p>{body}</p>'
+                '</div>'
+            )
+        else:
+            cards.append(
+                '<div class="svc2-mini-card reveal">'
+                f'<p>{b}</p>'
+                '</div>'
+            )
+    return "".join(cards)
+
+def _v2_focus_panel(sec, image, label, flip=False):
+    if not sec: return ""
+    paras = sec.get("paras") or []
+    intro = "".join(f'<p>{p}</p>' for p in paras[:2])
+    bullets = _v2_bullet_cards(sec)
+    flip_cls = " flip" if flip else ""
+    return (
+        f'<section class="svc2-focus{flip_cls}" id="{label}">'
+        '<div class="container">'
+        '<div class="svc2-focus-media reveal">'
+        f'<img src="{image}" alt="{_strip_tags(sec["heading"])}" loading="lazy" decoding="async">'
+        '</div>'
+        '<div class="svc2-focus-copy reveal">'
+        f'<span class="svc2-kicker">{label.replace("-", " ")}</span>'
+        f'<h2>{sec["heading"]}</h2>'
+        f'<div class="svc2-prose">{intro}</div>'
+        f'<div class="svc2-mini-grid">{bullets}</div>'
+        '</div>'
+        '</div>'
+        '</section>'
+    )
+
+def _v2_process(sec):
+    if not sec: return ""
+    steps = []
+    for i, (label, body) in enumerate(sec.get("sub") or []):
+        clean = _pre_re.sub(r'^(Phase|Step|Tier|Stage|Module|Level|Track)\s+\w{1,4}\s*[—–:\-]\s*',
+                       '', label, flags=_pre_re.IGNORECASE)
+        steps.append(
+            '<div class="svc2-process-card reveal">'
+            f'<span>{(i+1):02d}</span>'
+            f'<h3>{clean}</h3>'
+            f'<p>{body}</p>'
+            '</div>'
+        )
+    paras = "".join(f'<p>{p}</p>' for p in (sec.get("paras") or [])[:1])
+    return (
+        '<section class="svc2-process" id="process">'
+        '<div class="container">'
+        '<div class="svc2-section-head reveal">'
+        '<span class="svc2-kicker">Process</span>'
+        f'<h2>{sec["heading"]}</h2>'
+        f'{paras}'
+        '</div>'
+        f'<div class="svc2-process-grid">{"".join(steps)}</div>'
+        '</div>'
+        '</section>'
+    )
+
+def _v2_industries(sec):
+    if not sec: return ""
+    cards = []
+    for b in sec.get("bullets") or []:
+        label, body = _split_label(b)
+        label = label or b
+        cards.append(
+            '<div class="svc2-industry reveal">'
+            f'<div class="svc-ind-icon">{_industry_icon(label)}</div>'
+            f'<h3>{label}</h3>'
+            f'{f"<p>{body}</p>" if body and body != label else ""}'
+            '</div>'
+        )
+    return (
+        '<section class="svc2-industries" id="industries">'
+        '<div class="container">'
+        '<div class="svc2-section-head reveal">'
+        '<span class="svc2-kicker">Proof by sector</span>'
+        f'<h2>{sec["heading"]}</h2>'
+        '</div>'
+        f'<div class="svc2-industry-grid">{"".join(cards)}</div>'
+        '</div>'
+        '</section>'
+    )
+
+def _v2_difference(sec):
+    if not sec: return ""
+    paras = "".join(f'<p>{p}</p>' for p in (sec.get("paras") or [])[:1])
+    return (
+        '<section class="svc2-difference" id="difference">'
+        '<div class="container">'
+        '<div class="svc2-section-head reveal">'
+        '<span class="svc2-kicker">Why us</span>'
+        f'<h2>{sec["heading"]}</h2>'
+        f'{paras}'
+        '</div>'
+        f'<div class="svc2-diff-grid">{_v2_bullet_cards(sec)}</div>'
+        '</div>'
+        '</section>'
+    )
+
+def _v2_eeat(rows):
+    if not rows: return ""
+    cards = "".join(
+        '<div class="svc2-trust-card reveal">'
+        f'<span>{r["marker"]}</span>'
+        f'<h3>{r["signal"]}</h3>'
+        f'<p>{r["evidence"]}</p>'
+        '</div>'
+        for r in rows
+    )
+    return (
+        '<section class="svc2-trust" id="trust">'
+        '<div class="container">'
+        '<div class="svc2-section-head reveal">'
+        '<span class="svc2-kicker">E-E-A-T signals</span>'
+        '<h2>Trust signals built into the work.</h2>'
+        '<p>Visible proof for users and search engines: experience, expertise, authority and transparency.</p>'
+        '</div>'
+        f'<div class="svc2-trust-grid">{cards}</div>'
+        '</div>'
+        '</section>'
+    )
+
+def svc_doc_template_v2(svc):
+    sections = _group_sections(svc.get("blocks") or [])
+    intro_sec = sections[0] if sections and not sections[0].get("heading") else None
+    process_sec = _find_section(sections, "4-phase")
+    local_sec = _find_section(sections, "local seo")
+    ecommerce_sec = _find_section(sections, "e-commerce seo")
+    industries_sec = _find_section(sections, "industries")
+    difference_sec = _find_section(sections, "different")
+    intro_extra = "".join(f'<p>{p}</p>' for p in (intro_sec.get("paras") if intro_sec else [])[:2])
+    faqs = svc.get("faqs") or []
+    faq_html = "".join(
+        f'<div class="faq-item"><div class="faq-q">{q}</div><div class="faq-a">{a}</div></div>'
+        for q, a in faqs
+    )
+    return (
+        '<section class="svc2-hero svc2-hero-clean">'
+        '<div class="container">'
+        '<div class="svc2-hero-copy">'
+        '<nav class="svc2-crumb">Home / Services / SEO</nav>'
+        '<span class="svc2-kicker">SEO growth system</span>'
+        f'<h1>{svc["h1"]}</h1>'
+        f'<p>{svc["intro"]}</p>'
+        '<div class="svc2-actions">'
+        '<a class="btn" href="contact-us.html">Get My Free SEO Audit</a>'
+        '<a class="btn-outline btn-ghost" href="#process">See The Process</a>'
+        '</div>'
+        '</div>'
+        '<div class="svc2-hero-media reveal">'
+        f'<img src="{_svc_img(svc["site_slug"])}" alt="SEO strategy and search optimisation workspace" loading="eager" decoding="async">'
+        '</div>'
+        '</div>'
+        f'<div class="container svc2-stat-panel reveal">{_v2_stat_cards()}</div>'
+        '</section>'
+        '<nav class="svc2-nav" aria-label="SEO page sections">'
+        '<div class="container">'
+        '<a href="#overview">Overview</a><a href="#process">Process</a><a href="#local-seo">Local SEO</a><a href="#ecommerce-seo">E-Commerce</a><a href="#industries">Industries</a><a href="#trust">Trust</a><a href="#faqs">FAQs</a>'
+        '</div>'
+        '</nav>'
+        '<section class="svc2-overview" id="overview">'
+        '<div class="container">'
+        '<div class="svc2-overview-copy reveal">'
+        '<span class="svc2-kicker">What changes</span>'
+        '<h2>Organic search becomes a revenue asset, not a reporting line.</h2>'
+        f'<div class="svc2-prose">{intro_extra}</div>'
+        '</div>'
+        '<div class="svc2-overview-card reveal">'
+        '<strong>SEO scope</strong>'
+        '<span>Technical audits</span><span>Search intent strategy</span><span>Content execution</span><span>Authority building</span><span>Local visibility</span><span>E-commerce crawl systems</span>'
+        '</div>'
+        '</div>'
+        '</section>'
+        + _v2_process(process_sec)
+        + _v2_focus_panel(local_sec, _svc_img("real-estate-lead-generation.html"), "local-seo")
+        + _v2_focus_panel(ecommerce_sec, _svc_img("ecommerce-marketing.html"), "ecommerce-seo", flip=True)
+        + _v2_industries(industries_sec)
+        + _v2_difference(difference_sec)
+        + _v2_eeat(svc.get("eeat_signals") or [])
+        + (
+            '<section class="svc2-faq" id="faqs">'
+            '<div class="container">'
+            '<div class="svc2-section-head reveal"><span class="svc2-kicker">FAQs</span><h2>Questions clients ask before starting SEO.</h2></div>'
+            f'<div class="svc-faq-wrap">{faq_html}</div>'
+            '</div>'
+            '</section>' if faqs else ""
+        )
+        + '<section class="svc2-cta">'
+        '<div class="container reveal">'
+        '<h2 class="play">Ready to turn rankings into revenue?</h2>'
+        '<p>Book a free SEO audit and get a prioritized roadmap for your site, keywords and growth target.</p>'
+        '<a class="btn" href="contact-us.html">Start With An SEO Audit</a>'
+        '</div>'
+        '</section>'
+    )
+
 def svc_doc_template(svc):
     items = MARQUEE_ITEMS * 3
     marquee_html = "".join(f'<span class="marquee-item">{m}</span>' for m in items)
@@ -1492,7 +1769,7 @@ for svc in DOC_SERVICES:
     fname = svc["site_slug"]
     title = svc["meta_title"] or svc["h1"]
     desc = svc["meta_desc"] or _strip_tags(svc.get("intro",""))[:160]
-    body = svc_doc_template(svc)
+    body = svc_doc_template_v2(svc) if fname == "seo.html" else svc_doc_template(svc)
     sjsonld = service_jsonld(fname, title, desc, svc.get("faqs"))
     write(fname, title, desc, body, keywords=_kw_for(svc), extra_jsonld=sjsonld)
 # ---------- CASE STUDY ----------
