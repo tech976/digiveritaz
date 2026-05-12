@@ -44,7 +44,7 @@
 <link rel="preconnect" href="https://digiveritaz.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1777900220">
 
 <!-- Organization + Website schema -->
@@ -79,36 +79,401 @@
   </div>
 </header>
 
-<main id="main" role="main">
-<section class="about-hero svc-hero">
-  <span class="hero-orb-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
-  <span class="hero-orb-2" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 4 C 48 6 56 18 56 30 C 56 44 46 56 30 56 C 14 56 4 44 4 30 C 4 18 12 6 30 4 Z"/></svg></span>
-  <span class="hero-orb-3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 10 4 14c0 5 4 8 8 8s8-3 8-8c0-4-4-8-8-12z"/></svg></span>
-  <span class="hero-orb-4" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg></span>
+<main id="main" role="main" class="smm">
+<!-- HERO -->
+<section class="smm-hero">
   <div class="container">
-    <div class="breadcrumb">Home / Services / UI/UX Design</div>
-    <h1>UI UX Design Agency in Mumbai That Designs Products Users Actually Love</h1>
-    <p class="hero-subtitle">UI/UX Design</p>
-    <p class="lead">Every dollar spent on UX research and design returns roughly 100 dollars in measurable business outcomes — fewer support tickets, higher conversion, better retention, and reduced engineering rework. That is not marketing copy; it is a finding from Forrester research that has held up across product categories. The reason is simple: your users do not want to learn your product, they want to use it.</p>
-    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>
+    <div>
+      <span class="smm-eyebrow"><span class="dot"></span>UI/UX Design · Mumbai</span>
+      <h1>UX engineered for <em>products users love</em>.</h1>
+      <p class="lead">DV Digital is a research-led UI/UX design agency in Mumbai. We design SaaS apps, mobile experiences and e-commerce flows that users actually understand — Figma-native, accessibility-first, shipped with a design system your engineers can scale.</p>
+      <div class="smm-hero-cta">
+        <a class="smm-btn-primary" href="contact-us.html">Start your project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="smm-btn-ghost" href="#process">See how we work</a>
+      </div>
+      <div class="smm-hero-trust">
+        <span><span class="star">★ 4.9</span> · 600+ Google reviews</span>
+        <span class="sep"></span>
+        <span>Figma-native team</span>
+        <span class="sep"></span>
+        <span>100+ products shipped</span>
+      </div>
+    </div>
+    <div class="smm-feed" aria-hidden="true">
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">UT</span>
+          <div><div class="fc-name">Usability test session</div><div class="fc-meta">Round 2 · 6 participants · remote</div></div>
+          <span class="fc-platform">Live</span>
+        </div>
+        <p class="fc-body"><strong>Task: complete onboarding in &lt;90s</strong><br>5 of 6 users completed without help. Drop-off point identified at step 3 (account verification).</p>
+        <div class="fc-stats"><span><strong>83%</strong> success</span><span><strong>72s</strong> avg time</span><span><strong>4.5/5</strong> SUS</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">DS</span>
+          <div><div class="fc-name">Design system tokens</div><div class="fc-meta">v2.4 · Figma library · synced</div></div>
+          <span class="fc-platform">Tokens</span>
+        </div>
+        <p class="fc-body">Colour, spacing, type and elevation tokens published. 128 components shipped to engineering with auto-layout and variants.</p>
+        <div class="fc-stats"><span><strong>128</strong> components</span><span><strong>WCAG AA</strong></span><span><strong>+38%</strong> design velocity</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">Fig</span>
+          <div><div class="fc-name">Figma handoff status</div><div class="fc-meta">Release sprint 14 · 42 screens</div></div>
+          <span class="fc-platform">Dev-ready</span>
+        </div>
+        <p class="fc-body">All flows annotated with spec, states and edge-cases. Light/dark variants shipped. Dev-mode inspect enabled across the file.</p>
+        <div class="fc-stats"><span><strong>42</strong> screens</span><span><strong>100%</strong> annotated</span><span><strong>0</strong> open queries</span></div>
+      </div>
+    </div>
   </div>
 </section>
-<section class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track"><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span></div>
-</section>
-<section class="svc-stats-strip"><div class="container"><div class="svc-stats-grid"><div class="svc-stat reveal"><div class="svc-stat-num">80+</div><div class="svc-stat-lbl">Brands trust us</div></div><div class="svc-stat reveal delay-1"><div class="svc-stat-num">120+</div><div class="svc-stat-lbl">Page-1 keyword rankings</div></div><div class="svc-stat reveal delay-2"><div class="svc-stat-num">4.9★</div><div class="svc-stat-lbl">Google rating (600+ reviews)</div></div><div class="svc-stat reveal delay-3"><div class="svc-stat-num">6+</div><div class="svc-stat-lbl">Years in active client work</div></div></div></div></section><section class="eeat-section"><div class="container"><div class="sec-head reveal"><span class="kicker">E-E-A-T Trust Signals</span><h2>How We Earn <span class="green_text">Your Confidence</span></h2><p>The four signals below show how we demonstrate Experience, Expertise, Authoritativeness, and Trustworthiness on this service — visible to both users and search engines.</p></div><div class="eeat-grid"><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">★</span><span class="eeat-tag">Experience</span><h3 class="eeat-signal">100+ Products Shipped</h3><p class="eeat-evidence">Live mobile apps, SaaS platforms, and e-commerce experiences designed end-to-end across consumer and B2B.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✓</span><span class="eeat-tag">Expertise</span><h3 class="eeat-signal">Research-Led Design Process</h3><p class="eeat-evidence">Every project starts with user interviews, journey mapping, and competitive analysis — never blank-canvas guessing.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">◆</span><span class="eeat-tag">Authoritativeness</span><h3 class="eeat-signal">Scalable Design Systems</h3><p class="eeat-evidence">We build component libraries and design tokens that compound efficiency across your product roadmap.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✔</span><span class="eeat-tag">Trustworthiness</span><h3 class="eeat-signal">Usability-Validated Designs</h3><p class="eeat-evidence">Prototypes are tested with real users before development — preventing expensive redesigns post-launch.</p></div></div></div></section><section class="svc-quote-sec"><div class="container"><div class="svc-quote-card reveal"><svg class="svc-quote-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 8c-3 0-5 2-5 6v10h8V14H8c0-3 1-4 3-4zM23 8c-3 0-5 2-5 6v10h8V14h-4c0-3 1-4 3-4z"/></svg><p class="svc-quote-text">DV Digital is a UI UX design agency in Mumbai that designs digital products users love and businesses can scale. From early-stage MVPs to mature platforms scaling past product-market fit, we design with the right balance of research rigour, business pragmatism, and visual craft.</p><p>Most product teams underestimate the compounding cost of poor UX — every confused user is a support ticket, a refund request, or a churned customer. Investing in research-led design upfront prevents months of expensive remediation later.</p><p>Most product teams underestimate the compounding cost of poor UX — every confused user is a support ticket, a refund request, or a churned customer. Investing in research-led design upfront prevents months of expensive remediation later.</p><p>As a UI UX design agency in Mumbai, we work with founders, product managers, and design leaders to ship interfaces that are not just visually polished but functionally clear. From first wireframe to production-ready Figma handoff, our process is built around what real users actually do — not what stakeholders assume they will do.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">02</span><h2>Our UI UX Design Process</h2></div><div class="svc-prose reveal"></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">03</span><h2>Discovery & User Research</h2></div><div class="svc-prose reveal"><p>User interviews, contextual inquiry, stakeholder workshops, and competitor teardowns produce the foundation. We focus on understanding the actual jobs users are trying to do and where current solutions fail them.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">04</span><h2>Information Architecture & User Flows</h2></div><div class="svc-prose reveal"><p>Card sorting, sitemap definition, and end-to-end user flow diagrams ensure the product structure makes sense before any pixel-level work begins. Most usability problems are architecture problems in disguise.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">05</span><h2>Wireframing & Low-Fidelity Prototyping</h2></div><div class="svc-prose reveal"><p>Greyscale wireframes test layout, content hierarchy, and core flows quickly. We iterate fast at this stage when changes are cheap — never at high-fidelity when changes cost days of design time.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">06</span><h2>High-Fidelity UI Design & Visual Craft</h2></div><div class="svc-prose reveal"><p>Pixel-perfect Figma designs that align with your brand, balance accessibility with delight, and translate cleanly to development. Every screen ships in light/dark mode, mobile/tablet/desktop, and edge-state variants.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">07</span><h2>Prototyping & Usability Testing</h2></div><div class="svc-prose reveal"><p>Interactive prototypes tested with 5–8 real users surface usability problems before development. Findings are documented, prioritised, and resolved in design — not after expensive engineering work.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">08</span><h2>Design System & Developer Handoff</h2></div><div class="svc-sec-intro-wrap reveal"><p class="svc-sec-intro">Component libraries, design tokens, spacing systems, and Figma developer mode handoff — built so your engineers can ship faster and future design work compounds rather than starting from scratch.</p></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>What We Design</h3><p>End to End</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>SaaS web applications</h3><p>dashboards, settings, onboarding, and complex workflows</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Mobile apps</h3><p>iOS and Android native and cross-platform interfaces</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>E-commerce experiences</h3><p>product pages, checkout flows, and account management</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Marketing websites and landing pages with conversion-optimised UX</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Internal tools and admin panels</h3><p>overlooked but business-critical</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Design systems and component libraries</h3><p>Figma + handoff documentation</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Accessibility audits and WCAG-compliant redesigns</p></div></div></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">09</span><h2>Design Principles We Apply Across Every Project</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Clarity beats cleverness</h3><p>users should never have to think about how to use the interface</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Defaults matter</h3><p>most users never change defaults, so design defaults that serve them</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Reduce cognitive load</h3><p>show what users need now, hide what they don't</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Respect attention</h3><p>no dark patterns, no manipulative design, no friction for friction's sake</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Design for failure states</h3><p>error messages, empty states, and loading are 50% of UX</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Accessibility from day one</h3><p>WCAG AA compliance is the floor, not a stretch goal</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Performance is design</h3><p>slow interfaces are bad design regardless of how they look</p></div></div></div></div></section><section class="svc-doc-sec alt industries"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">10</span><h2>Industries Whose Products We Have Designed</h2></div><div class="svc-ind-grid reveal"><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></div><span class="svc-ind-label">B2B SaaS and enterprise software</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></div><span class="svc-ind-label">Fintech, lending, and investment platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div><span class="svc-ind-label">Healthtech and clinical workflow tools</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><span class="svc-ind-label">E-commerce and D2C platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></div><span class="svc-ind-label">Edtech and learning platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg></div><span class="svc-ind-label">Real estate and proptech applications</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M4 21V8M20 21V8M4 8h16M8 8V4h8v4M10 14h4M10 18h4"/></svg></div><span class="svc-ind-label">Travel, hospitality, and booking platforms</span></div></div></div></section><section class="svc-doc-sec industries"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">11</span><h2>Industries Whose Products We Have Designed</h2></div><div class="svc-ind-grid reveal"><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></div><span class="svc-ind-label">B2B SaaS and enterprise software</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></div><span class="svc-ind-label">Fintech, lending, and investment platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div><span class="svc-ind-label">Healthtech and clinical workflow tools</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><span class="svc-ind-label">E-commerce and D2C platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></div><span class="svc-ind-label">Edtech and learning platforms</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg></div><span class="svc-ind-label">Real estate and proptech applications</span></div><div class="svc-ind-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M4 21V8M20 21V8M4 8h16M8 8V4h8v4M10 14h4M10 18h4"/></svg></div><span class="svc-ind-label">Travel, hospitality, and booking platforms</span></div></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">12</span><h2>Design Principles We Apply Across Every Project</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Clarity beats cleverness</h3><p>users should never have to think about how to use the interface</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Defaults matter</h3><p>most users never change defaults, so design defaults that serve them</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Reduce cognitive load</h3><p>show what users need now, hide what they don't</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Respect attention</h3><p>no dark patterns, no manipulative design, no friction for friction's sake</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Design for failure states</h3><p>error messages, empty states, and loading are 50% of UX</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Accessibility from day one</h3><p>WCAG AA compliance is the floor, not a stretch goal</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Performance is design</h3><p>slow interfaces are bad design regardless of how they look</p></div></div></div></div></section><section class="about-sec">
-  <div class="container svc-faq-wrap">
-    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>
-    <div class="faq-item"><div class="faq-q">Do you only design or also handle development?</div><div class="faq-a">We are primarily a design agency, but we partner closely with development teams (in-house at clients, our engineering partners, or independent shops). For end-to-end product builds, we provide handoff-ready Figma files, design systems, and developer support throughout implementation.</div></div><div class="faq-item"><div class="faq-q">How long does a typical UI UX project take?</div><div class="faq-a">MVP design typically takes 4–6 weeks; full product redesigns 8–12 weeks; complex multi-product platforms 12–20 weeks. Timelines depend on scope, research depth, number of platforms, and stakeholder review cycles.</div></div><div class="faq-item"><div class="faq-q">Do you conduct actual user research or just design what we ask for?</div><div class="faq-a">Yes — research is foundational to everything we do. Without research, design becomes opinion-driven decoration. We conduct user interviews, usability testing, and behavioural analysis as part of every meaningful engagement.</div></div><div class="faq-item"><div class="faq-q">How do you price UI UX design projects?</div><div class="faq-a">Most projects are priced based on scope and complexity rather than hourly rates. MVP design starts around ₹2.5 lakhs; full product designs range ₹6–15 lakhs; ongoing design retainers from ₹1.5 lakhs per month. We provide fixed-scope quotes after a discovery call.</div></div><div class="faq-item"><div class="faq-q">Can you work with our existing design system or do we need a new one?</div><div class="faq-a">Both. We can extend and improve your existing design system, or build a new one from the ground up if your current system is fragmented or outdated. Building on existing systems is usually faster and preserves visual continuity.</div></div>
+
+<!-- MARQUEE -->
+<section class="smm-marquee" aria-hidden="true">
+  <div class="smm-marquee-track">
+    <span class="smm-marquee-item">User research <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Wireframes <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Hi-fi UI <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Prototypes <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Design systems <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Accessibility <span class="dot">●</span></span>
+    <span class="smm-marquee-item">User research <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Wireframes <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Hi-fi UI <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Prototypes <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Design systems <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Accessibility <span class="dot">●</span></span>
   </div>
 </section>
-<section class="about-cta">
-  <div class="container reveal">
-    <h2>Ready to grow your <span>brand?</span></h2>
-    <p>Book a free consultation and get a custom proposal within 48 hours.</p>
-    <a class="btn" href="contact-us.html">Start Your Project</a>
+
+<!-- STATS -->
+<section class="smm-stats">
+  <div class="container">
+    <div class="smm-stats-grid">
+      <div class="smm-stat"><div class="num">100<em>+</em></div><div class="lbl">Products shipped</div></div>
+      <div class="smm-stat"><div class="num">4.9<em>★</em></div><div class="lbl">Google rating · 600+ reviews</div></div>
+      <div class="smm-stat"><div class="num">50<em>+</em></div><div class="lbl">Design systems built</div></div>
+      <div class="smm-stat"><div class="num">6<em>+</em></div><div class="lbl">Years of active work</div></div>
+    </div>
   </div>
 </section>
+
+<!-- TRUST BAND (E-E-A-T) -->
+<section class="smm-trust">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">E · E · A · T Trust Signals</span>
+      <h2>How we earn <em>your confidence</em></h2>
+      <p>Four signals that show how we demonstrate Experience, Expertise, Authoritativeness and Trustworthiness on this service — visible to both your team and the search engines that rank us.</p>
+    </div>
+    <div class="smm-trust-grid">
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
+        <span class="tag">Experience</span>
+        <h3>100+ products shipped</h3>
+        <p>Live SaaS platforms, mobile apps and e-commerce experiences designed end-to-end across consumer and B2B — across India, the GCC, the UK and the US.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="tag">Expertise</span>
+        <h3>Research-led design process</h3>
+        <p>Every project starts with user interviews, journey maps and competitor teardowns — never blank-canvas guessing. Decisions are evidence-led, not opinion-led.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span>
+        <span class="tag">Authoritativeness</span>
+        <h3>Design system specialists</h3>
+        <p>We build token-driven Figma libraries that compound efficiency across roadmaps — 50+ design systems shipped for product teams that need to scale design without scaling headcount.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h4M8 17h6"/></svg></span>
+        <span class="tag">Trustworthiness</span>
+        <h3>Usability-validated designs</h3>
+        <p>Prototypes are tested with real users before development — preventing expensive redesigns post-launch. We ship designs that hold up in production, not just in dribbble shots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO QUOTE -->
+<section class="smm-intro">
+  <div class="container">
+    <div class="smm-intro-quote">
+      <span class="qmark">“</span>
+      <p>Every dollar spent on UX returns roughly 100 dollars in measurable business outcomes — fewer support tickets, higher conversion, better retention, and reduced engineering rework. The reason is simple: <em style="color:#22c55e;font-style:italic">users do not want to learn your product, they want to use it.</em></p>
+      <div class="meta">
+        <p>Most product teams underestimate the compounding cost of poor UX — every confused user is a support ticket, a refund request, or a churned customer. Investing in research-led design upfront prevents months of expensive remediation later.</p>
+        <p>As a UI/UX design agency in Mumbai, we work with founders, product managers, and design leaders to ship interfaces that are not just visually polished but functionally clear. From first wireframe to production-ready Figma handoff, our process is built around what real users actually do — not what stakeholders assume they will do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="smm-process" id="process">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">How we work</span>
+      <h2>From <em>user research</em> to design-system handoff — one continuous loop.</h2>
+      <p>Five disciplines we run in lockstep so every screen is grounded in evidence and ships ready to build.</p>
+    </div>
+    <div class="smm-process-list">
+      <div class="smm-process-row">
+        <span class="smm-process-num">01</span>
+        <div class="smm-process-body">
+          <h3>Discovery &amp; user research</h3>
+          <p>User interviews, contextual inquiry, stakeholder workshops and competitor teardowns. We focus on understanding the actual jobs users are trying to do and where current solutions fail them — before a single pixel is drawn.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">02</span>
+        <div class="smm-process-body">
+          <h3>Information architecture &amp; user flows</h3>
+          <p>Card sorting, sitemap definition and end-to-end user flow diagrams. Most usability problems are architecture problems in disguise — we fix them at the structural layer first.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">03</span>
+        <div class="smm-process-body">
+          <h3>Wireframing &amp; low-fi prototyping</h3>
+          <p>Greyscale wireframes test layout, content hierarchy and core flows quickly. We iterate fast at this stage when changes are cheap — never at high-fidelity when changes cost days of design time.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">04</span>
+        <div class="smm-process-body">
+          <h3>High-fidelity UI design</h3>
+          <p>Pixel-perfect Figma designs aligned to your brand — balancing accessibility, clarity and delight. Every screen ships in light/dark mode, mobile/tablet/desktop and edge-state variants.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">05</span>
+        <div class="smm-process-body">
+          <h3>Design system &amp; developer handoff</h3>
+          <p>Component libraries, design tokens, spacing systems and Figma dev-mode handoff — built so your engineers ship faster and future design work compounds rather than restarts.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS / DISCIPLINES -->
+<section class="smm-platforms">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">What we design</span>
+      <h2>Six product surfaces. <em>One design language.</em></h2>
+      <p>From early-stage MVPs to mature platforms scaling past product-market fit. The six disciplines below are the bulk of what our studio ships every quarter.</p>
+    </div>
+    <div class="smm-platforms-grid">
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">SaaS</span>
+        <h3>SaaS web applications</h3>
+        <p>Dashboards, settings, onboarding flows and complex multi-role workflows — designed for clarity at scale, not screenshot-friendly demos.</p>
+        <div class="tags"><span>Dashboards</span><span>Onboarding</span><span>Multi-role</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/apple" alt="Mobile" loading="lazy"></span>
+        <h3>Mobile apps</h3>
+        <p>iOS and Android native and cross-platform interfaces — gesture-first, performance-aware, and tested on real devices, not just simulators.</p>
+        <div class="tags"><span>iOS</span><span>Android</span><span>Cross-platform</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/shopify" alt="E-commerce" loading="lazy"></span>
+        <h3>E-commerce experiences</h3>
+        <p>Product pages, checkout flows and account management — CRO-aware UX that lifts conversion without resorting to dark patterns.</p>
+        <div class="tags"><span>PDP</span><span>Checkout</span><span>Account</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">Web</span>
+        <h3>Marketing sites &amp; landing pages</h3>
+        <p>Conversion-optimised UX for top-of-funnel pages — narrative-led, fast-loading, and instrumented for honest A/B testing.</p>
+        <div class="tags"><span>Landing</span><span>Narrative</span><span>CRO</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/notion" alt="Internal" loading="lazy"></span>
+        <h3>Internal tools &amp; admin panels</h3>
+        <p>Overlooked but business-critical — ops dashboards, CMS surfaces and admin consoles your team actually wants to use.</p>
+        <div class="tags"><span>Admin</span><span>Ops</span><span>CMS</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/figma" alt="Figma" loading="lazy"></span>
+        <h3>Design systems</h3>
+        <p>Token-driven Figma libraries with component variants, auto-layout and dev-mode docs — the engine behind every product we ship.</p>
+        <div class="tags"><span>Tokens</span><span>Variants</span><span>Docs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS / DELIVERABLES -->
+<section class="smm-formats">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Deliverables</span>
+      <h2>Six craft surfaces that <em>make designs ship</em>.</h2>
+      <p>The artefacts behind every engagement — the things engineers, PMs and stakeholders actually consume after the workshops are over.</p>
+    </div>
+    <div class="smm-formats-grid">
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+        <h3>User research</h3>
+        <p>Interviews, surveys, journey maps and competitor teardowns — synthesised into insight decks your whole team can act on.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h4M8 17h6"/></svg></span>
+        <h3>Wireframes</h3>
+        <p>Greyscale low-fi flows that pressure-test structure and content hierarchy before any pixel-level work begins.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 17l-5-5-7 7"/></svg></span>
+        <h3>Hi-fi UI</h3>
+        <p>Pixel-perfect Figma screens — light/dark, responsive, with empty, loading and error states designed not bolted on.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M9 4l-5 8 5 8M15 4l5 8-5 8"/></svg></span>
+        <h3>Prototypes</h3>
+        <p>Interactive Figma prototypes for usability testing, stakeholder demos and clear engineering reference — clickable, not theoretical.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></span>
+        <h3>Design tokens</h3>
+        <p>Colour, spacing, type, elevation and motion tokens — single source of truth that syncs between Figma and your codebase.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>Accessibility audits</h3>
+        <p>WCAG 2.2 AA audits with contrast, focus order, keyboard nav and screen-reader fixes — accessibility shipped, not promised.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEASURE / KPIs -->
+<section class="smm-measure">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Measurement</span>
+      <h2>Design is the input. <em>User outcomes are the output.</em></h2>
+      <p>Six KPIs we report on so design always ladders back to product and business outcomes — not subjective taste.</p>
+    </div>
+    <div class="smm-measure-grid">
+      <div class="smm-mcard"><span class="mc-num">01</span><div><h3>Task completion rate</h3><p>% of users who finish a defined task without help — the single clearest signal of UX clarity.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">02</span><div><h3>Time on task</h3><p>Median time to complete a flow — measured before and after redesign so improvement is provable.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">03</span><div><h3>Error rate</h3><p>Wrong taps, abandoned forms and rage-clicks — surfaced via session replay and lab studies.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">04</span><div><h3>SUS score</h3><p>System Usability Scale benchmarked pre- and post-launch — an industry-standard score, not vibe-based feedback.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">05</span><div><h3>Conversion lift</h3><p>Sign-ups, activations and checkout completion — A/B tested where data volume allows, before/after where it doesn't.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">06</span><div><h3>Support ticket reduction</h3><p>Volume of how-do-I tickets after launch — the cheapest, most underrated UX metric a product team can track.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="smm-industries">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Industries</span>
+      <h2>Where we've shipped <em>products users love</em>.</h2>
+      <p>Categories we've designed enough products in to know what users expect, what regulators require and what the org chart usually breaks on.</p>
+    </div>
+    <div class="smm-ind-grid">
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span><span>B2B SaaS &amp; enterprise</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></span><span>Fintech &amp; investing</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></span><span>Healthtech &amp; clinical</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></span><span>E-commerce &amp; D2C</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></span><span>Edtech &amp; learning</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg></span><span>Real estate &amp; proptech</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M4 21V8M20 21V8M4 8h16M8 8V4h8v4M10 14h4M10 18h4"/></svg></span><span>Travel &amp; hospitality</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span>Marketplaces &amp; logistics</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="smm-why">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Why teams stay with us</span>
+      <h2>What you get that <em>most design studios skip</em>.</h2>
+      <p>Picking the right UX partner is less about portfolio polish and more about whether the team ships research-grounded design, honest reviews and systems engineers actually want to use.</p>
+    </div>
+    <div class="smm-why-grid">
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Research-led — every project starts with users, not stakeholder opinion.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Figma-native team — auto-layout, variants and dev-mode, not flat mockups.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Design system specialists — 50+ token-driven libraries shipped to production.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>WCAG AA as the baseline — accessibility is the floor, not a stretch goal.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Empty, loading and error states designed — not bolted on by engineers later.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Usability tested with real users before development — not after launch.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Dev-ready handoff — annotated, inspectable, with engineering office hours.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>No dark patterns, no manipulative UX — clarity beats cleverness, always.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="smm-faq">
+  <div class="container">
+    <div class="smm-section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="kicker" style="justify-content:center">FAQs</span>
+      <h2 style="text-align:center">Questions teams ask <em>before they sign</em>.</h2>
+    </div>
+    <div class="smm-faq-list">
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Do you only design or also handle development?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">We are primarily a design agency, but we partner closely with development teams (in-house at clients, our engineering partners, or independent shops). For end-to-end product builds, we provide handoff-ready Figma files, design systems, and developer support throughout implementation.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">How long does a typical UI UX project take?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">MVP design typically takes 4–6 weeks; full product redesigns 8–12 weeks; complex multi-product platforms 12–20 weeks. Timelines depend on scope, research depth, number of platforms, and stakeholder review cycles.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Do you conduct actual user research or just design what we ask for?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Yes — research is foundational to everything we do. Without research, design becomes opinion-driven decoration. We conduct user interviews, usability testing, and behavioural analysis as part of every meaningful engagement.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">How do you price UI UX design projects?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Most projects are priced based on scope and complexity rather than hourly rates. MVP design starts around ₹2.5 lakhs; full product designs range ₹6–15 lakhs; ongoing design retainers from ₹1.5 lakhs per month. We provide fixed-scope quotes after a discovery call.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Can you work with our existing design system or do we need a new one?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Both. We can extend and improve your existing design system, or build a new one from the ground up if your current system is fragmented or outdated. Building on existing systems is usually faster and preserves visual continuity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="smm-cta">
+  <div class="container">
+    <h2>Ready to ship a product <em>users actually love</em>?</h2>
+    <p>Book a free 30-minute consult — we'll audit your current product UX and send a custom proposal within 48 hours.</p>
+    <div class="actions">
+      <a class="smm-btn-primary" href="contact-us.html">Start your project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="smm-btn-ghost" href="case-study.html">See case studies</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.smm-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){q.parentElement.classList.toggle('open')});
+  });
+  var first=document.querySelector('.smm-faq-item');if(first)first.classList.add('open');
+})();
+</script>
 
 </main>
 <footer class="site-footer" role="contentinfo">

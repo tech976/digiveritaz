@@ -44,7 +44,7 @@
 <link rel="preconnect" href="https://digiveritaz.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1777900220">
 
 <!-- Organization + Website schema -->
@@ -79,36 +79,405 @@
   </div>
 </header>
 
-<main id="main" role="main">
-<section class="about-hero svc-hero">
+<main id="main" role="main" class="smm">
+<!-- HERO -->
+<section class="smm-hero">
   <span class="hero-orb-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
   <span class="hero-orb-2" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 4 C 48 6 56 18 56 30 C 56 44 46 56 30 56 C 14 56 4 44 4 30 C 4 18 12 6 30 4 Z"/></svg></span>
   <span class="hero-orb-3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 10 4 14c0 5 4 8 8 8s8-3 8-8c0-4-4-8-8-12z"/></svg></span>
   <span class="hero-orb-4" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg></span>
   <div class="container">
-    <div class="breadcrumb">Home / Services / E-Commerce Development</div>
-    <h1>E-Commerce Development Agency in India That Builds Stores Built to Convert and Scale</h1>
-    <p class="hero-subtitle">E-Commerce Development</p>
-    <p class="lead">An e-commerce store that works technically is not the same as a store that converts. DV Digital builds e-commerce stores with conversion as the primary design objective — combining fast load times, intuitive navigation, mobile-optimised checkout, and trust-building design elements that make shoppers confident enough to complete a purchase.</p>
-    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>
+    <div>
+      <span class="smm-eyebrow"><span class="dot"></span>E-Commerce Dev · Mumbai</span>
+      <h1>E-commerce builds engineered for <em>conversion AND margin</em>.</h1>
+      <p class="lead">Launching a Shopify theme is easy. Shipping a storefront that loads in two seconds, converts mobile-first traffic, integrates the payment-and-logistics stack and survives a sale-day spike is the actual job. We build, migrate and optimise stores on Shopify, Shopify Plus, Magento, WooCommerce and headless — chosen for your catalogue and growth plan, not our familiarity.</p>
+      <div class="smm-hero-cta">
+        <a class="smm-btn-primary" href="contact-us.html">Start your project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="smm-btn-ghost" href="#process">See how we work</a>
+      </div>
+      <div class="smm-hero-trust">
+        <span><span class="star">★ 4.9</span> · 600+ Google reviews</span>
+        <span class="sep"></span>
+        <span>Shopify Partner</span>
+        <span class="sep"></span>
+        <span>200+ stores shipped</span>
+      </div>
+    </div>
+    <div class="smm-feed" aria-hidden="true">
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">S+</span>
+          <div><div class="fc-name">Shopify Plus · D2C storefront</div><div class="fc-meta">Headless theme · Hydrogen · India</div></div>
+          <span class="fc-platform">Live</span>
+        </div>
+        <p class="fc-body"><strong>1.9s</strong> mobile LCP<br>4,200 SKUs · multi-currency · UPI + Razorpay + Cashfree<br>Shiprocket + Delhivery sync · GST invoicing</p>
+        <div class="fc-stats"><span><strong>+38%</strong> CVR</span><span><strong>+22%</strong> AOV</span><span><strong>0</strong> overselling</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">Mg</span>
+          <div><div class="fc-name">Magento → Shopify migration</div><div class="fc-meta">14,000 SKUs · 60k customers · 12-week ship</div></div>
+          <span class="fc-platform">Shipped</span>
+        </div>
+        <p class="fc-body">Catalogue, customer history, order data and 301 redirects migrated cleanly. SEO traffic recovered to pre-migration baseline inside 28 days.</p>
+        <div class="fc-stats"><span><strong>100%</strong> data parity</span><span><strong>0</strong> SEO loss</span><span><strong>+41%</strong> page speed</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">Co</span>
+          <div><div class="fc-name">Checkout optimisation</div><div class="fc-meta">One-page checkout · UPI default · address autofill</div></div>
+          <span class="fc-platform">CRO</span>
+        </div>
+        <p class="fc-body">Guest checkout, three-field forms, COD fraud gate and abandonment recovery automated across email + WhatsApp + browser push.</p>
+        <div class="fc-stats"><span><strong>-31%</strong> abandon</span><span><strong>+18%</strong> repeat</span><span><strong>+₹62L</strong> GMV/qtr</span></div>
+      </div>
+    </div>
   </div>
 </section>
-<section class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track"><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span></div>
-</section>
-<section class="svc-stats-strip"><div class="container"><div class="svc-stats-grid"><div class="svc-stat reveal"><div class="svc-stat-num">80+</div><div class="svc-stat-lbl">Brands trust us</div></div><div class="svc-stat reveal delay-1"><div class="svc-stat-num">120+</div><div class="svc-stat-lbl">Page-1 keyword rankings</div></div><div class="svc-stat reveal delay-2"><div class="svc-stat-num">4.9★</div><div class="svc-stat-lbl">Google rating (600+ reviews)</div></div><div class="svc-stat reveal delay-3"><div class="svc-stat-num">6+</div><div class="svc-stat-lbl">Years in active client work</div></div></div></div></section><section class="eeat-section"><div class="container"><div class="sec-head reveal"><span class="kicker">E-E-A-T Trust Signals</span><h2>How We Earn <span class="green_text">Your Confidence</span></h2><p>The four signals below show how we demonstrate Experience, Expertise, Authoritativeness, and Trustworthiness on this service — visible to both users and search engines.</p></div><div class="eeat-grid"><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">★</span><span class="eeat-tag">Experience</span><h3 class="eeat-signal">Multi-Platform E-Commerce Experience</h3><p class="eeat-evidence">Shopify, WooCommerce, Magento, and custom e-commerce builds for fashion, electronics, FMCG, and lifestyle brands across India.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✓</span><span class="eeat-tag">Expertise</span><h3 class="eeat-signal">Conversion-First Development</h3><p class="eeat-evidence">Every e-commerce build is optimised for checkout completion — fast load times, streamlined cart flow, and mobile-first design.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">◆</span><span class="eeat-tag">Authoritativeness</span><h3 class="eeat-signal">Payment and Logistics Integration</h3><p class="eeat-evidence">Razorpay, Paytm, UPI, Shiprocket, Delhivery, and Unicommerce integrations handled as part of standard e-commerce builds.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✔</span><span class="eeat-tag">Trustworthiness</span><h3 class="eeat-signal">Post-Launch Performance Monitoring</h3><p class="eeat-evidence">30-day post-launch monitoring period included — tracking conversion rate, page speed, and checkout funnel performance.</p></div></div></div></section><section class="svc-quote-sec"><div class="container"><div class="svc-quote-card reveal"><svg class="svc-quote-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 8c-3 0-5 2-5 6v10h8V14H8c0-3 1-4 3-4zM23 8c-3 0-5 2-5 6v10h8V14h-4c0-3 1-4 3-4z"/></svg><p class="svc-quote-text">Building an e-commerce store today is technically easy — Shopify, WooCommerce, and dozens of platforms let almost anyone launch a store in days. Building an e-commerce store that converts at competitive rates, scales past initial traction, and operates without constant operational firefighting is much harder. Most stores we audit have technical, conversion, and operational issues that quietly cap revenue at multiples below what the brand could be doing.</p><p>As an e-commerce development company in India, DV Digital builds and rebuilds e-commerce stores engineered for revenue rather than just functionality. We work across Shopify, Shopify Plus, WooCommerce, Magento, and headless commerce architectures — and we choose the right platform for the actual brand requirements rather than defaulting to whatever's familiar.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">02</span><h2>E-Commerce Platforms We Build On</h2></div><div class="svc-prose reveal"></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">03</span><h2>Shopify & Shopify Plus</h2></div><div class="svc-prose reveal"><p>Best-in-class for most D2C brands and growing e-commerce businesses. Shopify Plus for enterprise scale with high SKU counts, multi-region operations, or B2B+D2C hybrid models.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">04</span><h2>WooCommerce</h2></div><div class="svc-prose reveal"><p>Strong choice for brands with existing WordPress investments, content-heavy commerce, or specific customisation needs. Lower platform costs but higher operational responsibility.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">05</span><h2>Magento (Adobe Commerce)</h2></div><div class="svc-prose reveal"><p>Enterprise-grade platform for complex catalogues, B2B commerce, and brands with sophisticated personalisation or workflow requirements.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">06</span><h2>Headless Commerce Architectures</h2></div><div class="svc-prose reveal"><p>Decoupled commerce backends (Shopify, BigCommerce, commercetools) with custom React or Next.js frontends for brands prioritising performance and design flexibility.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">07</span><h2>Custom E-Commerce Builds</h2></div><div class="svc-prose reveal"><p>For unique business models — subscription commerce, marketplace platforms, or specialised vertical commerce — custom builds when off-the-shelf platforms don't fit.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">08</span><h2>What Drives E-Commerce Conversion</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Sub-3-second mobile load times</h3><p>every additional second drops conversion 7-10%</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Strong product page architecture</h3><p>image, description, social proof, pricing, and CTA hierarchy</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Streamlined checkout flow</h3><p>minimum fields, guest checkout, multiple payment options</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Trust signals</h3><p>reviews, ratings, security badges, return policy visibility</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Search and filtering that surface relevant products quickly</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Personalised recommendations driven by browsing and purchase history</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Mobile-optimised user experience</h3><p>most Indian e-commerce traffic is mobile</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Cart abandonment recovery via email and browser push notifications</p></div></div></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">09</span><h2>E-Commerce Capabilities We Implement</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Payment gateway integration</h3><p>Razorpay, Cashfree, Stripe, PayU</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Logistics integration</h3><p>Shiprocket, Delhivery, Blue Dart, custom 3PL APIs</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Inventory management and ERP integration</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Multi-region and multi-currency operations</p></div></div><div class="svc-feat-card reveal plain"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><p>Subscription and recurring revenue modules</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>B2B commerce features</h3><p>bulk pricing, quote management, account hierarchies</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Custom checkout flows</h3><p>one-page, multi-step, or PWA-based</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Tax compliance</h3><p>GST integration, HSN code management, e-invoice readiness</p></div></div></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">10</span><h2>Common E-Commerce Issues We Fix</h2></div><div class="svc-check-grid reveal"><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Slow product page load times dragging conversion and ad performance</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Complex checkout flows with high abandonment rates</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Weak product page templates that don't convert paid traffic</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Missing or broken structured data preventing rich snippet display in Google</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Mobile experience compromised by desktop-first design</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Poor search and filtering reducing product discovery</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Inventory and ERP sync issues causing overselling and stockouts</p></div><div class="svc-check-tile reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><p>Tracking gaps preventing accurate ROAS measurement across paid channels</p></div></div></div></section><section class="about-sec">
-  <div class="container svc-faq-wrap">
-    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>
-    <div class="faq-item"><div class="faq-q">Which e-commerce platforms do you build on?</div><div class="faq-a">Shopify, WooCommerce, Magento, and custom-built e-commerce platforms. Platform recommendations are based on your catalogue size, team capabilities, and growth plans.</div></div><div class="faq-item"><div class="faq-q">Do you migrate existing e-commerce stores to new platforms?</div><div class="faq-a">Yes. We manage full e-commerce migrations including product data, customer data, order history, and URL structure — minimising SEO impact during the transition.</div></div><div class="faq-item"><div class="faq-q">Should we build on Shopify or WooCommerce?</div><div class="faq-a">Shopify usually wins for most D2C brands — faster setup, better app ecosystem, less operational overhead, predictable platform costs. WooCommerce wins when you have existing WordPress investments, content-heavy commerce, or specific customisations Shopify doesn't support. We recommend platform after understanding your actual situation, not from agency familiarity.</div></div><div class="faq-item"><div class="faq-q">Can you migrate our existing e-commerce store to a new platform?</div><div class="faq-a">Yes — migrations across platforms (Magento to Shopify, WooCommerce to Shopify Plus, custom to headless) are a regular service. We handle catalogue migration, customer data transfer, order history preservation, URL redirects for SEO continuity, and integration reconnection. Migrations typically take 8-16 weeks depending on catalogue size and customisation.</div></div><div class="faq-item"><div class="faq-q">What does an e-commerce store cost to build?</div><div class="faq-a">Standard Shopify stores with 1-3 product collections: ₹3-8 lakhs. Mid-complexity stores with custom themes and integrations: ₹6-18 lakhs. Shopify Plus or Magento builds with extensive customisation: ₹15-50+ lakhs. Headless commerce builds with custom frontends: ₹25 lakhs to over a crore. Ongoing maintenance retainers from ₹25,000-2 lakhs per month.</div></div>
+
+<!-- MARQUEE -->
+<section class="smm-marquee" aria-hidden="true">
+  <div class="smm-marquee-track">
+    <span class="smm-marquee-item">Shopify Plus <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Magento <span class="dot">●</span></span>
+    <span class="smm-marquee-item">WooCommerce <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Headless <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Checkout CRO <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Migrations <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Shopify Plus <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Magento <span class="dot">●</span></span>
+    <span class="smm-marquee-item">WooCommerce <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Headless <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Checkout CRO <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Migrations <span class="dot">●</span></span>
   </div>
 </section>
-<section class="about-cta">
-  <div class="container reveal">
-    <h2>Ready to grow your <span>brand?</span></h2>
-    <p>Book a free consultation and get a custom proposal within 48 hours.</p>
-    <a class="btn" href="contact-us.html">Start Your Project</a>
+
+<!-- STATS -->
+<section class="smm-stats">
+  <div class="container">
+    <div class="smm-stats-grid">
+      <div class="smm-stat"><div class="num">200<em>+</em></div><div class="lbl">Stores shipped</div></div>
+      <div class="smm-stat"><div class="num">4.9<em>★</em></div><div class="lbl">Google rating (600+ reviews)</div></div>
+      <div class="smm-stat"><div class="num">500<em>Cr+</em></div><div class="lbl">GMV powered (₹)</div></div>
+      <div class="smm-stat"><div class="num">6<em>+</em></div><div class="lbl">Years of active work</div></div>
+    </div>
   </div>
 </section>
+
+<!-- TRUST BAND (E-E-A-T) -->
+<section class="smm-trust">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">E · E · A · T Trust Signals</span>
+      <h2>How we earn <em>your confidence</em></h2>
+      <p>Four signals that show how we demonstrate Experience, Expertise, Authoritativeness and Trustworthiness on this service — visible to both your team and the search engines that rank us.</p>
+    </div>
+    <div class="smm-trust-grid">
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
+        <span class="tag">Experience</span>
+        <h3>Shopify Partner agency</h3>
+        <p>Listed Shopify Partner with shipped Shopify, Shopify Plus and Hydrogen builds — credential earned through delivery, not a self-claim.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="tag">Expertise</span>
+        <h3>Magento (Adobe Commerce) certified</h3>
+        <p>Certified Magento / Adobe Commerce developers in-house for complex catalogues, B2B and personalisation-heavy workloads.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span>
+        <span class="tag">Authoritativeness</span>
+        <h3>Headless commerce fluent</h3>
+        <p>Hydrogen, Next.js, BigCommerce and commercetools storefronts shipped — decoupled architectures that beat platform-theme speed ceilings.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h4M8 17h6"/></svg></span>
+        <span class="tag">Trustworthiness</span>
+        <h3>Checkout-optimised by default</h3>
+        <p>Every build leaves us with mobile LCP under 2.5s, guest checkout, UPI default and abandonment recovery already wired — not as a v2.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO QUOTE -->
+<section class="smm-intro">
+  <div class="container">
+    <div class="smm-intro-quote">
+      <span class="qmark">“</span>
+      <p>We've migrated Magento accounts to Shopify Plus without losing a single SEO ranking, rebuilt headless storefronts that doubled mobile conversion, and ungummed checkouts that were quietly leaking <em style="color:#22c55e;font-style:italic">30–40% of buy-intent traffic</em> at the payment step.</p>
+      <div class="meta">
+        <p>An e-commerce store that works technically is not the same as a store that converts. Most stores we audit have technical, conversion and operational issues that quietly cap revenue at multiples below what the brand could be doing — slow PDPs, fat checkouts, broken structured data, inventory drift, mobile-second design.</p>
+        <p>We choose the right platform for the actual brand situation rather than defaulting to whatever's familiar. Shopify, Shopify Plus, Magento / Adobe Commerce, WooCommerce, headless or fully custom — the platform is a means to revenue, never the strategy itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="smm-process" id="process">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">How we work</span>
+      <h2>From <em>commerce audit</em> to launch — and the optimisation that comes after.</h2>
+      <p>Five disciplines we run in lockstep so the store you launch is the store you can scale on day 31, day 91 and day 365.</p>
+    </div>
+    <div class="smm-process-list">
+      <div class="smm-process-row">
+        <span class="smm-process-num">01</span>
+        <div class="smm-process-body">
+          <h3>Commerce audit &amp; platform selection</h3>
+          <p>We audit current catalogue, traffic, stack and ops — then recommend Shopify, Shopify Plus, Magento, WooCommerce, headless or custom based on what the business actually needs, not what's quickest to quote.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">02</span>
+        <div class="smm-process-body">
+          <h3>IA, PDP &amp; checkout design</h3>
+          <p>Information architecture, product page templates and checkout flow designed for conversion first — mobile-first, three-field forms, guest checkout, UPI default, trust signals where they actually matter.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">03</span>
+        <div class="smm-process-body">
+          <h3>Build &amp; theme engineering</h3>
+          <p>Production build on the chosen stack — clean Liquid / PHP / Hydrogen, performance budget enforced, accessibility patterns baked in, no app-bloat shortcuts that come back to bite at scale.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">04</span>
+        <div class="smm-process-body">
+          <h3>Integration &amp; QA</h3>
+          <p>Razorpay / Cashfree / Stripe, Shiprocket / Delhivery, GST + e-invoice, ERP/WMS sync, Klaviyo / WhatsApp / Meta Pixel / GA4 / GTM — wired, tested and reconciled before launch.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">05</span>
+        <div class="smm-process-body">
+          <h3>Launch &amp; post-launch optimisation</h3>
+          <p>30-day post-launch monitoring on speed, checkout funnel, error budget and revenue — then a CRO + speed retainer that keeps shaving abandonment and shaving LCP every month.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="smm-platforms">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Platforms we build on</span>
+      <h2>Six platforms. <em>One platform-agnostic recommendation.</em></h2>
+      <p>We're certified on the major commerce stacks so the platform conversation is about your catalogue and roadmap — not which one our team happens to know.</p>
+    </div>
+    <div class="smm-platforms-grid">
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/shopify" alt="Shopify" loading="lazy"></span>
+        <h3>Shopify</h3>
+        <p>Best-in-class for most D2C brands — fastest to ship, predictable platform cost, deepest app ecosystem, lowest operational overhead in the Indian market.</p>
+        <div class="tags"><span>D2C</span><span>Liquid themes</span><span>App ecosystem</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">S+</span>
+        <h3>Shopify Plus</h3>
+        <p>Enterprise Shopify for high-SKU operations, multi-region rollouts, B2B+D2C hybrids and brands needing Shopify Functions, scripts and Hydrogen access.</p>
+        <div class="tags"><span>Enterprise</span><span>Multi-region</span><span>B2B + D2C</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/magento" alt="Magento" loading="lazy"></span>
+        <h3>Magento / Adobe Commerce</h3>
+        <p>Enterprise-grade for complex catalogues, B2B pricing rules, segmentation-heavy personalisation and workflows that genuinely outgrow Shopify Plus.</p>
+        <div class="tags"><span>B2B</span><span>Personalisation</span><span>Workflows</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/woocommerce" alt="WooCommerce" loading="lazy"></span>
+        <h3>WooCommerce</h3>
+        <p>Right pick when WordPress is already your content engine — content-heavy commerce, blog-led traffic, niche customisations Shopify won't allow.</p>
+        <div class="tags"><span>WordPress</span><span>Content-led</span><span>Custom plugins</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">Hd</span>
+        <h3>Headless commerce</h3>
+        <p>Decoupled stacks — Shopify + Hydrogen, BigCommerce, commercetools — with Next.js / React frontends for brands that need design freedom and edge-speed.</p>
+        <div class="tags"><span>Hydrogen</span><span>Next.js</span><span>Edge</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo"><img src="https://cdn.simpleicons.org/nextdotjs" alt="Custom" loading="lazy"></span>
+        <h3>Custom commerce</h3>
+        <p>Subscription commerce, marketplace platforms or specialised vertical commerce where no off-the-shelf platform fits the business model cleanly.</p>
+        <div class="tags"><span>Subscription</span><span>Marketplace</span><span>Vertical</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="smm-formats">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Commerce formats</span>
+      <h2>Six commerce formats <em>we ship cleanly</em>.</h2>
+      <p>Different commerce models need different storefront patterns, integrations and checkout logic. We ship the format your business actually is — not a generic D2C theme retrofitted to a B2B catalogue.</p>
+    </div>
+    <div class="smm-formats-grid">
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M3 7h18l-2 12H5z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></span>
+        <h3>D2C storefronts</h3>
+        <p>Brand-led storefronts with editorial PDPs, subscription options, loyalty hooks and the checkout discipline Indian D2C actually needs.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h4"/></svg></span>
+        <h3>B2B catalogues</h3>
+        <p>Account hierarchies, quote-to-order, tiered pricing, NET-30 invoicing and approval workflows — B2B logic without forcing it on a D2C theme.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
+        <h3>Marketplaces</h3>
+        <p>Multi-vendor commerce — vendor onboarding, split payouts, commission engines, dispute workflows and SLA reporting baked in from day one.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg></span>
+        <h3>Headless commerce</h3>
+        <p>Hydrogen, Next.js or Remix frontends powered by Shopify, BigCommerce or commercetools — for storefronts that need bespoke UX and sub-2s LCP.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
+        <h3>Mobile commerce</h3>
+        <p>Mobile-first storefronts and PWA experiences — UPI-default checkout, address autofill, OTP login, and offline-ready cart for India's mobile-led traffic.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+        <h3>Omnichannel</h3>
+        <p>Online + offline stock unification, in-store pickup, ship-from-store and reservation flows — one inventory truth across web, app and retail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEASURE / KPIs -->
+<section class="smm-measure">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Measurement</span>
+      <h2>Six KPIs that <em>actually decide</em> if a store is working.</h2>
+      <p>We report against the same six numbers every month. Vanity dashboards skipped — these are the inputs and outputs that move GMV and contribution margin.</p>
+    </div>
+    <div class="smm-measure-grid">
+      <div class="smm-mcard"><span class="mc-num">01</span><div><h3>Page speed (LCP)</h3><p>Mobile LCP under 2.5s as a non-negotiable. Every additional second drops conversion 7–10% on Indian mobile networks.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">02</span><div><h3>Checkout conversion</h3><p>Add-to-cart to order-placed rate per device, per traffic source — the single highest-leverage number in any e-commerce P&amp;L.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">03</span><div><h3>Average order value</h3><p>AOV per traffic source and per collection — the bundling, recommendation and threshold-shipping levers that lift ROAS without raising bids.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">04</span><div><h3>Repeat purchase rate</h3><p>30/60/90-day repeat rate by acquisition cohort — the only honest signal of whether your store has product-market fit, not just paid traffic.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">05</span><div><h3>Cart abandonment recovery</h3><p>Revenue recovered via email, WhatsApp and browser push flows — typically 8–15% of otherwise-lost GMV with a clean retention stack.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">06</span><div><h3>GMV growth</h3><p>Month-on-month GMV with channel attribution — what the store is actually contributing to the business, not just sessions and bounce rate.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="smm-industries">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Industries</span>
+      <h2>Where we ship <em>e-commerce that converts</em>.</h2>
+      <p>Categories we've built enough storefronts in to know the buyer behaviour, the average margin, the unit-economics traps and what the checkout actually needs to look like.</p>
+    </div>
+    <div class="smm-ind-grid">
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M9 3l3 3 3-3 4 5-3 2v11H8V10L5 8z"/></svg></span><span>Fashion &amp; apparel</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2C8 5 6 8 6 12a6 6 0 0 0 12 0c0-4-2-7-6-10z"/></svg></span><span>Beauty &amp; personal care</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span>Electronics &amp; gadgets</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M5 11a7 7 0 0 1 14 0v3H5z"/><path d="M3 16h18M5 19h14"/></svg></span><span>Food &amp; beverage</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg></span><span>Home &amp; decor</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M20 12L12 4H4v8l8 8z"/><circle cx="9" cy="9" r="1.5"/></svg></span><span>Jewellery &amp; watches</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/><circle cx="12" cy="12" r="3"/></svg></span><span>Health &amp; wellness</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M4 17l4-7 4 4 4-6 4 9"/><path d="M3 21h18"/></svg></span><span>Footwear &amp; accessories</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="smm-why">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Why teams stay with us</span>
+      <h2>What you get that <em>most ecommerce agencies skip</em>.</h2>
+      <p>Picking an e-commerce build partner is less about a polished case-study deck and more about whether the team can ship a fast store, wire the integrations cleanly and own the post-launch number.</p>
+    </div>
+    <div class="smm-why-grid">
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Listed Shopify Partner — Shopify, Shopify Plus and Hydrogen builds shipped in-house.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Headless-fluent — Hydrogen, Next.js, BigCommerce and commercetools experience.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Checkout-optimised by default — UPI default, three-field forms, guest checkout, COD fraud gate.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Payment-stack savvy — Razorpay, Cashfree, Stripe, PayU and UPI intent flows wired correctly.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Logistics integrations done right — Shiprocket, Delhivery, Blue Dart and custom 3PL APIs.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Tax-compliant by design — GST, HSN, e-invoice and multi-state inventory rules baked in.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>SEO-safe migrations — 301 maps, schema parity and ranking continuity built into every replatform.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Post-launch retainer — 30-day monitoring then ongoing CRO + speed work, not a hand-off and exit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="smm-faq">
+  <div class="container">
+    <div class="smm-section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="kicker" style="justify-content:center">FAQs</span>
+      <h2 style="text-align:center">Questions teams ask <em>before they sign</em>.</h2>
+    </div>
+    <div class="smm-faq-list">
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Which e-commerce platforms do you build on?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Shopify, WooCommerce, Magento, and custom-built e-commerce platforms. Platform recommendations are based on your catalogue size, team capabilities, and growth plans.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Do you migrate existing e-commerce stores to new platforms?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Yes. We manage full e-commerce migrations including product data, customer data, order history, and URL structure — minimising SEO impact during the transition.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Should we build on Shopify or WooCommerce?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Shopify usually wins for most D2C brands — faster setup, better app ecosystem, less operational overhead, predictable platform costs. WooCommerce wins when you have existing WordPress investments, content-heavy commerce, or specific customisations Shopify doesn't support. We recommend platform after understanding your actual situation, not from agency familiarity.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Can you migrate our existing e-commerce store to a new platform?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Yes — migrations across platforms (Magento to Shopify, WooCommerce to Shopify Plus, custom to headless) are a regular service. We handle catalogue migration, customer data transfer, order history preservation, URL redirects for SEO continuity, and integration reconnection. Migrations typically take 8-16 weeks depending on catalogue size and customisation.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">What does an e-commerce store cost to build?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Standard Shopify stores with 1-3 product collections: ₹3-8 lakhs. Mid-complexity stores with custom themes and integrations: ₹6-18 lakhs. Shopify Plus or Magento builds with extensive customisation: ₹15-50+ lakhs. Headless commerce builds with custom frontends: ₹25 lakhs to over a crore. Ongoing maintenance retainers from ₹25,000-2 lakhs per month.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="smm-cta">
+  <div class="container">
+    <h2>Ready to ship a store that <em>converts AND scales</em>?</h2>
+    <p>Book a free 30-minute consult — we'll audit your current store (or plan a new one) and send a custom proposal within 48 hours.</p>
+    <div class="actions">
+      <a class="smm-btn-primary" href="contact-us.html">Start your project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="smm-btn-ghost" href="case-study.html">See case studies</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.smm-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){q.parentElement.classList.toggle('open')});
+  });
+  var first=document.querySelector('.smm-faq-item');if(first)first.classList.add('open');
+})();
+</script>
 
 </main>
 <footer class="site-footer" role="contentinfo">

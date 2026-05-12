@@ -44,7 +44,7 @@
 <link rel="preconnect" href="https://digiveritaz.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1777900220">
 
 <!-- Organization + Website schema -->
@@ -79,36 +79,401 @@
   </div>
 </header>
 
-<main id="main" role="main">
-<section class="about-hero svc-hero">
-  <span class="hero-orb-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
-  <span class="hero-orb-2" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 4 C 48 6 56 18 56 30 C 56 44 46 56 30 56 C 14 56 4 44 4 30 C 4 18 12 6 30 4 Z"/></svg></span>
-  <span class="hero-orb-3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 10 4 14c0 5 4 8 8 8s8-3 8-8c0-4-4-8-8-12z"/></svg></span>
-  <span class="hero-orb-4" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg></span>
+<main id="main" role="main" class="smm">
+<!-- HERO -->
+<section class="smm-hero">
   <div class="container">
-    <div class="breadcrumb">Home / Services / Product Design</div>
-    <h1>Product Design Agency in Mumbai That Partners With Founders to Build Products That Scale</h1>
-    <p class="hero-subtitle">Product Design</p>
-    <p class="lead">Most agencies still treat product design as the visual layer applied at the end of engineering. That model fails because every meaningful product decision — what to build, who it's for, how it monetises, what gets measured — is fundamentally a design decision. The most successful digital products in India and globally were designed by teams where product strategy and design were inseparable from day one.</p>
-    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>
+    <div>
+      <span class="smm-eyebrow"><span class="dot"></span>Product Design · Mumbai</span>
+      <h1>Product design that <em>ships, scales, and sells</em>.</h1>
+      <p class="lead">End-to-end product design — from problem framing and MVP scoping to scaled design systems. We pair strategy, design and engineering in one room so what gets shipped is what gets shipped to users, not a beautiful Figma frame that never makes it past the handoff.</p>
+      <div class="smm-hero-cta">
+        <a class="smm-btn-primary" href="contact-us.html">Start your project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="smm-btn-ghost" href="#process">See how we work</a>
+      </div>
+      <div class="smm-hero-trust">
+        <span><span class="star">★ 4.9</span> · 600+ Google reviews</span>
+        <span class="sep"></span>
+        <span>100+ products shipped</span>
+        <span class="sep"></span>
+        <span>25+ MVPs launched</span>
+      </div>
+    </div>
+    <div class="smm-feed" aria-hidden="true">
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">PR</span>
+          <div><div class="fc-name">Product roadmap snapshot</div><div class="fc-meta">Q2 · SaaS workspace</div></div>
+          <span class="fc-platform">On track</span>
+        </div>
+        <p class="fc-body"><strong>14 epics · 6 shipped</strong><br>Activation flow · Billing v2 · Workspace invites<br>NSM: weekly active workspaces ↑ 28%</p>
+        <div class="fc-stats"><span><strong>+28%</strong> WAU</span><span><strong>4.1d</strong> TTV</span><span><strong>72</strong> NPS</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">MVP</span>
+          <div><div class="fc-name">MVP sprint board</div><div class="fc-meta">Fintech · pre-seed</div></div>
+          <span class="fc-platform">Sprint 3</span>
+        </div>
+        <p class="fc-body">Onboarding, KYC, first-deposit, dashboard. Scoped down from 19 features to 7 — shipping in 9 weeks instead of 6 months.</p>
+        <div class="fc-stats"><span><strong>9 wks</strong> to launch</span><span><strong>7</strong> core features</span><span><strong>3</strong> rounds tested</span></div>
+      </div>
+      <div class="smm-feed-card">
+        <div class="fc-head">
+          <span class="fc-avatar">D+E</span>
+          <div><div class="fc-name">Design-eng handoff</div><div class="fc-meta">Figma → React · live</div></div>
+          <span class="fc-platform">0 friction</span>
+        </div>
+        <p class="fc-body">Tokens, components, states and motion specs paired with engineers daily. No "throw it over the wall" — pixel parity from PR one.</p>
+        <div class="fc-stats"><span><strong>98%</strong> pixel parity</span><span><strong>0</strong> redos</span><span><strong>1.4×</strong> ship speed</span></div>
+      </div>
+    </div>
   </div>
 </section>
-<section class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track"><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span><span class="marquee-item">Performance-First</span><span class="marquee-item">Data-Driven</span><span class="marquee-item">Results That Compound</span><span class="marquee-item">Human + AI</span><span class="marquee-item">ROI Over Vanity</span><span class="marquee-item">Transparent Dashboards</span><span class="marquee-item">15+ Years Experience</span></div>
-</section>
-<section class="svc-stats-strip"><div class="container"><div class="svc-stats-grid"><div class="svc-stat reveal"><div class="svc-stat-num">80+</div><div class="svc-stat-lbl">Brands trust us</div></div><div class="svc-stat reveal delay-1"><div class="svc-stat-num">120+</div><div class="svc-stat-lbl">Page-1 keyword rankings</div></div><div class="svc-stat reveal delay-2"><div class="svc-stat-num">4.9★</div><div class="svc-stat-lbl">Google rating (600+ reviews)</div></div><div class="svc-stat reveal delay-3"><div class="svc-stat-num">6+</div><div class="svc-stat-lbl">Years in active client work</div></div></div></div></section><section class="eeat-section"><div class="container"><div class="sec-head reveal"><span class="kicker">E-E-A-T Trust Signals</span><h2>How We Earn <span class="green_text">Your Confidence</span></h2><p>The four signals below show how we demonstrate Experience, Expertise, Authoritativeness, and Trustworthiness on this service — visible to both users and search engines.</p></div><div class="eeat-grid"><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">★</span><span class="eeat-tag">Experience</span><h3 class="eeat-signal">Founder-Led Engagements</h3><p class="eeat-evidence">Worked directly with 50+ startup founders from MVP to Series A — understanding the unique pressures of early-stage product.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✓</span><span class="eeat-tag">Expertise</span><h3 class="eeat-signal">Strategy + Design Together</h3><p class="eeat-evidence">We do not separate strategy from design — every product decision is grounded in user research, business model, and roadmap context.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">◆</span><span class="eeat-tag">Authoritativeness</span><h3 class="eeat-signal">Live Products at Scale</h3><p class="eeat-evidence">Products we have designed are actively used by millions of monthly users across consumer, B2B, and fintech.</p></div><div class="eeat-card reveal"><span class="eeat-marker" aria-hidden="true">✔</span><span class="eeat-tag">Trustworthiness</span><h3 class="eeat-signal">Outcome-Tied Engagements</h3><p class="eeat-evidence">We measure success in product KPIs — activation, retention, conversion — not deliverables shipped.</p></div></div></div></section><section class="svc-quote-sec"><div class="container"><div class="svc-quote-card reveal"><svg class="svc-quote-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 8c-3 0-5 2-5 6v10h8V14H8c0-3 1-4 3-4zM23 8c-3 0-5 2-5 6v10h8V14h-4c0-3 1-4 3-4z"/></svg><p class="svc-quote-text">DV Digital is a product design agency in Mumbai that operates as a strategic design partner to founders and product leaders. We design products end to end — from initial problem framing and user research through MVP scope to scaled design systems — with one goal: products that find product-market fit and scale beyond it.</p><p>For early-stage founders, the leverage of getting product design right is enormous. The right MVP scope and user experience can be the difference between Series A traction and a quiet pivot — and we have shipped both outcomes enough to know what separates them.</p><p>For early-stage founders, the leverage of getting product design right is enormous. The right MVP scope and user experience can be the difference between Series A traction and a quiet pivot — and we have shipped both outcomes enough to know what separates them.</p><p>As a product design agency in Mumbai, we operate as a strategic partner rather than a vendor. Founders get direct senior-designer access, honest pushback on direction when needed, and design decisions documented in ways that scale as your team grows post-funding.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">02</span><h2>Our End-to-End Product Design Service</h2></div><div class="svc-prose reveal"></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">03</span><h2>Product Strategy & Discovery</h2></div><div class="svc-prose reveal"><p>Founder workshops, user interviews, market analysis, and Jobs-To-Be-Done framing produce a clear answer to the only question that matters at this stage: what specifically should we build for whom and why?</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">04</span><h2>MVP Scoping & Definition</h2></div><div class="svc-prose reveal"><p>From discovery, we narrow to a minimum viable product scope — focused on the smallest set of features that delivers core value and lets you start learning from real users. Most MVPs are still over-scoped; we help you ship faster.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">05</span><h2>Design Sprint & Rapid Prototyping</h2></div><div class="svc-prose reveal"><p>When timelines are tight, we run focused design sprints — 5-day or 2-week intensives — that produce tested prototypes ready for engineering scope and investor demos.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">06</span><h2>Production Design & Engineering Handoff</h2></div><div class="svc-prose reveal"><p>Pixel-perfect, accessible Figma designs, design systems, and developer-ready handoff documentation. We work alongside your engineering team through implementation, not just toss designs over the wall.</p></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">07</span><h2>Post-Launch Iteration & Growth Design</h2></div><div class="svc-prose reveal"><p>Once your product is live, we help you turn user data into design improvements — onboarding optimisation, activation flows, retention experiments, and conversion-focused redesigns of high-leverage screens.</p></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">08</span><h2>Where Product Design Adds the Most Value</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pre-MVP</h3><p>defining what to build, who for, and why before engineering investment</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>MVP launch</h3><p>designing the minimum lovable product, not just the minimum viable</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Post-MVP iteration</h3><p>turning early user feedback into product decisions</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pre-funding</h3><p>investor-ready demos and storytelling around product vision</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Scaling stage</h3><p>design systems and team scalability as engineering grows</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pivots</h3><p>reframing product strategy when initial direction is not working</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Mature products</h3><p>modernising legacy interfaces and reducing accumulated UX debt</p></div></div></div></div></section><section class="svc-doc-sec industries"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">09</span><h2>Product Categories We Have Designed</h2></div><div class="svc-ind-feat-grid reveal"><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></div><div class="svc-ind-feat-content"><h3>B2B SaaS</h3><p>vertical and horizontal software for SMBs and enterprise</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><div class="svc-ind-feat-content"><h3>Consumer marketplaces and two-sided platforms</h3></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></div><div class="svc-ind-feat-content"><h3>Fintech</h3><p>lending, investing, banking, and payments products</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div><div class="svc-ind-feat-content"><h3>Healthtech</h3><p>patient-facing apps and clinical workflow tools</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></div><div class="svc-ind-feat-content"><h3>Edtech</h3><p>learning platforms, assessment tools, and content delivery</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M20 12L12 4H4v8l8 8z"/><circle cx="9" cy="9" r="1.5"/></svg></div><div class="svc-ind-feat-content"><h3>Productivity and collaboration tools</h3></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><div class="svc-ind-feat-content"><h3>E-commerce platforms and shopping experiences</h3></div></div></div></div></section><section class="svc-doc-sec alt"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">10</span><h2>What Founders Should Expect Working With Us</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Direct access to senior designers</h3><p>no hiding behind account managers</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Honest pushback on product direction when we see issues</h3><p>even when uncomfortable</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Tight feedback loops</h3><p>weekly check-ins, no silent two-week disappearances</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Documented design decisions</h3><p>so future hires understand the why behind the what</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Engineering-friendly design files</h3><p>so your developers can ship without friction</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Post-handoff support</h3><p>we stay involved through implementation, not just delivery</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Skin in the game</h3><p>for select engagements we offer hybrid retainer + equity arrangements</p></div></div></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">11</span><h2>Where Product Design Adds the Most Value</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pre-MVP</h3><p>defining what to build, who for, and why before engineering investment</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>MVP launch</h3><p>designing the minimum lovable product, not just minimum viable</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Post-MVP iteration</h3><p>turning early user feedback into product decisions</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pre-funding</h3><p>investor-ready demos and storytelling around product vision</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Scaling stage</h3><p>design systems and team scalability as engineering grows</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Pivots</h3><p>reframing product strategy when initial direction is not working</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Mature products</h3><p>modernising legacy interfaces and reducing accumulated UX debt</p></div></div></div></div></section><section class="svc-doc-sec alt industries"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">12</span><h2>Product Categories We Have Designed</h2></div><div class="svc-ind-feat-grid reveal"><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></div><div class="svc-ind-feat-content"><h3>B2B SaaS</h3><p>vertical and horizontal software for SMBs and enterprise</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><div class="svc-ind-feat-content"><h3>Consumer marketplaces and two-sided platforms</h3></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></div><div class="svc-ind-feat-content"><h3>Fintech</h3><p>lending, investing, banking, and payments products</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div><div class="svc-ind-feat-content"><h3>Healthtech</h3><p>patient-facing apps and clinical workflow tools</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></div><div class="svc-ind-feat-content"><h3>Edtech</h3><p>learning platforms, assessment tools, and content delivery</p></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M20 12L12 4H4v8l8 8z"/><circle cx="9" cy="9" r="1.5"/></svg></div><div class="svc-ind-feat-content"><h3>Productivity and collaboration tools</h3></div></div><div class="svc-ind-feat-card reveal"><div class="svc-ind-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div><div class="svc-ind-feat-content"><h3>E-commerce platforms and shopping experiences</h3></div></div></div></div></section><section class="svc-doc-sec"><div class="container"><div class="svc-sec-head reveal"><span class="svc-sec-num">13</span><h2>What Founders Should Expect Working With Us</h2></div><div class="svc-feat-grid"><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Direct access to senior designers</h3><p>no hiding behind account managers</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Honest pushback on product direction when we see issues</h3><p>even when uncomfortable</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Tight feedback loops</h3><p>weekly check-ins, no silent two-week disappearances</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Documented design decisions</h3><p>so future hires understand the why behind the what</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Engineering-friendly design files</h3><p>so your developers can ship without friction</p></div></div><div class="svc-feat-card reveal"><span class="svc-feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="svc-feat-content"><h3>Post-handoff support</h3><p>we stay involved through implementation, not just delivery</p></div></div></div></div></section><section class="about-sec">
-  <div class="container svc-faq-wrap">
-    <div class="sec-head reveal"><span class="kicker">FAQs</span><h2>Frequently Asked <span class="green_text">Questions</span></h2></div>
-    <div class="faq-item"><div class="faq-q">Do you work with pre-funded startups or only Series A+?</div><div class="faq-a">Both. A meaningful portion of our work is with pre-seed and seed-stage founders — often the engagements where great design has the highest leverage. Pricing models range from fixed-scope MVP design to hybrid retainer + equity arrangements for select bets.</div></div><div class="faq-item"><div class="faq-q">How is product design different from UI/UX design?</div><div class="faq-a">UI/UX design typically focuses on existing product scope and improving the interface and experience. Product design includes those disciplines but extends earlier — into product strategy, scope definition, and ongoing iteration based on usage data. Product designers are essentially product managers who design.</div></div><div class="faq-item"><div class="faq-q">Will you sign an NDA before discussing our product idea?</div><div class="faq-a">Yes — we sign NDAs as standard practice before any substantive product discussion. Founder ideas deserve protection and we treat early-stage discussions with appropriate confidentiality.</div></div><div class="faq-item"><div class="faq-q">Can you help with our pitch deck and investor demo?</div><div class="faq-a">Yes. Investor-ready prototypes, pitch deck product visuals, and demo flow design are part of what we do regularly for fundraising stage clients. Strong product visuals materially improve investor conversion in Indian and global VC contexts.</div></div><div class="faq-item"><div class="faq-q">What does product design typically cost for an MVP?</div><div class="faq-a">Most MVP design engagements range from ₹3 to ₹12 lakhs depending on scope, platforms (web, iOS, Android), and research depth. We provide fixed-scope proposals after an initial discovery call.</div></div>
+
+<!-- MARQUEE -->
+<section class="smm-marquee" aria-hidden="true">
+  <div class="smm-marquee-track">
+    <span class="smm-marquee-item">Product strategy <span class="dot">●</span></span>
+    <span class="smm-marquee-item">MVP design <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Design systems <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Research <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Prototyping <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Engineering handoff <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Product strategy <span class="dot">●</span></span>
+    <span class="smm-marquee-item">MVP design <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Design systems <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Research <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Prototyping <span class="dot">●</span></span>
+    <span class="smm-marquee-item">Engineering handoff <span class="dot">●</span></span>
   </div>
 </section>
-<section class="about-cta">
-  <div class="container reveal">
-    <h2>Ready to grow your <span>brand?</span></h2>
-    <p>Book a free consultation and get a custom proposal within 48 hours.</p>
-    <a class="btn" href="contact-us.html">Start Your Project</a>
+
+<!-- STATS -->
+<section class="smm-stats">
+  <div class="container">
+    <div class="smm-stats-grid">
+      <div class="smm-stat"><div class="num">100<em>+</em></div><div class="lbl">Products shipped</div></div>
+      <div class="smm-stat"><div class="num">25<em>+</em></div><div class="lbl">MVPs launched</div></div>
+      <div class="smm-stat"><div class="num">4.9<em>★</em></div><div class="lbl">Google rating (600+ reviews)</div></div>
+      <div class="smm-stat"><div class="num">6<em>+</em></div><div class="lbl">Years designing for scale</div></div>
+    </div>
   </div>
 </section>
+
+<!-- TRUST BAND (E-E-A-T) -->
+<section class="smm-trust">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">E · E · A · T Trust Signals</span>
+      <h2>How we earn <em>your confidence</em></h2>
+      <p>Four signals that show how we demonstrate Experience, Expertise, Authoritativeness and Trustworthiness on this service — visible to both your team and the search engines that rank us.</p>
+    </div>
+    <div class="smm-trust-grid">
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 2l2.8 7h7l-5.7 4.2 2.2 7.2L12 16.6l-6.3 3.8 2.2-7.2L2.2 9h7z"/></svg></span>
+        <span class="tag">Experience</span>
+        <h3>Products shipped across SaaS, fintech &amp; D2C</h3>
+        <p>100+ live products designed across vertical SaaS, lending, healthtech and consumer marketplaces — products actively used by millions of monthly users in production.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="tag">Expertise</span>
+        <h3>MVP-to-growth lifecycle expertise</h3>
+        <p>We design the same product across its lifecycle — pre-MVP scoping, launch, post-launch iteration, and scale — so the system holds together as the team and roadmap grow.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span>
+        <span class="tag">Authoritativeness</span>
+        <h3>Product strategists, not pixel-pushers</h3>
+        <p>Our designers operate as product managers who design — opinionated on scope, monetisation and metrics, not just spacing tokens and component states.</p>
+      </div>
+      <div class="smm-trust-card">
+        <span class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h4M8 17h6"/></svg></span>
+        <span class="tag">Trustworthiness</span>
+        <h3>Research-led, OKR-aligned</h3>
+        <p>Every design decision ties back to a user research finding and a business OKR. We measure success in product KPIs — activation, retention, conversion — not pages of Figma shipped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO QUOTE -->
+<section class="smm-intro">
+  <div class="container">
+    <div class="smm-intro-quote">
+      <span class="qmark">“</span>
+      <p>We've helped founders cut MVP scope in half, shipped products from blank Figma to production in <em style="color:#22c55e;font-style:italic">under 12 weeks</em>, and redesigned legacy interfaces that lifted activation by 30–60% — without rewriting the backend.</p>
+      <div class="meta">
+        <p>Most agencies still treat product design as the visual layer applied at the end of engineering. That model fails because every meaningful product decision — what to build, who it's for, how it monetises, what gets measured — is fundamentally a design decision.</p>
+        <p>For early-stage founders, the leverage of getting product design right is enormous. The right MVP scope and user experience is often the difference between Series A traction and a quiet pivot — and we've shipped both outcomes enough times to know what separates them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="smm-process" id="process">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">How we work</span>
+      <h2>From <em>blank Figma</em> to shipped product — in five disciplined steps.</h2>
+      <p>Five disciplines we run in lockstep so what ships is what was scoped, and what was scoped is what users actually wanted.</p>
+    </div>
+    <div class="smm-process-list">
+      <div class="smm-process-row">
+        <span class="smm-process-num">01</span>
+        <div class="smm-process-body">
+          <h3>Discovery &amp; product strategy</h3>
+          <p>Founder workshops, user interviews, market analysis and Jobs-To-Be-Done framing. We produce a clear answer to the only question that matters at this stage: what specifically should we build, for whom, and why now?</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">02</span>
+        <div class="smm-process-body">
+          <h3>Problem framing &amp; opportunity sizing</h3>
+          <p>We pressure-test the problem before we design a solution — sizing the audience, mapping competitive products, and stress-testing willingness-to-pay so the product brief survives contact with the market.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">03</span>
+        <div class="smm-process-body">
+          <h3>Concepting &amp; MVP scoping</h3>
+          <p>From discovery, we narrow to the smallest set of features that delivers core value and lets you start learning from real users. Most MVPs are still over-scoped on first pass — we help you ship faster by saying no.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">04</span>
+        <div class="smm-process-body">
+          <h3>Design &amp; build sprints</h3>
+          <p>Two-week sprints with paired design + engineering — wireframes, prototypes, production UI, components and motion specs reviewed and shipped together. No "throw it over the wall" handoffs.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="smm-process-row">
+        <span class="smm-process-num">05</span>
+        <div class="smm-process-body">
+          <h3>Launch, measure &amp; iterate</h3>
+          <p>Instrumentation goes in before launch, not after. We watch activation, time-to-value and retention curves with you weekly, then turn the data into the next sprint of design decisions.</p>
+        </div>
+        <span class="smm-process-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS / DISCIPLINES -->
+<section class="smm-platforms">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Product design disciplines</span>
+      <h2>Six product surfaces. <em>One coordinated practice.</em></h2>
+      <p>Product design is no longer one job. We run the six disciplines below as one connected programme — not six disconnected freelancers on Slack.</p>
+    </div>
+    <div class="smm-platforms-grid">
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">MVP</span>
+        <h3>MVP design</h3>
+        <p>Ship the smallest lovable product — scoped tight, tested with real users, ready for engineering in 8–12 weeks instead of six months of "almost done".</p>
+        <div class="tags"><span>Scoping</span><span>Prototypes</span><span>Production UI</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">0→1</span>
+        <h3>Zero-to-one products</h3>
+        <p>New product lines, second products, and spin-outs — we run the discovery, strategy and design from blank page through paying customers.</p>
+        <div class="tags"><span>Strategy</span><span>Discovery</span><span>Launch</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">RDX</span>
+        <h3>Product redesigns</h3>
+        <p>Modernise legacy interfaces and reduce accumulated UX debt — without rewriting the backend or forcing a year-long replatform.</p>
+        <div class="tags"><span>Audit</span><span>Migration</span><span>UX debt</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">D+E</span>
+        <h3>Design + engineering paired</h3>
+        <p>Designers and engineers sit in the same standup. Tokens, components and motion specs land in code the same sprint they're approved in Figma.</p>
+        <div class="tags"><span>Paired teams</span><span>Tokens</span><span>Pixel parity</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">GRO</span>
+        <h3>Growth &amp; onboarding design</h3>
+        <p>Activation flows, time-to-value redesigns, paywalls and retention loops — the high-leverage screens where small design changes move the NSM the most.</p>
+        <div class="tags"><span>Activation</span><span>TTV</span><span>Retention</span></div>
+      </div>
+      <div class="smm-pcard">
+        <span class="plogo" style="background:#22c55e;color:#14141A;font-weight:800">OPS</span>
+        <h3>Design ops &amp; systems</h3>
+        <p>Design systems, component libraries, contribution models and documentation that hold up as the team grows from three designers to thirty.</p>
+        <div class="tags"><span>Tokens</span><span>Components</span><span>Docs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="smm-formats">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Deliverables</span>
+      <h2>Six formats that <em>actually move the product</em>.</h2>
+      <p>The unglamorous work that separates a product that ships from a product that lingers on a Figma canvas. Each format below is part of every engagement.</p>
+    </div>
+    <div class="smm-formats-grid">
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></svg></span>
+        <h3>Strategy workshops</h3>
+        <p>Founder + leadership workshops to align on problem, audience, scope and success metrics — before any pixel is moved.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 12h18"/></svg></span>
+        <h3>Wireframes &amp; prototypes</h3>
+        <p>Low-fidelity flows and clickable prototypes tested with real users before production design ever begins.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></span>
+        <h3>Production UI</h3>
+        <p>Pixel-perfect, accessible Figma designs across every state and breakpoint — ready for engineering without rework.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>
+        <h3>Design systems</h3>
+        <p>Tokens, components, patterns and contribution guides — built so your engineers can ship new screens without re-asking design.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M4 5h16v4H4zM4 13h16v6H4z"/></svg></span>
+        <h3>Engineering handoff</h3>
+        <p>Spec docs, motion notes, edge cases and empty states documented for engineers — not buried in Figma comments.</p>
+      </div>
+      <div class="smm-fcard">
+        <span class="ficon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+        <h3>Post-launch instrumentation</h3>
+        <p>Event taxonomy, analytics setup and dashboards shipped with the product — so day-one data informs week-two decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEASURE / KPIs -->
+<section class="smm-measure">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Measurement</span>
+      <h2>Pixels are the input. <em>Product KPIs are the output.</em></h2>
+      <p>Six KPIs we report on every cycle so design activity always ladders back to product outcomes — not pages of Figma shipped.</p>
+    </div>
+    <div class="smm-measure-grid">
+      <div class="smm-mcard"><span class="mc-num">01</span><div><h3>Activation rate</h3><p>% of new users who complete the core action that defines product value — the single most important early-stage metric.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">02</span><div><h3>Time-to-value</h3><p>How quickly a new user reaches the "aha" moment — minutes, not days, is the bar for almost every consumer product.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">03</span><div><h3>Retention curve</h3><p>Week-1, week-4 and week-12 retention by cohort — the curve that decides whether your product is a vitamin or a painkiller.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">04</span><div><h3>NPS / CSAT</h3><p>Qualitative pulse on perceived value — paired with the quantitative metrics so the why never gets lost behind the what.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">05</span><div><h3>Feature adoption</h3><p>% of active users touching each major feature — what's loved, what's ignored, what gets cut from the next release.</p></div></div>
+      <div class="smm-mcard"><span class="mc-num">06</span><div><h3>North-star metric</h3><p>The one number that best represents delivered customer value — every other KPI ladders back to this single line.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="smm-industries">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Industries</span>
+      <h2>Where we <em>design products that scale</em>.</h2>
+      <p>Categories we've shipped enough products in to know what users actually want and what founders usually over-scope.</p>
+    </div>
+    <div class="smm-ind-grid">
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span><span>SaaS</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg></span><span>Fintech</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></span><span>Healthtech</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></span><span>D2C</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v6c2 1 4 1.5 6 1.5s4-.5 6-1.5v-6"/></svg></span><span>Edtech</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z"/></svg></span><span>Proptech</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><path d="M20 12L12 4H4v8l8 8z"/><circle cx="9" cy="9" r="1.5"/></svg></span><span>Marketplaces</span></div>
+      <div class="smm-icard"><span class="iicon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span>Productivity tools</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="smm-why">
+  <div class="container">
+    <div class="smm-section-head">
+      <span class="kicker">Why teams stay with us</span>
+      <h2>What you get that <em>most product agencies skip</em>.</h2>
+      <p>Picking the right product design partner is less about polished portfolios and more about whether the team ships, scopes honestly, and stays in the trenches with engineering — release after release.</p>
+    </div>
+    <div class="smm-why-grid">
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Product strategists, not pixel-pushers — we own scope, metrics and trade-offs, not just spacing.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>MVP-to-scale experience — we've designed the same product across pre-seed, Series A and post-Series-B.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Design + engineering paired teams — handoff isn't an event, it's a daily standup.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>OKR-aligned design — every sprint ties back to a product KPI on the leadership dashboard.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Research-led decisions — user interviews and usage data, not opinions in a slack thread.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Direct senior-designer access — no hiding behind account managers or junior proxies.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Documented design decisions — so your future PM and design hires understand the why, not just the what.</p></div>
+      <div class="smm-wrow"><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><p>Skin in the game — for select bets we offer hybrid retainer + equity engagement models.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="smm-faq">
+  <div class="container">
+    <div class="smm-section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="kicker" style="justify-content:center">FAQs</span>
+      <h2 style="text-align:center">Questions founders ask <em>before they sign</em>.</h2>
+    </div>
+    <div class="smm-faq-list">
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Do you work with pre-funded startups or only Series A+?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Both. A meaningful portion of our work is with pre-seed and seed-stage founders — often the engagements where great design has the highest leverage. Pricing models range from fixed-scope MVP design to hybrid retainer + equity arrangements for select bets.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">How is product design different from UI/UX design?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">UI/UX design typically focuses on existing product scope and improving the interface and experience. Product design includes those disciplines but extends earlier — into product strategy, scope definition, and ongoing iteration based on usage data. Product designers are essentially product managers who design.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Will you sign an NDA before discussing our product idea?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Yes — we sign NDAs as standard practice before any substantive product discussion. Founder ideas deserve protection and we treat early-stage discussions with appropriate confidentiality.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">Can you help with our pitch deck and investor demo?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Yes. Investor-ready prototypes, pitch deck product visuals, and demo flow design are part of what we do regularly for fundraising stage clients. Strong product visuals materially improve investor conversion in Indian and global VC contexts.</div>
+      </div>
+      <div class="smm-faq-item">
+        <div class="smm-faq-q">What does product design typically cost for an MVP?<span class="toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <div class="smm-faq-a">Most MVP design engagements range from ₹3 to ₹12 lakhs depending on scope, platforms (web, iOS, Android), and research depth. We provide fixed-scope proposals after an initial discovery call.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="smm-cta">
+  <div class="container">
+    <h2>Ready to design a product that <em>ships AND sells</em>?</h2>
+    <p>Book a free 30-minute consult — we'll review your current product brief or MVP scope and send a custom proposal within 48 hours.</p>
+    <div class="actions">
+      <a class="smm-btn-primary" href="contact-us.html">Start your project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="smm-btn-ghost" href="case-study.html">See case studies</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.smm-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){q.parentElement.classList.toggle('open')});
+  });
+  var first=document.querySelector('.smm-faq-item');if(first)first.classList.add('open');
+})();
+</script>
 
 </main>
 <footer class="site-footer" role="contentinfo">
