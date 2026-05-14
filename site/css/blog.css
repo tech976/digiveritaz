@@ -1,0 +1,416 @@
+/* ============================================================
+   DigiVeritaz blog — page-specific overlay
+   Loaded only on blog-new.html.
+   All selectors scoped under body.home-themed.
+   Inherits palette + typography from home.css.
+   ============================================================ */
+
+/* ===== Page hero — editorial magazine head ===== */
+body.home-themed .page-hero{
+  margin-top:-90px !important;
+  padding:160px 0 64px !important;
+  background:var(--dvh-cream) !important;
+  border-bottom:1px solid var(--dvh-rule) !important;
+  position:relative;
+}
+body.home-themed .page-hero:before,
+body.home-themed .page-hero:after{display:none !important}
+
+body.home-themed .page-hero .container{
+  max-width:1120px;
+  position:relative;
+}
+
+/* Breadcrumb as mono pill eyebrow */
+body.home-themed .page-hero .breadcrumb{
+  display:inline-flex !important;align-items:center;gap:10px;
+  padding:8px 14px !important;border-radius:999px !important;
+  background:var(--dvh-ink) !important;color:var(--dvh-spot) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;font-weight:600 !important;
+  letter-spacing:.16em !important;text-transform:uppercase !important;
+  margin-bottom:22px !important;border:0 !important;
+}
+body.home-themed .page-hero .breadcrumb:before{
+  content:""!important;width:6px;height:6px;border-radius:50%;
+  background:var(--dvh-spot);display:inline-block;
+}
+
+/* Hero title — Inter Tight 900, with green italic accent */
+body.home-themed .page-hero h1,
+body.home-themed .page-hero h1.play{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(2.6rem,5.4vw,4.8rem) !important;
+  font-weight:900 !important;
+  letter-spacing:-.045em !important;
+  line-height:1.0 !important;
+  color:var(--dvh-ink) !important;
+  margin:0 0 18px !important;
+  max-width:900px;
+}
+body.home-themed .page-hero h1 .green_text,
+body.home-themed .page-hero h1 span{
+  color:var(--dvh-spot-text) !important;
+  font-style:italic !important;
+  font-weight:900 !important;
+}
+
+body.home-themed .page-hero .lead{
+  font-family:'Inter',sans-serif !important;
+  font-size:clamp(1.05rem,1.4vw,1.18rem) !important;
+  line-height:1.6 !important;
+  color:var(--dvh-text) !important;
+  max-width:640px;
+  margin:0 !important;
+}
+
+/* ===== Section wrapper / spacing ===== */
+body.home-themed main > section{
+  background:var(--dvh-cream);
+  padding:64px 0;
+}
+body.home-themed main > section:before,
+body.home-themed main > section:after{display:none !important}
+
+/* ===== Card grid — editorial blog index ===== */
+body.home-themed .card-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:28px !important;
+  max-width:1200px;
+  margin:0 auto;
+}
+@media (max-width:980px){
+  body.home-themed .card-grid{grid-template-columns:repeat(2,1fr) !important;gap:22px !important}
+}
+@media (max-width:640px){
+  body.home-themed .card-grid{grid-template-columns:1fr !important}
+}
+
+/* ===== Blog card — flat white with 1.5px ink border ===== */
+body.home-themed .card-grid .card{
+  background:#fff !important;
+  border:1.5px solid var(--dvh-rule) !important;
+  border-radius:14px !important;
+  overflow:hidden !important;
+  display:flex;
+  flex-direction:column;
+  text-decoration:none !important;
+  color:var(--dvh-ink) !important;
+  box-shadow:none !important;
+  filter:none !important;
+  transition:border-color .35s var(--dvh-ease), transform .35s var(--dvh-ease), background .35s var(--dvh-ease) !important;
+  position:relative;
+}
+body.home-themed .card-grid .card:before,
+body.home-themed .card-grid .card:after{display:none !important}
+
+body.home-themed .card-grid .card:hover{
+  border-color:var(--dvh-spot) !important;
+  transform:translateY(-3px) !important;
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+/* Thumb — flat, slight zoom on hover */
+body.home-themed .card-grid .card .thumb{
+  aspect-ratio:16/10 !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-color:var(--dvh-cream-2) !important;
+  border-bottom:1.5px solid var(--dvh-rule) !important;
+  transition:transform .55s var(--dvh-ease) !important;
+}
+body.home-themed .card-grid .card:hover .thumb{
+  transform:scale(1.03) !important;
+}
+
+/* Body */
+body.home-themed .card-grid .card .body{
+  padding:22px 22px 24px !important;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+  background:#fff !important;
+}
+
+/* Tag — mono pill on ink background */
+body.home-themed .card-grid .card .tag{
+  display:inline-flex !important;align-items:center;gap:8px;
+  align-self:flex-start;
+  padding:6px 12px !important;border-radius:999px !important;
+  background:var(--dvh-ink) !important;color:var(--dvh-spot) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.66rem !important;font-weight:600 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  margin-bottom:6px !important;
+  border:0 !important;
+}
+body.home-themed .card-grid .card .tag:before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--dvh-spot);display:inline-block;
+}
+
+/* Headline */
+body.home-themed .card-grid .card h3{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:1.18rem !important;
+  font-weight:800 !important;
+  letter-spacing:-.022em !important;
+  line-height:1.22 !important;
+  color:var(--dvh-ink) !important;
+  margin:2px 0 4px !important;
+  transition:color .25s var(--dvh-ease) !important;
+}
+body.home-themed .card-grid .card:hover h3{
+  color:var(--dvh-spot-text) !important;
+}
+
+/* Excerpt */
+body.home-themed .card-grid .card p{
+  font-family:'Inter',sans-serif !important;
+  font-size:.94rem !important;
+  line-height:1.6 !important;
+  color:var(--dvh-text) !important;
+  margin:0 !important;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Meta row — mono small caps with hairline dividers */
+body.home-themed .card-grid .card .meta{
+  display:flex !important;
+  align-items:center;
+  gap:10px !important;
+  margin-top:14px !important;
+  padding-top:14px !important;
+  border-top:1px solid var(--dvh-rule) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;
+  color:var(--dvh-mute) !important;
+  letter-spacing:.04em !important;
+}
+body.home-themed .card-grid .card .meta .dot{
+  width:3px !important;height:3px !important;border-radius:50% !important;
+  background:var(--dvh-mute) !important;
+  opacity:.6 !important;
+}
+
+/* "Read more" arrow — subtle indicator after meta on hover */
+body.home-themed .card-grid .card .body:after{
+  content:"Read article →";
+  font-family:'Inter Tight','Inter',sans-serif;
+  font-weight:700;
+  font-size:.86rem;
+  color:var(--dvh-ink);
+  margin-top:14px;
+  letter-spacing:-.01em;
+  opacity:0;
+  transform:translateX(-4px);
+  transition:opacity .35s var(--dvh-ease), transform .35s var(--dvh-ease), color .25s var(--dvh-ease);
+}
+body.home-themed .card-grid .card:hover .body:after{
+  opacity:1;
+  transform:translateX(0);
+  color:var(--dvh-spot-text);
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] body.home-themed .page-hero{
+  background:#0b1220 !important;
+  border-bottom-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .page-hero h1{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .page-hero h1 .green_text,
+[data-theme="dark"] body.home-themed .page-hero h1 span{color:#22c55e !important}
+[data-theme="dark"] body.home-themed .page-hero .lead{color:#cbd5e1 !important}
+
+[data-theme="dark"] body.home-themed main > section{
+  background:#0b1220;
+}
+
+[data-theme="dark"] body.home-themed .card-grid .card{
+  background:#0f172a !important;
+  border-color:rgba(241,245,249,.1) !important;
+  color:#f1f5f9 !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card:hover{
+  border-color:#22c55e !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card .thumb{
+  background-color:#1e293b !important;
+  border-bottom-color:rgba(241,245,249,.08) !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card .body{
+  background:#0f172a !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card h3{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .card-grid .card:hover h3{color:#22c55e !important}
+[data-theme="dark"] body.home-themed .card-grid .card p{color:#cbd5e1 !important}
+[data-theme="dark"] body.home-themed .card-grid .card .meta{
+  color:#94a3b8 !important;
+  border-top-color:rgba(241,245,249,.08) !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card .meta .dot{background:#94a3b8 !important}
+[data-theme="dark"] body.home-themed .card-grid .card .body:after{color:#f1f5f9}
+[data-theme="dark"] body.home-themed .card-grid .card:hover .body:after{color:#22c55e}
+
+/* ============================================================
+   === QA pass: overlap & contrast fixes ===
+   Scoped overrides for blog-new.html only. Append-only.
+   ============================================================ */
+
+/* 1) Hero h1 — italic descender of ".green_text" gets clipped at line-height:1.0.
+      Give it a hair of headroom and a tiny padding-bottom so italics don't crop. */
+body.home-themed .page-hero h1,
+body.home-themed .page-hero h1.play{
+  line-height:1.06 !important;
+  padding-bottom:.08em !important;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+body.home-themed .page-hero h1 .green_text,
+body.home-themed .page-hero h1 span{
+  /* Ensure brand green on cream uses AA-compliant emerald, not #22c55e. */
+  color:#16a34a !important;
+  padding-right:.04em;       /* prevent italic terminal from clipping */
+}
+
+/* 2) Hero lead — guard against spilling on narrow viewports. */
+body.home-themed .page-hero .lead{
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+  hyphens:auto;
+}
+
+/* 3) Card — ensure consistent flex sizing so cards in a row align and
+      long content cannot push the meta row outside the rounded border. */
+body.home-themed .card-grid .card{
+  min-width:0;               /* allow children to shrink inside grid */
+  isolation:isolate;         /* keep hover transforms from bleeding */
+}
+body.home-themed .card-grid .card .body{
+  min-width:0;
+}
+
+/* 4) Thumb — explicit width and no shrink so the image area never
+      collapses or overlaps the body text under any wrap conditions. */
+body.home-themed .card-grid .card .thumb{
+  width:100% !important;
+  flex-shrink:0 !important;
+  background-repeat:no-repeat !important;
+}
+
+/* 5) Tag pill — long category names ("Search Engine Optimization",
+      "AI-Powered Branding") must not overflow the pill or the card.
+      Allow wrapping but keep the pill tidy; cap to one line with ellipsis
+      only when extremely narrow. */
+body.home-themed .card-grid .card .tag{
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:1.2;
+  position:relative;
+  z-index:1;
+}
+/* The ::before dot is part of the pill — guarantee it can't be eaten by
+   the ellipsis clip. */
+body.home-themed .card-grid .card .tag:before{
+  flex-shrink:0;
+}
+
+/* 6) Card title — long titles like "How to Integrate ChatGPT with Your
+      Paid Campaigns for Better UX" run 4 lines and shove the meta row
+      down inconsistently. Clamp to 3 lines, break long words. */
+body.home-themed .card-grid .card h3{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  overflow-wrap:break-word;
+  word-break:normal;
+  hyphens:auto;
+  min-height:0;
+  position:relative;
+  z-index:1;
+}
+
+/* 7) Excerpt — already clamped, but ensure long unbreakable strings
+      (URLs, brand names) never push width and never overlay the meta. */
+body.home-themed .card-grid .card p{
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+  min-width:0;
+  position:relative;
+  z-index:1;
+}
+
+/* 8) Meta row — keep date, dot, and read-time on one line; if cramped,
+      let them wrap with a tight row-gap so they never overlap. */
+body.home-themed .card-grid .card .meta{
+  flex-wrap:wrap;
+  row-gap:4px;
+  min-width:0;
+  position:relative;
+  z-index:1;
+}
+body.home-themed .card-grid .card .meta > span{
+  min-width:0;
+  white-space:nowrap;
+}
+body.home-themed .card-grid .card .meta .dot{
+  flex:0 0 3px !important;   /* never shrink below 3px */
+}
+
+/* 9) "Read article →" affordance — the ::after currently occupies vertical
+      space even when opacity:0, creating a phantom gap that looks like
+      excerpt text "spilling" below the meta row. Collapse it when idle
+      and expand smoothly on hover. */
+body.home-themed .card-grid .card .body:after{
+  height:0;
+  margin-top:0;
+  overflow:hidden;
+  pointer-events:none;
+  transition:height .35s var(--dvh-ease),
+             margin-top .35s var(--dvh-ease),
+             opacity .35s var(--dvh-ease),
+             transform .35s var(--dvh-ease),
+             color .25s var(--dvh-ease);
+}
+body.home-themed .card-grid .card:hover .body:after{
+  height:1.4em;
+  margin-top:14px;
+}
+
+/* 10) Card hover transform — keep the lifted card above neighbors so
+       its shadow/border doesn't get visually overlapped by the next row. */
+body.home-themed .card-grid .card:hover{
+  z-index:2;
+}
+
+/* 11) Breadcrumb pill — long breadcrumb text guard. */
+body.home-themed .page-hero .breadcrumb{
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* ===== Dark-mode counterparts ===== */
+[data-theme="dark"] body.home-themed .page-hero h1 .green_text,
+[data-theme="dark"] body.home-themed .page-hero h1 span{
+  /* On dark bg the bright #22c55e remains correct; just keep the
+     padding-right rule from clipping italics. */
+  color:#22c55e !important;
+}
+[data-theme="dark"] body.home-themed .card-grid .card .tag{
+  background:#0b1220 !important;
+  color:#22c55e !important;
+}

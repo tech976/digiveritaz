@@ -1,0 +1,1015 @@
+/* ============================================================
+   DigiVeritaz About — design system overlay
+   Scoped under body.home-themed only.
+   Sits on top of style.css + home.css and re-styles the
+   about-us-new.html elements to match home-new.html.
+   Palette: cream #FBFBF0, ink #14141A, emerald accents.
+   Typography: Inter Tight 900 italic for display, Inter for
+   body, JetBrains Mono for eyebrows/labels.
+   ============================================================ */
+
+/* ============================================================
+   HERO — strip halos, magazine-style headline
+   The .kicker eyebrow is already styled globally in home.css.
+   ============================================================ */
+body.home-themed .about-hero{
+  background:var(--dvh-cream) !important;
+  padding:140px 0 80px !important;
+  margin-top:-90px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--dvh-rule) !important;
+}
+body.home-themed .about-hero:before,
+body.home-themed .about-hero:after{display:none !important}
+
+/* faint editorial grid backdrop */
+body.home-themed .about-hero{
+  background-image:
+    linear-gradient(rgba(20,20,26,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,20,26,.025) 1px,transparent 1px) !important;
+  background-size:80px 80px !important;
+  background-color:var(--dvh-cream) !important;
+}
+
+body.home-themed .about-hero .container{
+  position:relative;z-index:1;
+  max-width:1180px !important;
+  text-align:left !important;
+}
+
+body.home-themed .about-hero h1{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(2.6rem,5.4vw,4.8rem) !important;
+  font-weight:900 !important;line-height:1 !important;letter-spacing:-.045em !important;
+  color:var(--dvh-ink) !important;
+  max-width:980px !important;margin:0 0 22px !important;
+  text-align:left !important;
+}
+body.home-themed .about-hero h1 .green_text,
+body.home-themed .about-hero h1 span{
+  color:var(--dvh-spot-text) !important;
+  font-style:italic !important;font-weight:900 !important;
+}
+
+body.home-themed .about-hero .lead{
+  font-family:'Inter',sans-serif !important;
+  font-size:clamp(1.05rem,1.2vw,1.18rem) !important;
+  line-height:1.65 !important;color:var(--dvh-text) !important;
+  max-width:760px !important;margin:0 0 32px !important;
+  text-align:left !important;
+}
+body.home-themed .about-hero .lead em{
+  color:var(--dvh-spot-text) !important;font-style:italic !important;font-weight:600 !important;
+}
+
+/* Hero chips — flat mono pills */
+body.home-themed .about-hero .hero-sub{
+  display:flex;flex-wrap:wrap;gap:10px !important;
+  justify-content:flex-start !important;
+  margin-top:8px !important;
+  padding-top:24px !important;
+  border-top:1px dashed var(--dvh-rule);
+}
+body.home-themed .about-hero .hero-sub .chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px !important;border-radius:999px !important;
+  background:#ffffff !important;color:var(--dvh-ink) !important;
+  border:1.5px solid var(--dvh-ink) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;font-weight:600 !important;
+  letter-spacing:.12em !important;text-transform:uppercase !important;
+  box-shadow:none !important;
+}
+body.home-themed .about-hero .hero-sub .chip:before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--dvh-spot);
+}
+
+/* ============================================================
+   STATS STRIP — print-style hairline grid
+   ============================================================ */
+body.home-themed .about-stats{
+  background:var(--dvh-cream) !important;
+  padding:0 !important;
+  border-bottom:1px solid var(--dvh-rule) !important;
+}
+body.home-themed .about-stats .container{
+  max-width:1320px !important;
+  border-top:1px solid var(--dvh-rule) !important;
+  border-bottom:1px solid var(--dvh-rule) !important;
+  grid-template-columns:repeat(6,1fr) !important;
+  gap:0 !important;
+}
+body.home-themed .about-stats .stat{
+  padding:36px 24px !important;
+  text-align:left !important;
+  border-right:1px solid var(--dvh-rule) !important;
+  background:transparent !important;
+  transition:background .25s !important;
+}
+body.home-themed .about-stats .stat:last-child{border-right:none !important}
+body.home-themed .about-stats .stat:hover{
+  transform:none !important;
+  background:rgba(34,197,94,.04) !important;
+}
+body.home-themed .about-stats .stat .num{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-weight:900 !important;
+  font-style:italic !important;
+  font-size:clamp(2.2rem,3.6vw,3.2rem) !important;
+  letter-spacing:-.045em !important;
+  color:var(--dvh-ink) !important;
+  line-height:1 !important;
+  margin-bottom:12px !important;
+}
+body.home-themed .about-stats .stat .num b{
+  color:var(--dvh-spot-text) !important;
+  font-style:italic !important;font-weight:900 !important;
+}
+body.home-themed .about-stats .stat .lbl{
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.68rem !important;
+  color:var(--dvh-mute) !important;
+  letter-spacing:.14em !important;text-transform:uppercase !important;
+  font-weight:600 !important;
+}
+
+@media (max-width:900px){
+  body.home-themed .about-stats .container{grid-template-columns:repeat(3,1fr) !important}
+  body.home-themed .about-stats .stat:nth-child(3n){border-right:none !important}
+  body.home-themed .about-stats .stat:nth-child(-n+3){border-bottom:1px solid var(--dvh-rule) !important}
+}
+@media (max-width:520px){
+  body.home-themed .about-stats .container{grid-template-columns:repeat(2,1fr) !important}
+  body.home-themed .about-stats .stat{border-right:none !important;border-bottom:1px solid var(--dvh-rule) !important;padding:28px 18px !important}
+}
+
+/* ============================================================
+   SECTION HEADS (.sec-head) — uses .kicker eyebrow from home.css
+   ============================================================ */
+body.home-themed .about-sec,
+body.home-themed .process-section,
+body.home-themed .services-expertise,
+body.home-themed .why-section{
+  background:var(--dvh-cream) !important;
+  padding:96px 0 !important;
+  position:relative;
+}
+body.home-themed .services-expertise:before,
+body.home-themed .services-expertise:after{display:none !important}
+
+body.home-themed .about-sec .sec-head,
+body.home-themed .process-section .sec-head,
+body.home-themed .services-expertise .sec-head,
+body.home-themed .why-section .sec-head{
+  text-align:center;margin:0 auto 56px !important;
+  max-width:880px !important;
+}
+body.home-themed .about-sec .sec-head h2,
+body.home-themed .process-section .sec-head h2,
+body.home-themed .services-expertise .sec-head h2,
+body.home-themed .why-section .sec-head h2{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(2.4rem,4.6vw,4rem) !important;
+  font-weight:900 !important;
+  letter-spacing:-.045em !important;line-height:1.02 !important;
+  color:var(--dvh-ink) !important;
+  margin:0 0 16px !important;
+}
+body.home-themed .about-sec .sec-head h2 .green_text,
+body.home-themed .about-sec .sec-head h2 span,
+body.home-themed .process-section .sec-head h2 span,
+body.home-themed .services-expertise .sec-head h2 span,
+body.home-themed .why-section .sec-head h2 span{
+  color:var(--dvh-spot-text) !important;font-style:italic !important;font-weight:900 !important;
+}
+body.home-themed .about-sec .sec-head p,
+body.home-themed .process-section .sec-head p,
+body.home-themed .services-expertise .sec-head p,
+body.home-themed .why-section .sec-head p{
+  font-family:'Inter',sans-serif !important;
+  font-size:1.08rem !important;line-height:1.6 !important;
+  color:var(--dvh-text) !important;
+  max-width:680px;margin:8px auto 0 !important;
+}
+
+/* The .kicker eyebrow already inherits the white-pill style from home.css.
+   But the legacy style.css applies non-eyebrow appearance for .about-sec .kicker —
+   override it back to the eyebrow look. */
+body.home-themed .about-sec .kicker,
+body.home-themed .process-section .kicker,
+body.home-themed .services-expertise .kicker,
+body.home-themed .why-section .kicker{
+  display:inline-flex !important;align-items:center;gap:10px !important;
+  padding:8px 14px !important;border-radius:999px !important;
+  background:#ffffff !important;color:var(--dvh-ink) !important;
+  border:1.5px solid var(--dvh-ink) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;font-weight:600 !important;
+  letter-spacing:.16em !important;text-transform:uppercase !important;
+  margin-bottom:18px !important;
+  font-style:normal !important;
+}
+body.home-themed .about-sec .kicker:before,
+body.home-themed .process-section .kicker:before,
+body.home-themed .services-expertise .kicker:before,
+body.home-themed .why-section .kicker:before{
+  content:"" !important;display:inline-block;
+  width:6px !important;height:6px !important;border-radius:50% !important;
+  background:var(--dvh-ink) !important;box-shadow:none !important;
+}
+
+/* ============================================================
+   INTRO LEAD — flat editorial blockquote
+   ============================================================ */
+body.home-themed .intro-lead{
+  max-width:880px;margin:0 auto 64px !important;
+  text-align:left !important;
+  font-family:'Open Sans','Inter',sans-serif !important;
+  font-size:1.2rem !important;line-height:1.7 !important;
+  color:var(--dvh-ink) !important;
+  background:transparent !important;
+  border:0 !important;border-left:3px solid var(--dvh-spot) !important;
+  padding:8px 0 8px 28px !important;
+  border-radius:0 !important;
+  font-style:italic;
+  position:relative;
+}
+body.home-themed .intro-lead strong{
+  color:var(--dvh-ink) !important;font-weight:700;font-style:normal;
+}
+
+/* ============================================================
+   MISSION / VISION — flat white cards, no gradient slab
+   ============================================================ */
+body.home-themed .mv-wrap{
+  background:transparent !important;
+  padding:0 !important;border-radius:0 !important;
+  overflow:visible !important;
+  max-width:1200px !important;margin:0 auto !important;
+}
+body.home-themed .mv-grid{
+  display:grid !important;grid-template-columns:1fr 1fr !important;
+  gap:24px !important;max-width:none !important;margin:0 !important;
+}
+body.home-themed .mv-grid:before{display:none !important}
+body.home-themed .mv-card{
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-rule) !important;border-radius:18px !important;
+  padding:48px 40px !important;
+  box-shadow:none !important;
+  min-height:auto !important;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s !important;
+}
+body.home-themed .mv-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:var(--dvh-spot) !important;
+  box-shadow:none !important;
+}
+body.home-themed .mv-card:before{display:none !important}
+
+/* Mono eyebrow built from the h3 — actually we keep h3 as a headline.
+   Use ::before on h3 to print a label */
+body.home-themed .mv-card h3{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(1.8rem,3vw,2.4rem) !important;
+  font-weight:900 !important;
+  letter-spacing:-.035em !important;line-height:1 !important;
+  color:var(--dvh-ink) !important;
+  background:none !important;-webkit-text-fill-color:var(--dvh-ink) !important;
+  margin:0 0 18px !important;position:relative;z-index:2;
+}
+body.home-themed .mv-card h3:after{
+  content:"";display:block;width:40px;height:2px;
+  background:var(--dvh-spot) !important;
+  margin:18px 0 22px !important;opacity:1 !important;
+}
+body.home-themed .mv-card.mv-vision h3:before{
+  content:"01 / VISION";display:block;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  font-weight:600;letter-spacing:.16em;
+  color:var(--dvh-spot-text);text-transform:uppercase;
+  margin-bottom:14px;
+}
+body.home-themed .mv-card.mv-mission h3:before{
+  content:"02 / MISSION";display:block;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  font-weight:600;letter-spacing:.16em;
+  color:var(--dvh-spot-text);text-transform:uppercase;
+  margin-bottom:14px;
+}
+body.home-themed .mv-card p{
+  font-family:'Inter',sans-serif !important;
+  font-size:1.02rem !important;line-height:1.7 !important;
+  color:var(--dvh-text) !important;
+  margin:0;position:relative;z-index:2;
+}
+body.home-themed .mv-card p strong{
+  color:var(--dvh-ink) !important;font-weight:700 !important;
+}
+body.home-themed .mv-card .mv-deco{
+  opacity:.08 !important;
+}
+body.home-themed .mv-card .mv-deco svg{
+  stroke:var(--dvh-ink) !important;
+}
+
+@media (max-width:900px){
+  body.home-themed .mv-grid{grid-template-columns:1fr !important;gap:18px !important}
+  body.home-themed .mv-card{padding:36px 28px !important}
+}
+
+/* ============================================================
+   VALUES — flat cards, ink heading, green dot icon
+   ============================================================ */
+body.home-themed .values-section{
+  background:var(--dvh-cream) !important;
+}
+body.home-themed .values-section:before,
+body.home-themed .values-section:after{display:none !important}
+
+body.home-themed .values-grid{
+  display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+  gap:18px !important;max-width:1200px;margin:0 auto;
+}
+body.home-themed .value-card{
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-rule) !important;border-radius:14px !important;
+  padding:32px 28px !important;
+  box-shadow:none !important;
+  overflow:hidden;position:relative;
+  transition:border-color .3s,transform .3s !important;
+}
+body.home-themed .value-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:var(--dvh-spot) !important;
+  box-shadow:none !important;
+}
+body.home-themed .value-card .val-num{
+  position:absolute;top:18px;right:22px;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.78rem !important;font-weight:700 !important;
+  letter-spacing:.14em !important;
+  color:var(--dvh-mute) !important;
+  background:none !important;
+  line-height:1;
+}
+body.home-themed .value-card:hover .val-num{
+  color:var(--dvh-spot-text) !important;opacity:1 !important;
+}
+body.home-themed .value-card .val-icon{
+  width:44px !important;height:44px !important;border-radius:12px !important;
+  background:var(--dvh-spot-soft) !important;
+  display:grid;place-items:center;
+  margin-bottom:20px !important;
+}
+body.home-themed .value-card .val-icon svg{
+  width:22px;height:22px;
+  stroke:var(--dvh-spot-text) !important;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+body.home-themed .value-card h3{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:1.18rem !important;font-weight:800 !important;
+  color:var(--dvh-ink) !important;
+  letter-spacing:-.015em !important;line-height:1.2 !important;
+  margin:0 0 10px !important;
+}
+body.home-themed .value-card p{
+  font-family:'Inter',sans-serif !important;
+  font-size:.95rem !important;line-height:1.6 !important;
+  color:var(--dvh-text) !important;margin:0;
+}
+
+@media (max-width:900px){body.home-themed .values-grid{grid-template-columns:repeat(2,1fr) !important}}
+@media (max-width:560px){body.home-themed .values-grid{grid-template-columns:1fr !important}}
+
+/* ============================================================
+   PROCESS — phase cards on hairline timeline
+   ============================================================ */
+body.home-themed .process-track{
+  display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+  gap:18px !important;max-width:1200px;margin:0 auto;
+  position:relative;
+}
+body.home-themed .process-track:before{
+  content:"";position:absolute;
+  top:46px !important;left:10% !important;right:10% !important;
+  height:1px !important;
+  background:var(--dvh-rule) !important;
+  z-index:0;
+}
+body.home-themed .phase-card{
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-rule) !important;border-radius:14px !important;
+  padding:36px 28px 28px !important;
+  box-shadow:none !important;
+  text-align:left !important;
+  position:relative;z-index:1;
+  transition:border-color .3s,transform .3s !important;
+}
+body.home-themed .phase-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:var(--dvh-spot) !important;
+  box-shadow:none !important;
+}
+body.home-themed .phase-card .phase-badge{
+  width:48px !important;height:48px !important;border-radius:50% !important;
+  background:var(--dvh-ink) !important;
+  color:var(--dvh-spot) !important;
+  display:grid;place-items:center;
+  margin:0 0 22px !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-weight:700 !important;font-size:.92rem !important;
+  letter-spacing:.06em;
+  border:none !important;
+  box-shadow:none !important;
+}
+body.home-themed .phase-card h3{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:1.4rem !important;font-weight:900 !important;
+  letter-spacing:-.025em !important;line-height:1.15 !important;
+  color:var(--dvh-ink) !important;
+  text-align:left !important;
+  margin:0 0 18px !important;
+}
+body.home-themed .phase-card ul{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+body.home-themed .phase-card ul li{
+  position:relative;padding-left:24px !important;
+  font-family:'Inter',sans-serif !important;
+  color:var(--dvh-text) !important;line-height:1.55 !important;
+  font-size:.95rem !important;
+}
+body.home-themed .phase-card ul li:before{
+  content:"" !important;position:absolute;
+  left:0 !important;top:8px !important;
+  width:14px !important;height:14px !important;border-radius:50% !important;
+  background:var(--dvh-spot-soft) !important;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") !important;
+  background-size:9px 9px !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  border:1px solid var(--dvh-spot-border) !important;
+}
+
+@media (max-width:820px){
+  body.home-themed .process-track{grid-template-columns:1fr !important}
+  body.home-themed .process-track:before{display:none !important}
+}
+
+/* ============================================================
+   EXPERTISE / SERVICES GRID — flat cards
+   ============================================================ */
+body.home-themed .services-expertise{
+  background:var(--dvh-cream) !important;
+}
+body.home-themed .expertise-grid{
+  display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+  gap:18px !important;max-width:1200px;margin:0 auto;
+}
+body.home-themed .exp-card{
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-rule) !important;border-radius:14px !important;
+  padding:30px 26px 26px !important;
+  box-shadow:none !important;
+  text-decoration:none !important;color:inherit !important;
+  display:flex !important;flex-direction:column;gap:14px;
+  min-height:auto !important;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s !important;
+}
+body.home-themed .exp-card:before,
+body.home-themed .exp-card:after{display:none !important}
+body.home-themed .exp-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:var(--dvh-spot) !important;
+  box-shadow:none !important;
+}
+body.home-themed .exp-card .exp-num{
+  position:absolute;top:18px;right:22px;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.78rem !important;font-weight:700 !important;
+  letter-spacing:.14em !important;
+  color:var(--dvh-mute) !important;background:none !important;
+  line-height:1;
+}
+body.home-themed .exp-card:hover .exp-num{
+  color:var(--dvh-spot-text) !important;transform:none !important;
+}
+body.home-themed .exp-card .exp-icon{
+  width:48px !important;height:48px !important;border-radius:12px !important;
+  background:var(--dvh-spot-soft) !important;
+  display:grid;place-items:center;
+  transition:background .3s !important;
+  box-shadow:none !important;
+}
+body.home-themed .exp-card:hover .exp-icon{
+  background:var(--dvh-spot) !important;
+  transform:none !important;box-shadow:none !important;
+}
+body.home-themed .exp-card .exp-icon svg{
+  width:22px;height:22px;
+  stroke:var(--dvh-spot-text) !important;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke .3s !important;
+}
+body.home-themed .exp-card:hover .exp-icon svg{
+  stroke:#ffffff !important;
+}
+body.home-themed .exp-card h3{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:1.15rem !important;font-weight:800 !important;
+  letter-spacing:-.015em !important;
+  color:var(--dvh-ink) !important;
+  margin:4px 0 0 !important;
+}
+body.home-themed .exp-card p{
+  font-family:'Inter',sans-serif !important;
+  font-size:.92rem !important;line-height:1.6 !important;
+  color:var(--dvh-text) !important;
+  margin:0;flex:1;
+}
+body.home-themed .exp-card .exp-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;font-weight:700 !important;
+  letter-spacing:.14em !important;text-transform:uppercase !important;
+  color:var(--dvh-ink) !important;
+  margin-top:6px;
+}
+body.home-themed .exp-card .exp-link:after{
+  content:"→";transition:transform .3s ease;
+  display:inline-block;
+}
+body.home-themed .exp-card:hover .exp-link{color:var(--dvh-spot-text) !important}
+body.home-themed .exp-card:hover .exp-link:after{transform:translateX(4px)}
+
+body.home-themed .svc-closing{
+  max-width:780px;margin:48px auto 0 !important;
+  text-align:center;
+  font-family:'Inter',sans-serif !important;
+  color:var(--dvh-mute) !important;
+  font-style:italic !important;line-height:1.7;
+  font-size:1.02rem;
+}
+
+@media (max-width:900px){body.home-themed .expertise-grid{grid-template-columns:repeat(2,1fr) !important}}
+@media (max-width:560px){body.home-themed .expertise-grid{grid-template-columns:1fr !important}}
+
+/* ============================================================
+   WHY — checklist tiles + closing promise
+   ============================================================ */
+body.home-themed .why-section{background:var(--dvh-cream) !important}
+body.home-themed .why-grid{
+  display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+  gap:14px !important;max-width:1200px;margin:0 auto;
+}
+body.home-themed .why-tile{
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-rule) !important;border-radius:14px !important;
+  padding:24px !important;
+  display:flex;align-items:flex-start;gap:14px;
+  box-shadow:none !important;
+  transition:border-color .3s,transform .3s !important;
+}
+body.home-themed .why-tile:hover{
+  transform:translateY(-3px) !important;
+  border-color:var(--dvh-spot) !important;
+  box-shadow:none !important;
+}
+body.home-themed .why-tile .tile-check{
+  flex-shrink:0;width:32px;height:32px;border-radius:50%;
+  background:var(--dvh-spot) !important;
+  display:grid;place-items:center;
+  box-shadow:none !important;
+}
+body.home-themed .why-tile .tile-check svg{
+  width:16px;height:16px;
+  stroke:var(--dvh-ink) !important;fill:none;
+  stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+}
+body.home-themed .why-tile p{
+  font-family:'Inter',sans-serif !important;
+  margin:0 !important;color:var(--dvh-ink) !important;
+  font-weight:500;line-height:1.55;font-size:.97rem;
+}
+body.home-themed .why-promise{
+  max-width:880px;margin:56px auto 0 !important;
+  text-align:center;
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(1.3rem,2.4vw,1.8rem) !important;
+  line-height:1.3 !important;
+  font-weight:900 !important;letter-spacing:-.025em !important;
+  color:var(--dvh-ink) !important;
+  background:#ffffff !important;
+  border:1.5px solid var(--dvh-ink) !important;
+  border-radius:18px !important;
+  padding:36px 40px !important;
+}
+body.home-themed .why-promise .green_text{
+  color:var(--dvh-spot-text) !important;
+  font-style:italic !important;font-weight:900 !important;
+}
+@media (max-width:820px){body.home-themed .why-grid{grid-template-columns:1fr 1fr !important}}
+@media (max-width:560px){body.home-themed .why-grid{grid-template-columns:1fr !important}}
+
+/* ============================================================
+   ABOUT CTA — flat green band with ink button
+   ============================================================ */
+body.home-themed .about-cta{
+  background:var(--dvh-spot) !important;
+  padding:96px 24px !important;
+  position:relative;overflow:hidden;
+  border-top:1px solid var(--dvh-ink) !important;
+  border-bottom:1px solid var(--dvh-ink) !important;
+}
+body.home-themed .about-cta:before,
+body.home-themed .about-cta:after{display:none !important}
+body.home-themed .about-cta .container{
+  position:relative;z-index:1;
+  max-width:920px !important;text-align:center;
+}
+body.home-themed .about-cta h2{
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-size:clamp(2.2rem,4.2vw,3.4rem) !important;
+  font-weight:900 !important;
+  letter-spacing:-.04em !important;line-height:1.05 !important;
+  color:var(--dvh-ink) !important;
+  margin:0 0 16px !important;
+}
+body.home-themed .about-cta h2 span{
+  color:var(--dvh-ink) !important;
+  font-style:italic !important;font-weight:900 !important;
+  text-decoration:underline;text-decoration-thickness:3px;
+  text-underline-offset:4px;
+  text-decoration-color:rgba(20,20,26,.4);
+}
+body.home-themed .about-cta p{
+  font-family:'Inter',sans-serif !important;
+  color:var(--dvh-ink) !important;opacity:.85;
+  font-size:1.08rem !important;line-height:1.6 !important;
+  margin:0 auto 30px !important;
+  max-width:640px;
+}
+body.home-themed .about-cta .btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 32px !important;border-radius:12px !important;
+  background:var(--dvh-ink) !important;color:var(--dvh-cream) !important;
+  border:1.5px solid var(--dvh-ink) !important;
+  font-family:'Inter Tight','Inter',sans-serif !important;
+  font-weight:700 !important;font-size:1rem !important;
+  letter-spacing:-.01em !important;
+  box-shadow:none !important;filter:none !important;
+  text-decoration:none !important;
+  transition:background .25s,color .25s,transform .25s !important;
+}
+body.home-themed .about-cta .btn:hover{
+  background:#ffffff !important;color:var(--dvh-ink) !important;
+  border-color:#ffffff !important;
+  transform:translateY(-2px) !important;
+}
+
+/* ============================================================
+   GLOBAL DECORATION STRIP — kill remaining halos/gradients
+   ============================================================ */
+body.home-themed main section:before,
+body.home-themed main section:after{}
+/* keep mv-deco visible but de-saturated already handled above */
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:780px){
+  body.home-themed .about-hero{padding:120px 0 56px !important}
+  body.home-themed .about-sec,
+  body.home-themed .process-section,
+  body.home-themed .services-expertise,
+  body.home-themed .why-section{padding:72px 0 !important}
+  body.home-themed .about-cta{padding:72px 24px !important}
+  body.home-themed .why-promise{padding:28px 22px !important;font-size:1.2rem !important}
+}
+
+/* ============================================================
+   DARK MODE PARITY
+   ============================================================ */
+[data-theme="dark"] body.home-themed .about-hero{
+  background-color:#0b1220 !important;
+  background-image:
+    linear-gradient(rgba(241,245,249,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(241,245,249,.04) 1px,transparent 1px) !important;
+  border-bottom-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .about-hero h1{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .about-hero .lead{color:#cbd5e1 !important}
+[data-theme="dark"] body.home-themed .about-hero .hero-sub{border-top-color:rgba(241,245,249,.1) !important}
+[data-theme="dark"] body.home-themed .about-hero .hero-sub .chip{
+  background:#111827 !important;color:#f1f5f9 !important;
+  border-color:#f1f5f9 !important;
+}
+
+[data-theme="dark"] body.home-themed .about-stats{
+  background:#0b1220 !important;border-bottom-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .about-stats .container{
+  border-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .about-stats .stat{border-color:rgba(241,245,249,.1) !important}
+[data-theme="dark"] body.home-themed .about-stats .stat:hover{background:rgba(34,197,94,.08) !important}
+[data-theme="dark"] body.home-themed .about-stats .stat .num{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .about-stats .stat .lbl{color:#94a3b8 !important}
+
+[data-theme="dark"] body.home-themed .about-sec,
+[data-theme="dark"] body.home-themed .process-section,
+[data-theme="dark"] body.home-themed .services-expertise,
+[data-theme="dark"] body.home-themed .why-section{
+  background:#0b1220 !important;
+}
+[data-theme="dark"] body.home-themed .about-sec .sec-head h2,
+[data-theme="dark"] body.home-themed .process-section .sec-head h2,
+[data-theme="dark"] body.home-themed .services-expertise .sec-head h2,
+[data-theme="dark"] body.home-themed .why-section .sec-head h2{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .about-sec .sec-head p,
+[data-theme="dark"] body.home-themed .process-section .sec-head p,
+[data-theme="dark"] body.home-themed .services-expertise .sec-head p,
+[data-theme="dark"] body.home-themed .why-section .sec-head p{color:#cbd5e1 !important}
+
+[data-theme="dark"] body.home-themed .about-sec .kicker,
+[data-theme="dark"] body.home-themed .process-section .kicker,
+[data-theme="dark"] body.home-themed .services-expertise .kicker,
+[data-theme="dark"] body.home-themed .why-section .kicker{
+  background:#111827 !important;color:#f1f5f9 !important;
+  border-color:#f1f5f9 !important;
+}
+[data-theme="dark"] body.home-themed .about-sec .kicker:before,
+[data-theme="dark"] body.home-themed .process-section .kicker:before,
+[data-theme="dark"] body.home-themed .services-expertise .kicker:before,
+[data-theme="dark"] body.home-themed .why-section .kicker:before{background:#f1f5f9 !important}
+
+[data-theme="dark"] body.home-themed .intro-lead{
+  background:transparent !important;color:#cbd5e1 !important;
+  border-left-color:var(--dvh-spot) !important;
+}
+[data-theme="dark"] body.home-themed .intro-lead strong{color:#f1f5f9 !important}
+
+[data-theme="dark"] body.home-themed .mv-card{
+  background:#111827 !important;border-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .mv-card:hover{border-color:var(--dvh-spot) !important}
+[data-theme="dark"] body.home-themed .mv-card h3{
+  color:#f1f5f9 !important;-webkit-text-fill-color:#f1f5f9 !important;
+}
+[data-theme="dark"] body.home-themed .mv-card p{color:#cbd5e1 !important}
+[data-theme="dark"] body.home-themed .mv-card p strong{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .mv-card .mv-deco svg{stroke:#e2e8f0 !important;opacity:.8}
+
+[data-theme="dark"] body.home-themed .value-card,
+[data-theme="dark"] body.home-themed .phase-card,
+[data-theme="dark"] body.home-themed .exp-card,
+[data-theme="dark"] body.home-themed .why-tile{
+  background:#111827 !important;border-color:rgba(241,245,249,.1) !important;
+}
+[data-theme="dark"] body.home-themed .value-card:hover,
+[data-theme="dark"] body.home-themed .phase-card:hover,
+[data-theme="dark"] body.home-themed .exp-card:hover,
+[data-theme="dark"] body.home-themed .why-tile:hover{border-color:var(--dvh-spot) !important}
+
+[data-theme="dark"] body.home-themed .value-card h3,
+[data-theme="dark"] body.home-themed .phase-card h3,
+[data-theme="dark"] body.home-themed .exp-card h3{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .value-card p,
+[data-theme="dark"] body.home-themed .exp-card p,
+[data-theme="dark"] body.home-themed .phase-card ul li{color:#cbd5e1 !important}
+[data-theme="dark"] body.home-themed .value-card .val-num,
+[data-theme="dark"] body.home-themed .exp-card .exp-num{color:#94a3b8 !important}
+[data-theme="dark"] body.home-themed .value-card .val-icon{
+  background:rgba(34,197,94,.14) !important;
+}
+[data-theme="dark"] body.home-themed .value-card .val-icon svg{stroke:#86efac !important}
+[data-theme="dark"] body.home-themed .exp-card .exp-icon{background:rgba(34,197,94,.14) !important}
+[data-theme="dark"] body.home-themed .exp-card .exp-icon svg{stroke:#86efac !important}
+[data-theme="dark"] body.home-themed .exp-card:hover .exp-icon{background:var(--dvh-spot) !important}
+[data-theme="dark"] body.home-themed .exp-card:hover .exp-icon svg{stroke:#0b1220 !important}
+[data-theme="dark"] body.home-themed .exp-card .exp-link{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .exp-card:hover .exp-link{color:#86efac !important}
+
+[data-theme="dark"] body.home-themed .process-track:before{background:rgba(241,245,249,.1) !important}
+[data-theme="dark"] body.home-themed .phase-card .phase-badge{
+  background:#0b1220 !important;color:var(--dvh-spot) !important;
+}
+
+[data-theme="dark"] body.home-themed .why-tile p{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .why-tile .tile-check{background:var(--dvh-spot) !important}
+[data-theme="dark"] body.home-themed .why-tile .tile-check svg{stroke:#0b1220 !important}
+
+[data-theme="dark"] body.home-themed .why-promise{
+  background:#111827 !important;color:#f1f5f9 !important;
+  border-color:#f1f5f9 !important;
+}
+
+[data-theme="dark"] body.home-themed .svc-closing{color:#94a3b8 !important}
+
+[data-theme="dark"] body.home-themed .about-cta{
+  background:var(--dvh-spot) !important;
+  border-color:#0b1220 !important;
+}
+[data-theme="dark"] body.home-themed .about-cta h2,
+[data-theme="dark"] body.home-themed .about-cta p{color:#0b1220 !important}
+[data-theme="dark"] body.home-themed .about-cta .btn{
+  background:#0b1220 !important;color:#f1f5f9 !important;border-color:#0b1220 !important;
+}
+[data-theme="dark"] body.home-themed .about-cta .btn:hover{
+  background:#ffffff !important;color:#0b1220 !important;border-color:#ffffff !important;
+}
+
+/* ============================================================
+   === QA pass: overlap & contrast fixes ===
+   Scoped to body.home-themed only. Surgical overrides for the
+   issues found in the audit:
+     a) hero kicker green-on-cream legacy color → eyebrow design
+     b) double underline + squiggle decoration on CTA span
+     c) long words spilling out of grid cells
+     d) absolute-positioned numbers colliding with card headings
+     e) decorative SVGs sitting above text in mv-card
+     f) stat numbers overflow on tight widths
+     g) squiggle underline crossing into descenders
+   ============================================================ */
+
+/* a) Hero kicker — align to eyebrow design system (white bg, ink
+   text, ink border, mono). The about-hero kicker is NOT covered
+   by the protected .sec-head .kicker eyebrow rule in home.css. */
+body.home-themed .about-hero .kicker{
+  display:inline-flex !important;align-items:center;gap:10px !important;
+  padding:8px 14px !important;border-radius:999px !important;
+  background:#ffffff !important;color:var(--dvh-ink) !important;
+  border:1.5px solid var(--dvh-ink) !important;
+  font-family:'JetBrains Mono',monospace !important;
+  font-size:.72rem !important;font-weight:600 !important;
+  letter-spacing:.16em !important;text-transform:uppercase !important;
+  margin-bottom:18px !important;
+  box-shadow:none !important;
+}
+body.home-themed .about-hero .kicker:before{
+  content:"" !important;width:6px !important;height:6px !important;
+  border-radius:50% !important;
+  background:var(--dvh-ink) !important;box-shadow:none !important;
+}
+
+/* b) Kill the legacy squiggle :after on .about-cta h2 span — we
+   already render an ink underline via text-decoration. The squiggle
+   doubled up under the ink rule and looked muddy. */
+body.home-themed .about-cta h2 span:after{display:none !important}
+
+/* c) Value & exp cards — keep h3 clear of the absolute val-num /
+   exp-num pill and protect long product names like "Generative
+   Search Optimisation" from spilling outside the card column. */
+body.home-themed .value-card h3,
+body.home-themed .exp-card h3{
+  padding-right:48px !important;
+  overflow-wrap:break-word;word-wrap:break-word;
+  hyphens:auto;min-width:0;
+  position:relative;z-index:2;
+}
+body.home-themed .value-card p,
+body.home-themed .exp-card p,
+body.home-themed .phase-card ul li,
+body.home-themed .mv-card p,
+body.home-themed .why-tile p{
+  overflow-wrap:break-word;word-wrap:break-word;
+  hyphens:auto;min-width:0;
+}
+body.home-themed .value-card,
+body.home-themed .exp-card,
+body.home-themed .phase-card,
+body.home-themed .why-tile,
+body.home-themed .mv-card{
+  min-width:0;
+}
+
+/* d) Make sure absolute-positioned numerals (.val-num, .exp-num)
+   never paint over text content; numerals sit at z-index:1 while
+   text z-index:2. */
+body.home-themed .value-card .val-num,
+body.home-themed .exp-card .exp-num{
+  z-index:1;
+}
+
+/* e) Stat-strip values can overflow at mid-widths because some
+   numbers ("₹65Cr+", "1.15L+", "4–10×") are character-dense in
+   tight 6-col grid cells. Allow wrap and clamp size down a notch
+   between 901px and 1180px. */
+body.home-themed .about-stats .stat{
+  min-width:0 !important;
+  overflow:hidden;
+}
+body.home-themed .about-stats .stat .num{
+  overflow-wrap:break-word;word-wrap:break-word;
+  min-width:0 !important;
+}
+body.home-themed .about-stats .stat .lbl{
+  overflow-wrap:break-word;word-wrap:break-word;
+  min-width:0 !important;
+}
+@media (min-width:901px) and (max-width:1180px){
+  body.home-themed .about-stats .stat{padding:30px 16px !important}
+  body.home-themed .about-stats .stat .num{
+    font-size:clamp(1.7rem,2.6vw,2.4rem) !important;
+  }
+}
+
+/* f) mv-card — ensure the headline label (:before "01 / VISION")
+   and headline divider (:after) sit ABOVE the .mv-deco SVG so the
+   decorative line art never bleeds through the type. */
+body.home-themed .mv-card h3{position:relative;z-index:2}
+body.home-themed .mv-card h3:before,
+body.home-themed .mv-card h3:after{position:relative;z-index:2}
+body.home-themed .mv-card .mv-deco{z-index:0 !important;pointer-events:none}
+
+/* The legacy style.css positions .mv-deco at top:28px/right:28px
+   (vision) and bottom:24px/right:28px (mission). On narrower cards
+   (~480px wide) the 210px-wide vision deco can extend left over
+   the "01 / VISION" label. Clamp width so it never crosses card
+   midline. */
+body.home-themed .mv-card.mv-vision .mv-deco{
+  width:min(210px,42%) !important;height:auto !important;
+}
+body.home-themed .mv-card.mv-mission .mv-deco{
+  width:min(220px,42%) !important;height:auto !important;
+}
+
+/* g) Hero h1 .green_text — legacy style.css adds a wavy SVG
+   underline (:after) using brand green #22c55e. Push it just below
+   the text baseline so it never bleeds into descenders / line below. */
+body.home-themed .about-hero h1 .green_text{padding-bottom:8px !important}
+body.home-themed .about-sec .sec-head h2 .green_text,
+body.home-themed .why-section .sec-head h2 .green_text,
+body.home-themed .process-section .sec-head h2 .green_text,
+body.home-themed .services-expertise .sec-head h2 .green_text{
+  padding-bottom:6px !important;
+}
+
+/* svc-closing italic line — italic descenders can clip in narrow
+   viewports; protect line-height and allow wrap. */
+body.home-themed .svc-closing{
+  overflow-wrap:break-word;word-wrap:break-word;
+  line-height:1.7 !important;
+}
+
+/* intro-lead — italic, long, with a left ink rule; protect wrap. */
+body.home-themed .intro-lead{
+  overflow-wrap:break-word;word-wrap:break-word;
+  hyphens:auto;
+}
+
+/* why-promise — italic .green_text inside a bordered card; ensure
+   it wraps cleanly and the green text uses the AA-on-cream tone. */
+body.home-themed .why-promise{
+  overflow-wrap:break-word;word-wrap:break-word;
+}
+body.home-themed .why-promise .green_text{color:var(--dvh-spot-text) !important}
+
+/* Keep hero copy above the faint editorial grid backdrop. */
+body.home-themed .about-hero .container > .kicker{
+  position:relative;z-index:2;
+}
+body.home-themed .about-hero h1,
+body.home-themed .about-hero .lead,
+body.home-themed .about-hero .hero-sub{
+  position:relative;z-index:1;
+}
+
+/* exp-link — keep AA contrast on cream when not hovered and use
+   the dark-emerald variant on hover to match the icon flip. */
+body.home-themed .exp-card .exp-link{
+  color:var(--dvh-ink) !important;
+}
+body.home-themed .exp-card:hover .exp-link{
+  color:var(--dvh-spot-text) !important;
+}
+
+/* phase-card badge — ink circle with green numeral. Force opaque
+   background so the timeline hairline running behind it doesn't
+   show through and bleed into the numeral. */
+body.home-themed .phase-card .phase-badge{
+  background-color:var(--dvh-ink) !important;
+  color:var(--dvh-spot) !important;
+  position:relative;z-index:2;
+}
+
+/* === Dark-mode counterparts for the QA fixes === */
+[data-theme="dark"] body.home-themed .about-hero .kicker{
+  background:#111827 !important;color:#f1f5f9 !important;
+  border-color:#f1f5f9 !important;
+}
+[data-theme="dark"] body.home-themed .about-hero .kicker:before{
+  background:#f1f5f9 !important;
+}
+[data-theme="dark"] body.home-themed .exp-card .exp-link{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .exp-card:hover .exp-link{color:#86efac !important}
+[data-theme="dark"] body.home-themed .why-promise .green_text{color:#86efac !important}
+[data-theme="dark"] body.home-themed .phase-card .phase-badge{
+  background-color:#0b1220 !important;color:var(--dvh-spot) !important;
+}
