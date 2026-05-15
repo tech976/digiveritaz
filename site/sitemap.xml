@@ -4,100 +4,100 @@
 
   <url>
     <loc>https://digiveritaz.com/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/about-us/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/services/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/case-study/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/blog/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/contact-us/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://digiveritaz.com/faq/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Service pages -->
   <!-- Marketing -->
-  <url><loc>https://digiveritaz.com/seo/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/social-media-management/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/influencer-marketing/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/digital-pr/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/online-reputation-management/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/organic-marketing-services/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/whatsapp-marketing-services/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/performance-marketing-agency/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/ecommerce-marketing/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/generative-search-optimisation/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/seo/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/social-media-management/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/influencer-marketing/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/digital-pr/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/online-reputation-management/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/organic-marketing-services/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/whatsapp-marketing-services/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/performance-marketing-agency/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/ecommerce-marketing/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/generative-search-optimisation/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <!-- Advertising -->
-  <url><loc>https://digiveritaz.com/pay-per-click/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/display-advertising/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/facebook-instagram-advertising/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/shopping-ads/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/paid-social-media-advertising/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/amazon-marketing/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/native-advertising/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/pay-per-click/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/display-advertising/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/facebook-instagram-advertising/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/shopping-ads/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/paid-social-media-advertising/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/amazon-marketing/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/native-advertising/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <!-- Design & Content -->
-  <url><loc>https://digiveritaz.com/ui-ux-design/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/product-design/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/branding-and-design/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/communication-design/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/content-copy-writing/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/ui-ux-design/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/product-design/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/branding-and-design/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/communication-design/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/content-copy-writing/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <!-- Strategy & Data -->
-  <url><loc>https://digiveritaz.com/conversion-rate-optimisation/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/revenue-generation/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/lead-generation/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/cmo-consultancy/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/landing-page-design/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/real-estate-lead-generation/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/research-and-insights/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/strategy-and-planning/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/analytics-configuration/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/google-tag-manager/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/data-strategy-consulting-services/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/conversion-rate-optimisation/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/revenue-generation/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/lead-generation/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/cmo-consultancy/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/landing-page-design/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/real-estate-lead-generation/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/research-and-insights/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/strategy-and-planning/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/analytics-configuration/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/google-tag-manager/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/data-strategy-consulting-services/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <!-- Tech & Development -->
-  <url><loc>https://digiveritaz.com/website-development/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/custom-software-development/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/ecommerce-development/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/wordpress-development/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/mobile-app-development/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/linux-hosting/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/business-email/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://digiveritaz.com/crm-services/</loc><lastmod>2026-04-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/website-development/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/custom-software-development/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/ecommerce-development/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/wordpress-development/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/mobile-app-development/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/linux-hosting/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/business-email/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://digiveritaz.com/crm-services/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
   <!-- Blog posts -->
   <url>
@@ -202,13 +202,13 @@
   <!-- Legal -->
   <url>
     <loc>https://digiveritaz.com/privacy-policy/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://digiveritaz.com/terms-and-conditions/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

@@ -656,8 +656,8 @@ about_body = """
 </section>
 """
 write("about-us.html",
-      "About DigiVeritaz | Growth-Driven Digital Marketing Agency in Mumbai",
-      "DigiVeritaz is a performance marketing powerhouse based in Mumbai — 60+ clients, 15+ years combined experience, 1.15L+ leads delivered and 4–10x ROAS across India and globally.",
+      "About Digiveritaz | Digital Marketing Agency India",
+      "Learn about Digiveritaz, an India-based digital marketing agency helping brands grow through SEO, paid ads, branding, and ROI-focused strategies.",
       about_body,
       keywords=DEFAULT_KEYWORDS + ", about DigiVeritaz, digital marketing agency Mumbai, performance marketing powerhouse, growth agency India, AI marketing agency")
 
@@ -804,8 +804,8 @@ contact_jsonld = '<script type="application/ld+json">' + json.dumps({
     "mainEntity": {"@id": SITE_URL + "/#organization"}
 }, separators=(",",":")) + '</script>'
 write("contact-us.html",
-      "Contact DigiVeritaz | Get a Free Digital Marketing Proposal",
-      "Contact DigiVeritaz for a free digital marketing proposal. Call +91 99566 55662 or email info@digiveritaz.com. Based in Mumbai, serving clients across India and globally.",
+      "Contact Digiveritaz | Digital Marketing Agency India",
+      "Get in touch with Digiveritaz to discuss SEO, PPC and performance marketing solutions for your business in India. Book a free 30-min strategy call today.",
       contact_body,
       keywords=DEFAULT_KEYWORDS + ", contact digital marketing agency, marketing agency Mumbai contact, free marketing proposal, digital marketing consultation",
       extra_jsonld=contact_jsonld)
@@ -1034,8 +1034,8 @@ svc_body = f"""
 {_svc_tabs_script}
 """
 write("services.html",
-      "Digital Marketing Services in India | SEO, PPC, Performance, E-Commerce | DigiVeritaz",
-      "Full-stack digital marketing services from DigiVeritaz: 41 services across marketing, advertising, design, strategy, data and development. SEO, PPC, performance marketing, paid social, e-commerce, WhatsApp, branding and more.",
+      "Best Digital Marketing Services in India | Digiveritaz",
+      "Explore Digiveritaz full-suite digital marketing services in India including SEO, PPC, performance marketing, paid social, WhatsApp marketing and branding.",
       svc_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing services, marketing services India, full service marketing agency, marketing packages Mumbai")
 
@@ -1848,7 +1848,7 @@ cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Ca
 """
 write("case-study.html",
       "Case Studies | DigiVeritaz Digital Marketing Success Stories",
-      "Real results from DigiVeritaz clients — Hyundai, JK Shah, Khyber Cement, EBCO, MY BID and more. See case studies across education, D2C, real estate, automotive and F&amp;B.",
+      "Explore real-world digital marketing case studies showcasing Digiveritaz growth-driven results for brands across India — lead gen, SEO and PPC wins included.",
       cs_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing case studies, marketing success stories, Hyundai case study, JK Shah case study, Mumbai agency portfolio")
 
@@ -1896,8 +1896,8 @@ blog_body = page_hero("Blog &amp; <span class=\"green_text\">Insights</span>", "
 <section><div class="container"><div class="card-grid">{blog_cards}</div></div></section>
 """
 write("blog.html",
-      "Digital Marketing Blog &amp; Insights | DigiVeritaz",
-      "Digital marketing playbooks, SEO tips, PPC strategies and growth insights from the DigiVeritaz team. Learn what works in 2026 and beyond.",
+      "Digital Marketing Blogs and Insights | DigiVeritaz India",
+      "Explore expert insights, trends and strategies on SEO, PPC, AI and performance marketing from Digiveritaz — updated weekly for brands and marketers in India.",
       blog_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing blog, SEO tips, PPC tips, marketing insights India, growth marketing blog")
 
@@ -2074,8 +2074,8 @@ faq_schema = {
 }
 faq_jsonld = '<script type="application/ld+json">' + json.dumps(faq_schema, separators=(",",":")) + '</script>'
 write("faq.html",
-      "FAQ | DigiVeritaz — Digital Marketing Agency Questions Answered",
-      "Frequently asked questions about DigiVeritaz — services, engagement models, pricing, reporting and how we measure ROI for digital marketing campaigns.",
+      "Frequently Asked Questions (FAQ's) | Digiveritaz India",
+      "Find answers to common questions about Digiveritaz digital marketing, SEO and performance marketing services for businesses and brands across all of India.",
       faq_body,
       keywords=DEFAULT_KEYWORDS + ", digital marketing FAQ, marketing agency questions, marketing pricing, ROI measurement",
       extra_jsonld=faq_jsonld)
@@ -2099,8 +2099,8 @@ privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Ho
 </div></section>
 """
 write("privacy-policy.html",
-      "Privacy Policy | DigiVeritaz",
-      "DigiVeritaz privacy policy — how we collect, use, and protect your personal information.",
+      "Privacy Policy | Digiveritaz Digital Marketing India",
+      "Read Digiveritaz privacy policy to understand how we collect, use and protect your personal and business data responsibly across all operations in India.",
       privacy_body,
       keywords="privacy policy, data protection, DigiVeritaz privacy")
 
@@ -2116,8 +2116,8 @@ terms_body = page_hero("Terms &amp; <span class=\"green_text\">Conditions</span>
 </div></section>
 """
 write("terms-and-conditions.html",
-      "Terms &amp; Conditions | DigiVeritaz",
-      "DigiVeritaz terms and conditions governing the use of our services and engagements.",
+      "Terms &amp; Conditions | Digiveritaz Digital Marketing India",
+      "Review the terms and conditions governing the use of Digiveritaz website, services and digital marketing solutions for businesses and brands across India.",
       terms_body,
       keywords="terms and conditions, service agreement, DigiVeritaz terms")
 
