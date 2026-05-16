@@ -121,11 +121,12 @@ body.home-themed .about-stats .stat .num{
   color:var(--dvh-ink) !important;
   line-height:1 !important;
   margin-bottom:12px !important;
+  white-space:nowrap !important;
 }
 body.home-themed .about-stats .stat .num b{
   color:var(--dvh-spot-text) !important;
   font-style:normal !important;font-weight:900 !important;
-  display:inline-block;vertical-align:0.08em;margin-left:.04em;
+  vertical-align:0.08em;
 }
 body.home-themed .about-stats .stat .lbl{
   font-family:'JetBrains Mono',monospace !important;
