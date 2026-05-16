@@ -1981,3 +1981,41 @@ body.home-themed .dvh-clients-frame .marquee{max-width:100%}
 [data-theme="dark"] body.home-themed .rating-card .stars{color:#22c55e !important}
 [data-theme="dark"] body.home-themed .testimonials-bg .section-head h2 span,
 [data-theme="dark"] body.home-themed .testimonials-bg h2 span{color:#22c55e !important}
+
+/* ------------------------------------------------------------------ */
+/* Dark-mode contrast fixes (audit 2026-05-16)                        */
+/* ------------------------------------------------------------------ */
+
+/* Eyebrow chips across all home sections — white pill + dark text was
+   invisible on dark page bg. Switch to the same green-tinted pill used
+   in the global eyebrow rule. Applies to .section-head .eyebrow,
+   .impact-head .eyebrow, .dvh-clients-mast .eyebrow, .dvh-cases-mast
+   .left .eyebrow, .testimonials-bg .eyebrow, etc. */
+[data-theme="dark"] body.home-themed .eyebrow,
+[data-theme="dark"] body.home-themed .section-head .eyebrow,
+[data-theme="dark"] body.home-themed .impact-head .eyebrow,
+[data-theme="dark"] body.home-themed .dvh-clients-mast .eyebrow,
+[data-theme="dark"] body.home-themed .dvh-cases-mast .left .eyebrow,
+[data-theme="dark"] body.home-themed .testimonials-bg .eyebrow{
+  background:linear-gradient(135deg,#0b3520,#0f2a1c) !important;
+  color:#86efac !important;
+  border-color:rgba(34,197,94,.3) !important;
+}
+
+/* Section-head description paragraph — base color var(--dvh-text)
+   = #3a3a4a, which is unreadable on dark bg. */
+[data-theme="dark"] body.home-themed .section-head p,
+[data-theme="dark"] body.home-themed .impact-head p{
+  color:#cbd5e1 !important;
+}
+
+/* Impact metric labels — base #6b7280 is dim on dark bg. */
+[data-theme="dark"] body.home-themed .impact-label{
+  color:#94a3b8 !important;
+}
+
+/* Case-studies / clients "credit" microcopy — base #6b6b78 is dim. */
+[data-theme="dark"] body.home-themed .dvh-clients-credit,
+[data-theme="dark"] body.home-themed .dvh-cases-mast .dvh-clients-credit{
+  color:#94a3b8 !important;
+}
