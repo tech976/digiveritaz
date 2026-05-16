@@ -126,7 +126,7 @@ body.home-themed .about-stats .stat .num{
 body.home-themed .about-stats .stat .num b{
   color:var(--dvh-spot-text) !important;
   font-style:normal !important;font-weight:900 !important;
-  vertical-align:0.08em;
+  vertical-align:0.08em;margin-left:.08em;
 }
 body.home-themed .about-stats .stat .lbl{
   font-family:'JetBrains Mono',monospace !important;
