@@ -1969,6 +1969,15 @@ body.home-themed .dvh-clients-frame{overflow:hidden !important}
 body.home-themed .dvh-clients-frame .marquee{max-width:100%}
 
 /* --- 11. Dark-mode parity for the contrast fixes --- */
+/* All large section headings — home.css's light-mode rule forces
+   color:var(--dvh-ink) !important (=#14141A) so the dark-mode default
+   color:#f1f5f9 loses the cascade. Override here with !important. */
+[data-theme="dark"] body.home-themed .section-head h2,
+[data-theme="dark"] body.home-themed .impact-head h2,
+[data-theme="dark"] body.home-themed .sec-head h2{
+  color:#f1f5f9 !important;
+}
+
 [data-theme="dark"] body.home-themed .wwd-row{
   border-color:rgba(255,255,255,.1) !important;
 }
