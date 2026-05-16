@@ -133,7 +133,7 @@ ORG_SCHEMA = {
             "image": DEFAULT_OG_IMAGE,
             "description": "DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.",
             "telephone": "+91-9956655662",
-            "email": "info@digiveritaz.com",
+            "email": "durvamukherjee@digiveritaz.com",
             "priceRange": "$$",
             "address": {
                 "@type": "PostalAddress",
@@ -292,7 +292,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
           <h4>Get In Touch</h4>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div><strong>Mumbai HQ</strong><a href="https://maps.google.com/?q=Ujagar+Chambers+Deonar+Chembur+Mumbai+400088" target="_blank" rel="noopener">1st Floor, Ujagar Chambers, Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai 400088</a></div>
+            <div><strong>Mumbai HQ</strong><a href="https://maps.google.com/?q=Ujagar+Chambers+Deonar+Chembur+Mumbai+400088" target="_blank" rel="noopener">1st Floor, Ujagar Chambers, Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088</a></div>
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg></span>
@@ -300,7 +300,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-            <div><strong>Email</strong><a href="mailto:info@digiveritaz.com">info@digiveritaz.com</a><br><a href="mailto:mihir@digiveritaz.com">mihir@digiveritaz.com</a></div>
+            <div><strong>Email</strong><a href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a><br><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a></div>
           </div>
         </div>
 
@@ -688,14 +688,14 @@ contact_body = """
 
       <div class="strip-item">
         <span class="sl">Email</span>
-        <a class="sv" href="mailto:info@digiveritaz.com">info@digiveritaz.com</a>
-        <span class="sv-sub"><a href="mailto:mihir@digiveritaz.com">mihir@digiveritaz.com</a></span>
+        <a class="sv" href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a>
+        <span class="sv-sub"><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a></span>
       </div>
 
       <div class="strip-item">
         <span class="sl">Office</span>
         <a class="sv" href="https://maps.google.com/?q=Ujagar+Chambers+Deonar+Chembur+Mumbai+400088" target="_blank" rel="noopener">1st Floor, Ujagar Chambers</a>
-        <span class="sv-sub">Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai 400088<br>Mon&ndash;Sat &middot; 10:00 AM &ndash; 7:00 PM</span>
+        <span class="sv-sub">Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088<br>Mon&ndash;Sat &middot; 10:00 AM &ndash; 7:00 PM</span>
       </div>
 
     </div>
@@ -2089,12 +2089,12 @@ privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Ho
 <h2>3. Information We Collect</h2><p>We may collect your name, email, phone number, company, budget, and project details when you fill out a form or contact us directly.</p>
 <h2>4. How We Use Information</h2><p>Information is used only to respond to your inquiry, deliver services, send updates you've opted into, and improve our offerings.</p>
 <h2>5. Data Retention</h2><p>We retain your data only as long as necessary for the purposes outlined in this policy, or as required by law.</p>
-<h2>6. Your Rights</h2><p>You may request access to, correction of, or deletion of your personal data at any time by emailing mihir@digiveritaz.com.</p>
+<h2>6. Your Rights</h2><p>You may request access to, correction of, or deletion of your personal data at any time by emailing durvamukherjee@digiveritaz.com.</p>
 <h2>7. Data Sharing</h2><p>We do not sell your data. We share it only with trusted service providers who help us operate our business, under strict confidentiality.</p>
 <h2>8. Security</h2><p>We implement industry-standard safeguards to protect your data, though no method of transmission over the Internet is 100% secure.</p>
 <h2>9. External Links</h2><p>Our site may contain links to external sites whose privacy practices we do not control.</p>
 <h2>10. Marketing Opt-Out</h2><p>You can opt out of marketing communications at any time by using the unsubscribe link in our emails.</p>
-<h2>11. Contact</h2><p>Privacy Officer: Mihir Lunia · mihir@digiveritaz.com · +91 99566 55662 · Ujagar Chambers, Deonar, Chembur, Mumbai 400088.</p>
+<h2>11. Contact</h2><p>Privacy Officer: Durva Mukherjee · durvamukherjee@digiveritaz.com · +91 99566 55662 · Ujagar Chambers, Deonar, Chembur, Mumbai, Maharashtra 400088.</p>
 <h2>12. Updates</h2><p>We may update this policy from time to time. Material changes will be communicated via our website.</p>
 </div></section>
 """
