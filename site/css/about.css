@@ -124,7 +124,8 @@ body.home-themed .about-stats .stat .num{
 }
 body.home-themed .about-stats .stat .num b{
   color:var(--dvh-spot-text) !important;
-  font-style:italic !important;font-weight:900 !important;
+  font-style:normal !important;font-weight:900 !important;
+  display:inline-block;vertical-align:0.08em;margin-left:.04em;
 }
 body.home-themed .about-stats .stat .lbl{
   font-family:'JetBrains Mono',monospace !important;
