@@ -1969,7 +1969,12 @@ body.home-themed .dvh-clients-frame{overflow:hidden !important}
 body.home-themed .dvh-clients-frame .marquee{max-width:100%}
 
 /* --- 11. Dark-mode parity for the contrast fixes --- */
+[data-theme="dark"] body.home-themed .wwd-row{
+  border-color:rgba(255,255,255,.1) !important;
+}
 [data-theme="dark"] body.home-themed .wwd-row .row-num{color:#22c55e !important}
+[data-theme="dark"] body.home-themed .wwd-row .row-title{color:#f1f5f9 !important}
+[data-theme="dark"] body.home-themed .wwd-row .row-arrow{color:#94a3b8 !important}
 [data-theme="dark"] body.home-themed .wwd-row.active .row-arrow,
 [data-theme="dark"] body.home-themed .wwd-row:hover .row-arrow{color:#22c55e !important}
 [data-theme="dark"] body.home-themed .rating-card .verified{
