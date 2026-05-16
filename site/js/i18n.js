@@ -24,7 +24,7 @@
 
       "hero.badge": "Mumbai · India · Worldwide",
       "hero.title.html": 'Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>',
-      "hero.lead": "DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, paid media, and performance marketing.",
+      "hero.lead.html": "DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.",
       "hero.cta": "Get My Free Proposal",
       "hero.reviews.google": "150+ Reviews",
       "hero.reviews.clutch": "250+ Reviews",
@@ -48,7 +48,7 @@
       "why.item3.h": "A team that feels in-house",
       "why.item3.p": "Dedicated growth pod, weekly standups, shared Slack channel. We embed with your team, not above it.",
       "why.item4.h": "Startup speed, agency depth",
-      "why.item4.p": "65+ years of combined experience with the agility to ship campaigns in days, not quarters.",
+      "why.item4.p": "15+ years of combined experience with the agility to ship campaigns in days, not quarters.",
 
       "wwd.eyebrow": "Services",
       "wwd.title.html": '<span>What We Do</span>',
@@ -148,7 +148,7 @@
 
       "hero.badge": "مومباي · الهند · حول العالم",
       "hero.title.html": 'وكالة تسويق رقمي <span class="green_text">في الهند</span> — <span class="green_text">تحسين محركات البحث والإعلانات المدفوعة ونمو الأداء</span>',
-      "hero.lead": "ديجي فيريتاز وكالة تسويق رقمي مقرها مومباي، تساعد العلامات التجارية في جميع أنحاء الهند على تحقيق عائد استثمار قابل للقياس من خلال تحسين محركات البحث والإعلانات المدفوعة والتسويق القائم على الأداء.",
+      "hero.lead.html": "ديجي فيريتاز وكالة تسويق رقمي مقرها مومباي، تساعد العلامات التجارية في جميع أنحاء الهند على تحقيق عائد استثمار قابل للقياس من خلال تحسين محركات البحث والإعلانات المدفوعة والتسويق القائم على الأداء <strong>والمزيد</strong>.",
       "hero.cta": "احصل على عرض مجاني",
       "hero.reviews.google": "+150 مراجعة",
       "hero.reviews.clutch": "+250 مراجعة",
@@ -172,7 +172,7 @@
       "why.item3.h": "فريق يعمل كجزء من مؤسستك",
       "why.item3.p": "فريق نمو مخصص، اجتماعات أسبوعية، قناة Slack مشتركة. نعمل معك، وليس فوقك.",
       "why.item4.h": "سرعة الشركات الناشئة بعمق الوكالات",
-      "why.item4.p": "أكثر من 65 عامًا من الخبرة المجمعة مع سرعة إطلاق الحملات في أيام، وليس أرباعًا.",
+      "why.item4.p": "أكثر من 15 عامًا من الخبرة المجمعة مع سرعة إطلاق الحملات في أيام، وليس أرباعًا.",
 
       "wwd.eyebrow": "الخدمات",
       "wwd.title.html": '<span>ماذا نفعل</span>',
@@ -272,7 +272,7 @@
 
       "hero.badge": "Mumbai · Indien · Weltweit",
       "hero.title.html": 'Digitalagentur <span class="green_text">in Indien</span> — <span class="green_text">SEO, PPC &amp; Performance-Wachstum</span>',
-      "hero.lead": "DigiVeritaz ist eine Digitalagentur mit Sitz in Mumbai, die Marken in ganz Indien dabei hilft, messbaren ROI durch SEO, bezahlte Medien und Performance-Marketing zu erzielen.",
+      "hero.lead.html": "DigiVeritaz ist eine Digitalagentur mit Sitz in Mumbai, die Marken in ganz Indien dabei hilft, messbaren ROI durch SEO, bezahlte Medien, Performance-Marketing <strong>und MEHR</strong> zu erzielen.",
       "hero.cta": "Kostenloses Angebot anfordern",
       "hero.reviews.google": "150+ Bewertungen",
       "hero.reviews.clutch": "250+ Bewertungen",
@@ -296,7 +296,7 @@
       "why.item3.h": "Ein Team, das wie intern wirkt",
       "why.item3.p": "Dediziertes Wachstumsteam, wöchentliche Standups, gemeinsamer Slack-Kanal. Wir arbeiten mit Ihrem Team zusammen, nicht über ihm.",
       "why.item4.h": "Start-up-Tempo, Agentur-Tiefe",
-      "why.item4.p": "Über 65 Jahre gebündelte Erfahrung bei der Agilität, Kampagnen in Tagen statt Quartalen auszuliefern.",
+      "why.item4.p": "Über 15 Jahre gebündelte Erfahrung bei der Agilität, Kampagnen in Tagen statt Quartalen auszuliefern.",
 
       "wwd.eyebrow": "Leistungen",
       "wwd.title.html": '<span>Was wir tun</span>',
@@ -396,7 +396,7 @@
 
       "hero.badge": "Mumbai · India · Wereldwijd",
       "hero.title.html": 'Digitaal marketingbureau <span class="green_text">in India</span> — <span class="green_text">SEO, PPC &amp; performance-groei</span>',
-      "hero.lead": "DigiVeritaz is een digitaal marketingbureau gevestigd in Mumbai dat merken in heel India helpt meetbare ROI te realiseren via SEO, betaalde media en performance marketing.",
+      "hero.lead.html": "DigiVeritaz is een digitaal marketingbureau gevestigd in Mumbai dat merken in heel India helpt meetbare ROI te realiseren via SEO, betaalde media, performance marketing <strong>en MEER</strong>.",
       "hero.cta": "Gratis voorstel aanvragen",
       "hero.reviews.google": "150+ beoordelingen",
       "hero.reviews.clutch": "250+ beoordelingen",
@@ -420,7 +420,7 @@
       "why.item3.h": "Een team dat intern aanvoelt",
       "why.item3.p": "Toegewijd groeiteam, wekelijkse standups, gedeeld Slack-kanaal. Wij werken mét uw team, niet erboven.",
       "why.item4.h": "Startup-tempo, agency-diepte",
-      "why.item4.p": "Meer dan 65 jaar gebundelde ervaring met de snelheid om campagnes in dagen live te brengen, niet in kwartalen.",
+      "why.item4.p": "Meer dan 15 jaar gebundelde ervaring met de snelheid om campagnes in dagen live te brengen, niet in kwartalen.",
 
       "wwd.eyebrow": "Diensten",
       "wwd.title.html": '<span>Wat wij doen</span>',
@@ -520,7 +520,7 @@
 
       "hero.badge": "Mumbai · Inde · International",
       "hero.title.html": 'Agence de marketing digital <span class="green_text">en Inde</span> — <span class="green_text">SEO, PPC &amp; croissance de la performance</span>',
-      "hero.lead": "DigiVeritaz est une agence de marketing digital basée à Mumbai qui aide les marques à travers l'Inde à obtenir un ROI mesurable grâce au SEO, aux médias payants et au marketing de performance.",
+      "hero.lead.html": "DigiVeritaz est une agence de marketing digital basée à Mumbai qui aide les marques à travers l'Inde à obtenir un ROI mesurable grâce au SEO, aux médias payants, au marketing de performance <strong>et PLUS</strong>.",
       "hero.cta": "Obtenir une proposition gratuite",
       "hero.reviews.google": "150+ avis",
       "hero.reviews.clutch": "250+ avis",
@@ -544,7 +544,7 @@
       "why.item3.h": "Une équipe comme en interne",
       "why.item3.p": "Pôle de croissance dédié, standups hebdomadaires, canal Slack partagé. Nous travaillons avec votre équipe, pas au-dessus.",
       "why.item4.h": "Vitesse de startup, profondeur d'agence",
-      "why.item4.p": "Plus de 65 ans d'expérience combinée avec l'agilité de lancer des campagnes en jours, pas en trimestres.",
+      "why.item4.p": "Plus de 15 ans d'expérience combinée avec l'agilité de lancer des campagnes en jours, pas en trimestres.",
 
       "wwd.eyebrow": "Services",
       "wwd.title.html": '<span>Ce que nous faisons</span>',
@@ -644,7 +644,7 @@
 
       "hero.badge": "Mumbai · India · Internacional",
       "hero.title.html": 'Agencia de marketing digital <span class="green_text">en India</span> — <span class="green_text">SEO, PPC y crecimiento basado en performance</span>',
-      "hero.lead": "DigiVeritaz es una agencia de marketing digital con sede en Mumbai que ayuda a marcas de toda la India a lograr un ROI medible mediante SEO, medios pagados y marketing de performance.",
+      "hero.lead.html": "DigiVeritaz es una agencia de marketing digital con sede en Mumbai que ayuda a marcas de toda la India a lograr un ROI medible mediante SEO, medios pagados, marketing de performance <strong>y MÁS</strong>.",
       "hero.cta": "Obtener propuesta gratis",
       "hero.reviews.google": "+150 reseñas",
       "hero.reviews.clutch": "+250 reseñas",
@@ -668,7 +668,7 @@
       "why.item3.h": "Un equipo que se siente interno",
       "why.item3.p": "Equipo de growth dedicado, standups semanales, canal de Slack compartido. Trabajamos con tu equipo, no sobre él.",
       "why.item4.h": "Velocidad de startup, profundidad de agencia",
-      "why.item4.p": "Más de 65 años de experiencia combinada con la agilidad de lanzar campañas en días, no en trimestres.",
+      "why.item4.p": "Más de 15 años de experiencia combinada con la agilidad de lanzar campañas en días, no en trimestres.",
 
       "wwd.eyebrow": "Servicios",
       "wwd.title.html": '<span>Lo que hacemos</span>',
