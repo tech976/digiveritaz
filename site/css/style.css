@@ -8234,3 +8234,55 @@ a.svc-card:hover h3{color:var(--green-dark)}
 .hero .btn-outline{
   pointer-events:auto;
 }
+
+/* ------------------------------------------------------------------ */
+/* Service-page dark sections — heading visibility (audit 2026-05-18)  */
+/* User report: in LIGHT mode, the last 2 dark sections show an h2     */
+/* that overlaps / is hard to read. The base .smm-section-head h2 has  */
+/* no color, so it inherits from the section. For the green .smm-cta   */
+/* the h2 was dark while the paragraph was already white — inconsistent*/
+/* and harder to read than white. Force explicit, readable colors in   */
+/* BOTH light and dark modes for every dark-bg section.                */
+/* ------------------------------------------------------------------ */
+
+/* Light mode — dark-bg sections always get white h2 + em. */
+.smm-marquee .smm-section-head h2,
+.smm-trust .smm-section-head h2,
+.smm-platforms .smm-section-head h2,
+.smm-measure .smm-section-head h2,
+.smm-cta h2{
+  color:#FBFBF0 !important;
+}
+.smm-trust .smm-section-head h2 em,
+.smm-platforms .smm-section-head h2 em,
+.smm-measure .smm-section-head h2 em,
+.smm-cta h2 em{
+  color:#86efac !important;            /* lighter green — pops on dark/green */
+}
+
+/* Light mode — supporting paragraph text in dark sections (slate-300). */
+.smm-trust .smm-section-head p,
+.smm-platforms .smm-section-head p,
+.smm-measure .smm-section-head p{
+  color:#cbd5e1 !important;
+}
+
+/* Dark mode — preserve readable colors on these sections as well. */
+[data-theme="dark"] .smm-marquee .smm-section-head h2,
+[data-theme="dark"] .smm-trust .smm-section-head h2,
+[data-theme="dark"] .smm-platforms .smm-section-head h2,
+[data-theme="dark"] .smm-measure .smm-section-head h2,
+[data-theme="dark"] .smm-cta h2{
+  color:#f1f5f9 !important;
+}
+[data-theme="dark"] .smm-trust .smm-section-head h2 em,
+[data-theme="dark"] .smm-platforms .smm-section-head h2 em,
+[data-theme="dark"] .smm-measure .smm-section-head h2 em,
+[data-theme="dark"] .smm-cta h2 em{
+  color:#86efac !important;
+}
+[data-theme="dark"] .smm-trust .smm-section-head p,
+[data-theme="dark"] .smm-platforms .smm-section-head p,
+[data-theme="dark"] .smm-measure .smm-section-head p{
+  color:#cbd5e1 !important;
+}
