@@ -2033,3 +2033,33 @@ body.home-themed .dvh-clients-frame .marquee{max-width:100%}
 [data-theme="dark"] body.home-themed .dvh-cases-mast .dvh-clients-credit{
   color:#94a3b8 !important;
 }
+
+/* ------------------------------------------------------------------ */
+/* Dark-mode contrast fixes — second pass (multi-page audit 2026-05-16) */
+/* ------------------------------------------------------------------ */
+
+/* Homepage: "What We Do" preview-card icon (stroke uses --dvh-ink). */
+[data-theme="dark"] body.home-themed .wwd-preview .pv-icon svg{
+  stroke:#cbd5e1 !important;
+}
+
+/* Homepage: Impact stat suffix em (60+, 15+, ×, etc.) was dim green. */
+[data-theme="dark"] body.home-themed .impact-num em{color:#86efac !important}
+
+/* Homepage: Bento hero sparkline + Why-Choose card icons — bump green. */
+[data-theme="dark"] body.home-themed .bento-spark path[stroke]{stroke:#86efac !important}
+[data-theme="dark"] body.home-themed .why-item .ic svg{stroke:#86efac !important}
+
+/* About: green-text wavy underline SVG should use lighter green on dark. */
+[data-theme="dark"] body.home-themed .about-hero h1 .green_text:after{
+  filter:brightness(1.35);
+}
+
+/* About: mission/vision decorative line drawings — bump for visibility. */
+[data-theme="dark"] body.home-themed .mv-card .mv-deco svg{
+  stroke:#cbd5e1 !important;opacity:.9;
+}
+
+/* About: expertise card hover green — use brighter green in BOTH modes
+   so hover state pops without going muddy. */
+body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}

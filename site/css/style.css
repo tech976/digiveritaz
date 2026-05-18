@@ -8100,3 +8100,45 @@ a.svc-card:hover h3{color:var(--green-dark)}
 
 [data-theme="dark"] .smm-marquee{background:#070b14;border-color:rgba(241,245,249,.08)}
 [data-theme="dark"] .smm-marquee-item{color:#cbd5e1}
+
+/* ------------------------------------------------------------------ */
+/* Dark-mode contrast fixes — second pass audit 2026-05-16             */
+/* Spans service-pages (.smm-*), case-study, FAQ, contact, blog        */
+/* ------------------------------------------------------------------ */
+
+/* ---- Service-page template (.smm-*) ---- */
+/* .smm-intro-quote .meta / .smm-process-body p / .smm-faq-a use
+   hardcoded color:#3a3a4a which is invisible on dark bg #0b1220. */
+[data-theme="dark"] .smm-intro-quote .meta,
+[data-theme="dark"] .smm-process-body p,
+[data-theme="dark"] .smm-faq-a{
+  color:#cbd5e1 !important;
+}
+/* FAQ question text uses --dvh-ink in dark via inheritance — force visible. */
+[data-theme="dark"] .smm-faq-q{color:#f1f5f9 !important}
+/* CTA banner copy used opacity:.78 on a bright green — drop the opacity. */
+[data-theme="dark"] .smm-cta p,
+.smm-cta p{opacity:1 !important;color:rgba(255,255,255,.92) !important}
+
+/* ---- Case-study listing tiles (.card / .tag) ---- */
+[data-theme="dark"] .card h3{color:#f1f5f9 !important}
+[data-theme="dark"] .card .tag{color:#86efac !important}
+
+/* ---- Case-study detail page ---- */
+[data-theme="dark"] .cs-meta .meta-item .lbl{color:#94a3b8 !important}
+[data-theme="dark"] .cs-crumbs .current{color:#f1f5f9 !important}
+
+/* ---- Blog template ---- */
+[data-theme="dark"] .blog-hero .crumbs,
+[data-theme="dark"] .blog-hero .crumbs a{color:#cbd5e1 !important}
+[data-theme="dark"] .blog-article .prose ul,
+[data-theme="dark"] .blog-article .prose ol,
+[data-theme="dark"] .blog-article .prose li{color:#cbd5e1 !important}
+[data-theme="dark"] .blog-article .prose a{color:#86efac !important}
+[data-theme="dark"] .blog-share .lbl{color:#cbd5e1 !important}
+[data-theme="dark"] .blog-share a svg{fill:#cbd5e1 !important}
+[data-theme="dark"] .blog-feature{background:#0f172a !important}
+
+/* ---- FAQ accordion (faq.html + footer accordions) ---- */
+[data-theme="dark"] .faq-q:after{color:#86efac !important}
+[data-theme="dark"] .faq-item{border-bottom:1px solid rgba(241,245,249,.1) !important}

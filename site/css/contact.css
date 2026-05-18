@@ -919,3 +919,19 @@ body.home-themed .c-form-card .submit-row .hint svg{width:11px !important;height
   background:#111827 !important;color:#f1f5f9 !important;border-color:#f1f5f9 !important;
 }
 [data-theme="dark"] body.home-themed .c-form-card .form-head .eyebrow:before{background:#f1f5f9 !important}
+
+/* ------------------------------------------------------------------ */
+/* Dark-mode contrast fixes — second pass audit 2026-05-16             */
+/* ------------------------------------------------------------------ */
+
+/* Contact-strip divider lines were barely visible (rgba(...,.1)). */
+[data-theme="dark"] body.home-themed .contact-strip .strip-item{
+  border-color:rgba(241,245,249,.18) !important;
+}
+
+/* Form input placeholders — bump from #64748b to brighter slate. */
+[data-theme="dark"] .c-form-card .field input::placeholder,
+[data-theme="dark"] .c-form-card .field textarea::placeholder,
+[data-theme="dark"] .c-form-card .field select::placeholder{
+  color:#94a3b8 !important;
+}
