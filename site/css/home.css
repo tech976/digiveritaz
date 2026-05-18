@@ -2188,27 +2188,36 @@ body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}
 /* tiles look buggy on phones. Fixing layout + sizing.                 */
 /* ------------------------------------------------------------------ */
 @media (max-width:780px){
-  /* WWD rows: number on left, title flexes, arrow pinned to right. */
+  /* WWD rows: every row identical height, number on left, title flexes,
+     arrow pinned to right. */
   body.home-themed .wwd-row{
-    padding:14px 16px !important;
+    padding:0 16px !important;
     gap:14px !important;
     border-radius:12px !important;
     margin-bottom:8px !important;
+    min-height:62px !important;
+    box-sizing:border-box !important;
+    display:flex !important;
+    align-items:center !important;
   }
   body.home-themed .wwd-row .row-num{
-    flex:0 0 auto !important;
+    flex:0 0 32px !important;
     font-size:.7rem !important;
+    text-align:left !important;
   }
   body.home-themed .wwd-row .row-title{
     flex:1 1 auto !important;
     min-width:0 !important;
     font-size:1rem !important;
     line-height:1.2 !important;
-    white-space:normal !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
   }
   body.home-themed .wwd-row .row-arrow{
     flex:0 0 24px !important;
     margin-left:auto !important;
+    display:flex !important;align-items:center !important;justify-content:center !important;
   }
   body.home-themed .wwd-row .row-arrow svg{
     width:18px !important;height:18px !important;
