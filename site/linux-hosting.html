@@ -11,7 +11,7 @@
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <meta name="googlebot" content="index,follow">
 <meta name="theme-color" content="#22c55e">
-<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
 <link rel="canonical" href="https://digiveritaz.com/linux-hosting/">
 <link rel="alternate" hreflang="en-IN" href="https://digiveritaz.com/linux-hosting/">
 <link rel="alternate" hreflang="x-default" href="https://digiveritaz.com/linux-hosting/">
@@ -45,7 +45,30 @@
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1779086429">
+<link rel="stylesheet" href="css/style.css?v=1779094200">
+<style>
+/* Mobile mega-menu safety guard — keeps the 41-service dropdown on
+   desktop unchanged. On mobile/tablet (<=1050px):
+     1. While the hamburger drawer is closed (.nav ul has no .open class),
+        the entire mega-menu subtree is display:none + visibility:hidden +
+        pointer-events:none so none of its 41 links can be touched.
+     2. The :focus-within auto-open trigger is suppressed so a stray
+        focus cannot reveal the dropdown — only the JS-driven .open class
+        controlled by tapping "Services" can.
+   Once the drawer is open AND Services has been tapped, every one of
+   the 41 service links is fully tappable as expected. */
+@media (max-width:1050px){
+  .has-mega:focus-within .dd-menu.mega-menu:not(.force-open){
+    display:none !important;
+  }
+  .nav ul:not(.open) .dd-menu.mega-menu,
+  .nav ul:not(.open) .dd-menu.mega-menu *{
+    display:none !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+}
+</style>
 
 <!-- Organization + Website schema -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","LocalBusiness","ProfessionalService"],"@id":"https://digiveritaz.com/#organization","name":"DigiVeritaz","alternateName":"DigiVeritaz Digital Marketing Agency","url":"https://digiveritaz.com","logo":"https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp","image":"https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp","description":"DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.","telephone":"+91-9956655662","email":"durvamukherjee@digiveritaz.com","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"1st Floor, Ujagar Chambers, Bus Depot, Sion-Trombay Rd, opp. Deonar, Deonar, Chembur","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400088","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":19.0432,"longitude":72.9086},"areaServed":["IN","US","AE","GB","SG","AU","CA"],"sameAs":["https://www.facebook.com/digiveritaz","https://www.instagram.com/digiveritaz","https://www.linkedin.com/company/digiveritaz","https://twitter.com/digiveritaz"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"600","bestRating":"5","worstRating":"1"}},{"@type":"WebSite","@id":"https://digiveritaz.com/#website","url":"https://digiveritaz.com","name":"DigiVeritaz","publisher":{"@id":"https://digiveritaz.com/#organization"},"inLanguage":"en-IN"}]}</script>

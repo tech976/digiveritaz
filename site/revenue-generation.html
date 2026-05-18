@@ -46,97 +46,29 @@
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1779091500">
+<link rel="stylesheet" href="css/style.css?v=1779094200">
 <style>
-/* Hard inline override — kills every accidental tap target inside the .smm-hero
-   so taps on the eyebrow, headline, lead paragraph, trust line or surrounding
-   empty space never receive pointer events or paint the iOS/Android blue
-   tap-highlight rectangle. Only the two CTA buttons inside .smm-hero-cta remain
-   tappable. !important defeats any other rule and any cached/older CSS. */
-.smm-hero,
-.smm-hero *,
-.smm-feed,
-.smm-feed *{
-  pointer-events:none !important;
-  -webkit-tap-highlight-color:transparent !important;
-  -webkit-touch-callout:none !important;
-}
-.smm-hero .smm-hero-cta,
-.smm-hero .smm-hero-cta *,
-.smm-hero .smm-btn-primary,
-.smm-hero .smm-btn-primary *,
-.smm-hero .smm-btn-ghost,
-.smm-hero .smm-btn-ghost *{
-  pointer-events:auto !important;
-  -webkit-tap-highlight-color:rgba(34,197,94,.18) !important;
-  -webkit-touch-callout:default !important;
-}
-/* Block text selection in the hero so a long-press cannot draw a blue
-   selection rectangle that looks like a phantom link. */
-.smm-hero .smm-eyebrow,
-.smm-hero .smm-eyebrow *,
-.smm-hero h1,
-.smm-hero h1 *,
-.smm-hero .lead,
-.smm-hero .smm-hero-trust,
-.smm-hero .smm-hero-trust *{
-  -webkit-user-select:none !important;
-  user-select:none !important;
-}
-/* Empty padding inside the sticky header pill must not absorb taps either —
-   only the brand, hamburger, theme toggle and the explicit nav items do. */
-.site-header,
-.site-header .container,
-.site-header .nav{pointer-events:none !important}
-.site-header .brand,
-.site-header .brand *,
-.site-header .hamb,
-.site-header .theme-toggle,
-.site-header .nav ul,
-.site-header .nav ul *,
-.site-header .nav .cta,
-.site-header .nav .cta *{pointer-events:auto !important}
-
-/* MEGA-MENU MOBILE BEHAVIOUR
-   Desktop (>=1051px): the dropdown opens on hover — untouched.
-   Mobile/tablet (<=1050px): the dropdown lives *inside* the hamburger
-   drawer, hidden until the user explicitly taps "Services" (which JS
-   toggles via the .open class). To prevent the previous bug — where a
-   finger lingering after the tap would land on a freshly-revealed
-   service link and navigate by accident — we:
-     1. Disable the :focus-within auto-open trigger on mobile so the
-        dropdown only ever opens via JS-driven .open, never via tap focus.
-     2. Block pointer events on the mega-menu links for the first 350ms
-        after expansion (a CSS-only "settling" period: the user has to
-        deliberately tap a link, not graze it during the open animation).
-     3. Force the mega-menu list to be scrolled-into-view-able so even
-        on a short viewport the user can reach every service.
-   The hero pointer-events lock at the top of this <style> block stays
-   in place, so taps on the headline/eyebrow/lead/trust line still do
-   nothing regardless of what the mega menu is doing. */
+/* Mobile mega-menu safety guard — keeps the 41-service dropdown on
+   desktop unchanged. On mobile/tablet (<=1050px):
+     1. While the hamburger drawer is closed (.nav ul has no .open class),
+        the entire mega-menu subtree is display:none + visibility:hidden +
+        pointer-events:none so none of its 41 links can be touched.
+     2. The :focus-within auto-open trigger is suppressed so a stray
+        focus cannot reveal the dropdown — only the JS-driven .open class
+        controlled by tapping "Services" can.
+   Once the drawer is open AND Services has been tapped, every one of
+   the 41 service links is fully tappable as expected. */
 @media (max-width:1050px){
-  /* On mobile the menu only opens via JS-controlled .open class.
-     Suppress :focus-within so a tap-focus alone cannot reveal links. */
   .has-mega:focus-within .dd-menu.mega-menu:not(.force-open){
     display:none !important;
   }
-  /* When the drawer is closed (no .open on .nav ul), the entire mega
-     menu is unreachable. */
   .nav ul:not(.open) .dd-menu.mega-menu,
   .nav ul:not(.open) .dd-menu.mega-menu *{
     display:none !important;
     visibility:hidden !important;
     pointer-events:none !important;
-    -webkit-tap-highlight-color:transparent !important;
-  }
-  /* Settling window: when .has-mega.open is first applied, links are
-     inert for 350ms so a continuing finger motion can't trigger them. */
-  .has-mega.open .dd-menu.mega-menu a{
-    animation:mmSettle 0s linear 350ms forwards;
-    pointer-events:none;
   }
 }
-@keyframes mmSettle{to{pointer-events:auto}}
 </style>
 
 <!-- Organization + Website schema -->
