@@ -8033,7 +8033,11 @@ a.svc-card:hover h3{color:var(--green-dark)}
   .smm-measure-grid,.smm-why-grid{grid-template-columns:1fr}
 }
 @media (max-width:780px){
-  .smm-hero{margin-top:-78px;padding:130px 0 60px}
+  /* Stop the hero extending up under the floating header on mobile —
+     was margin-top:-78px which made the eyebrow + H1 sit in the header
+     tap zone, so tapping "near the heading" was actually hitting the
+     brand logo / nav links and navigating to other pages. */
+  .smm-hero{margin-top:0;padding:32px 0 60px}
   .smm-hero h1{font-size:clamp(2rem,8vw,2.8rem)}
   .smm-trust-grid,.smm-platforms-grid,.smm-formats-grid,.smm-ind-grid{grid-template-columns:1fr}
   .smm-stats-grid{grid-template-columns:1fr 1fr}
