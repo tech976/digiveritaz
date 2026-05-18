@@ -1198,20 +1198,81 @@ body.home-themed .dvh-clients-link:hover svg{transform:translateX(3px)}
 
 /* Responsive */
 @media (max-width:900px){
-  body.home-themed .dvh-clients-mast{grid-template-columns:1fr;gap:36px;padding:48px 0 40px;margin-bottom:36px}
-  /* Center-align the left column (eyebrow, h2, lead) on phone/tablet. */
+  /* === Trusted By section — mobile redesign === */
+  body.home-themed .dvh-clients-mast{
+    grid-template-columns:1fr;gap:28px;
+    padding:40px 0 32px;margin-bottom:28px;
+    text-align:center !important;
+  }
   body.home-themed .dvh-clients-mast .left{text-align:center !important}
-  body.home-themed .dvh-clients-mast .left .eyebrow{margin-left:auto;margin-right:auto}
-  body.home-themed .dvh-clients-mast .left .dvh-clients-lead{margin-left:auto;margin-right:auto}
-  /* Center stat blocks too — number + label stacked centered. */
-  body.home-themed .dvh-clients-mast .right{border-left:0;border-top:1px solid var(--dvh-rule);padding-left:0;padding-top:18px;align-items:center}
-  body.home-themed .dvh-stat-block{align-items:center;text-align:center}
-  body.home-themed .dvh-clients-frame{padding:24px 0}
-  body.home-themed .dvh-clients-frame .brand-tile{min-height:110px;padding:18px}
-  body.home-themed .dvh-clients-frame .brand-tile img{max-height:64px}
-  body.home-themed .dvh-clients-foot{flex-direction:column;align-items:center;gap:14px;text-align:center}
-  /* Center the filter pill row. */
-  body.home-themed .dvh-filter{margin:0 0 32px !important;justify-content:center !important}
+  body.home-themed .dvh-clients-mast h2{
+    text-align:center !important;
+    font-size:clamp(2rem,7.6vw,2.6rem) !important;
+    line-height:1.05 !important;
+  }
+  body.home-themed .dvh-clients-mast .left .eyebrow{
+    margin-left:auto !important;margin-right:auto !important;
+    display:inline-flex;
+  }
+  body.home-themed .dvh-clients-mast .left .dvh-clients-lead,
+  body.home-themed .dvh-clients-lead{
+    margin-left:auto !important;margin-right:auto !important;
+    text-align:center !important;
+    font-size:.95rem !important;line-height:1.55 !important;
+    max-width:520px !important;
+  }
+
+  /* Stats column: 3-up compact row of cards instead of vertical list. */
+  body.home-themed .dvh-clients-mast .right{
+    display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+    gap:10px !important;
+    border-left:0 !important;border-top:1px solid var(--dvh-rule);
+    padding:18px 0 0 0 !important;
+    align-items:stretch !important;
+  }
+  body.home-themed .dvh-stat-block{
+    display:flex !important;flex-direction:column !important;
+    align-items:center !important;justify-content:center !important;
+    text-align:center !important;
+    padding:14px 8px !important;
+    background:rgba(20,20,26,.04);
+    border:1px solid var(--dvh-rule);border-radius:14px;
+    border-bottom:1px solid var(--dvh-rule) !important;
+    gap:4px;
+  }
+  body.home-themed .dvh-stat-block .num{
+    font-size:clamp(1.5rem,5vw,1.85rem) !important;
+    line-height:1 !important;
+  }
+  body.home-themed .dvh-stat-block .lbl{
+    font-size:.6rem !important;letter-spacing:.1em !important;
+    line-height:1.25;
+  }
+
+  /* Filter pill row: wrap nicely, centered, slightly tighter. */
+  body.home-themed .dvh-filter{
+    margin:0 0 28px !important;
+    justify-content:center !important;
+    gap:8px !important;
+  }
+  body.home-themed .dvh-filter .pill{
+    font-size:.78rem !important;padding:8px 14px !important;
+  }
+
+  body.home-themed .dvh-clients-frame{padding:20px 0}
+  body.home-themed .dvh-clients-frame .brand-tile{min-height:96px;padding:14px}
+  body.home-themed .dvh-clients-frame .brand-tile img{max-height:56px}
+  body.home-themed .dvh-clients-foot{
+    flex-direction:column;align-items:center;gap:12px;text-align:center;
+  }
+}
+
+/* Dark-mode tweaks for the new mobile stat cards. */
+@media (max-width:900px){
+  [data-theme="dark"] body.home-themed .dvh-stat-block{
+    background:rgba(241,245,249,.04) !important;
+    border-color:rgba(241,245,249,.12) !important;
+  }
 }
 
 /* Dark mode */
