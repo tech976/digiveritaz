@@ -2188,35 +2188,44 @@ body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}
 /* tiles look buggy on phones. Fixing layout + sizing.                 */
 /* ------------------------------------------------------------------ */
 @media (max-width:780px){
-  /* WWD rows: every row identical height, number on left, title flexes,
-     arrow pinned to right. */
+  /* WWD: switch from full-width row list to a 2-column grid of
+     identically-sized square-ish cards. Every cell is the same height
+     and width, content is centered, no chance of uneven boxes. */
+  body.home-themed .wwd-list{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+    flex-direction:initial !important;
+  }
   body.home-themed .wwd-row{
-    padding:0 16px !important;
-    gap:14px !important;
-    border-radius:12px !important;
-    margin-bottom:8px !important;
-    min-height:62px !important;
+    margin-bottom:0 !important;
+    padding:18px 14px !important;
+    border-radius:14px !important;
+    aspect-ratio:1 / 1 !important;          /* uniform square cells */
     box-sizing:border-box !important;
     display:flex !important;
-    align-items:center !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:space-between !important;
+    gap:8px !important;
   }
   body.home-themed .wwd-row .row-num{
-    flex:0 0 32px !important;
     font-size:.7rem !important;
-    text-align:left !important;
+    line-height:1 !important;
+    margin:0 !important;
   }
   body.home-themed .wwd-row .row-title{
     flex:1 1 auto !important;
     min-width:0 !important;
-    font-size:1rem !important;
+    display:flex !important;align-items:center !important;
+    font-size:1.05rem !important;
     line-height:1.2 !important;
-    white-space:nowrap !important;
+    white-space:normal !important;
     overflow:hidden !important;
-    text-overflow:ellipsis !important;
+    word-break:break-word !important;
   }
   body.home-themed .wwd-row .row-arrow{
-    flex:0 0 24px !important;
-    margin-left:auto !important;
+    align-self:flex-end !important;
     display:flex !important;align-items:center !important;justify-content:center !important;
   }
   body.home-themed .wwd-row .row-arrow svg{
