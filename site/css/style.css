@@ -8146,3 +8146,27 @@ a.svc-card:hover h3{color:var(--green-dark)}
 /* ---- FAQ accordion (faq.html + footer accordions) ---- */
 [data-theme="dark"] .faq-q:after{color:#86efac !important}
 [data-theme="dark"] .faq-item{border-bottom:1px solid rgba(241,245,249,.1) !important}
+
+/* ------------------------------------------------------------------ */
+/* Mobile click-through hardening (audit 2026-05-16, post-deploy)      */
+/* ------------------------------------------------------------------ */
+
+/* The .smm-feed-card mockups are decorative (aria-hidden) — they
+   visually mimic Google search results and review cards with link-blue
+   bold text. Some users tapped them expecting interaction; lock them
+   from receiving any taps so a phantom tap can't propagate / mis-target.
+   They contain no real links anyway. */
+.smm-feed,
+.smm-feed *{pointer-events:none}
+
+/* .dd-bridge is a transparent 22px overlay above the desktop dropdown
+   menu — its only purpose is to keep the hover state alive between
+   trigger and menu. It has pointer-events:auto which means it CAN
+   absorb taps when the menu is open. On touch devices it provides no
+   value and may intercept stray taps; disable everywhere. */
+.dd-bridge{pointer-events:none !important}
+
+/* Hide it entirely on mobile breakpoints — saves a tap target. */
+@media (max-width:960px){
+  .dd-bridge{display:none !important}
+}
