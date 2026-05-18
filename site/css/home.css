@@ -2161,3 +2161,68 @@ body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}
   body.home-themed .section-head .eyebrow,
   body.home-themed .section-head p{margin-left:auto;margin-right:auto}
 }
+
+/* ------------------------------------------------------------------ */
+/* Mobile polish — WWD rows + client logo marquee (audit 2026-05-18)   */
+/* User report: '01 SEO & Organic Growth ...' rows + the client logo  */
+/* tiles look buggy on phones. Fixing layout + sizing.                 */
+/* ------------------------------------------------------------------ */
+@media (max-width:780px){
+  /* WWD rows: number on left, title flexes, arrow pinned to right. */
+  body.home-themed .wwd-row{
+    padding:14px 16px !important;
+    gap:14px !important;
+    border-radius:12px !important;
+    margin-bottom:8px !important;
+  }
+  body.home-themed .wwd-row .row-num{
+    flex:0 0 auto !important;
+    font-size:.7rem !important;
+  }
+  body.home-themed .wwd-row .row-title{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    font-size:1rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+  }
+  body.home-themed .wwd-row .row-arrow{
+    flex:0 0 24px !important;
+    margin-left:auto !important;
+  }
+  body.home-themed .wwd-row .row-arrow svg{
+    width:18px !important;height:18px !important;
+  }
+
+  /* WWD preview pane: tighten on mobile. */
+  body.home-themed .wwd-preview{
+    padding:24px !important;border-radius:14px !important;
+  }
+  body.home-themed .wwd-preview h3{font-size:1.4rem !important}
+
+  /* Client logo marquee tiles — narrower, less padding, smaller logo. */
+  body.home-themed .client-marquee .brand-tile,
+  body.home-themed .dvh-clients-frame .brand-tile{
+    flex:0 0 130px !important;height:88px !important;
+    padding:12px !important;border-radius:12px !important;
+  }
+  body.home-themed .brand-tile img,
+  body.home-themed .client-marquee .brand-tile img,
+  body.home-themed .dvh-clients-frame .brand-tile img{
+    max-height:42px !important;max-width:88% !important;
+  }
+}
+
+/* Even tighter for very narrow phones. */
+@media (max-width:420px){
+  body.home-themed .wwd-row .row-title{font-size:.92rem !important}
+  body.home-themed .client-marquee .brand-tile,
+  body.home-themed .dvh-clients-frame .brand-tile{
+    flex:0 0 116px !important;height:78px !important;padding:10px !important;
+  }
+  body.home-themed .brand-tile img,
+  body.home-themed .client-marquee .brand-tile img,
+  body.home-themed .dvh-clients-frame .brand-tile img{
+    max-height:36px !important;
+  }
+}
