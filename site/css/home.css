@@ -617,17 +617,20 @@ body.home-themed .panel{
   box-shadow:none !important;border:0 !important;
   padding:0 !important;border-radius:0 !important;
 }
-body.home-themed .panel .section-head{margin-bottom:40px}
+body.home-themed .panel .section-head{margin-bottom:32px}
 
-/* Section padding — tightened per user feedback ('too much gap'). */
-body.home-themed main > section{padding:64px 0}
-body.home-themed main > section.hero{padding:120px 0 60px}
-body.home-themed main > section.testimonials-bg{padding:64px 0}
-body.home-themed main > section.impact{padding:64px 0}
+/* Section padding — tightened further (user: 'big gap in these 2 sections'). */
+body.home-themed main > section{padding:48px 0}
+body.home-themed main > section.hero{padding:120px 0 56px}
+body.home-themed main > section.testimonials-bg{padding:48px 0}
+body.home-themed main > section.impact{padding:56px 0 28px}        /* trim bottom so Trusted By sits closer */
+body.home-themed main > section.dvh-clients-section{padding-top:28px}
 @media (max-width:780px){
-  body.home-themed main > section{padding:40px 0}
-  body.home-themed main > section.hero{padding:96px 0 44px}
-  body.home-themed .panel .section-head{margin-bottom:28px}
+  body.home-themed main > section{padding:28px 0}
+  body.home-themed main > section.hero{padding:88px 0 32px}
+  body.home-themed main > section.impact{padding:40px 0 18px}
+  body.home-themed main > section.dvh-clients-section{padding-top:18px}
+  body.home-themed .panel .section-head{margin-bottom:22px}
 }
 
 /* ============================================================
@@ -1297,7 +1300,7 @@ body.home-themed .dvh-clients-link:hover svg{transform:translateX(3px)}
    CLIENTS SECTION — editorial redesign
    Scoped under body.home-themed .dvh-clients-section
    ============================================================ */
-body.home-themed .dvh-clients-section{padding:64px 0 !important}
+body.home-themed .dvh-clients-section{padding:28px 0 48px !important}
 body.home-themed .dvh-clients-section .panel{padding:0 !important}
 
 /* Magazine-style asymmetric header */
@@ -1471,7 +1474,7 @@ body.home-themed .dvh-clients-link:hover svg{transform:translateX(4px)}
 /* ============================================================
    CASE STUDIES SECTION — numbered editorial list
    ============================================================ */
-body.home-themed .dvh-cases-section{padding:64px 0 !important}
+body.home-themed .dvh-cases-section{padding:48px 0 !important}
 body.home-themed .dvh-cases-section .panel{padding:0 !important;background:transparent !important;box-shadow:none !important;border:0 !important}
 
 /* Asymmetric mast (same pattern as clients section) */
