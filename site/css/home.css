@@ -2070,3 +2070,33 @@ body.home-themed .dvh-clients-frame .marquee{max-width:100%}
 /* About: expertise card hover green — use brighter green in BOTH modes
    so hover state pops without going muddy. */
 body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}
+
+/* ------------------------------------------------------------------ */
+/* Mobile centering — make all major sections read centered on phones */
+/* ------------------------------------------------------------------ */
+@media (max-width:900px){
+  /* "Why Choose DigiVeritaz" — left panel content + right items header */
+  body.home-themed .why-visual{text-align:center;align-items:center}
+  body.home-themed .why-visual > *{align-self:center}
+  body.home-themed .why-visual .badge{align-self:center}
+  body.home-themed .why-visual p{margin-left:auto;margin-right:auto}
+  body.home-themed .mini-stats{justify-items:center}
+
+  /* "What We Do" services list — row content centered when stacked */
+  body.home-themed .wwd-list{align-items:center}
+
+  /* Three cases / case-study editorial mast head */
+  body.home-themed .dvh-cases-mast{text-align:center}
+  body.home-themed .dvh-cases-mast .left,
+  body.home-themed .dvh-cases-mast .right{text-align:center}
+  body.home-themed .dvh-cases-mast .left .eyebrow,
+  body.home-themed .dvh-cases-mast .right .dvh-cases-credit{margin-left:auto;margin-right:auto}
+
+  /* Testimonials section head */
+  body.home-themed .testimonials-bg .section-head{text-align:center}
+
+  /* Generic section-head centering on mobile */
+  body.home-themed .section-head{text-align:center}
+  body.home-themed .section-head .eyebrow,
+  body.home-themed .section-head p{margin-left:auto;margin-right:auto}
+}
