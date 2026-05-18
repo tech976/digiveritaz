@@ -300,7 +300,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-            <div><strong>Email</strong><a href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a><br><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a></div>
+            <div><strong>Email</strong><a href="mailto:info@digiveritaz.com">info@digiveritaz.com</a><br><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a><br><a href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a></div>
           </div>
         </div>
 
@@ -663,8 +663,8 @@ contact_body = """
 
       <div class="strip-item">
         <span class="sl">Email</span>
-        <a class="sv" href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a>
-        <span class="sv-sub"><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a></span>
+        <a class="sv" href="mailto:info@digiveritaz.com">info@digiveritaz.com</a>
+        <span class="sv-sub"><a href="mailto:daniel@digiveritaz.com">daniel@digiveritaz.com</a> &middot; <a href="mailto:durvamukherjee@digiveritaz.com">durvamukherjee@digiveritaz.com</a></span>
       </div>
 
       <div class="strip-item">
