@@ -8184,3 +8184,53 @@ a.svc-card:hover h3{color:var(--green-dark)}
 .site-header .nav ul *,
 .site-header .nav .cta,
 .site-header .nav .cta *{pointer-events:auto}
+
+/* ------------------------------------------------------------------ */
+/* NUCLEAR fix — service-page hero: lock every non-CTA element from   */
+/* receiving any pointer events. User reports tapping the eyebrow,    */
+/* H1, lead, or trust line on mobile redirects to other pages.        */
+/* This makes those elements literally inert; only the two CTA        */
+/* buttons inside .smm-hero-cta can receive taps.                     */
+/* ------------------------------------------------------------------ */
+.smm-hero,
+.smm-hero .container,
+.smm-hero .container > div,
+.smm-hero .smm-eyebrow,
+.smm-hero .smm-eyebrow *,
+.smm-hero h1,
+.smm-hero h1 *,
+.smm-hero .lead,
+.smm-hero .lead *,
+.smm-hero .smm-hero-trust,
+.smm-hero .smm-hero-trust *{
+  pointer-events:none;
+}
+/* CTAs are the only interactive elements in the hero. */
+.smm-hero .smm-hero-cta,
+.smm-hero .smm-hero-cta *,
+.smm-hero .smm-btn-primary,
+.smm-hero .smm-btn-primary *,
+.smm-hero .smm-btn-ghost,
+.smm-hero .smm-btn-ghost *{
+  pointer-events:auto;
+}
+
+/* Apply the same lock to homepage hero (.hero / variant A). */
+.hero .hv-a-text,
+.hero .hv-a-text > :not(.hero-cta):not(.hv-a-cta),
+.hero .hv-a-text > :not(.hero-cta):not(.hv-a-cta) *,
+.hero .hv-a-mini-ratings,
+.hero .hv-a-mini-ratings *,
+.hero .hv-a-reviews,
+.hero .hv-a-reviews *{
+  pointer-events:none;
+}
+.hero .hero-cta,
+.hero .hero-cta *,
+.hero .hv-a-cta,
+.hero .hv-a-cta *,
+.hero .btn,
+.hero .btn-ghost,
+.hero .btn-outline{
+  pointer-events:auto;
+}
