@@ -278,10 +278,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (q) q.addEventListener('click', function () { item.classList.toggle('open'); });
   });
 
-  // Contact form — validates, submits to FormSubmit.co (AJAX), falls back to mailto
+  // Contact form — submits to Google Apps Script (Sheet + email), with
+  // FormSubmit.co as backup and mailto as last-resort fallback.
   var form = document.getElementById('contact-form');
   if (form) {
-    var CONTACT_EMAIL = 'poojanvig.pv@gmail.com';
+    var CONTACT_EMAIL = 'info@digiveritaz.com';
+    var APPS_SCRIPT_URL =
+      'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
 
     var openMailtoFallback = function () {
       var fd = new FormData(form);
@@ -319,23 +322,45 @@ document.addEventListener('DOMContentLoaded', function () {
       var origHTML = btn ? btn.innerHTML : '';
       if (btn) { btn.disabled = true; btn.innerHTML = 'Sending…'; }
 
+      // Augment payload with referrer-style fields the Apps Script logs.
       var data = new FormData(form);
-      fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+      data.append('_page', location.pathname || '/contact-us.html');
+      data.append('_source', 'website-contact-form');
+
+      // Primary endpoint: Google Apps Script Web App (writes to "DV Lead
+      // Form" sheet + emails info@/daniel@/durvamukherjee@). We can't
+      // read the response under no-cors but the POST does go through;
+      // we'll trust it and redirect to the thank-you page.
+      var appsScriptPromise = fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      }).then(function (res) {
-        return res.json().then(function (j) { return { ok: res.ok, body: j }; });
-      }).then(function (result) {
-        if (result.ok && (result.body.success === 'true' || result.body.success === true)) {
-          window.location.href = 'thank-you.html';
-        } else {
+        body: data,
+        mode: 'no-cors',
+        redirect: 'follow'
+      });
+
+      appsScriptPromise.then(function () {
+        // Treat any successful network call as success — no-cors hides
+        // the actual response status but the POST did reach Apps Script.
+        window.location.href = 'thank-you.html';
+      }).catch(function () {
+        // Apps Script unreachable — fall back to FormSubmit.co AJAX.
+        fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        }).then(function (res) {
+          return res.json().then(function (j) { return { ok: res.ok, body: j }; });
+        }).then(function (result) {
+          if (result.ok && (result.body.success === 'true' || result.body.success === true)) {
+            window.location.href = 'thank-you.html';
+          } else {
+            if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+            openMailtoFallback();
+          }
+        }).catch(function () {
           if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
           openMailtoFallback();
-        }
-      }).catch(function () {
-        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
-        openMailtoFallback();
+        });
       });
     });
   }
