@@ -12,7 +12,7 @@ Idempotent. Run once from site/:
 import pathlib, re
 
 SITE = pathlib.Path(__file__).parent
-NEW_CSS_VER = "1779094200"
+NEW_CSS_VER = "1779095200"
 START_TAG = "<style>"
 END_TAG = "</style>"
 OUR_MARKER = "Mobile mega-menu finger-slip fix"
@@ -38,6 +38,52 @@ NEW_BLOCK = """<style>
     visibility:hidden !important;
     pointer-events:none !important;
   }
+}
+
+/* Home-page hero pointer-events lock (variants A / B / C) — !important
+   so it wins regardless of any CSS load order or cache. Taps on the
+   eyebrow, headline, lead paragraph, mini ratings or reviews aside in
+   the home hero do NOTHING and emit no tap-highlight. Only the explicit
+   CTA buttons (.hero-cta, .hv-?-cta) receive taps. This is the
+   home-page equivalent of the .smm-hero lock that's already in
+   css/style.css for service pages. */
+.hero .hv-a-text,
+.hero .hv-a-text *,
+.hero .hv-b-text,
+.hero .hv-b-text *,
+.hero .hv-c-text,
+.hero .hv-c-text *,
+.hero .hv-a-mini-ratings,
+.hero .hv-a-mini-ratings *,
+.hero .hv-b-reviews,
+.hero .hv-b-reviews *,
+.hero .hv-c-reviews,
+.hero .hv-c-reviews *,
+.hero .hv-a-reviews,
+.hero .hv-a-reviews *,
+.hero .hero-reviews,
+.hero .hero-reviews *,
+.hero .bento,
+.hero .bento *,
+.hero .logo-wall,
+.hero .logo-wall *{
+  pointer-events:none !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+.hero .hero-cta,
+.hero .hero-cta *,
+.hero .hv-a-cta,
+.hero .hv-a-cta *,
+.hero .hv-b-cta,
+.hero .hv-b-cta *,
+.hero .hv-c-cta,
+.hero .hv-c-cta *,
+.hero .btn,
+.hero .btn-outline,
+.hero .btn-ghost,
+.hero .logo-wall-cta{
+  pointer-events:auto !important;
+  -webkit-tap-highlight-color:rgba(34,197,94,.18) !important;
 }
 </style>"""
 
