@@ -2264,3 +2264,64 @@ body.home-themed .exp-card:hover .exp-link{color:#22c55e !important}
     max-height:36px !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Mobile clients section — replace horizontal logo marquee with a    */
+/* static 3-column grid so the logos look cleanly arranged. Desktop   */
+/* still shows the dual-row scrolling marquee.                        */
+/* ------------------------------------------------------------------ */
+@media (max-width:780px){
+  /* Stop the marquee animation and overflow, make it a normal block. */
+  body.home-themed .dvh-clients-frame .marquee{
+    overflow:visible !important;
+    max-width:100% !important;
+  }
+  /* Hide the second (reverse) row — we only need one set of logos. */
+  body.home-themed .dvh-clients-frame .marquee + .marquee{
+    display:none !important;
+  }
+  /* Convert the track from a scrolling flex strip to a 3-column grid. */
+  body.home-themed .dvh-clients-frame .marquee-track{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:10px !important;
+    width:100% !important;
+    animation:none !important;
+    transform:none !important;
+    padding:0 !important;
+  }
+  body.home-themed .dvh-clients-frame .marquee-track .brand-tile,
+  body.home-themed .client-marquee .brand-tile{
+    flex:initial !important;
+    width:100% !important;height:auto !important;
+    aspect-ratio:1 / 1 !important;
+    padding:10px !important;
+    border-radius:12px !important;
+  }
+  body.home-themed .dvh-clients-frame .brand-tile img,
+  body.home-themed .client-marquee .brand-tile img{
+    max-height:48px !important;max-width:80% !important;
+  }
+  /* Limit visible tiles to 9 (3x3) to keep the section compact. */
+  body.home-themed .dvh-clients-frame .marquee-track .brand-tile:nth-child(n+10){
+    display:none !important;
+  }
+  /* Disable hover animation effects that don't suit static grid. */
+  body.home-themed .dvh-clients-frame .brand-tile:hover{
+    transform:none !important;
+  }
+}
+
+@media (max-width:420px){
+  /* Very narrow phones: 2-column grid, slightly bigger logos. */
+  body.home-themed .dvh-clients-frame .marquee-track{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+  body.home-themed .dvh-clients-frame .marquee-track .brand-tile:nth-child(n+9){
+    display:none !important;
+  }
+  body.home-themed .dvh-clients-frame .brand-tile img,
+  body.home-themed .client-marquee .brand-tile img{
+    max-height:54px !important;
+  }
+}
