@@ -2954,6 +2954,13 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
   display:flex;justify-content:flex-start;align-items:stretch;gap:14px;
   margin:34px 0 0;flex-wrap:wrap;
 }
+/* On mobile, center the Google / Clutch / UpCity rating cards. */
+@media (max-width:900px){
+  .hv-a-mini-ratings{
+    justify-content:center !important;
+    margin-left:auto;margin-right:auto;
+  }
+}
 .mini-rating{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:6px;padding:14px 18px;min-width:140px;
