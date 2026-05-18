@@ -1199,12 +1199,19 @@ body.home-themed .dvh-clients-link:hover svg{transform:translateX(3px)}
 /* Responsive */
 @media (max-width:900px){
   body.home-themed .dvh-clients-mast{grid-template-columns:1fr;gap:36px;padding:48px 0 40px;margin-bottom:36px}
-  body.home-themed .dvh-clients-mast .right{border-left:0;border-top:1px solid var(--dvh-rule);padding-left:0;padding-top:18px}
+  /* Center-align the left column (eyebrow, h2, lead) on phone/tablet. */
+  body.home-themed .dvh-clients-mast .left{text-align:center !important}
+  body.home-themed .dvh-clients-mast .left .eyebrow{margin-left:auto;margin-right:auto}
+  body.home-themed .dvh-clients-mast .left .dvh-clients-lead{margin-left:auto;margin-right:auto}
+  /* Center stat blocks too — number + label stacked centered. */
+  body.home-themed .dvh-clients-mast .right{border-left:0;border-top:1px solid var(--dvh-rule);padding-left:0;padding-top:18px;align-items:center}
+  body.home-themed .dvh-stat-block{align-items:center;text-align:center}
   body.home-themed .dvh-clients-frame{padding:24px 0}
   body.home-themed .dvh-clients-frame .brand-tile{min-height:110px;padding:18px}
   body.home-themed .dvh-clients-frame .brand-tile img{max-height:64px}
-  body.home-themed .dvh-clients-foot{flex-direction:column;align-items:flex-start;gap:14px}
-  body.home-themed .dvh-filter{margin:0 0 32px !important}
+  body.home-themed .dvh-clients-foot{flex-direction:column;align-items:center;gap:14px;text-align:center}
+  /* Center the filter pill row. */
+  body.home-themed .dvh-filter{margin:0 0 32px !important;justify-content:center !important}
 }
 
 /* Dark mode */
