@@ -8163,3 +8163,24 @@ a.svc-card:hover h3{color:var(--green-dark)}
 @media (max-width:960px){
   .dd-bridge{display:none !important}
 }
+
+/* ------------------------------------------------------------------ */
+/* Critical mobile fix — stop the floating header pill from absorbing  */
+/* taps in its empty zones. Sticky header overlaps the hero on scroll, */
+/* so taps in the white-pill empty area were being caught (which meant */
+/* tapping near the H1 sometimes landed on the brand link or nav).     */
+/* Pass clicks THROUGH the empty pill; only the explicit interactive   */
+/* children (brand, hamburger, theme toggle, nav links, CTA button)    */
+/* keep their tap targets.                                              */
+/* ------------------------------------------------------------------ */
+.site-header,
+.site-header .container,
+.site-header .nav{pointer-events:none}
+.site-header .brand,
+.site-header .hamb,
+.site-header .theme-toggle,
+.site-header .lang-btn,
+.site-header .nav ul,
+.site-header .nav ul *,
+.site-header .nav .cta,
+.site-header .nav .cta *{pointer-events:auto}
