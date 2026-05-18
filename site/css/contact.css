@@ -163,17 +163,45 @@ body.home-themed .contact-strip .sv-sub a:hover{
 }
 
 @media (max-width:780px){
+  /* Contact strip on phones — stacked cards with breathing room. */
+  body.home-themed .contact-strip{padding:16px 0 32px !important}
   body.home-themed .contact-strip .strip-row{
-    grid-template-columns:1fr !important;padding:12px 0 !important;
+    grid-template-columns:1fr !important;padding:0 !important;
+    gap:0 !important;
+    border-top:0 !important;border-bottom:0 !important;
   }
   body.home-themed .contact-strip .strip-item{
     border-left:0 !important;
     border-top:1px solid var(--dvh-rule) !important;
-    padding:20px 0 !important;
+    padding:20px 4px !important;
+    text-align:left !important;
   }
   body.home-themed .contact-strip .strip-item:first-child{
-    border-top:0 !important;padding-top:18px !important;
+    border-top:0 !important;padding-top:8px !important;
   }
+  body.home-themed .contact-strip .sl{
+    margin-bottom:8px !important;
+  }
+  body.home-themed .contact-strip .sv{
+    display:block !important;
+    font-size:1.1rem !important;
+    word-break:break-word !important;
+  }
+  body.home-themed .contact-strip .sv-sub{
+    margin-top:6px !important;
+    font-size:.9rem !important;
+    line-height:1.55 !important;
+  }
+  /* Force the email-list middot separator onto its own line — each
+     email reads on its own row instead of wrapping mid-string. */
+  body.home-themed .contact-strip .sv-sub a{
+    display:block !important;
+    word-break:break-all !important;
+    margin-top:4px;
+  }
+  body.home-themed .contact-strip .sv-sub a:first-child{margin-top:0}
+  /* Hide the middot separator on mobile (each email is now block). */
+  body.home-themed .contact-strip .sv-sub .sub-sep{display:none !important}
 }
 
 /* ============================================================
@@ -246,7 +274,10 @@ body.home-themed .c-form-card .field label .req{
   color:var(--dvh-spot-text) !important;font-weight:700;
 }
 
-/* Inputs — flat, ink border, green focus */
+/* Inputs — flat, ink border, green focus.
+   font-size set to 16px so iOS Safari does NOT auto-zoom on focus
+   (any input smaller than 16px triggers the zoom-and-recenter quirk
+   on iPhones, which makes the page feel jerky while filling the form). */
 body.home-themed .c-form-card .field input,
 body.home-themed .c-form-card .field select,
 body.home-themed .c-form-card .field textarea{
@@ -255,7 +286,7 @@ body.home-themed .c-form-card .field textarea{
   border:1.5px solid var(--dvh-rule) !important;
   border-radius:10px !important;
   font-family:'Inter','Segoe UI',sans-serif !important;
-  font-size:.96rem !important;font-weight:500 !important;
+  font-size:16px !important;font-weight:500 !important;
   background:#fff !important;
   color:var(--dvh-ink) !important;
   box-shadow:none !important;
