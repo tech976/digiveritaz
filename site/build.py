@@ -211,8 +211,8 @@ HEAD_TPL = """<!doctype html>
 <meta name="twitter:image" content="https://digiveritaz.com/assets/logo.jpg">
 
 <!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
-<link rel="apple-touch-icon" href="assets/logo.jpg">
+<link rel="icon" type="image/png" href="assets/favicondv.png">
+<link rel="apple-touch-icon" href="assets/favicondv.png">
 
 <!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
