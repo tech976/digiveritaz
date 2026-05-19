@@ -118,7 +118,7 @@ def build_nav(current):
     </ul>"""
 
 SITE_URL = "https://digiveritaz.com"
-DEFAULT_OG_IMAGE = "assets/logo.png"
+DEFAULT_OG_IMAGE = "assets/logo.jpg"
 
 ORG_SCHEMA = {
     "@context": "https://schema.org",
@@ -198,7 +198,7 @@ HEAD_TPL = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="https://digiveritaz.com/{canonical}">
-<meta property="og:image" content="https://digiveritaz.com/assets/logo.png">
+<meta property="og:image" content="https://digiveritaz.com/assets/logo.jpg">
 <meta property="og:image:alt" content="DigiVeritaz — Digital Marketing Agency">
 <meta property="og:locale" content="en_IN">
 
@@ -208,11 +208,11 @@ HEAD_TPL = """<!doctype html>
 <meta name="twitter:creator" content="@digiveritaz">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="https://digiveritaz.com/assets/logo.png">
+<meta name="twitter:image" content="https://digiveritaz.com/assets/logo.jpg">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+<link rel="apple-touch-icon" href="assets/logo.jpg">
 
 <!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -233,7 +233,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="index.html">
-      <img src="assets/logo.png" alt="DigiVeritaz">
+      <img src="assets/logo.jpg" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -252,7 +252,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 
         <div>
           <a class="foot-brand" href="index.html">
-            <img src="assets/logo.png" alt="DigiVeritaz">
+            <img src="assets/logo.jpg" alt="DigiVeritaz">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
           <p class="foot-tag">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.</p>
