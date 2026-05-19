@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Outer rounded shield -->
-  <path d="M14 22 C14 16 18 12 24 12 H76 C82 12 86 16 86 22 V42 L50 88 L14 42 Z"
-        fill="#0b1220"/>
-  <!-- Inner V cutout -->
-  <path d="M34 30 L50 56 L66 30 L58 30 L50 42 L42 30 Z" fill="#ffffff"/>
-</svg>

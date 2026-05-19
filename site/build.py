@@ -118,7 +118,7 @@ def build_nav(current):
     </ul>"""
 
 SITE_URL = "https://digiveritaz.com"
-DEFAULT_OG_IMAGE = "https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp"
+DEFAULT_OG_IMAGE = "assets/logo.png"
 
 ORG_SCHEMA = {
     "@context": "https://schema.org",
@@ -198,7 +198,7 @@ HEAD_TPL = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="https://digiveritaz.com/{canonical}">
-<meta property="og:image" content="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+<meta property="og:image" content="https://digiveritaz.com/assets/logo.png">
 <meta property="og:image:alt" content="DigiVeritaz — Digital Marketing Agency">
 <meta property="og:locale" content="en_IN">
 
@@ -208,11 +208,11 @@ HEAD_TPL = """<!doctype html>
 <meta name="twitter:creator" content="@digiveritaz">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+<meta name="twitter:image" content="https://digiveritaz.com/assets/logo.png">
 
 <!-- Favicon -->
-<link rel="icon" type="image/webp" href="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
-<link rel="apple-touch-icon" href="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 
 <!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -233,7 +233,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="index.html">
-      <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp" alt="DigiVeritaz">
+      <img src="assets/logo.png" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -252,7 +252,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 
         <div>
           <a class="foot-brand" href="index.html">
-            <img src="https://digiveritaz.com/wp-content/uploads/2025/12/3D1.webp" alt="DigiVeritaz">
+            <img src="assets/logo.png" alt="DigiVeritaz">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
           <p class="foot-tag">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.</p>
