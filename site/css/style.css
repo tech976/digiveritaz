@@ -2968,7 +2968,7 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
   color:inherit;
   box-shadow:0 2px 8px rgba(15,23,42,.04);
 }
-.mini-rating img{height:24px;width:auto;object-fit:contain;margin-bottom:2px}
+.mini-rating img{height:36px;width:auto;object-fit:contain;margin-bottom:4px;max-width:140px}
 .mini-rating-score{display:flex;align-items:baseline;gap:4px;font-weight:800;font-size:1.15rem;color:#0b1220}
 .mini-rating-score .mini-star{color:#f59e0b;font-size:.95rem}
 .mini-rating-count{font-size:.78rem;color:#64748b;font-weight:600;letter-spacing:.01em}
