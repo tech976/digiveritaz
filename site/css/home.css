@@ -2348,6 +2348,7 @@ body.home-themed .ig-feed-head h2 span{
   background:linear-gradient(135deg,#f9ce34 0%,#ee2a7b 50%,#6228d7 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent !important;
   font-style:italic;
+  display:inline-block;padding-right:.18em;
 }
 body.home-themed .ig-feed-head p{
   font-family:'Inter',sans-serif !important;
