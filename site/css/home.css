@@ -2334,15 +2334,15 @@ body.home-themed .ig-feed{
   padding:48px 0 56px !important;
 }
 body.home-themed .ig-feed-head{
-  text-align:center;max-width:680px;margin:0 auto 36px;
+  text-align:center;max-width:980px;margin:0 auto 36px;
 }
 body.home-themed .ig-feed-head .eyebrow{margin-bottom:18px}
 body.home-themed .ig-feed-head h2{
   font-family:'Inter Tight','Inter',sans-serif !important;
-  font-size:clamp(2rem,4vw,3rem) !important;
-  font-weight:900 !important;letter-spacing:-.04em !important;
-  line-height:1.05 !important;color:var(--dvh-ink) !important;
-  margin:0 0 14px !important;
+  font-size:clamp(1.65rem,3.4vw,2.75rem) !important;
+  font-weight:900 !important;letter-spacing:-.03em !important;
+  line-height:1.1 !important;color:var(--dvh-ink) !important;
+  margin:0 0 14px !important;white-space:nowrap;
 }
 body.home-themed .ig-feed-head h2 span{
   background:linear-gradient(135deg,#f9ce34 0%,#ee2a7b 50%,#6228d7 100%);
@@ -2407,6 +2407,7 @@ body.home-themed .ig-feed-foot .btn-outline:hover{
   body.home-themed .ig-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   body.home-themed .ig-feed-head{margin-bottom:24px}
   body.home-themed .ig-feed{padding:36px 0 40px !important}
+  body.home-themed .ig-feed-head h2{white-space:normal !important;font-size:clamp(1.5rem,5vw,2rem) !important}
 }
 
 /* Dark mode */
