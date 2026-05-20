@@ -2,8 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "rewrites": [
-    { "source": "/blog/:slug/", "destination": "/blog-:slug.html" },
-    { "source": "/case-study/:slug/", "destination": "/case-study-:slug.html" }
+    { "source": "/blog/:slug", "destination": "/blog-:slug.html" },
+    { "source": "/case-study/:slug", "destination": "/case-study-:slug.html" }
   ],
   "redirects": [
     { "source": "/blog-:slug/", "destination": "/blog/:slug/", "permanent": true },
