@@ -2359,7 +2359,7 @@ body.home-themed .ig-grid{
   margin-bottom:32px;
 }
 body.home-themed .ig-card{
-  position:relative;display:block;aspect-ratio:1 / 1;
+  position:relative;display:block;aspect-ratio:4 / 3;
   border-radius:14px;overflow:hidden;
   background:#0b1220;
   transition:transform .25s ease,box-shadow .25s ease;
