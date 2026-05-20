@@ -211,8 +211,8 @@ HEAD_TPL = """<!doctype html>
 <meta name="twitter:image" content="https://digiveritaz.com/assets/logo.jpg">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="assets/favicondv.png">
-<link rel="apple-touch-icon" href="assets/favicondv.png">
+<link rel="icon" type="image/png" href="/assets/favicondv.png">
+<link rel="apple-touch-icon" href="/assets/favicondv.png">
 
 <!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -221,7 +221,7 @@ HEAD_TPL = """<!doctype html>
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v={css_ver}">
+<link rel="stylesheet" href="/css/style.css?v={css_ver}">
 
 <!-- Organization + Website schema -->
 <script type="application/ld+json">""" + ORG_JSONLD_ESC + """</script>
@@ -233,7 +233,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="index.html">
-      <img src="assets/logo.jpg" alt="DigiVeritaz">
+      <img src="/assets/logo.jpg" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -252,7 +252,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 
         <div>
           <a class="foot-brand" href="index.html">
-            <img src="assets/logo.jpg" alt="DigiVeritaz">
+            <img src="/assets/logo.jpg" alt="DigiVeritaz">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
           <p class="foot-tag">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.</p>
@@ -334,8 +334,8 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 <div class="lang-switcher" id="langSwitcher"></div>
 <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
 
-<script src="js/i18n.js?v={css_ver}"></script>
-<script src="js/main.js?v={css_ver}"></script>
+<script src="/js/i18n.js?v={css_ver}"></script>
+<script src="/js/main.js?v={css_ver}"></script>
 </body></html>
 """
 
@@ -980,7 +980,7 @@ _svc_tabs_script = """
 svc_body = f"""
 <section class="svc-hub-hero">
   <div class="svc-hub-hero-media" aria-hidden="true">
-    <img src="assets/services/performance-marketing-agency.webp" alt="">
+    <img src="/assets/services/performance-marketing-agency.webp" alt="">
   </div>
   <div class="container">
     <nav class="breadcrumb">Home / Services</nav>
