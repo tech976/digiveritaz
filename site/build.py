@@ -1806,7 +1806,7 @@ case_items = [
      "assets/Case%20Studies/The%20Rawood%20Shed.webp"),
 ]
 case_cards = "".join(
-    f'<a class="card" href="/case-study-{slug}/"><div class="thumb" style="background-image:url(\'{img}\')"></div><div class="body"><span class="tag">{tag}</span><h3>{t}</h3><p>{d}</p></div></a>'
+    f'<a class="card" href="/case-study/{slug}/"><div class="thumb" style="background-image:url(\'{img}\')"></div><div class="body"><span class="tag">{tag}</span><h3>{t}</h3><p>{d}</p></div></a>'
     for (slug, t, tag, d, img) in case_items
 )
 cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Case Studies",
