@@ -91,7 +91,7 @@ def build_nav(current):
                 for slug in slugs
             )
             cols.append(f'<div class="mm-col"><div class="mm-head">{cat}</div>{items}</div>')
-        view_all = f'<a class="mm-all" href="services.html"{" data-active=\"1\"" if current == "services.html" else ""}>View all services →</a>'
+        view_all = f'<a class="mm-all" href="/services/"{" data-active=\"1\"" if current == "services.html" else ""}>View all services →</a>'
         return (
             '<div class="dd-menu mega-menu" role="menu">'
             '<span class="dd-bridge" aria-hidden="true"></span>'
@@ -114,7 +114,7 @@ def build_nav(current):
     lis = "\n      ".join(lis_parts)
     return f"""    <ul>
       {lis}
-{THEME_TOGGLE}      <li class="cta"><a class="btn" href="contact-us.html" data-i18n="nav.cta">Book A Call</a></li>
+{THEME_TOGGLE}      <li class="cta"><a class="btn" href="/contact-us/" data-i18n="nav.cta">Book A Call</a></li>
     </ul>"""
 
 SITE_URL = "https://digiveritaz.com"
@@ -232,7 +232,7 @@ HEAD_TPL = """<!doctype html>
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header" role="banner">
   <div class="container nav">
-    <a class="brand" href="index.html">
+    <a class="brand" href="/">
       <img src="/assets/logo.jpg" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
@@ -251,7 +251,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
       <div class="footer-grid">
 
         <div>
-          <a class="foot-brand" href="index.html">
+          <a class="foot-brand" href="/">
             <img src="/assets/logo.jpg" alt="DigiVeritaz">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
@@ -267,24 +267,24 @@ FOOT = """<footer class="site-footer" role="contentinfo">
         <div>
           <h4>Services</h4>
           <ul>
-            <li><a href="seo.html">SEO</a></li>
-            <li><a href="pay-per-click.html">Pay Per Click</a></li>
-            <li><a href="performance-marketing-agency.html">Performance Marketing</a></li>
-            <li><a href="ecommerce-marketing.html">E-Commerce</a></li>
-            <li><a href="whatsapp-marketing-services.html">WhatsApp Marketing</a></li>
-            <li><a href="branding-and-design.html">Branding &amp; Design</a></li>
+            <li><a href="/seo/">SEO</a></li>
+            <li><a href="/pay-per-click/">Pay Per Click</a></li>
+            <li><a href="/performance-marketing-agency/">Performance Marketing</a></li>
+            <li><a href="/ecommerce-marketing/">E-Commerce</a></li>
+            <li><a href="/whatsapp-marketing-services/">WhatsApp Marketing</a></li>
+            <li><a href="/branding-and-design/">Branding &amp; Design</a></li>
           </ul>
         </div>
 
         <div>
           <h4>Company</h4>
           <ul>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="case-study.html">Case Studies</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="/about-us/">About Us</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/case-study/">Case Studies</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/faq/">FAQ</a></li>
+            <li><a href="/contact-us/">Contact</a></li>
           </ul>
         </div>
 
@@ -322,9 +322,9 @@ FOOT = """<footer class="site-footer" role="contentinfo">
     <div class="foot-bottom">
       <span>© 2026 DigiVeritaz. All rights reserved.</span>
       <div class="foot-bottom-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
-        <a href="faq.html">FAQ</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <a href="/faq/">FAQ</a>
       </div>
     </div>
 
@@ -529,70 +529,70 @@ about_body = """
       <p>A broad set of digital marketing services, tailored to every stage of growth.</p>
     </div>
     <div class="expertise-grid">
-      <a class="exp-card reveal" href="organic-marketing-services.html">
+      <a class="exp-card reveal" href="/organic-marketing-services/">
         <span class="exp-num">01</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg></div>
         <h3>Organic Marketing</h3>
         <p>SEO, content, and social working together for long-term compounding growth.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="paid-social-media-advertising.html">
+      <a class="exp-card reveal delay-1" href="/paid-social-media-advertising/">
         <span class="exp-num">02</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></div>
         <h3>Paid Social Advertising</h3>
         <p>Meta, LinkedIn, Pinterest and Snapchat ads engineered to convert.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="pay-per-click.html">
+      <a class="exp-card reveal delay-2" href="/pay-per-click/">
         <span class="exp-num">03</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <h3>Pay-Per-Click (PPC)</h3>
         <p>High-intent traffic via Google, Bing, Shopping and performance search.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal" href="performance-marketing-agency.html">
+      <a class="exp-card reveal" href="/performance-marketing-agency/">
         <span class="exp-num">04</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg></div>
         <h3>Performance Marketing</h3>
         <p>Full-funnel campaigns tied to CAC, ROAS and real revenue.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="ecommerce-marketing.html">
+      <a class="exp-card reveal delay-1" href="/ecommerce-marketing/">
         <span class="exp-num">05</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div>
         <h3>E-Commerce Platforms</h3>
         <p>Amazon, Flipkart, Shopify and D2C growth from listing to loyalty.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="data-strategy-consulting-services.html">
+      <a class="exp-card reveal delay-2" href="/data-strategy-consulting-services/">
         <span class="exp-num">06</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
         <h3>Data Strategy &amp; Consulting</h3>
         <p>Attribution, analytics and a measurement stack that drives decisions.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal" href="native-advertising.html">
+      <a class="exp-card reveal" href="/native-advertising/">
         <span class="exp-num">07</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="7.5" r="0.7"/></svg></div>
         <h3>Native Advertising</h3>
         <p>Premium publisher and marketplace placements that feel organic.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="whatsapp-marketing-services.html">
+      <a class="exp-card reveal delay-1" href="/whatsapp-marketing-services/">
         <span class="exp-num">08</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg></div>
         <h3>WhatsApp Marketing</h3>
         <p>Conversational commerce, broadcasts and chatbot automation.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="branding-and-design.html">
+      <a class="exp-card reveal delay-2" href="/branding-and-design/">
         <span class="exp-num">09</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg></div>
         <h3>Branding &amp; Design</h3>
         <p>Research-led identity systems and creative direction that convert.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-3" href="generative-search-optimisation.html">
+      <a class="exp-card reveal delay-3" href="/generative-search-optimisation/">
         <span class="exp-num">10</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/><path d="M2 12h2M20 12h2"/></svg></div>
         <h3>Generative Search Optimisation</h3>
@@ -626,7 +626,7 @@ about_body = """
   <div class="container reveal">
     <h2>Your brand's next big move <span>starts here</span></h2>
     <p>Let's talk growth. Book a discovery call and get a custom proposal within 48 hours.</p>
-    <a class="btn" href="contact-us.html">Contact Us Today</a>
+    <a class="btn" href="/contact-us/">Contact Us Today</a>
   </div>
 </section>
 """
@@ -641,7 +641,7 @@ contact_body = """
 <section class="contact-hero">
   <div class="container">
     <nav class="cs-crumbs" aria-label="Breadcrumb">
-      <a href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+      <a href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
       <span class="sep" aria-hidden="true">&rsaquo;</span>
       <span class="current" aria-current="page">Contact Us</span>
     </nav>
@@ -789,7 +789,7 @@ write("contact-us.html",
 ty_body = """<section class="hero"><div class="container text-center">
 <h1 class="play">Thank <span class="green_text">You!</span></h1>
 <p class="lead" style="margin:0 auto">We've received your message and will get back to you shortly. If your inquiry is urgent, please call us directly at <a href="tel:+919956655662">+91 99566 55662</a> or <a href="tel:+917045337060">+91 70453 37060</a>.</p>
-<div class="mt-20"><a class="btn" href="index.html">Back to Home</a></div>
+<div class="mt-20"><a class="btn" href="/">Back to Home</a></div>
 </div></section>"""
 write("thank-you.html", "Thank You | DigiVeritaz",
       "Thank you for contacting DigiVeritaz. We'll respond within one business day.",
@@ -988,7 +988,7 @@ svc_body = f"""
     <h1 class="play">Choose the service stack that moves your next number.</h1>
     <p>Browse strategy, media, design, data and development offers built around measurable growth. Pick one specialist service or hand us the whole engine.</p>
     <div class="svc-hero-actions">
-      <a class="btn" href="contact-us.html">Build My Growth Plan</a>
+      <a class="btn" href="/contact-us/">Build My Growth Plan</a>
       <a class="btn-outline btn-ghost" href="#all-services">Browse Services</a>
     </div>
   </div>
@@ -1003,7 +1003,7 @@ svc_body = f"""
   <div class="container">
     <h2 class="play">Not sure where to start?</h2>
     <p>Tell us your target, budget and current stack. We will shape the right service mix before you spend.</p>
-    <a class="btn" href="contact-us.html">Book A Call</a>
+    <a class="btn" href="/contact-us/">Book A Call</a>
   </div>
 </section>
 {_svc_tabs_script}
@@ -1613,7 +1613,7 @@ def svc_doc_template_v2(svc):
         f'<h1>{svc["h1"]}</h1>'
         f'<p>{svc["intro"]}</p>'
         '<div class="svc2-actions">'
-        '<a class="btn" href="contact-us.html">Get My Free SEO Audit</a>'
+        '<a class="btn" href="/contact-us/">Get My Free SEO Audit</a>'
         '<a class="btn-outline btn-ghost" href="#process">See The Process</a>'
         '</div>'
         '</div>'
@@ -1659,7 +1659,7 @@ def svc_doc_template_v2(svc):
         '<div class="container reveal">'
         '<h2 class="play">Ready to turn rankings into revenue?</h2>'
         '<p>Book a free SEO audit and get a prioritized roadmap for your site, keywords and growth target.</p>'
-        '<a class="btn" href="contact-us.html">Start With An SEO Audit</a>'
+        '<a class="btn" href="/contact-us/">Start With An SEO Audit</a>'
         '</div>'
         '</section>'
     )
@@ -1677,7 +1677,7 @@ def svc_doc_template(svc):
         + f'    <h1>{svc["h1"]}</h1>\n'
         + f'    <p class="hero-subtitle">{title_label}</p>\n'
         + f'    <p class="lead">{svc["intro"]}</p>\n'
-        + '    <div class="hero-sub"><a class="btn" href="contact-us.html">Start Your Project</a></div>\n'
+        + '    <div class="hero-sub"><a class="btn" href="/contact-us/">Start Your Project</a></div>\n'
         + '  </div>\n</section>\n'
         + '<section class="marquee-strip" aria-hidden="true">\n'
         + f'  <div class="marquee-track">{marquee_html}</div>\n'
@@ -1706,7 +1706,7 @@ def svc_doc_template(svc):
         '  <div class="container reveal">\n'
         '    <h2>Ready to grow your <span>brand?</span></h2>\n'
         '    <p>Book a free consultation and get a custom proposal within 48 hours.</p>\n'
-        '    <a class="btn" href="contact-us.html">Start Your Project</a>\n'
+        '    <a class="btn" href="/contact-us/">Start Your Project</a>\n'
         '  </div>\n</section>\n'
     )
     return hero + stats_html + eeat_html + body_html + faqs_html + cta_html
@@ -1806,7 +1806,7 @@ case_items = [
      "assets/Case%20Studies/The%20Rawood%20Shed.webp"),
 ]
 case_cards = "".join(
-    f'<a class="card" href="case-study-{slug}.html"><div class="thumb" style="background-image:url(\'{img}\')"></div><div class="body"><span class="tag">{tag}</span><h3>{t}</h3><p>{d}</p></div></a>'
+    f'<a class="card" href="/case-study-{slug}/"><div class="thumb" style="background-image:url(\'{img}\')"></div><div class="body"><span class="tag">{tag}</span><h3>{t}</h3><p>{d}</p></div></a>'
     for (slug, t, tag, d, img) in case_items
 )
 cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Case Studies",
@@ -1817,7 +1817,7 @@ cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Ca
   <div class="container">
     <h2 class="play">Want to be our next <span class="green_text">success story?</span></h2>
     <p class="lead">Tell us about your goals &mdash; we'll build a plan with clear KPIs, timelines and accountability.</p>
-    <a class="btn" href="contact-us.html">Book A Call</a>
+    <a class="btn" href="/contact-us/">Book A Call</a>
   </div>
 </section>
 """
@@ -1933,8 +1933,8 @@ def blog_post_body(post, related):
 <section class="blog-hero">
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> &rsaquo;
-      <a href="blog.html">Blog</a> &rsaquo;
+      <a href="/">Home</a> &rsaquo;
+      <a href="/blog/">Blog</a> &rsaquo;
       <span>{_strip_tags(title)[:60]}</span>
     </nav>
     <span class="post-tag">{cat}</span>
@@ -1961,7 +1961,7 @@ def blog_post_body(post, related):
   <div class="container">
     <h2 class="play">Want results like <span class="green_text">these?</span></h2>
     <p class="lead">Let's turn insights into measurable growth. Book a free strategy call with the DigiVeritaz team.</p>
-    <a class="btn" href="contact-us.html">Book A Call</a>
+    <a class="btn" href="/contact-us/">Book A Call</a>
   </div>
 </section>
 """
