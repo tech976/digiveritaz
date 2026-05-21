@@ -101,6 +101,12 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-io-2026-what-every-marketer-needs-to-act-on-now/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/seo-for-small-businesses-2026-step-by-step-guide/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
