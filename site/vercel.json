@@ -3,6 +3,9 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/blog-:slug/",       "destination": "/blog/:slug/",       "permanent": true },
-    { "source": "/case-study-:slug/", "destination": "/case-study/:slug/", "permanent": true }
+    { "source": "/case-study-:slug/", "destination": "/case-study/:slug/", "permanent": true },
+    { "source": "/casestudy/:slug/",  "destination": "/case-study/:slug/", "permanent": true },
+    { "source": "/our-formula-for-foolproof-performance-marketing-wins/", "destination": "/blog/our-formula-for-foolproof-performance-marketing-wins/", "permanent": true },
+    { "source": "/top-12-advantages-of-search-engine-marketing/",         "destination": "/blog/top-12-advantages-of-search-engine-marketing/",         "permanent": true }
   ]
 }
