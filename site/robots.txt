@@ -4,5 +4,5 @@ Disallow: /thank-you/
 Disallow: /wp-admin/
 Disallow: /cdn-cgi/
 
-Sitemap: https://digiveritaz.com/sitemap.xml
+Sitemap: https://www.digiveritaz.com/sitemap.xml
 Host: https://digiveritaz.com
