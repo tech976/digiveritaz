@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "digiveritaz.com" }], "destination": "https://www.digiveritaz.com/:path*", "permanent": true },
     { "source": "/blog-:slug/",       "destination": "/blog/:slug/",       "permanent": true },
     { "source": "/case-study-:slug/", "destination": "/case-study/:slug/", "permanent": true },
     { "source": "/casestudy/:slug/",  "destination": "/case-study/:slug/", "permanent": true },
