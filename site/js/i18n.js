@@ -23,7 +23,7 @@
       "nav.cta": "Book A Call",
 
       "hero.badge": "Mumbai · India · Worldwide",
-      "hero.title.html": 'Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>',
+      "hero.title.html": 'Top Digital Marketing Agency <span class="green_text">In India</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>',
       "hero.lead.html": "DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.",
       "hero.cta": "Get My Free Proposal",
       "hero.reviews.google": "150+ Reviews",
@@ -758,6 +758,63 @@
     },
   };
 
+  // --- region overrides (per-language replacements applied when the visitor is in Europe) ---
+  // Add entries here to expand to other languages or other keys later.
+  const REGION_OVERRIDES = {
+    EU: {
+      en: {
+        "hero.title.html": 'Top Digital Marketing Agency <span class="green_text">In Europe</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>',
+      },
+    },
+  };
+
+  // --- region detection (browser-only, no network calls) ---
+  // Primary signal: IANA timezone. Strong because the timezone string literally
+  // names the continent. Augmented with the handful of European zones that don't
+  // sit under "Europe/" (Iceland, Faroes, Canaries, Madeira, Azores, Cyprus).
+  // Secondary signal: navigator.language(s) region subtag — only used as a
+  // tie-breaker when the timezone is ambiguous (UTC/GMT/etc.), to avoid
+  // mislabelling expats whose locale differs from their location.
+  var EUROPE_TZ_EXTRAS = {
+    "Atlantic/Reykjavik": 1, "Atlantic/Faroe": 1, "Atlantic/Faeroe": 1,
+    "Atlantic/Canary": 1, "Atlantic/Madeira": 1, "Atlantic/Azores": 1,
+    "Asia/Nicosia": 1, "Asia/Famagusta": 1,
+  };
+  var EUROPE_LOCALE_REGIONS = {
+    AD:1, AL:1, AT:1, AX:1, BA:1, BE:1, BG:1, BY:1, CH:1, CY:1, CZ:1, DE:1,
+    DK:1, EE:1, ES:1, FI:1, FO:1, FR:1, GB:1, GG:1, GI:1, GR:1, HR:1, HU:1,
+    IE:1, IM:1, IS:1, IT:1, JE:1, LI:1, LT:1, LU:1, LV:1, MC:1, MD:1, ME:1,
+    MK:1, MT:1, NL:1, NO:1, PL:1, PT:1, RO:1, RS:1, SE:1, SI:1, SJ:1, SK:1,
+    SM:1, UA:1, VA:1, XK:1,
+  };
+  function getTimezone() {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) { return ""; }
+  }
+  function localeLooksEuropean() {
+    try {
+      var langs = (navigator.languages && navigator.languages.length)
+        ? navigator.languages : [navigator.language || ""];
+      for (var i = 0; i < langs.length; i++) {
+        var parts = String(langs[i]).split(/[-_]/);
+        if (parts.length >= 2) {
+          var region = parts[1].toUpperCase();
+          if (EUROPE_LOCALE_REGIONS[region]) return true;
+        }
+      }
+    } catch (e) {}
+    return false;
+  }
+  function detectRegion() {
+    var tz = getTimezone();
+    if (tz && tz.indexOf("Europe/") === 0) return "EU";
+    if (EUROPE_TZ_EXTRAS[tz]) return "EU";
+    var ambiguous = !tz || tz === "UTC" || tz === "GMT" || tz.indexOf("Etc/") === 0;
+    if (ambiguous && localeLooksEuropean()) return "EU";
+    return null;
+  }
+  var DV_REGION = detectRegion();
+  try { window.__DV_REGION = { region: DV_REGION, tz: getTimezone() }; } catch (e) {}
+
   // --- runtime ---
   function getLang() {
     try { return localStorage.getItem("dv-lang") || "en"; } catch (e) { return "en"; }
@@ -771,6 +828,9 @@
     document.documentElement.setAttribute("dir", (langObj && langObj.rtl) ? "rtl" : "ltr");
   }
   function t(key, code) {
+    if (DV_REGION && REGION_OVERRIDES[DV_REGION] && REGION_OVERRIDES[DV_REGION][code] && REGION_OVERRIDES[DV_REGION][code][key] != null) {
+      return REGION_OVERRIDES[DV_REGION][code][key];
+    }
     var dict = T[code] || T.en;
     return dict[key] || T.en[key] || "";
   }
