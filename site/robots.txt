@@ -3,6 +3,6 @@ Allow: /
 Disallow: /thank-you/
 Disallow: /wp-admin/
 Disallow: /cdn-cgi/
+Disallow: /*?lang=
 
 Sitemap: https://www.digiveritaz.com/sitemap.xml
-Host: https://digiveritaz.com
