@@ -816,48 +816,49 @@
 <script src="/js/main.min.js?v=1779281000"></script>
 <script src="/js/home.min.js?v=1779281000" defer></script>
 <script>
-/* Region-based H1 swap: replace "In India" with "In Europe" when the visitor
-   is in Europe. Primary signal is the IANA timezone (its string literally
-   names the continent); locale-region is used only as a tie-breaker when
-   the timezone is ambiguous (UTC/GMT/Etc/*), to avoid mislabelling expats. */
+/* Region-based H1 swap: replace "In India" with "In Europe" for European
+   visitors. Primary signal is Cloudflare's /cdn-cgi/trace endpoint (real IP
+   geolocation — works with VPNs). Fallback is the IANA timezone, used only
+   if the trace request fails (e.g. local dev served outside Cloudflare).
+   Override for testing: append ?region=EU to the URL. */
 (function(){
-  var EUROPE_TZ_EXTRAS = {
-    "Atlantic/Reykjavik":1,"Atlantic/Faroe":1,"Atlantic/Faeroe":1,
-    "Atlantic/Canary":1,"Atlantic/Madeira":1,"Atlantic/Azores":1,
-    "Asia/Nicosia":1,"Asia/Famagusta":1
-  };
-  var EUROPE_LOCALE_REGIONS = {
+  var EUROPE_COUNTRY = {
     AD:1,AL:1,AT:1,AX:1,BA:1,BE:1,BG:1,BY:1,CH:1,CY:1,CZ:1,DE:1,
     DK:1,EE:1,ES:1,FI:1,FO:1,FR:1,GB:1,GG:1,GI:1,GR:1,HR:1,HU:1,
     IE:1,IM:1,IS:1,IT:1,JE:1,LI:1,LT:1,LU:1,LV:1,MC:1,MD:1,ME:1,
     MK:1,MT:1,NL:1,NO:1,PL:1,PT:1,RO:1,RS:1,SE:1,SI:1,SJ:1,SK:1,
     SM:1,UA:1,VA:1,XK:1
   };
-  function getTz(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(e){ return ""; } }
-  function localeEU(){
-    try {
-      var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
-      for (var i = 0; i < langs.length; i++) {
-        var parts = String(langs[i]).split(/[-_]/);
-        if (parts.length >= 2 && EUROPE_LOCALE_REGIONS[parts[1].toUpperCase()]) return true;
-      }
-    } catch(e){}
-    return false;
-  }
-  function isEU(){
-    var tz = getTz();
-    if (tz && tz.indexOf("Europe/") === 0) return true;
-    if (EUROPE_TZ_EXTRAS[tz]) return true;
-    var ambiguous = !tz || tz === "UTC" || tz === "GMT" || tz.indexOf("Etc/") === 0;
-    return ambiguous && localeEU();
-  }
-  try { window.__DV_REGION = { region: isEU() ? "EU" : null, tz: getTz() }; } catch(e){}
-  if (isEU()) {
+  var EUROPE_TZ_EXTRAS = {
+    "Atlantic/Reykjavik":1,"Atlantic/Faroe":1,"Atlantic/Faeroe":1,
+    "Atlantic/Canary":1,"Atlantic/Madeira":1,"Atlantic/Azores":1,
+    "Asia/Nicosia":1,"Asia/Famagusta":1
+  };
+  function swap(via){
     var el = document.getElementById("hero-title");
     if (el) {
       el.innerHTML = 'Top Digital Marketing Agency <span class="green_text">In Europe</span> — <span class="green_text">SEO, PPC &amp; Performance Growth</span>';
     }
+    try { window.__DV_REGION = { region: "EU", via: via }; } catch(e){}
   }
+  // Manual override for testing.
+  try {
+    if (/[?&]region=EU\b/i.test(location.search || "")) { swap("override"); return; }
+  } catch(e){}
+  function tzFallback(){
+    var tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(e){}
+    if ((tz && tz.indexOf("Europe/") === 0) || EUROPE_TZ_EXTRAS[tz]) swap("tz");
+    else { try { window.__DV_REGION = { region: null, via: "tz", tz: tz }; } catch(e){} }
+  }
+  if (!window.fetch) { tzFallback(); return; }
+  fetch("/cdn-cgi/trace", { cache: "no-store" })
+    .then(function(r){ if (!r.ok) throw new Error("trace " + r.status); return r.text(); })
+    .then(function(txt){
+      var m = /(?:^|\n)loc=([A-Z]{2})/.exec(txt || "");
+      if (m && EUROPE_COUNTRY[m[1]]) swap("cf:" + m[1]);
+      else { try { window.__DV_REGION = { region: null, via: "cf", loc: m ? m[1] : null }; } catch(e){} }
+    })
+    .catch(tzFallback);
 })();
 </script>
 </body>
