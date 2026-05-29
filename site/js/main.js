@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Contact form — submits to Google Apps Script (Sheet + email), with
   // FormSubmit.co as backup and mailto as last-resort fallback.
   var form = document.getElementById('contact-form');
-  if (form) {
+  if (form && !document.getElementById('btn-send-otp')) {
     var CONTACT_EMAIL = 'info@digiveritaz.com';
     var APPS_SCRIPT_URL =
       'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
