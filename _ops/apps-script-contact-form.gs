@@ -16,6 +16,14 @@
  *
  * Required ScriptProperty: RECAPTCHA_SECRET (Google reCAPTCHA v3 secret key).
  * If missing, reCAPTCHA verification is skipped (warned).
+ *
+ * Required appsscript.json oauthScopes (script.external_request is critical
+ * for reCAPTCHA siteverify; Apps Script does NOT auto-detect it on first
+ * Run when the call lives inside a try/catch):
+ *   - https://www.googleapis.com/auth/script.external_request
+ *   - https://www.googleapis.com/auth/spreadsheets
+ *   - https://www.googleapis.com/auth/script.send_mail
+ *   - https://www.googleapis.com/auth/script.scriptapp
  */
 
 // ============================================================
@@ -140,8 +148,9 @@ function doPost(e) {
           return json({ ok: false, error: 'failed_challenge', detail: codes || ('score=' + body.score) });
         }
       } catch (recapErr) {
-        console.error('reCAPTCHA verify error: ' + recapErr);
-        return json({ ok: false, error: 'failed_challenge', detail: 'fetch_exception' });
+        var emsg = (recapErr && recapErr.message) ? recapErr.message : String(recapErr);
+        console.error('reCAPTCHA verify error: ' + emsg + ' / stack: ' + (recapErr && recapErr.stack));
+        return json({ ok: false, error: 'failed_challenge', detail: 'fetch_exception:' + emsg.substring(0, 180) });
       }
     }
 
@@ -466,4 +475,44 @@ function json(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============================================================
+// DIAGNOSTIC — run from the editor: select dvTestReCaptcha
+// in the function dropdown -> Run. No deploy needed. Logs appear
+// in View -> Logs or the bottom Logs panel.
+// ============================================================
+function dvTestReCaptcha() {
+  var secret = PropertiesService.getScriptProperties().getProperty('RECAPTCHA_SECRET');
+  Logger.log('--- dvTestReCaptcha ---');
+  Logger.log('Secret set:    ' + (!!secret));
+  Logger.log('Secret length: ' + (secret ? secret.length : 0));
+  if (!secret) { Logger.log('FAIL: RECAPTCHA_SECRET property missing'); return; }
+  try {
+    var resp = UrlFetchApp.fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'post',
+      contentType: 'application/x-www-form-urlencoded',
+      payload: 'secret=' + encodeURIComponent(secret) + '&response=DUMMY_TOKEN_FOR_TEST',
+      muteHttpExceptions: true
+    });
+    Logger.log('HTTP status:   ' + resp.getResponseCode());
+    Logger.log('Response body: ' + resp.getContentText());
+    var body = JSON.parse(resp.getContentText() || '{}');
+    if (resp.getResponseCode() === 200 && body['error-codes']) {
+      var codes = body['error-codes'].join(',');
+      if (codes.indexOf('invalid-input-secret') !== -1) {
+        Logger.log('>> Secret VALUE is wrong. Re-copy Secret Key from Google reCAPTCHA admin.');
+      } else if (codes.indexOf('invalid-input-response') !== -1) {
+        Logger.log('>> Secret is VALID (dummy token rejected as expected). Server-side reCAPTCHA pipeline OK.');
+        Logger.log('>> If form still fails, problem is client-side: site key in HTML may not pair with this secret, or token not reaching server.');
+      } else {
+        Logger.log('>> Unexpected error codes: ' + codes);
+      }
+    }
+  } catch (e) {
+    Logger.log('EXCEPTION:  ' + e);
+    Logger.log('Message:    ' + (e && e.message));
+    Logger.log('Stack:      ' + (e && e.stack));
+    Logger.log('>> Apps Script could not reach Google. Most likely cause: deployment "Execute as: User accessing" (should be "Me"), or external-fetch authorization not granted on this account.');
+  }
 }
