@@ -6,7 +6,6 @@
  * Defenses:
  *  - 3 honeypot fields (silent success)
  *  - JS-execution token + time-on-page window check
- *  - Google reCAPTCHA v3 score gate (>= 0.5)
  *  - Email-OTP verification (6-digit, 10-min TTL, 5 attempts, single-use)
  *  - Per-email hourly cap for OTP requests (3/h) and submissions (5/h)
  *  - 60-second dedup window per (email|phone)
@@ -14,16 +13,7 @@
  *  - Length cap + zero-width-char strip
  *  - HTML-escape on the OTP code display
  *
- * Required ScriptProperty: RECAPTCHA_SECRET (Google reCAPTCHA v3 secret key).
- * If missing, reCAPTCHA verification is skipped (warned).
- *
- * Required appsscript.json oauthScopes (script.external_request is critical
- * for reCAPTCHA siteverify; Apps Script does NOT auto-detect it on first
- * Run when the call lives inside a try/catch):
- *   - https://www.googleapis.com/auth/script.external_request
- *   - https://www.googleapis.com/auth/spreadsheets
- *   - https://www.googleapis.com/auth/script.send_mail
- *   - https://www.googleapis.com/auth/script.scriptapp
+ * No external HTTP calls — runs on default Sheets + Mail OAuth scopes.
  */
 
 // ============================================================
@@ -50,8 +40,6 @@ var HOURLY_CAP_PER_EMAIL = 5;
 var OTP_TTL_SECONDS = 600;               // 10 minutes
 var OTP_MAX_ATTEMPTS = 5;
 var OTP_REQUESTS_PER_HOUR = 3;
-var RECAPTCHA_MIN_SCORE = 0.5;
-var RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 
 // ============================================================
 // ENTRY POINTS
@@ -59,14 +47,9 @@ var RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 function doGet(e) {
   // Diagnostic mode: ?diag=1 reports config without leaking secrets.
   if (e && e.parameter && e.parameter.diag === '1') {
-    var secret = PropertiesService.getScriptProperties().getProperty('RECAPTCHA_SECRET') || '';
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
       diag: {
-        recaptcha_secret_set: secret.length > 0,
-        recaptcha_secret_length: secret.length,
-        recaptcha_secret_starts_with_6Lc_or_6Lf: /^6L[cf]/.test(secret),
-        looks_like_a_site_key_not_secret: /AAAAAI/.test(secret),
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
       }
     });
@@ -125,36 +108,7 @@ function doPost(e) {
       }
     }
 
-    // (7) reCAPTCHA v3 verify
-    var secret = PropertiesService.getScriptProperties().getProperty('RECAPTCHA_SECRET');
-    if (!secret) {
-      console.warn('RECAPTCHA_SECRET not configured — skipping reCAPTCHA verification.');
-    } else {
-      try {
-        var resp = UrlFetchApp.fetch(RECAPTCHA_VERIFY_URL, {
-          method: 'post',
-          contentType: 'application/x-www-form-urlencoded',
-          payload: 'secret=' + encodeURIComponent(secret)
-                 + '&response=' + encodeURIComponent(p.recaptcha_token || ''),
-          muteHttpExceptions: true
-        });
-        var body = JSON.parse(resp.getContentText() || '{}');
-        var passed = (body.success === true)
-          && (typeof body.score !== 'number' || body.score >= RECAPTCHA_MIN_SCORE);
-        if (!passed) {
-          var codes = (body['error-codes'] || []).join(',');
-          var scoreInfo = (typeof body.score === 'number') ? (' score=' + body.score) : '';
-          console.error('reCAPTCHA verify failed: codes=[' + codes + ']' + scoreInfo + ' rawBody=' + JSON.stringify(body));
-          return json({ ok: false, error: 'failed_challenge', detail: codes || ('score=' + body.score) });
-        }
-      } catch (recapErr) {
-        var emsg = (recapErr && recapErr.message) ? recapErr.message : String(recapErr);
-        console.error('reCAPTCHA verify error: ' + emsg + ' / stack: ' + (recapErr && recapErr.stack));
-        return json({ ok: false, error: 'failed_challenge', detail: 'fetch_exception:' + emsg.substring(0, 180) });
-      }
-    }
-
-    // (8) dispatch by action
+    // (7) dispatch by action
     var action = p.action;
     if (action === 'request_otp') {
       return handleRequestOtp_(p, nowMs);
@@ -392,7 +346,7 @@ function sendNotification_(p, services) {
     'Source:   ' + (p._source || 'contact-us form') + '\n' +
     'Time:     ' + new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST\n' +
     '\n' +
-    '(Email + phone verified via 6-digit OTP and Google reCAPTCHA v3.)\n';
+    '(Email verified via 6-digit OTP.)\n';
 
   MailApp.sendEmail({
     to: NOTIFY_EMAILS,
@@ -477,42 +431,3 @@ function json(obj) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// ============================================================
-// DIAGNOSTIC — run from the editor: select dvTestReCaptcha
-// in the function dropdown -> Run. No deploy needed. Logs appear
-// in View -> Logs or the bottom Logs panel.
-// ============================================================
-function dvTestReCaptcha() {
-  var secret = PropertiesService.getScriptProperties().getProperty('RECAPTCHA_SECRET');
-  Logger.log('--- dvTestReCaptcha ---');
-  Logger.log('Secret set:    ' + (!!secret));
-  Logger.log('Secret length: ' + (secret ? secret.length : 0));
-  if (!secret) { Logger.log('FAIL: RECAPTCHA_SECRET property missing'); return; }
-  try {
-    var resp = UrlFetchApp.fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'post',
-      contentType: 'application/x-www-form-urlencoded',
-      payload: 'secret=' + encodeURIComponent(secret) + '&response=DUMMY_TOKEN_FOR_TEST',
-      muteHttpExceptions: true
-    });
-    Logger.log('HTTP status:   ' + resp.getResponseCode());
-    Logger.log('Response body: ' + resp.getContentText());
-    var body = JSON.parse(resp.getContentText() || '{}');
-    if (resp.getResponseCode() === 200 && body['error-codes']) {
-      var codes = body['error-codes'].join(',');
-      if (codes.indexOf('invalid-input-secret') !== -1) {
-        Logger.log('>> Secret VALUE is wrong. Re-copy Secret Key from Google reCAPTCHA admin.');
-      } else if (codes.indexOf('invalid-input-response') !== -1) {
-        Logger.log('>> Secret is VALID (dummy token rejected as expected). Server-side reCAPTCHA pipeline OK.');
-        Logger.log('>> If form still fails, problem is client-side: site key in HTML may not pair with this secret, or token not reaching server.');
-      } else {
-        Logger.log('>> Unexpected error codes: ' + codes);
-      }
-    }
-  } catch (e) {
-    Logger.log('EXCEPTION:  ' + e);
-    Logger.log('Message:    ' + (e && e.message));
-    Logger.log('Stack:      ' + (e && e.stack));
-    Logger.log('>> Apps Script could not reach Google. Most likely cause: deployment "Execute as: User accessing" (should be "Me"), or external-fetch authorization not granted on this account.');
-  }
-}

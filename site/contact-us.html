@@ -34,8 +34,6 @@
 <meta name="twitter:description" content="Get in touch with Digiveritaz to discuss SEO, PPC and performance marketing solutions for your business in India. Book a free 30-min strategy call today.">
 <meta name="twitter:image" content="https://www.digiveritaz.com/assets/logo.webp">
 
-<!-- Google reCAPTCHA v3 (invisible bot protection) -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfymQItAAAAAI0MPGari-SyJo3QPrHcduwOupqQ" async defer></script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/assets/favicondv.png?v=2">
@@ -244,7 +242,6 @@
             });
 
             var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
-            var SITE_KEY = '6LfymQItAAAAAI0MPGari-SyJo3QPrHcduwOupqQ';
 
             var stage1 = document.getElementById('otp-stage-1');
             var stage2 = document.getElementById('otp-stage-2');
@@ -260,14 +257,7 @@
               stage1.style.display = (n === 1) ? '' : 'none';
               stage2.style.display = (n === 2) ? '' : 'none';
             }
-            function withRecaptcha(action, cb){
-              if (typeof grecaptcha === 'undefined' || !SITE_KEY || SITE_KEY.indexOf('REPLACE_WITH_') === 0) {
-                return cb('');
-              }
-              grecaptcha.ready(function(){
-                grecaptcha.execute(SITE_KEY, { action: action }).then(function(token){ cb(token); });
-              });
-            }
+            function withRecaptcha(action, cb){ cb(''); }
             function postForm(payload, cb){
               var body = new URLSearchParams();
               Object.keys(payload).forEach(function(k){
@@ -302,8 +292,7 @@
               show(isResend ? 'Sending a new code…' : 'Sending verification code…');
               withRecaptcha('request_otp', function(token){
                 var payload = Object.assign({}, data, {
-                  action: 'request_otp',
-                  recaptcha_token: token
+                  action: 'request_otp'
                 });
                 delete payload.otp;
                 postForm(payload, function(res){
@@ -337,8 +326,7 @@
                 show('Verifying…');
                 withRecaptcha('submit_form', function(token){
                   var payload = Object.assign({}, data, {
-                    action: 'submit_form',
-                    recaptcha_token: token
+                    action: 'submit_form'
                   });
                   postForm(payload, function(res){
                     if (res && res.ok) {
