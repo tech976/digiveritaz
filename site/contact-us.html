@@ -34,8 +34,8 @@
 <meta name="twitter:description" content="Get in touch with Digiveritaz to discuss SEO, PPC and performance marketing solutions for your business in India. Book a free 30-min strategy call today.">
 <meta name="twitter:image" content="https://www.digiveritaz.com/assets/logo.webp">
 
-<!-- Cloudflare Turnstile (bot protection) -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<!-- Google reCAPTCHA v3 (invisible bot protection) -->
+<script src="https://www.google.com/recaptcha/api.js?render=REPLACE_WITH_RECAPTCHA_SITE_KEY" async defer></script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/assets/favicondv.png?v=2">
@@ -148,7 +148,6 @@
           </div>
           <input type="hidden" name="_ts" id="_ts" value="">
           <input type="hidden" name="_jsok" id="_jsok" value="">
-          <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" value="">
 
           <div class="two-up">
             <div class="field">
@@ -213,32 +212,144 @@
 
           <div class="field" style="margin-top:16px"><label>Project Brief</label><textarea name="message" rows="5" placeholder="Tentative start date, goals, platforms of interest, reference brands&hellip;"></textarea></div>
 
-          <!-- Cloudflare Turnstile bot challenge — invisible on success for legitimate users -->
-          <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-callback="dvOnTurnstileSuccess" data-theme="auto" style="margin:16px 0"></div>
-
           <div class="submit-row">
-            <button class="btn" type="submit">Send Request <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <!-- Two-stage submission: request OTP, then verify code + submit -->
+            <div id="otp-stage-1" class="otp-stage">
+              <button type="button" id="btn-send-otp" class="btn-primary" style="background:#22c55e;color:#fff;border:0;padding:14px 28px;border-radius:999px;font-weight:700;cursor:pointer;width:100%;font-size:1rem">
+                Send Verification Code to My Email
+              </button>
+              <p style="font-size:.85rem;color:#6b7280;margin-top:10px;text-align:center">A 6-digit code will be emailed to verify it's really you. Takes a few seconds.</p>
+            </div>
+            <div id="otp-stage-2" class="otp-stage" style="display:none">
+              <label style="display:block;font-weight:600;margin-bottom:8px">Enter the 6-digit code we just emailed you</label>
+              <input type="text" id="otp-code" name="otp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" placeholder="123456" style="font-size:1.3rem;letter-spacing:0.4em;text-align:center;padding:14px;width:100%;border:2px solid #e5e7eb;border-radius:12px;margin-bottom:14px">
+              <button type="submit" id="btn-verify-submit" class="btn-primary" style="background:#22c55e;color:#fff;border:0;padding:14px 28px;border-radius:999px;font-weight:700;cursor:pointer;width:100%;font-size:1rem">
+                Verify Code &amp; Submit
+              </button>
+              <p style="font-size:.85rem;color:#6b7280;margin-top:10px;text-align:center">
+                Didn't receive it? <a href="#" id="btn-resend-otp" style="color:#22c55e;text-decoration:underline">Resend code</a>
+              </p>
+            </div>
+            <div id="otp-msg" style="margin-top:12px;font-size:.9rem;text-align:center"></div>
             <span class="hint"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" fill="none" stroke="currentColor"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor"/></svg>We'll respond within one business day</span>
           </div>
           <script>
           (function(){
+            // Stamp page-load time + JS-execution token so the server can reject impossibly-fast and JS-less submissions.
             document.addEventListener('DOMContentLoaded', function(){
               try {
-                // Stamp page-load time so server can reject impossibly-fast submissions.
                 document.getElementById('_ts').value = String(Date.now());
-                // Stamp a random JS token so server can reject submissions without JS execution.
                 document.getElementById('_jsok').value = 'dv-' + Math.random().toString(36).slice(2, 12);
               } catch(e) {}
             });
-            window.dvOnTurnstileSuccess = function(token) {
-              var el = document.getElementById('cf-turnstile-response');
-              if (el) el.value = token || '';
-            };
-            var f = document.getElementById('contact-form');
-            if (f) {
-              f.addEventListener('submit', function(){
-                var btn = f.querySelector('button[type="submit"], input[type="submit"]');
-                if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+
+            var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
+            var SITE_KEY = 'REPLACE_WITH_RECAPTCHA_SITE_KEY';
+
+            var stage1 = document.getElementById('otp-stage-1');
+            var stage2 = document.getElementById('otp-stage-2');
+            var msg    = document.getElementById('otp-msg');
+            var form   = document.getElementById('contact-form');
+            var sendBtn   = document.getElementById('btn-send-otp');
+            var verifyBtn = document.getElementById('btn-verify-submit');
+            var resendBtn = document.getElementById('btn-resend-otp');
+            var otpInput  = document.getElementById('otp-code');
+
+            function show(t, color){ if(msg){ msg.textContent = t; msg.style.color = color || '#374151'; } }
+            function showStage(n){
+              stage1.style.display = (n === 1) ? '' : 'none';
+              stage2.style.display = (n === 2) ? '' : 'none';
+            }
+            function withRecaptcha(action, cb){
+              if (typeof grecaptcha === 'undefined' || !SITE_KEY || SITE_KEY.indexOf('REPLACE_WITH_') === 0) {
+                return cb('');
+              }
+              grecaptcha.ready(function(){
+                grecaptcha.execute(SITE_KEY, { action: action }).then(function(token){ cb(token); });
+              });
+            }
+            function postForm(payload, cb){
+              var body = new URLSearchParams();
+              Object.keys(payload).forEach(function(k){
+                var v = payload[k];
+                if (Array.isArray(v)) { v.forEach(function(x){ body.append(k, x); }); }
+                else if (v != null) { body.append(k, String(v)); }
+              });
+              fetch(ENDPOINT, { method: 'POST', body: body })
+                .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'bad_response' }; }); })
+                .then(cb)
+                .catch(function(){ cb({ ok:false, error:'network' }); });
+            }
+            function collectBaseFields(){
+              var fd = new FormData(form);
+              var obj = {};
+              fd.forEach(function(v, k){
+                if (obj[k] !== undefined) {
+                  if (!Array.isArray(obj[k])) obj[k] = [obj[k]];
+                  obj[k].push(v);
+                } else { obj[k] = v; }
+              });
+              return obj;
+            }
+            function requestOtp(isResend){
+              var data = collectBaseFields();
+              if (!data.fullname || !data.email || !data.phone) {
+                show('Please fill name, email, and phone first.', '#dc2626');
+                return;
+              }
+              sendBtn.disabled = true;
+              if (resendBtn) resendBtn.style.pointerEvents = 'none';
+              show(isResend ? 'Sending a new code…' : 'Sending verification code…');
+              withRecaptcha('request_otp', function(token){
+                var payload = Object.assign({}, data, {
+                  action: 'request_otp',
+                  recaptcha_token: token
+                });
+                delete payload.otp;
+                postForm(payload, function(res){
+                  sendBtn.disabled = false;
+                  if (resendBtn) resendBtn.style.pointerEvents = '';
+                  if (res && res.ok) {
+                    showStage(2);
+                    show('Code sent! Check your inbox (and spam folder).', '#16a34a');
+                    if (otpInput) otpInput.focus();
+                  } else {
+                    var e = (res && res.error) || 'unknown';
+                    show('Could not send code: ' + e, '#dc2626');
+                  }
+                });
+              });
+            }
+            if (sendBtn) sendBtn.addEventListener('click', function(){ requestOtp(false); });
+            if (resendBtn) resendBtn.addEventListener('click', function(ev){ ev.preventDefault(); requestOtp(true); });
+
+            if (form) {
+              form.addEventListener('submit', function(ev){
+                ev.preventDefault();
+                if (verifyBtn) { verifyBtn.disabled = true; verifyBtn.style.opacity = '0.6'; }
+                var data = collectBaseFields();
+                if (!/^[0-9]{6}$/.test(String(data.otp || ''))) {
+                  show('Enter the 6-digit code from your email.', '#dc2626');
+                  if (verifyBtn) { verifyBtn.disabled = false; verifyBtn.style.opacity = '1'; }
+                  return;
+                }
+                show('Verifying…');
+                withRecaptcha('submit_form', function(token){
+                  var payload = Object.assign({}, data, {
+                    action: 'submit_form',
+                    recaptcha_token: token
+                  });
+                  postForm(payload, function(res){
+                    if (res && res.ok) {
+                      form.innerHTML = '<div style="text-align:center;padding:40px 20px"><h3 style="color:#16a34a;margin:0 0 12px">Thank you!</h3><p style="color:#374151;font-size:1.05rem">Your message is on its way. We will get back within one business day.</p></div>';
+                      window.scrollTo({ top: form.offsetTop - 40, behavior: 'smooth' });
+                    } else {
+                      var e = (res && res.error) || 'unknown';
+                      show('Submission failed: ' + e, '#dc2626');
+                      if (verifyBtn) { verifyBtn.disabled = false; verifyBtn.style.opacity = '1'; }
+                    }
+                  });
+                });
               });
             }
           })();
