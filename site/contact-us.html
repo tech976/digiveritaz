@@ -34,6 +34,9 @@
 <meta name="twitter:description" content="Get in touch with Digiveritaz to discuss SEO, PPC and performance marketing solutions for your business in India. Book a free 30-min strategy call today.">
 <meta name="twitter:image" content="https://www.digiveritaz.com/assets/logo.webp">
 
+<!-- Cloudflare Turnstile (bot protection) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/assets/favicondv.png?v=2">
 <link rel="apple-touch-icon" href="/assets/favicondv-192.png?v=2">
@@ -136,7 +139,16 @@
           <input type="hidden" name="_subject" value="New lead from DigiVeritaz website">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none">
+
+          <!-- Honeypots — humans never see/fill these. Bots that fill any are rejected server-side. -->
+          <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
+            <label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+            <label>Website URL <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            <label>Address line <input type="text" name="address_line" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <input type="hidden" name="_ts" id="_ts" value="">
+          <input type="hidden" name="_jsok" id="_jsok" value="">
+          <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" value="">
 
           <div class="two-up">
             <div class="field">
@@ -201,10 +213,36 @@
 
           <div class="field" style="margin-top:16px"><label>Project Brief</label><textarea name="message" rows="5" placeholder="Tentative start date, goals, platforms of interest, reference brands&hellip;"></textarea></div>
 
+          <!-- Cloudflare Turnstile bot challenge — invisible on success for legitimate users -->
+          <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-callback="dvOnTurnstileSuccess" data-theme="auto" style="margin:16px 0"></div>
+
           <div class="submit-row">
             <button class="btn" type="submit">Send Request <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
             <span class="hint"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" fill="none" stroke="currentColor"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor"/></svg>We'll respond within one business day</span>
           </div>
+          <script>
+          (function(){
+            document.addEventListener('DOMContentLoaded', function(){
+              try {
+                // Stamp page-load time so server can reject impossibly-fast submissions.
+                document.getElementById('_ts').value = String(Date.now());
+                // Stamp a random JS token so server can reject submissions without JS execution.
+                document.getElementById('_jsok').value = 'dv-' + Math.random().toString(36).slice(2, 12);
+              } catch(e) {}
+            });
+            window.dvOnTurnstileSuccess = function(token) {
+              var el = document.getElementById('cf-turnstile-response');
+              if (el) el.value = token || '';
+            };
+            var f = document.getElementById('contact-form');
+            if (f) {
+              f.addEventListener('submit', function(){
+                var btn = f.querySelector('button[type="submit"], input[type="submit"]');
+                if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+              });
+            }
+          })();
+          </script>
         </form>
       </div>
     </div>
