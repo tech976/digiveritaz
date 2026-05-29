@@ -48,7 +48,21 @@ var RECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 // ============================================================
 // ENTRY POINTS
 // ============================================================
-function doGet() {
+function doGet(e) {
+  // Diagnostic mode: ?diag=1 reports config without leaking secrets.
+  if (e && e.parameter && e.parameter.diag === '1') {
+    var secret = PropertiesService.getScriptProperties().getProperty('RECAPTCHA_SECRET') || '';
+    return json({
+      status: 'DigiVeritaz lead-capture endpoint — POST only',
+      diag: {
+        recaptcha_secret_set: secret.length > 0,
+        recaptcha_secret_length: secret.length,
+        recaptcha_secret_starts_with_6Lc_or_6Lf: /^6L[cf]/.test(secret),
+        looks_like_a_site_key_not_secret: /AAAAAI/.test(secret),
+        sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
+      }
+    });
+  }
   return json({ status: 'DigiVeritaz lead-capture endpoint — POST only' });
 }
 
@@ -120,11 +134,14 @@ function doPost(e) {
         var passed = (body.success === true)
           && (typeof body.score !== 'number' || body.score >= RECAPTCHA_MIN_SCORE);
         if (!passed) {
-          return json({ ok: false, error: 'failed_challenge' });
+          var codes = (body['error-codes'] || []).join(',');
+          var scoreInfo = (typeof body.score === 'number') ? (' score=' + body.score) : '';
+          console.error('reCAPTCHA verify failed: codes=[' + codes + ']' + scoreInfo + ' rawBody=' + JSON.stringify(body));
+          return json({ ok: false, error: 'failed_challenge', detail: codes || ('score=' + body.score) });
         }
       } catch (recapErr) {
         console.error('reCAPTCHA verify error: ' + recapErr);
-        return json({ ok: false, error: 'failed_challenge' });
+        return json({ ok: false, error: 'failed_challenge', detail: 'fetch_exception' });
       }
     }
 
@@ -394,10 +411,23 @@ function buildOtpEmail_(fullname, code) {
 
 function stripInvisible_(s) {
   if (s == null) return s;
-  return String(s)
-    .replace(/[​-‏ - ⁠-⁯﻿]/g, '')
-    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
-    .trim();
+  var out = '';
+  var src = String(s);
+  for (var i = 0; i < src.length; i++) {
+    var c = src.charCodeAt(i);
+    // Zero-width / BOM / line+paragraph separators / word joiner / variation selectors
+    if (c >= 0x200B && c <= 0x200F) continue;
+    if (c >= 0x2028 && c <= 0x202F) continue;
+    if (c >= 0x2060 && c <= 0x206F) continue;
+    if (c === 0xFEFF) continue;
+    // Control chars (allow \n=0x0A, \r=0x0D, \t=0x09)
+    if (c <= 0x08) continue;
+    if (c === 0x0B || c === 0x0C) continue;
+    if (c >= 0x0E && c <= 0x1F) continue;
+    if (c === 0x7F) continue;
+    out += src.charAt(i);
+  }
+  return out.trim();
 }
 
 function safeCell_(s) {

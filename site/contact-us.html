@@ -315,6 +315,7 @@
                     if (otpInput) otpInput.focus();
                   } else {
                     var e = (res && res.error) || 'unknown';
+                    if (res && res.detail) e += ' (' + res.detail + ')';
                     show('Could not send code: ' + e, '#dc2626');
                   }
                 });
@@ -345,6 +346,7 @@
                       window.scrollTo({ top: form.offsetTop - 40, behavior: 'smooth' });
                     } else {
                       var e = (res && res.error) || 'unknown';
+                      if (res && res.detail) e += ' (' + res.detail + ')';
                       show('Submission failed: ' + e, '#dc2626');
                       if (verifyBtn) { verifyBtn.disabled = false; verifyBtn.style.opacity = '1'; }
                     }
