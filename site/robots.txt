@@ -6,3 +6,5 @@ Disallow: /cdn-cgi/
 Disallow: /*?lang=
 
 Sitemap: https://www.digiveritaz.com/sitemap.xml
+Sitemap: https://www.digiveritaz.com/sitemap-in.xml
+Sitemap: https://www.digiveritaz.com/sitemap-uk.xml
