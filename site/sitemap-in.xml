@@ -104,6 +104,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/content-marketing-roi-frameworks/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/linkedin-ads-b2b-lead-generation-strategies/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
