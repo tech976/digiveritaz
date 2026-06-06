@@ -104,6 +104,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-analytics-4-reports-setup-guide/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/content-marketing-roi-frameworks/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
