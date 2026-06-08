@@ -104,6 +104,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/youtube-marketing-business-lead-generation/</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/social-media-strategy-india-2026/</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
