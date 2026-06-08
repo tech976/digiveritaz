@@ -1,4 +1,4 @@
-DigiVeritaz — All sitemap URLs (96 total)
+DigiVeritaz — All sitemap URLs (97 total)
 Source: https://www.digiveritaz.com/sitemap.xml
 ========================================================
 
@@ -56,8 +56,9 @@ https://www.digiveritaz.com/linux-hosting/
 https://www.digiveritaz.com/business-email/
 https://www.digiveritaz.com/crm-services/
 
-BLOG POSTS (40)
+BLOG POSTS (41)
 --------------------------------------------------------
+https://www.digiveritaz.com/blog/personal-branding-founders-guide/
 https://www.digiveritaz.com/blog/youtube-marketing-business-lead-generation/
 https://www.digiveritaz.com/blog/social-media-strategy-india-2026/
 https://www.digiveritaz.com/blog/google-analytics-4-reports-setup-guide/
