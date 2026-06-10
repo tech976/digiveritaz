@@ -104,6 +104,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/local-seo-mistakes-killing-google-rankings/</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/vernacular-seo-india-regional-language-strategy/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
