@@ -1,6 +1,20 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ],
   "redirects": [
     { "source": "/:path*", "has": [{ "type": "host", "value": "digiveritaz.com" }], "destination": "https://www.digiveritaz.com/:path*", "permanent": true },
     { "source": "/blog-:slug/",       "destination": "/blog/:slug/",       "permanent": true },
