@@ -62,6 +62,29 @@
   gtag('config', 'G-ZNDMZ3X554');
 </script>
 <meta name="google-site-verification" content="TGFfTGBKQCHjqUDNpgrqrKP5ILbC42CtTDM1z16mJ_4">
+<script>
+/* UK visitor redirect: send GB visitors to the /uk/pay-per-click/ counterpart.
+   Primary signal is Cloudflare's /cdn-cgi/trace (real IP geolocation — works with VPNs).
+   Bots crawl from non-GB IPs so SEO is unaffected.
+   Overrides for testing: ?region=IN stays here; ?region=UK redirects immediately. */
+(function(){
+  var UK_DEST = "/uk/pay-per-click/";
+  function goUK(){ try { location.replace(UK_DEST + (location.search || "") + (location.hash || "")); } catch (e) {} }
+  try {
+    var s = location.search || "";
+    if (/[?&]region=IN\b/i.test(s)) return;
+    if (/[?&]region=UK\b/i.test(s)) { goUK(); return; }
+  } catch (e) {}
+  if (!window.fetch) return;
+  fetch("/cdn-cgi/trace", { cache: "no-store" })
+    .then(function(r){ if (!r.ok) throw new Error(); return r.text(); })
+    .then(function(txt){
+      var m = /(?:^|\n)loc=([A-Z]{2})/.exec(txt || "");
+      if (m && m[1] === "GB") goUK();
+    })
+    .catch(function(){});
+})();
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
