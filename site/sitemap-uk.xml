@@ -11,4 +11,54 @@
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
   </url>
+
+  <url>
+    <loc>https://www.digiveritaz.com/uk/seo/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/seo/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/seo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.digiveritaz.com/uk/pay-per-click/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/pay-per-click/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/pay-per-click/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.digiveritaz.com/uk/performance-marketing-agency/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/performance-marketing-agency/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/performance-marketing-agency/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.digiveritaz.com/uk/paid-social-media-advertising/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/paid-social-media-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/paid-social-media-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.digiveritaz.com/uk/generative-search-optimisation/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/generative-search-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/generative-search-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+  </url>
 </urlset>
