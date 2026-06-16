@@ -51,6 +51,9 @@
 <link rel="stylesheet" href="/css/page-locks.min.css?v=1779281000">
 <link rel="preload" as="style" href="/css/home.min.css?v=1779281000" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="/css/home.min.css?v=1779281000"></noscript>
+<style>/* a11y: ensure tap targets meet 24px+ with spacing */
+.foot-socials{gap:10px}.foot-socials a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
+.foot-bottom-links{gap:8px}.foot-bottom-links a{display:inline-flex;align-items:center;min-height:32px;padding:4px 6px}</style>
 
 <!-- Organization + Website + LocalBusiness schema -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","LocalBusiness","ProfessionalService"],"@id":"https://www.digiveritaz.com/#organization","name":"DigiVeritaz","alternateName":"DigiVeritaz Digital Marketing Agency","url":"https://www.digiveritaz.com/","logo":"https://www.digiveritaz.com/assets/logo.webp","image":"https://www.digiveritaz.com/assets/logo.webp","description":"DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.","telephone":"+91-9956655662","email":"durvamukherjee@digiveritaz.com","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"1st Floor, Ujagar Chambers, Bus Depot, Sion-Trombay Rd, opp. Deonar, Deonar, Chembur","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400088","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":19.0432,"longitude":72.9086},"areaServed":["IN","US","AE","GB","SG","AU","CA"],"sameAs":["https://www.facebook.com/digiveritaz","https://www.instagram.com/digiveritaz","https://www.linkedin.com/company/digiveritaz","https://twitter.com/digiveritaz"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"600","bestRating":"5","worstRating":"1"}},{"@type":"WebSite","@id":"https://www.digiveritaz.com/#website","url":"https://www.digiveritaz.com/","name":"DigiVeritaz","publisher":{"@id":"https://www.digiveritaz.com/#organization"},"inLanguage":"en-IN","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.digiveritaz.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://www.digiveritaz.com/#webpage","url":"https://www.digiveritaz.com/","name":"Digital Marketing Agency in India — SEO, PPC & Performance Growth | DigiVeritaz","isPartOf":{"@id":"https://www.digiveritaz.com/#website"},"about":{"@id":"https://www.digiveritaz.com/#organization"},"inLanguage":"en-IN"},{"@type":"ItemList","name":"DigiVeritaz Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://www.digiveritaz.com/seo/","name":"SEO Services"},{"@type":"ListItem","position":2,"url":"https://www.digiveritaz.com/pay-per-click/","name":"Pay Per Click"},{"@type":"ListItem","position":3,"url":"https://www.digiveritaz.com/performance-marketing-agency/","name":"Performance Marketing"},{"@type":"ListItem","position":4,"url":"https://www.digiveritaz.com/paid-social-media-advertising/","name":"Paid Social Advertising"},{"@type":"ListItem","position":5,"url":"https://www.digiveritaz.com/ecommerce-marketing/","name":"E-Commerce Marketing"},{"@type":"ListItem","position":6,"url":"https://www.digiveritaz.com/whatsapp-marketing-services/","name":"WhatsApp Marketing"},{"@type":"ListItem","position":7,"url":"https://www.digiveritaz.com/native-advertising/","name":"Native Advertising"},{"@type":"ListItem","position":8,"url":"https://www.digiveritaz.com/branding-and-design/","name":"Branding & Design"},{"@type":"ListItem","position":9,"url":"https://www.digiveritaz.com/generative-search-optimisation/","name":"Generative Search Optimisation"},{"@type":"ListItem","position":10,"url":"https://www.digiveritaz.com/data-strategy-consulting-services/","name":"Data Strategy & Consulting"}]}]}</script>
@@ -112,18 +115,18 @@
         <a class="btn" href="/contact-us/" data-i18n="hero.cta">Get My Free Proposal</a>
         <a class="btn-outline btn-ghost" href="/case-study/">See Our Work →</a>
       </div>
-      <div class="hv-a-mini-ratings" aria-label="Platform ratings">
-        <div class="mini-rating" aria-label="Google rating">
+      <div class="hv-a-mini-ratings" role="group" aria-label="Platform ratings">
+        <div class="mini-rating" role="group" aria-label="Google rating">
           <img src="/assets/google.webp" alt="Google" width="600" height="278" decoding="async">
           <div class="mini-rating-score"><span class="mini-num">4.9</span><span class="mini-star">★</span></div>
           <div class="mini-rating-count">150+ Reviews</div>
         </div>
-        <div class="mini-rating" aria-label="Clutch rating">
+        <div class="mini-rating" role="group" aria-label="Clutch rating">
           <img src="/assets/Clutch.webp" alt="Clutch" width="600" height="278" decoding="async">
           <div class="mini-rating-score"><span class="mini-num">5.0</span><span class="mini-star">★</span></div>
           <div class="mini-rating-count">250+ Reviews</div>
         </div>
-        <div class="mini-rating" aria-label="UpCity rating">
+        <div class="mini-rating" role="group" aria-label="UpCity rating">
           <img src="/assets/upcity.webp" alt="UpCity" width="600" height="278" decoding="async">
           <div class="mini-rating-score"><span class="mini-num">4.8</span><span class="mini-star">★</span></div>
           <div class="mini-rating-count">200+ Reviews</div>
@@ -141,12 +144,12 @@
             <div class="rev-name">Rahul Mehta <svg class="rev-tick" viewBox="0 0 24 24" aria-label="Verified" role="img"><circle cx="12" cy="12" r="11" fill="#1A73E8"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <div class="rev-meta">Local Guide · 84 reviews · 12 photos</div>
           </div>
-          <span class="rev-platform-mark" aria-label="Google" title="Google review">
+          <span class="rev-platform-mark" role="img" aria-label="Google" title="Google review">
             <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9c-.3 1.4-1 2.6-2.2 3.4v2.8h3.6c2.1-1.9 3.2-4.7 3.2-8.4z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-.9 7-2.6l-3.6-2.8c-1 .7-2.3 1.1-3.4 1.1-2.6 0-4.9-1.8-5.7-4.2H2.6v2.6C4.3 20.5 7.9 23 12 23z"/><path fill="#FBBC05" d="M6.3 14.5c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.9H2.6c-.7 1.4-1.1 3-1.1 4.6 0 1.6.4 3.2 1.1 4.6l3.7-2.6z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1C17.3 2.1 14.9 1 12 1 7.9 1 4.3 3.5 2.6 7.9l3.7 2.6c.8-2.4 3.1-4.2 5.7-4.2z"/></svg>
           </span>
         </header>
         <div class="rev-rating-row">
-          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
           <span class="rev-date">2 weeks ago</span>
           <span class="rev-pinned" title="Most helpful review">Top review</span>
         </div>
@@ -171,12 +174,12 @@
             <div class="rev-name">Vikram Singh <svg class="rev-tick" viewBox="0 0 24 24" aria-label="Verified client" role="img"><circle cx="12" cy="12" r="11" fill="#FF3D2E"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <div class="rev-meta">Regional Lead · Hyundai India · ₹50L+ project</div>
           </div>
-          <span class="rev-platform-mark" aria-label="Clutch" title="Clutch verified review">
+          <span class="rev-platform-mark" role="img" aria-label="Clutch" title="Clutch verified review">
             <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#FF3D2E"/><circle cx="16" cy="16" r="6.5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="23.5" cy="11.5" r="1.6" fill="#fff"/></svg>
           </span>
         </header>
         <div class="rev-rating-row">
-          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
           <span class="rev-date">June 2025</span>
           <span class="rev-verified-mini">✓ Verified spend</span>
         </div>
@@ -197,7 +200,7 @@
             <div class="rev-name">Arjun Mehta <svg class="rev-tick" viewBox="0 0 24 24" aria-label="Connected" role="img"><circle cx="12" cy="12" r="11" fill="#0A66C2"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <div class="rev-meta">Founder, MY BID · 2nd connection</div>
           </div>
-          <span class="rev-platform-mark" aria-label="LinkedIn" title="LinkedIn recommendation">
+          <span class="rev-platform-mark" role="img" aria-label="LinkedIn" title="LinkedIn recommendation">
             <svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#0A66C2"/><path fill="#fff" d="M7.5 9.5h-2.4v8h2.4v-8zm-1.2-3.6a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zM18.5 17.5h-2.4v-4.1c0-1 0-2.2-1.3-2.2s-1.5 1-1.5 2.1v4.2H10.9v-8h2.3v1.1a2.5 2.5 0 0 1 2.3-1.2c2.4 0 2.9 1.6 2.9 3.6v4.5z"/></svg>
           </span>
         </header>
@@ -759,7 +762,7 @@
         </div>
 
         <div>
-          <h4 data-i18n="foot.services">Services</h4>
+          <h3 data-i18n="foot.services">Services</h3>
           <ul>
             <li><a href="/seo/">SEO</a></li>
             <li><a href="/pay-per-click/">Pay Per Click</a></li>
@@ -771,7 +774,7 @@
         </div>
 
         <div>
-          <h4 data-i18n="foot.company">Company</h4>
+          <h3 data-i18n="foot.company">Company</h3>
           <ul>
             <li><a href="/about-us/" data-i18n="nav.about">About Us</a></li>
             <li><a href="/services/" data-i18n="nav.services">Services</a></li>
@@ -783,7 +786,7 @@
         </div>
 
         <div>
-          <h4 data-i18n="foot.contact">Get In Touch</h4>
+          <h3 data-i18n="foot.contact">Get In Touch</h3>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
             <div><strong data-i18n="foot.addr.h">Mumbai HQ</strong><a href="https://maps.google.com/?q=Ujagar+Chambers+Deonar+Chembur+Mumbai+400088" target="_blank" rel="noopener" data-i18n="foot.addr.v">1st Floor, Ujagar Chambers, Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088</a></div>
