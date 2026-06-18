@@ -8293,3 +8293,64 @@ a.svc-card:hover h3{color:var(--green-dark)}
 [data-theme="dark"] .smm-measure .smm-section-head p{
   color:#cbd5e1 !important;
 }
+
+/* ============================================================
+   DV-POPUP+SHINE v1  (abhishek-edits)
+   "Lets Get Project Started" popup + CTA shine animation
+   ============================================================ */
+.dvm-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;transition:opacity .25s ease}
+.dvm-overlay.is-open{display:flex;opacity:1}
+.dvm-card{position:relative;display:flex;width:min(960px,95vw);max-height:92vh;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(2,6,23,.45);transform:translateY(12px) scale(.985);transition:transform .28s ease}
+.dvm-overlay.is-open .dvm-card{transform:none}
+.dvm-form-col{flex:1.3 1 0;min-width:0;padding:34px 34px 30px;overflow-y:auto}
+.dvm-visual-col{flex:.92 1 0;background:linear-gradient(150deg,#0b3d2e 0%,#16a34a 60%,#22c55e 100%);color:#fff;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.dvm-visual-col h3{font-family:'Space Grotesk',Inter,sans-serif;font-size:1.5rem;line-height:1.25;margin:0;font-weight:800}
+.dvm-visual-col p{margin:0;opacity:.92;font-size:.98rem;line-height:1.55}
+.dvm-visual-col ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.dvm-visual-col li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem}
+.dvm-visual-col li svg{flex:0 0 20px;width:20px;height:20px;margin-top:1px}
+.dvm-art{margin-top:8px;border-radius:14px;background:rgba(255,255,255,.10);padding:14px}
+.dvm-close{position:absolute;top:14px;right:16px;z-index:3;width:38px;height:38px;border:0;border-radius:50%;background:rgba(15,23,42,.06);color:#0f172a;font-size:1.6rem;line-height:1;cursor:pointer;transition:background .2s}
+.dvm-close:hover{background:rgba(15,23,42,.14)}
+.dvm-title{font-family:'Space Grotesk',Inter,sans-serif;font-size:1.7rem;margin:0 6px 6px 0;color:#0f172a;font-weight:800;line-height:1.15}
+.dvm-sub{margin:0 0 18px;color:#475569;font-size:.95rem;line-height:1.5}
+.dvm-form .dvm-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.dvm-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.dvm-field label{font-size:.82rem;font-weight:600;color:#334155}
+.dvm-field .req{color:#16a34a}
+.dvm-form input[type=text],.dvm-form input[type=email],.dvm-form input[type=tel],.dvm-form select,.dvm-form textarea{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:11px;font:inherit;font-size:.95rem;color:#0f172a;background:#fff;transition:border-color .2s,box-shadow .2s}
+.dvm-form input:focus,.dvm-form select:focus,.dvm-form textarea:focus{outline:0;border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
+.dvm-form textarea{resize:vertical;min-height:92px}
+.dvm-seclabel{font-size:.82rem;font-weight:700;color:#334155;margin:4px 0 10px}
+.dvm-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-bottom:16px}
+.dvm-checks label{display:flex;align-items:center;gap:9px;font-size:.9rem;color:#334155;cursor:pointer}
+.dvm-checks input{width:17px;height:17px;accent-color:#16a34a;flex:0 0 auto}
+.dvm-send{width:100%;padding:14px 22px;border:0;border-radius:999px;background:#22c55e;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s,opacity .2s}
+.dvm-send:hover{background:#16a34a}
+.dvm-send:disabled{opacity:.6;cursor:default}
+.dvm-msg{margin-top:12px;font-size:.9rem;text-align:center;min-height:1em}
+.dvm-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+body.dvm-lock{overflow:hidden}
+.dvm-spinner{position:fixed;z-index:100000;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;border:4px solid rgba(34,197,94,.25);border-top-color:#22c55e;animation:dvmSpin .8s linear infinite;box-shadow:0 8px 24px rgba(2,6,23,.25);background:#fff}
+@keyframes dvmSpin{to{transform:rotate(360deg)}}
+[data-theme=dark] .dvm-card{background:#0f172a}
+[data-theme=dark] .dvm-title{color:#f1f5f9}
+[data-theme=dark] .dvm-sub,[data-theme=dark] .dvm-field label,[data-theme=dark] .dvm-seclabel,[data-theme=dark] .dvm-checks label{color:#cbd5e1}
+[data-theme=dark] .dvm-form input,[data-theme=dark] .dvm-form select,[data-theme=dark] .dvm-form textarea{background:#1e293b;border-color:#334155;color:#f1f5f9}
+[data-theme=dark] .dvm-close{background:rgba(255,255,255,.10);color:#f1f5f9}
+[data-theme=dark] .dvm-spinner{background:#0f172a}
+@media(max-width:860px){
+.dvm-card{flex-direction:column;width:96vw;max-height:94vh}
+.dvm-visual-col{display:none}
+.dvm-form-col{padding:26px 20px 24px}
+.dvm-form .dvm-two{grid-template-columns:1fr;gap:0}
+.dvm-checks{grid-template-columns:1fr}
+.dvm-title{font-size:1.4rem}
+.dvm-overlay{padding:12px}
+}
+/* ----- CTA shine (left -> right) ----- */
+.dv-shine{position:relative;overflow:hidden}
+.dv-shine::after{content:"";position:absolute;top:0;left:-150%;width:55%;height:100%;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);transform:skewX(-22deg);pointer-events:none;animation:dvShine 3s ease-in-out infinite}
+@keyframes dvShine{0%{left:-150%}55%{left:170%}100%{left:170%}}
+@media(prefers-reduced-motion:reduce){.dv-shine::after{animation:none}}
+

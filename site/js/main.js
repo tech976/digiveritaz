@@ -430,3 +430,156 @@ document.addEventListener('DOMContentLoaded', function () {
     build('all');
   })();
 });
+
+/* DV-POPUP v1 (abhishek-edits): "Lets Get Project Started" popup + CTA shine */
+;(function(){
+  if (window.__dvmInit) return; window.__dvmInit = true;
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
+  var SERVICES = [
+    ['Organic Marketing','Organic Marketing'],
+    ['Paid Social Media','Paid Social Media Advertising'],
+    ['PPC','Pay-Per-Click Advertising'],
+    ['Performance Marketing','Performance Marketing'],
+    ['E-commerce','E-commerce Platforms'],
+    ['Data Strategy','Data Strategy & Consulting'],
+    ['Native Advertising','Native Advertising'],
+    ['WhatsApp','WhatsApp Marketing'],
+    ['Branding','Branding & Design'],
+    ['SEO','Search Engine Optimization'],
+    ['GSO','Generative Search Optimisation'],
+    ['Tech & Development','Tech & Development']
+  ];
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function buildModal(){
+    if (document.getElementById('dvm-overlay')) return;
+    var checks = SERVICES.map(function(s){
+      return '<label><input type="checkbox" name="services[]" value="'+esc(s[0])+'">'+esc(s[1])+'</label>';
+    }).join('');
+    var art = '<div class="dvm-art" aria-hidden="true"><svg viewBox="0 0 240 150" width="100%" fill="none">'
+      +'<rect x="10" y="14" width="220" height="122" rx="12" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.5)"/>'
+      +'<circle cx="26" cy="30" r="3.5" fill="#fff"/><circle cx="38" cy="30" r="3.5" fill="rgba(255,255,255,.6)"/><circle cx="50" cy="30" r="3.5" fill="rgba(255,255,255,.4)"/>'
+      +'<rect x="26" y="52" width="120" height="9" rx="4.5" fill="rgba(255,255,255,.65)"/>'
+      +'<rect x="26" y="70" width="150" height="9" rx="4.5" fill="rgba(255,255,255,.4)"/>'
+      +'<rect x="26" y="88" width="92" height="9" rx="4.5" fill="rgba(255,255,255,.4)"/>'
+      +'<circle cx="192" cy="92" r="22" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="2"/>'
+      +'<path d="M182 92l7 7 13-15" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+      +'</svg></div>';
+    var html = ''
+      +'<div class="dvm-card" role="document">'
+      +'<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
+      +'<div class="dvm-form-col">'
+      +'<h2 class="dvm-title">Lets Get Project Started</h2>'
+      +'<p class="dvm-sub">Share your goals, budget and timeline &mdash; we&rsquo;ll send a tailored proposal within one business day.</p>'
+      +'<form id="dvm-form" novalidate>'
+      +'<input type="hidden" name="_subject" value="New lead from DigiVeritaz website">'
+      +'<input type="hidden" name="_template" value="table">'
+      +'<input type="hidden" name="_captcha" value="false">'
+      +'<div class="dvm-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label><label>Address<input type="text" name="address_line" tabindex="-1" autocomplete="off"></label></div>'
+      +'<input type="hidden" name="_ts" id="dvm-ts"><input type="hidden" name="_jsok" id="dvm-jsok">'
+      +'<div class="dvm-two"><div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div><div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div></div>'
+      +'<div class="dvm-two"><div class="dvm-field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="+91 9XXXXXXXXX" required></div><div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div></div>'
+      +'<div class="dvm-field"><label>Budget Range <span class="req">*</span></label><select name="budget" required><option value="">-- Please select budget range --</option><option>INR 40k &ndash; 60k</option><option>INR 60k to 1 Lac</option><option>INR 1 Lac and above</option></select></div>'
+      +'<div class="dvm-seclabel">Select the Services You Need</div>'
+      +'<div class="dvm-checks">'+checks+'</div>'
+      +'<div class="dvm-field"><label>Project Brief</label><textarea name="message" rows="4" placeholder="Tentative start date, goals, platforms of interest, reference brands&hellip;"></textarea></div>'
+      +'<button class="dvm-send" type="submit">Send</button>'
+      +'<div class="dvm-msg" id="dvm-msg"></div>'
+      +'</form>'
+      +'</div>'
+      +'<div class="dvm-visual-col" aria-hidden="true">'
+      +'<h3>Let&rsquo;s build something that grows your business.</h3>'
+      +'<p>Tell us where you want to go &mdash; we&rsquo;ll map the fastest route there.</p>'
+      +'<ul>'
+      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free, tailored proposal in 1 business day</li>'
+      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Trusted by 600+ brands across India, UAE &amp; UK</li>'
+      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Performance-driven, ROI-first strategy</li>'
+      +'</ul>'
+      + art
+      +'</div>';
+    var ov = document.createElement('div');
+    ov.className = 'dvm-overlay'; ov.id = 'dvm-overlay';
+    ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true');
+    ov.setAttribute('aria-label','Start your project'); ov.setAttribute('aria-hidden','true');
+    ov.innerHTML = html;
+    document.body.appendChild(ov);
+    ov.querySelector('.dvm-close').addEventListener('click', closeModal);
+    ov.addEventListener('mousedown', function(e){ if (e.target === ov) closeModal(); });
+    document.getElementById('dvm-form').addEventListener('submit', onSubmit);
+  }
+
+  function openModal(){
+    buildModal();
+    var ov = document.getElementById('dvm-overlay'); if (!ov) return;
+    var ts = document.getElementById('dvm-ts'), js = document.getElementById('dvm-jsok');
+    if (ts) ts.value = String(Date.now());
+    if (js) js.value = 'dv-' + Math.random().toString(36).slice(2, 12);
+    ov.classList.add('is-open'); ov.setAttribute('aria-hidden','false');
+    document.body.classList.add('dvm-lock');
+    var f = ov.querySelector('input[name=fullname]'); if (f) { try { f.focus(); } catch(e){} }
+  }
+  function closeModal(){
+    var ov = document.getElementById('dvm-overlay'); if (!ov) return;
+    ov.classList.remove('is-open'); ov.setAttribute('aria-hidden','true');
+    document.body.classList.remove('dvm-lock');
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  function onSubmit(ev){
+    ev.preventDefault();
+    var form = ev.target, msg = document.getElementById('dvm-msg'), btn = form.querySelector('.dvm-send');
+    function show(t,c){ if (msg){ msg.textContent = t; msg.style.color = c || '#374151'; } }
+    var fd = new FormData(form), data = {};
+    fd.forEach(function(v,k){
+      if (data[k] !== undefined){ if (!Array.isArray(data[k])) data[k] = [data[k]]; data[k].push(v); }
+      else data[k] = v;
+    });
+    if (!data.fullname || !data.email || !data.phone){ show('Please fill in your name, email and phone.', '#dc2626'); return; }
+    if (!data.budget){ show('Please select a budget range.', '#dc2626'); return; }
+    btn.disabled = true; show('Sending…');
+    var body = new URLSearchParams();
+    Object.keys(data).forEach(function(k){
+      var v = data[k];
+      if (Array.isArray(v)) v.forEach(function(x){ body.append(k, x); });
+      else if (v != null) body.append(k, String(v));
+    });
+    body.append('action','submit_form');
+    fetch(ENDPOINT, { method:'POST', body: body })
+      .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
+      .then(function(res){
+        if (res && res.ok){
+          form.innerHTML = '<div style="text-align:center;padding:40px 10px"><h3 style="color:#16a34a;margin:0 0 12px">Thank you!</h3><p style="color:#475569">Your message is on its way. We&rsquo;ll get back within one business day.</p></div>';
+        } else {
+          btn.disabled = false;
+          show('Submission failed' + (res && res.error ? ': ' + res.error : '') + '. Please try the contact page.', '#dc2626');
+        }
+      })
+      .catch(function(){ btn.disabled = false; show('Network error. Please try again or use the contact page.', '#dc2626'); });
+  }
+
+  function spinner(on){
+    var s = document.getElementById('dvm-spinner');
+    if (on){ if (!s){ s = document.createElement('div'); s.id = 'dvm-spinner'; s.className = 'dvm-spinner'; document.body.appendChild(s); } }
+    else if (s){ s.parentNode.removeChild(s); }
+  }
+
+  function wire(){
+    var nodes = document.querySelectorAll('a.btn, button.btn');
+    Array.prototype.forEach.call(nodes, function(el){
+      var t = (el.textContent || '').trim().toLowerCase();
+      var book = (t === 'book a call');
+      var prop = /free proposal/.test(t);
+      if (book || prop) el.classList.add('dv-shine');
+      if (book){
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          spinner(true);
+          setTimeout(function(){ spinner(false); openModal(); }, 2000);
+        });
+      }
+    });
+  }
+  if (document.readyState !== 'loading') wire();
+  else document.addEventListener('DOMContentLoaded', wire);
+})();
+
