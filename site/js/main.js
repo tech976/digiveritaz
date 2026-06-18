@@ -550,8 +550,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-  window.dvOpenModal = openModal; if (document.readyState !== 'loading') wire();
-  else document.addEventListener('DOMContentLoaded', wire);
+  window.dvOpenModal = openModal; function dvReady(){ wire(); setTimeout(function(){ openModal(); }, 3000); } if (document.readyState !== 'loading') dvReady();
+  else document.addEventListener('DOMContentLoaded', dvReady);
 })();
 /* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (WhatsApp / Phone / Email) */
 ;(function(){

@@ -8391,3 +8391,10 @@ body.dvm-lock{overflow:hidden}
   .to-top{right:16px;bottom:78px;width:46px;height:46px}
   .dv-wafloat{bottom:140px}
 }
+/* DV-HEADER-FIX v1 (abhishek-edits): hide top contact bar on mobile + larger brand */
+@media(max-width:768px){
+  .dv-topbar{display:none}
+  .brand{font-size:1.7rem;gap:9px}
+  .brand .wordmark{font-size:1.7rem;letter-spacing:-.5px}
+  .brand img,.brand svg{width:40px;height:40px}
+}
