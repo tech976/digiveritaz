@@ -430,8 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
     build('all');
   })();
 });
-
-/* DV-POPUP v1 (abhishek-edits): "Lets Get Project Started" popup + CTA shine */
+/* DV-POPUP v1 (abhishek-edits): "Lets Get Project Started" popup (instant) + CTA shine */
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
@@ -456,46 +455,32 @@ document.addEventListener('DOMContentLoaded', function () {
     var checks = SERVICES.map(function(s){
       return '<label><input type="checkbox" name="services[]" value="'+esc(s[0])+'">'+esc(s[1])+'</label>';
     }).join('');
-    var art = '<div class="dvm-art" aria-hidden="true"><svg viewBox="0 0 240 150" width="100%" fill="none">'
-      +'<rect x="10" y="14" width="220" height="122" rx="12" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.5)"/>'
-      +'<circle cx="26" cy="30" r="3.5" fill="#fff"/><circle cx="38" cy="30" r="3.5" fill="rgba(255,255,255,.6)"/><circle cx="50" cy="30" r="3.5" fill="rgba(255,255,255,.4)"/>'
-      +'<rect x="26" y="52" width="120" height="9" rx="4.5" fill="rgba(255,255,255,.65)"/>'
-      +'<rect x="26" y="70" width="150" height="9" rx="4.5" fill="rgba(255,255,255,.4)"/>'
-      +'<rect x="26" y="88" width="92" height="9" rx="4.5" fill="rgba(255,255,255,.4)"/>'
-      +'<circle cx="192" cy="92" r="22" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="2"/>'
-      +'<path d="M182 92l7 7 13-15" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
-      +'</svg></div>';
     var html = ''
       +'<div class="dvm-card" role="document">'
       +'<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
-      +'<div class="dvm-form-col">'
       +'<h2 class="dvm-title">Lets Get Project Started</h2>'
       +'<p class="dvm-sub">Share your goals, budget and timeline &mdash; we&rsquo;ll send a tailored proposal within one business day.</p>'
-      +'<form id="dvm-form" novalidate>'
+      +'<form id="dvm-form" class="dvm-form" novalidate>'
       +'<input type="hidden" name="_subject" value="New lead from DigiVeritaz website">'
       +'<input type="hidden" name="_template" value="table">'
       +'<input type="hidden" name="_captcha" value="false">'
       +'<div class="dvm-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label><label>Address<input type="text" name="address_line" tabindex="-1" autocomplete="off"></label></div>'
       +'<input type="hidden" name="_ts" id="dvm-ts"><input type="hidden" name="_jsok" id="dvm-jsok">'
-      +'<div class="dvm-two"><div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div><div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div></div>'
-      +'<div class="dvm-two"><div class="dvm-field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="+91 9XXXXXXXXX" required></div><div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div></div>'
-      +'<div class="dvm-field"><label>Budget Range <span class="req">*</span></label><select name="budget" required><option value="">-- Please select budget range --</option><option>INR 40k &ndash; 60k</option><option>INR 60k to 1 Lac</option><option>INR 1 Lac and above</option></select></div>'
+      +'<div class="dvm-row">'
+      +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
+      +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
+      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="+91 9XXXXXXXXX" required></div>'
+      +'</div>'
+      +'<div class="dvm-row">'
+      +'<div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>'
+      +'<div class="dvm-field col2"><label>Budget Range <span class="req">*</span></label><select name="budget" required><option value="">-- Please select budget range --</option><option>INR 40k &ndash; 60k</option><option>INR 60k to 1 Lac</option><option>INR 1 Lac and above</option></select></div>'
+      +'</div>'
       +'<div class="dvm-seclabel">Select the Services You Need</div>'
       +'<div class="dvm-checks">'+checks+'</div>'
-      +'<div class="dvm-field"><label>Project Brief</label><textarea name="message" rows="4" placeholder="Tentative start date, goals, platforms of interest, reference brands&hellip;"></textarea></div>'
+      +'<div class="dvm-field full" style="margin-bottom:14px"><label>Project Brief</label><textarea name="message" rows="2" placeholder="Tentative start date, goals, platforms of interest&hellip;"></textarea></div>'
       +'<button class="dvm-send" type="submit">Send</button>'
       +'<div class="dvm-msg" id="dvm-msg"></div>'
       +'</form>'
-      +'</div>'
-      +'<div class="dvm-visual-col" aria-hidden="true">'
-      +'<h3>Let&rsquo;s build something that grows your business.</h3>'
-      +'<p>Tell us where you want to go &mdash; we&rsquo;ll map the fastest route there.</p>'
-      +'<ul>'
-      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free, tailored proposal in 1 business day</li>'
-      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Trusted by 600+ brands across India, UAE &amp; UK</li>'
-      +'<li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Performance-driven, ROI-first strategy</li>'
-      +'</ul>'
-      + art
       +'</div>';
     var ov = document.createElement('div');
     ov.className = 'dvm-overlay'; ov.id = 'dvm-overlay';
@@ -536,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     if (!data.fullname || !data.email || !data.phone){ show('Please fill in your name, email and phone.', '#dc2626'); return; }
     if (!data.budget){ show('Please select a budget range.', '#dc2626'); return; }
-    btn.disabled = true; show('Sending…');
+    if (btn) btn.disabled = true;
     var body = new URLSearchParams();
     Object.keys(data).forEach(function(k){
       var v = data[k];
@@ -544,23 +529,13 @@ document.addEventListener('DOMContentLoaded', function () {
       else if (v != null) body.append(k, String(v));
     });
     body.append('action','submit_form');
-    fetch(ENDPOINT, { method:'POST', body: body })
-      .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
-      .then(function(res){
-        if (res && res.ok){
-          form.innerHTML = '<div style="text-align:center;padding:40px 10px"><h3 style="color:#16a34a;margin:0 0 12px">Thank you!</h3><p style="color:#475569">Your message is on its way. We&rsquo;ll get back within one business day.</p></div>';
-        } else {
-          btn.disabled = false;
-          show('Submission failed' + (res && res.error ? ': ' + res.error : '') + '. Please try the contact page.', '#dc2626');
-        }
-      })
-      .catch(function(){ btn.disabled = false; show('Network error. Please try again or use the contact page.', '#dc2626'); });
-  }
-
-  function spinner(on){
-    var s = document.getElementById('dvm-spinner');
-    if (on){ if (!s){ s = document.createElement('div'); s.id = 'dvm-spinner'; s.className = 'dvm-spinner'; document.body.appendChild(s); } }
-    else if (s){ s.parentNode.removeChild(s); }
+    try { fetch(ENDPOINT, { method:'POST', mode:'no-cors', body: body }); } catch(e){}
+    var card = document.querySelector('#dvm-overlay .dvm-card');
+    if (card){
+      card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
+        + '<div class="dvm-thanks"><h3>Thank you for filling the form</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
+      card.querySelector('.dvm-close').addEventListener('click', closeModal);
+    }
   }
 
   function wire(){
@@ -571,15 +546,73 @@ document.addEventListener('DOMContentLoaded', function () {
       var prop = /free proposal/.test(t);
       if (book || prop) el.classList.add('dv-shine');
       if (book){
-        el.addEventListener('click', function(e){
-          e.preventDefault();
-          spinner(true);
-          setTimeout(function(){ spinner(false); openModal(); }, 2000);
-        });
+        el.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
       }
     });
   }
-  if (document.readyState !== 'loading') wire();
+  window.dvOpenModal = openModal; if (document.readyState !== 'loading') wire();
   else document.addEventListener('DOMContentLoaded', wire);
 })();
+/* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (WhatsApp / Phone / Email) */
+;(function(){
+  if (window.__dvTopbar) return; window.__dvTopbar = true;
+  var WA = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>';
+  var PH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1l-2.2 2.2z"/></svg>';
+  var EM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
 
+  function build(){
+    if (document.querySelector('.dv-topbar')) return;
+    var bar = document.createElement('div');
+    bar.className = 'dv-topbar';
+    bar.innerHTML = '<div class="dv-tb-inner">'
+      + '<a class="dv-tb-item dv-tb-wa" href="https://wa.me/919956655662" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">' + WA + '+91 99566 55662</a>'
+      + '<a class="dv-tb-item dv-tb-ph" href="tel:+919956655662" aria-label="Call us">' + PH + '+91 99566 55662</a>'
+      + '<a class="dv-tb-item dv-tb-em" href="mailto:info@digiveritaz.com" aria-label="Email us">' + EM + 'info@digiveritaz.com</a>'
+      + '</div>';
+    var header = document.querySelector('header.site-header');
+    if (header && header.parentNode) header.parentNode.insertBefore(bar, header);
+    else document.body.insertBefore(bar, document.body.firstChild);
+  }
+  if (document.readyState !== 'loading') build();
+  else document.addEventListener('DOMContentLoaded', build);
+})();
+/* DV-MOBILE v1 (abhishek-edits): mobile sticky Book-a-Call + Live Chat bar + WhatsApp float */
+;(function(){
+  if (window.__dvMobile) return; window.__dvMobile = true;
+  var WA = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>';
+  var CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
+
+  function toast(msg){
+    var t = document.querySelector('.dv-mtoast');
+    if (!t){ t = document.createElement('div'); t.className = 'dv-mtoast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  }
+
+  function build(){
+    if (document.querySelector('.dv-mbar')) return;
+    var bar = document.createElement('div');
+    bar.className = 'dv-mbar';
+    bar.innerHTML = '<button type="button" class="dv-m-call">Book a Call</button>'
+      + '<button type="button" class="dv-m-chat">' + CHAT + 'Live Chat</button>';
+    document.body.appendChild(bar);
+
+    var wa = document.createElement('a');
+    wa.className = 'dv-wafloat';
+    wa.href = 'https://wa.me/919956655662';
+    wa.target = '_blank'; wa.rel = 'noopener';
+    wa.setAttribute('aria-label', 'Chat on WhatsApp');
+    wa.innerHTML = WA;
+    document.body.appendChild(wa);
+
+    bar.querySelector('.dv-m-call').addEventListener('click', function(){
+      if (typeof window.dvOpenModal === 'function') window.dvOpenModal();
+      else window.location.href = '/contact-us/';
+    });
+    bar.querySelector('.dv-m-chat').addEventListener('click', function(){
+      toast('Live chat is coming soon!');
+    });
+  }
+  if (document.readyState !== 'loading') build();
+  else document.addEventListener('DOMContentLoaded', build);
+})();

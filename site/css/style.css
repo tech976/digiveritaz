@@ -3150,7 +3150,7 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid #bbf7d0
    ================================================================ */
 
 /* prevent horizontal overflow on every page */
-html,body{max-width:100%;overflow-x:hidden}
+html,body{max-width:100%;overflow-x:clip}
 img,svg,video,iframe{max-width:100%;height:auto}
 
 /* tablet & below */
@@ -8293,64 +8293,101 @@ a.svc-card:hover h3{color:var(--green-dark)}
 [data-theme="dark"] .smm-measure .smm-section-head p{
   color:#cbd5e1 !important;
 }
-
 /* ============================================================
    DV-POPUP+SHINE v1  (abhishek-edits)
-   "Lets Get Project Started" popup + CTA shine animation
+   "Lets Get Project Started" popup (single full-width form) + CTA shine
    ============================================================ */
-.dvm-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;transition:opacity .25s ease}
+.dvm-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;overflow-y:auto;transition:opacity .2s ease}
 .dvm-overlay.is-open{display:flex;opacity:1}
-.dvm-card{position:relative;display:flex;width:min(960px,95vw);max-height:92vh;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(2,6,23,.45);transform:translateY(12px) scale(.985);transition:transform .28s ease}
+.dvm-card{position:relative;width:min(1040px,96vw);margin:auto;background:#fff;border-radius:20px;padding:34px 38px 30px;box-shadow:0 30px 80px rgba(2,6,23,.45);transform:translateY(10px) scale(.99);transition:transform .25s ease}
 .dvm-overlay.is-open .dvm-card{transform:none}
-.dvm-form-col{flex:1.3 1 0;min-width:0;padding:34px 34px 30px;overflow-y:auto}
-.dvm-visual-col{flex:.92 1 0;background:linear-gradient(150deg,#0b3d2e 0%,#16a34a 60%,#22c55e 100%);color:#fff;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.dvm-visual-col h3{font-family:'Space Grotesk',Inter,sans-serif;font-size:1.5rem;line-height:1.25;margin:0;font-weight:800}
-.dvm-visual-col p{margin:0;opacity:.92;font-size:.98rem;line-height:1.55}
-.dvm-visual-col ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:10px}
-.dvm-visual-col li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem}
-.dvm-visual-col li svg{flex:0 0 20px;width:20px;height:20px;margin-top:1px}
-.dvm-art{margin-top:8px;border-radius:14px;background:rgba(255,255,255,.10);padding:14px}
 .dvm-close{position:absolute;top:14px;right:16px;z-index:3;width:38px;height:38px;border:0;border-radius:50%;background:rgba(15,23,42,.06);color:#0f172a;font-size:1.6rem;line-height:1;cursor:pointer;transition:background .2s}
 .dvm-close:hover{background:rgba(15,23,42,.14)}
-.dvm-title{font-family:'Space Grotesk',Inter,sans-serif;font-size:1.7rem;margin:0 6px 6px 0;color:#0f172a;font-weight:800;line-height:1.15}
-.dvm-sub{margin:0 0 18px;color:#475569;font-size:.95rem;line-height:1.5}
-.dvm-form .dvm-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.dvm-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.dvm-field label{font-size:.82rem;font-weight:600;color:#334155}
+.dvm-title{font-family:'Space Grotesk',Inter,sans-serif;font-size:1.55rem;margin:0 44px 4px 0;color:#0f172a;font-weight:800;line-height:1.15}
+.dvm-sub{margin:0 0 16px;color:#475569;font-size:.92rem;line-height:1.45}
+.dvm-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:12px}
+.dvm-field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.dvm-field.col2{grid-column:span 2}
+.dvm-field.full{grid-column:1/-1}
+.dvm-field label{font-size:.8rem;font-weight:600;color:#334155}
 .dvm-field .req{color:#16a34a}
-.dvm-form input[type=text],.dvm-form input[type=email],.dvm-form input[type=tel],.dvm-form select,.dvm-form textarea{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:11px;font:inherit;font-size:.95rem;color:#0f172a;background:#fff;transition:border-color .2s,box-shadow .2s}
+.dvm-form input[type=text],.dvm-form input[type=email],.dvm-form input[type=tel],.dvm-form select,.dvm-form textarea{width:100%;padding:11px 13px;border:1.5px solid #e2e8f0;border-radius:10px;font:inherit;font-size:.92rem;color:#0f172a;background:#fff;transition:border-color .2s,box-shadow .2s}
 .dvm-form input:focus,.dvm-form select:focus,.dvm-form textarea:focus{outline:0;border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
-.dvm-form textarea{resize:vertical;min-height:92px}
-.dvm-seclabel{font-size:.82rem;font-weight:700;color:#334155;margin:4px 0 10px}
-.dvm-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-bottom:16px}
-.dvm-checks label{display:flex;align-items:center;gap:9px;font-size:.9rem;color:#334155;cursor:pointer}
-.dvm-checks input{width:17px;height:17px;accent-color:#16a34a;flex:0 0 auto}
-.dvm-send{width:100%;padding:14px 22px;border:0;border-radius:999px;background:#22c55e;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s,opacity .2s}
+.dvm-form textarea{resize:none;min-height:58px}
+.dvm-seclabel{font-size:.8rem;font-weight:700;color:#334155;margin:4px 0 8px}
+.dvm-checks{display:grid;grid-template-columns:repeat(4,1fr);gap:7px 16px;margin-bottom:14px}
+.dvm-checks label{display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155;cursor:pointer}
+.dvm-checks input{width:16px;height:16px;accent-color:#16a34a;flex:0 0 auto}
+.dvm-send{width:100%;padding:13px 22px;border:0;border-radius:999px;background:#22c55e;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s,opacity .2s}
 .dvm-send:hover{background:#16a34a}
 .dvm-send:disabled{opacity:.6;cursor:default}
-.dvm-msg{margin-top:12px;font-size:.9rem;text-align:center;min-height:1em}
+.dvm-msg{margin-top:10px;font-size:.9rem;text-align:center;min-height:1em}
+.dvm-thanks{text-align:center;padding:48px 16px}
+.dvm-thanks h3{color:#16a34a;font-family:'Space Grotesk',Inter,sans-serif;font-size:1.65rem;margin:0 0 10px}
+.dvm-thanks p{color:#475569;font-size:1.02rem;margin:0}
 .dvm-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 body.dvm-lock{overflow:hidden}
-.dvm-spinner{position:fixed;z-index:100000;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;border:4px solid rgba(34,197,94,.25);border-top-color:#22c55e;animation:dvmSpin .8s linear infinite;box-shadow:0 8px 24px rgba(2,6,23,.25);background:#fff}
-@keyframes dvmSpin{to{transform:rotate(360deg)}}
 [data-theme=dark] .dvm-card{background:#0f172a}
-[data-theme=dark] .dvm-title{color:#f1f5f9}
-[data-theme=dark] .dvm-sub,[data-theme=dark] .dvm-field label,[data-theme=dark] .dvm-seclabel,[data-theme=dark] .dvm-checks label{color:#cbd5e1}
+[data-theme=dark] .dvm-title,[data-theme=dark] .dvm-thanks h3{color:#f1f5f9}
+[data-theme=dark] .dvm-sub,[data-theme=dark] .dvm-field label,[data-theme=dark] .dvm-seclabel,[data-theme=dark] .dvm-checks label,[data-theme=dark] .dvm-thanks p{color:#cbd5e1}
 [data-theme=dark] .dvm-form input,[data-theme=dark] .dvm-form select,[data-theme=dark] .dvm-form textarea{background:#1e293b;border-color:#334155;color:#f1f5f9}
 [data-theme=dark] .dvm-close{background:rgba(255,255,255,.10);color:#f1f5f9}
-[data-theme=dark] .dvm-spinner{background:#0f172a}
-@media(max-width:860px){
-.dvm-card{flex-direction:column;width:96vw;max-height:94vh}
-.dvm-visual-col{display:none}
-.dvm-form-col{padding:26px 20px 24px}
-.dvm-form .dvm-two{grid-template-columns:1fr;gap:0}
-.dvm-checks{grid-template-columns:1fr}
-.dvm-title{font-size:1.4rem}
-.dvm-overlay{padding:12px}
+@media(max-width:760px){
+.dvm-card{width:96vw;padding:24px 18px 22px;border-radius:16px}
+.dvm-row{grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+.dvm-field.col2,.dvm-field.full{grid-column:auto}
+.dvm-checks{grid-template-columns:1fr 1fr;gap:7px 12px}
+.dvm-title{font-size:1.3rem;margin-right:40px}
 }
 /* ----- CTA shine (left -> right) ----- */
 .dv-shine{position:relative;overflow:hidden}
 .dv-shine::after{content:"";position:absolute;top:0;left:-150%;width:55%;height:100%;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);transform:skewX(-22deg);pointer-events:none;animation:dvShine 3s ease-in-out infinite}
 @keyframes dvShine{0%{left:-150%}55%{left:170%}100%{left:170%}}
 @media(prefers-reduced-motion:reduce){.dv-shine::after{animation:none}}
-
+/* ============================================================
+   DV-TOPBAR v1 (abhishek-edits): top contact bar + sticky offsets
+   ============================================================ */
+:root{--dv-tb:40px}
+.dv-topbar{background:#0b0f1a;color:#fff;font-size:.85rem;min-height:var(--dv-tb);display:flex;align-items:center;justify-content:center;position:relative;z-index:60}
+.dv-tb-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 28px;max-width:1260px;width:100%;padding:6px 16px}
+.dv-tb-item{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;white-space:nowrap;font-weight:500;line-height:1.2}
+.dv-tb-item:hover{color:#22c55e}
+.dv-tb-item svg{width:16px;height:16px;flex:0 0 auto}
+.dv-tb-wa svg{color:#25D366}
+.dv-tb-ph svg{color:#38bdf8}
+.dv-tb-em svg{color:#cbd5e1}
+/* desktop: top bar sticky, header parks just beneath it */
+@media(min-width:1051px){
+  .dv-topbar{position:sticky;top:0}
+  .site-header{top:calc(var(--dv-tb) + 12px)}
+  .site-header.scrolled{top:calc(var(--dv-tb) + 6px)}
+}
+@media(max-width:560px){
+  .dv-tb-inner{gap:6px 14px;padding:6px 10px}
+  .dv-tb-item{font-size:.74rem}
+  .dv-tb-item svg{width:14px;height:14px}
+}
+/* ============================================================
+   DV-MOBILE v1 (abhishek-edits): mobile sticky action bar + WhatsApp float
+   ============================================================ */
+.dv-mbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:10px;padding:8px 10px;background:#fff;box-shadow:0 -6px 20px rgba(2,6,23,.12)}
+.dv-mbar button{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:12px;font:inherit;font-weight:700;font-size:.98rem;cursor:pointer;border:2px solid #22c55e}
+.dv-mbar .dv-m-call{background:#22c55e;color:#fff}
+.dv-mbar .dv-m-chat{background:#fff;color:#16a34a}
+.dv-mbar .dv-m-chat svg{width:18px;height:18px}
+.dv-wafloat{position:fixed;right:16px;bottom:72px;z-index:91;display:none;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#25D366;box-shadow:0 8px 22px rgba(2,6,23,.3)}
+.dv-wafloat svg{width:30px;height:30px;color:#fff}
+.dv-mtoast{position:fixed;left:50%;transform:translateX(-50%);bottom:80px;z-index:95;background:#0f172a;color:#fff;padding:10px 16px;border-radius:999px;font-size:.85rem;opacity:0;transition:opacity .25s;pointer-events:none;box-shadow:0 8px 22px rgba(2,6,23,.3)}
+.dv-mtoast.show{opacity:1}
+[data-theme=dark] .dv-mbar{background:#0f172a;box-shadow:0 -6px 20px rgba(0,0,0,.45)}
+[data-theme=dark] .dv-mbar .dv-m-chat{background:#0f172a;color:#22c55e}
+@media(max-width:768px){
+  .dv-mbar{display:flex}
+  .dv-wafloat{display:flex}
+  body{padding-bottom:70px}
+}
+/* DV-MOBILE-FIX v1 (abhishek-edits): stack WhatsApp float above the back-to-top button on mobile */
+@media(max-width:768px){
+  .to-top{right:16px;bottom:78px;width:46px;height:46px}
+  .dv-wafloat{bottom:140px}
+}
