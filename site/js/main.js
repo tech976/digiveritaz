@@ -434,6 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
+  var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
     ['Paid Social Media','Paid Social Media Advertising'],
@@ -466,6 +467,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<input type="hidden" name="_captcha" value="false">'
       +'<div class="dvm-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label><label>Address<input type="text" name="address_line" tabindex="-1" autocomplete="off"></label></div>'
       +'<input type="hidden" name="_ts" id="dvm-ts"><input type="hidden" name="_jsok" id="dvm-jsok">'
+      +'<div id="dvm-stage1">'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
       +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
@@ -478,7 +480,14 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-seclabel">Select the Services You Need</div>'
       +'<div class="dvm-checks">'+checks+'</div>'
       +'<div class="dvm-field full" style="margin-bottom:14px"><label>Project Brief</label><textarea name="message" rows="2" placeholder="Tentative start date, goals, platforms of interest&hellip;"></textarea></div>'
-      +'<button class="dvm-send" type="submit">Send</button>'
+      +'<button class="dvm-send" type="button" id="dvm-getotp">Get Verification Code</button>'
+      +'</div>'
+      +'<div id="dvm-stage2" style="display:none">'
+      +'<p class="dvm-sub" style="margin-top:0">Enter the 6-digit code we emailed to <strong id="dvm-otpemail"></strong>.</p>'
+      +'<div class="dvm-field full"><label>Verification Code <span class="req">*</span></label><input type="text" name="otp" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit code"></div>'
+      +'<button class="dvm-send" type="submit" id="dvm-verify">Verify &amp; Send</button>'
+      +'<div style="margin-top:10px;font-size:.9rem"><a href="#" id="dvm-resend">Resend code</a> &nbsp;&middot;&nbsp; <a href="#" id="dvm-edit">Edit details</a></div>'
+      +'</div>'
       +'<div class="dvm-msg" id="dvm-msg"></div>'
       +'</form>'
       +'</div>';
@@ -491,13 +500,16 @@ document.addEventListener('DOMContentLoaded', function () {
     ov.querySelector('.dvm-close').addEventListener('click', closeModal);
     ov.addEventListener('mousedown', function(e){ if (e.target === ov) closeModal(); });
     document.getElementById('dvm-form').addEventListener('submit', onSubmit);
+    document.getElementById('dvm-getotp').addEventListener('click', function(){ dvmRequestOtp(false); });
+    document.getElementById('dvm-resend').addEventListener('click', function(e){ e.preventDefault(); dvmRequestOtp(true); });
+    document.getElementById('dvm-edit').addEventListener('click', function(e){ e.preventDefault(); dvmShowStage(1); dvmMsg(''); });
   }
 
   function openModal(){
     buildModal();
     var ov = document.getElementById('dvm-overlay'); if (!ov) return;
     var ts = document.getElementById('dvm-ts'), js = document.getElementById('dvm-jsok');
-    if (ts) ts.value = String(Date.now());
+    if (ts) ts.value = String(DVM_LOAD);
     if (js) js.value = 'dv-' + Math.random().toString(36).slice(2, 12);
     ov.classList.add('is-open'); ov.setAttribute('aria-hidden','false');
     document.body.classList.add('dvm-lock');
@@ -510,32 +522,62 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
 
+  function dvmMsg(t,c){ var m=document.getElementById('dvm-msg'); if(m){ m.textContent=t||''; m.style.color=c||'#374151'; } }
+  function dvmShowStage(n){ var s1=document.getElementById('dvm-stage1'), s2=document.getElementById('dvm-stage2'); if(s1)s1.style.display=(n===1)?'':'none'; if(s2)s2.style.display=(n===2)?'':'none'; }
+  function dvmCollect(){
+    var form=document.getElementById('dvm-form'); var fd=new FormData(form), data={};
+    fd.forEach(function(v,k){ if(data[k]!==undefined){ if(!Array.isArray(data[k])) data[k]=[data[k]]; data[k].push(v); } else data[k]=v; });
+    return data;
+  }
+  function dvmPost(payload, cb){
+    var body=new URLSearchParams();
+    Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ body.append(k,x); }); else if(v!=null) body.append(k,String(v)); });
+    fetch(ENDPOINT, { method:'POST', body: body })
+      .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'bad_response' }; }); })
+      .then(cb).catch(function(){ cb({ ok:false, error:'network' }); });
+  }
+  function dvmBase(data, action){
+    return Object.assign({}, data, { _subject:'New lead from DigiVeritaz (popup)', _template:'table', _captcha:'false', _source:'website-popup-form', _page: location.pathname || '/', action: action });
+  }
+  function dvmRequestOtp(isResend){
+    var data=dvmCollect();
+    if(!data.fullname || !data.email || !data.phone){ dvmMsg('Please fill in your name, email and phone.', '#dc2626'); return; }
+    if(!data.budget){ dvmMsg('Please select a budget range.', '#dc2626'); return; }
+    var btn=document.getElementById('dvm-getotp'); if(btn) btn.disabled=true;
+    dvmMsg(isResend ? 'Sending a new code…' : 'Sending verification code…');
+    var payload=dvmBase(data, 'request_otp'); delete payload.otp;
+    dvmPost(payload, function(res){
+      if(btn) btn.disabled=false;
+      if(res && res.ok){
+        var em=document.getElementById('dvm-otpemail'); if(em) em.textContent=data.email;
+        dvmShowStage(2); dvmMsg('Code sent! Check your inbox (and spam folder).', '#16a34a');
+        var oi=document.getElementById('dvm-otp'); if(oi){ try{ oi.focus(); }catch(e){} }
+      } else {
+        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
+        dvmMsg('Could not send code: '+e, '#dc2626');
+      }
+    });
+  }
   function onSubmit(ev){
     ev.preventDefault();
-    var form = ev.target, msg = document.getElementById('dvm-msg'), btn = form.querySelector('.dvm-send');
-    function show(t,c){ if (msg){ msg.textContent = t; msg.style.color = c || '#374151'; } }
-    var fd = new FormData(form), data = {};
-    fd.forEach(function(v,k){
-      if (data[k] !== undefined){ if (!Array.isArray(data[k])) data[k] = [data[k]]; data[k].push(v); }
-      else data[k] = v;
+    var data=dvmCollect();
+    if(!/^[0-9]{6}$/.test(String(data.otp || ''))){ dvmMsg('Enter the 6-digit code from your email.', '#dc2626'); return; }
+    var btn=document.getElementById('dvm-verify'); if(btn) btn.disabled=true;
+    dvmMsg('Verifying…');
+    dvmPost(dvmBase(data, 'submit_form'), function(res){
+      if(res && res.ok){
+        var card=document.querySelector('#dvm-overlay .dvm-card');
+        if(card){
+          card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
+            + '<div class="dvm-thanks"><h3>Thank you!</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
+          card.querySelector('.dvm-close').addEventListener('click', closeModal);
+        }
+      } else {
+        if(btn) btn.disabled=false;
+        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
+        dvmMsg('Submission failed: '+e, '#dc2626');
+      }
     });
-    if (!data.fullname || !data.email || !data.phone){ show('Please fill in your name, email and phone.', '#dc2626'); return; }
-    if (!data.budget){ show('Please select a budget range.', '#dc2626'); return; }
-    if (btn) btn.disabled = true;
-    var body = new URLSearchParams();
-    Object.keys(data).forEach(function(k){
-      var v = data[k];
-      if (Array.isArray(v)) v.forEach(function(x){ body.append(k, x); });
-      else if (v != null) body.append(k, String(v));
-    });
-    body.append('action','submit_form');
-    try { fetch(ENDPOINT, { method:'POST', mode:'no-cors', body: body }); } catch(e){}
-    var card = document.querySelector('#dvm-overlay .dvm-card');
-    if (card){
-      card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
-        + '<div class="dvm-thanks"><h3>Thank you for filling the form</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
-      card.querySelector('.dvm-close').addEventListener('click', closeModal);
-    }
   }
 
   function wire(){
@@ -550,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-  window.dvOpenModal = openModal; function dvReady(){ wire(); setTimeout(function(){ openModal(); }, 3000); } if (document.readyState !== 'loading') dvReady();
+  window.dvOpenModal = openModal; function dvReady(){ wire(); if(!/\/contact-us(\/|$)/.test(location.pathname)) setTimeout(function(){ openModal(); }, 3000); } if (document.readyState !== 'loading') dvReady();
   else document.addEventListener('DOMContentLoaded', dvReady);
 })();
 /* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (WhatsApp / Phone / Email) */
