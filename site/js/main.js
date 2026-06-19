@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form && !document.getElementById('btn-send-otp')) {
     var CONTACT_EMAIL = 'info@digiveritaz.com';
     var APPS_SCRIPT_URL =
-      'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
+      'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
 
     var openMailtoFallback = function () {
       var fd = new FormData(form);
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* DV-POPUP v1 (abhishek-edits): "Lets Get Project Started" popup (instant) + CTA shine */
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5_zT_5sycLdaSgIbEsNy2W8kNPxozOlcjBnNvu4SOhECw4lzIpCgjsmVIiHo5G0Lw/exec';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
   var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],

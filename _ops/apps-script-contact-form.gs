@@ -47,10 +47,14 @@ var OTP_REQUESTS_PER_HOUR = 3;
 function doGet(e) {
   // Diagnostic mode: ?diag=1 reports config without leaking secrets.
   if (e && e.parameter && e.parameter.diag === '1') {
+    var quota;
+    try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
+      build: 'v5-mailapp',
       diag: {
-        sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
+        sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
+        mail_quota_remaining: quota
       }
     });
   }
@@ -170,16 +174,23 @@ function handleRequestOtp_(p, nowMs) {
     attempts: 0
   }));
 
-  // email it to the user
+  // email it to the user — MailApp (narrow send-only scope, no extra auth) with
+  // BOTH plain-text + HTML (multipart) + sender name for better deliverability
   try {
     MailApp.sendEmail({
       to: p.email,
       subject: 'Your DigiVeritaz verification code',
+      name: 'DigiVeritaz',
+      replyTo: 'info@digiveritaz.com',
+      body: 'Hi ' + (p.fullname || 'there') + ',\n\n' +
+            'Your DigiVeritaz verification code is: ' + otp + '\n\n' +
+            'It expires in 10 minutes. If you did not request this, you can ignore this email.\n\n' +
+            '— DigiVeritaz',
       htmlBody: buildOtpEmail_(p.fullname, otp)
     });
   } catch (mailErr) {
     console.error('OTP mail failed: ' + mailErr);
-    return json({ ok: false, error: 'mail_failed' });
+    return json({ ok: false, error: 'mail_failed', detail: String(mailErr) });
   }
 
   return json({ ok: true, message: 'code_sent' });
@@ -351,9 +362,25 @@ function sendNotification_(p, services) {
   MailApp.sendEmail({
     to: NOTIFY_EMAILS,
     subject: subject,
-    body: body,
-    replyTo: email || undefined
+    name: 'DigiVeritaz Website',
+    replyTo: email || undefined,
+    body: body
   });
+}
+
+// ============================================================
+// DIAGNOSTIC — run this directly in the Apps Script editor (Run ▸ diagMail)
+// to confirm the account can actually send. Set DIAG_TO to an EXTERNAL
+// address (e.g. your personal gmail) to test real-world delivery.
+// ============================================================
+var DIAG_TO = ''; // <-- put an external email here, e.g. 'you@gmail.com'
+function diagMail() {
+  var quota = MailApp.getRemainingDailyQuota();
+  Logger.log('Remaining daily email quota: ' + quota);
+  if (!DIAG_TO) { Logger.log('Set DIAG_TO (top of file) to your email, then run again.'); return; }
+  MailApp.sendEmail({ to: DIAG_TO, subject: 'DigiVeritaz mail diagnostic', name: 'DigiVeritaz',
+    body: 'If you received this, the script CAN send email.\nQuota remaining: ' + quota + '\nNote: from a personal Gmail this often lands in Spam.' });
+  Logger.log('Diagnostic email sent to ' + DIAG_TO + ' via MailApp. Check inbox AND Spam.');
 }
 
 function buildOtpEmail_(fullname, code) {
