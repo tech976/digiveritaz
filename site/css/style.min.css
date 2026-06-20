@@ -157,3 +157,6 @@ body.dvm-lock{overflow:hidden}
 .dvc-svc:hover{background:#22c55e;color:#fff;border-color:#22c55e}
 [data-theme=dark] .dvc-svc{background:#0f291c;color:#4ade80;border-color:#166534}
 [data-theme=dark] .dvc-svc:hover{background:#22c55e;color:#fff}
+
+/* DV-CHAT-MOBILE-HIDE v1: hide floating chat launcher on mobile (Live Chat button in bar opens it) */
+@media(max-width:768px){.dvc-launch{display:none!important}}

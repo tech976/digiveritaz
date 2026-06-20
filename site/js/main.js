@@ -652,7 +652,8 @@ document.addEventListener('DOMContentLoaded', function () {
       else window.location.href = '/contact-us/';
     });
     bar.querySelector('.dv-m-chat').addEventListener('click', function(){
-      toast('Live chat is coming soon!');
+      if (typeof window.dvOpenChat === 'function') window.dvOpenChat();
+      else toast('Live chat is coming soon!');
     });
   }
   if (document.readyState !== 'loading') build();
@@ -765,6 +766,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function(){ ta.focus(); }, 50);
   }
   function close(){ panel.classList.remove("open"); launch.style.display = "flex"; }
+  window.dvOpenChat = function(){ if (panel) open(); };
 
   if (document.readyState !== "loading") build();
   else document.addEventListener("DOMContentLoaded", build);
