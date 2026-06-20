@@ -202,6 +202,33 @@ def _jsok():
 def _digits(s):
     return re.sub(r"[^0-9]", "", s or "")
 
+def _extract_contact(msgs):
+    """Pull name/email/phone out of the whole conversation so a tool call that omits
+    one (e.g. user sends the phone in a later message) still has the full set."""
+    users = [m.get("content", "") for m in (msgs or []) if m.get("role") == "user"]
+    text = "\n".join(users)
+    out = {}
+    em = re.search(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}", text)
+    if em:
+        out["email"] = em.group(0)
+    for cand in re.findall(r"\+?\d[\d \-]{8,}\d", text):
+        if 10 <= len(re.sub(r"\D", "", cand)) <= 13:
+            out["phone"] = re.sub(r"[ \-]", "", cand)
+            break
+    name = ""
+    nm = re.search(r"(?:i am|i'm|this is|my name is|name is)\s+([A-Za-z][A-Za-z.'\- ]{1,38})", text, re.I)
+    if nm:
+        name = re.split(r"(?i)\b(?:and|from|here|need|want|looking|for|the|my|we)\b", nm.group(1), 1)[0].strip()
+    if not name and em:
+        line = next((u for u in users if out["email"] in u), "")
+        before = line.split(out["email"])[0].strip(" ,-:")
+        toks = [w for w in re.split(r"\s+", before) if re.fullmatch(r"[A-Za-z][A-Za-z.'\-]*", w)]
+        if toks:
+            name = " ".join(toks[-3:])
+    if name.strip():
+        out["name"] = name.strip()[:60]
+    return out
+
 def send_verification(args):
     """Step 1 — email a 6-digit OTP via the contact Apps Script (action=request_otp).
     The script needs a valid phone + JS token, so guard for those before calling."""
@@ -254,6 +281,7 @@ def handle_chat(payload):
 
     reply, used, captured = None, None, False
     otp_sent_ok, otp_fail = False, None
+    known = _extract_contact(msgs_in)
 
     for key in GROQ_KEYS:
         try:
@@ -267,11 +295,17 @@ def handle_chat(payload):
                         args = json.loads(tc["function"].get("arguments") or "{}")
                     except Exception:
                         args = {}
+                    for _k in ("name", "email", "phone"):
+                        if not str(args.get(_k) or "").strip() and known.get(_k):
+                            args[_k] = known[_k]
                     if fn == "send_verification":
                         sv = send_verification(args)
                         if sv.get("ok"):
                             otp_sent_ok = True
                             result = {"code_sent": True, "instruction": "A code was emailed. Tell the visitor to check their inbox and type the 6-digit code here."}
+                        elif sv.get("error") == "otp_rate_limited":
+                            otp_sent_ok = True
+                            result = {"code_sent": True, "instruction": "A code was already emailed moments ago. Tell them to check their inbox and spam folder and type the 6-digit code here (a new one can be requested in a minute)."}
                         elif sv.get("error") in ("need_phone", "bad_phone"):
                             otp_fail = "phone"
                             result = {"code_sent": False, "instruction": "A valid phone number is required before sending the code. Ask the visitor for their phone number. Do NOT say a code was sent."}
