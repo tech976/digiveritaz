@@ -658,3 +658,114 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.readyState !== 'loading') build();
   else document.addEventListener('DOMContentLoaded', build);
 })();
+
+/* DV-CHATBOT v1 — lead-qualification chat widget (talks to /api/chat) */
+;(function(){
+  if (window.__dvChat) return; window.__dvChat = true;
+  var WA = "https://wa.me/919956655662";
+  var BOOK = "/contact-us/";
+  var GREETING = "Hi! 👋 I'm Veri from DigiVeritaz. What are you trying to achieve — more leads, better ROAS, or something else? I can point you to the right service and set up a quick call.";
+  var I_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
+  var I_SEND = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4l17.5-7.5a1 1 0 0 0 0-1.8L3.4 3.6a1 1 0 0 0-1.4 1l2 6.9 9 1.5-9 1.5-2 6.9a1 1 0 0 0 1.4 1z"/></svg>';
+  var I_WA = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10z"/></svg>';
+  var I_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+
+  var msgs = [];
+  try { msgs = JSON.parse(sessionStorage.getItem("dvc-msgs") || "[]"); } catch (e) { msgs = []; }
+  var launch, panel, body, ta;
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function linkify(t){
+    return esc(t).replace(/(https?:\/\/[^\s]+|\/[a-z0-9][a-z0-9\-\/]*\/)/gi, function(u){
+      var ext = u.indexOf("http") === 0;
+      return '<a href="' + u + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + u + '</a>';
+    });
+  }
+  function save(){ try { sessionStorage.setItem("dvc-msgs", JSON.stringify(msgs.slice(-30))); } catch (e) {} }
+
+  function addMsg(role, text, services){
+    var m = document.createElement("div");
+    m.className = "dvc-msg " + (role === "user" ? "dvc-user" : "dvc-bot");
+    m.innerHTML = linkify(text);
+    body.appendChild(m);
+    if (role !== "user" && services && services.length){
+      var sc = document.createElement("div"); sc.className = "dvc-svcs";
+      sc.innerHTML = services.map(function(s){ return '<a class="dvc-svc" href="' + s.url + '">' + esc(s.label) + '</a>'; }).join("");
+      body.appendChild(sc);
+    }
+    body.scrollTop = body.scrollHeight;
+  }
+  function typing(on){
+    var t = document.getElementById("dvc-typing");
+    if (on && !t){
+      t = document.createElement("div"); t.id = "dvc-typing"; t.className = "dvc-typing";
+      t.innerHTML = "<span></span><span></span><span></span>";
+      body.appendChild(t); body.scrollTop = body.scrollHeight;
+    } else if (!on && t){ t.remove(); }
+  }
+
+  function send(){
+    var v = ta.value.trim(); if (!v) return;
+    ta.value = ""; ta.style.height = "42px";
+    msgs.push({ role: "user", content: v }); addMsg("user", v); save();
+    typing(true);
+    fetch("/api/chat", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ page: location.pathname, messages: msgs })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      typing(false);
+      var rep = (d && d.reply) || "Sorry, please try again.";
+      var svcs = (d && d.services) || [];
+      msgs.push({ role: "assistant", content: rep, services: svcs }); addMsg("assistant", rep, svcs); save();
+    }).catch(function(){
+      typing(false);
+      addMsg("assistant", "I'm having a connection issue — please WhatsApp us at +91 99566 55662 and the team will help right away.");
+    });
+  }
+
+  function build(){
+    launch = document.createElement("button");
+    launch.className = "dvc-launch"; launch.setAttribute("aria-label", "Chat with DigiVeritaz");
+    launch.innerHTML = I_CHAT + '<span class="dvc-lbl">Chat with us</span>';
+    document.body.appendChild(launch);
+
+    panel = document.createElement("div");
+    panel.className = "dvc-panel"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "DigiVeritaz chat");
+    panel.innerHTML =
+      '<div class="dvc-head"><img src="/assets/logo.webp" alt="DigiVeritaz">' +
+        '<div class="ht"><span class="t">DigiVeritaz</span><span class="s"><span class="dot"></span>Usually replies instantly</span></div>' +
+        '<button class="dvc-x" aria-label="Close">&times;</button></div>' +
+      '<div class="dvc-body" id="dvc-body"></div>' +
+      '<div class="dvc-chips">' +
+        '<a class="dvc-chip" href="' + WA + '" target="_blank" rel="noopener">' + I_WA + 'WhatsApp</a>' +
+        '<a class="dvc-chip dvc-book" href="' + BOOK + '">' + I_CAL + 'Book a call</a>' +
+      '</div>' +
+      '<div class="dvc-foot"><textarea id="dvc-ta" rows="1" placeholder="Type your message…"></textarea>' +
+        '<button class="dvc-send" id="dvc-send" aria-label="Send">' + I_SEND + '</button></div>';
+    document.body.appendChild(panel);
+
+    body = panel.querySelector("#dvc-body");
+    ta = panel.querySelector("#dvc-ta");
+
+    launch.addEventListener("click", open);
+    panel.querySelector(".dvc-x").addEventListener("click", close);
+    panel.querySelector("#dvc-send").addEventListener("click", send);
+    var _bk = panel.querySelector(".dvc-book");
+    if (_bk) _bk.addEventListener("click", function(e){ if (typeof window.dvOpenModal === "function"){ e.preventDefault(); close(); window.dvOpenModal(); } });
+    ta.addEventListener("keydown", function(e){ if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); send(); } });
+    ta.addEventListener("input", function(){ ta.style.height = "42px"; ta.style.height = Math.min(96, ta.scrollHeight) + "px"; });
+  }
+
+  function open(){
+    panel.classList.add("open"); launch.style.display = "none";
+    if (!body.childElementCount){
+      if (!msgs.length){ msgs.push({ role: "assistant", content: GREETING }); save(); }
+      msgs.forEach(function(m){ addMsg(m.role, m.content, m.services); });
+    }
+    setTimeout(function(){ ta.focus(); }, 50);
+  }
+  function close(){ panel.classList.remove("open"); launch.style.display = "flex"; }
+
+  if (document.readyState !== "loading") build();
+  else document.addEventListener("DOMContentLoaded", build);
+})();

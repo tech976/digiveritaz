@@ -8398,3 +8398,56 @@ body.dvm-lock{overflow:hidden}
   .brand .wordmark{font-size:1.7rem;letter-spacing:-.5px}
   .brand img,.brand svg{width:40px;height:40px}
 }
+
+/* DV-CHATBOT widget + service buttons (added on top of team main) */
+.dvc-launch{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:10px;height:56px;padding:0 20px 0 16px;border:0;border-radius:999px;background:#22c55e;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 10px 30px rgba(34,197,94,.45);transition:transform .2s,box-shadow .2s}
+.dvc-launch:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(34,197,94,.55)}
+.dvc-launch svg{width:26px;height:26px;flex:0 0 auto}
+.to-top{bottom:92px}
+.dvc-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:384px;max-width:92vw;height:560px;max-height:82vh;display:none;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(2,6,23,.4)}
+.dvc-panel.open{display:flex}
+.dvc-head{display:flex;align-items:center;gap:10px;padding:13px 14px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
+.dvc-head img{width:32px;height:32px;border-radius:8px;background:#fff;padding:3px;flex:0 0 auto}
+.dvc-head .ht{display:flex;flex-direction:column;line-height:1.15}
+.dvc-head .t{font-weight:700;font-size:.98rem}
+.dvc-head .s{font-size:.72rem;opacity:.92;display:flex;align-items:center;gap:5px}
+.dvc-head .dot{width:7px;height:7px;border-radius:50%;background:#bbf7d0;box-shadow:0 0 0 0 rgba(187,247,208,.7);animation:dvcPulse 2s infinite}
+@keyframes dvcPulse{0%{box-shadow:0 0 0 0 rgba(187,247,208,.6)}70%{box-shadow:0 0 0 6px rgba(187,247,208,0)}100%{box-shadow:0 0 0 0 rgba(187,247,208,0)}}
+.dvc-x{margin-left:auto;background:rgba(255,255,255,.2);border:0;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1.25rem;line-height:1;cursor:pointer}
+.dvc-x:hover{background:rgba(255,255,255,.32)}
+.dvc-body{flex:1;overflow-y:auto;padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:10px}
+.dvc-msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.92rem;line-height:1.45;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
+.dvc-bot{align-self:flex-start;background:#fff;color:#0f172a;border:1px solid #e2e8f0;border-bottom-left-radius:4px}
+.dvc-user{align-self:flex-end;background:#22c55e;color:#fff;border-bottom-right-radius:4px}
+.dvc-bot a{color:#16a34a;font-weight:600}
+.dvc-user a{color:#fff;text-decoration:underline}
+.dvc-typing{align-self:flex-start;color:#64748b;font-size:.85rem;padding:4px 6px}
+.dvc-typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#94a3b8;margin:0 1px;animation:dvcBlink 1.2s infinite}
+.dvc-typing span:nth-child(2){animation-delay:.2s}.dvc-typing span:nth-child(3){animation-delay:.4s}
+@keyframes dvcBlink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.dvc-chips{display:flex;flex-wrap:wrap;gap:8px;padding:8px 12px 0;background:#f8fafc}
+.dvc-chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #22c55e;color:#16a34a;background:#fff;border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:600;text-decoration:none;cursor:pointer}
+.dvc-chip:hover{background:#f0fdf4}
+.dvc-chip svg{width:14px;height:14px}
+.dvc-foot{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e2e8f0;background:#fff}
+.dvc-foot textarea{flex:1;resize:none;border:1.5px solid #e2e8f0;border-radius:12px;padding:10px 12px;font:inherit;font-size:.92rem;max-height:96px;min-height:42px;outline:none}
+.dvc-foot textarea:focus{border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+.dvc-send{border:0;background:#22c55e;color:#fff;border-radius:12px;width:46px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dvc-send:hover{background:#16a34a}
+.dvc-send svg{width:20px;height:20px}
+[data-theme=dark] .dvc-panel{background:#0f172a}
+[data-theme=dark] .dvc-body,[data-theme=dark] .dvc-chips{background:#0b1220}
+[data-theme=dark] .dvc-bot{background:#1e293b;color:#e2e8f0;border-color:#334155}
+[data-theme=dark] .dvc-foot{background:#0f172a;border-color:#334155}
+[data-theme=dark] .dvc-foot textarea{background:#1e293b;border-color:#334155;color:#e2e8f0}
+@media(max-width:560px){
+  .dvc-panel{right:0;left:0;bottom:0;width:100%;max-width:100%;height:86vh;max-height:86vh;border-radius:16px 16px 0 0}
+  .dvc-launch{padding:0;width:56px;justify-content:center}
+  .dvc-launch .dvc-lbl{display:none}
+}
+/* DV-CHATBOT-SVC v1 (abhishek-edits): clickable service buttons in the chat */
+.dvc-svcs{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 2px 8px 2px}
+.dvc-svc{display:inline-flex;align-items:center;font-size:.8rem;font-weight:600;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:999px;padding:6px 12px;text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.dvc-svc:hover{background:#22c55e;color:#fff;border-color:#22c55e}
+[data-theme=dark] .dvc-svc{background:#0f291c;color:#4ade80;border-color:#166534}
+[data-theme=dark] .dvc-svc:hover{background:#22c55e;color:#fff}
