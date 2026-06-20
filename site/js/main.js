@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ta.value = ""; ta.style.height = "42px";
     msgs.push({ role: "user", content: v }); addMsg("user", v); save();
     typing(true);
-    fetch("/api/chat", {
+    fetch("/api/chat/", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ page: location.pathname, messages: msgs })
     }).then(function(r){ return r.json(); }).then(function(d){
