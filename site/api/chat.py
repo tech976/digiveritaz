@@ -285,6 +285,43 @@ def _otp_reply(state, known):
                 "'resend' for a new one. You can also reach us on WhatsApp at +%s." % wa)
     return "I couldn't send the code just now — let's continue on WhatsApp at +%s and the team will help right away." % wa
 
+# Service buttons surfaced under a reply when a service is mentioned/asked about.
+SERVICES_MENU = [
+    ("SEO", "/seo/", [r"\bseo\b", r"search engine optim"]),
+    ("PPC / Google Ads", "/pay-per-click/", [r"\bppc\b", r"pay[- ]per[- ]click", r"google ads", r"search ads"]),
+    ("Performance Marketing", "/performance-marketing-agency/", [r"performance marketing"]),
+    ("Social Media Management", "/social-media-management/", [r"social media management", r"social media marketing"]),
+    ("Paid Social Ads", "/paid-social-media-advertising/", [r"paid social", r"meta ads", r"facebook ads", r"instagram ads", r"social media advertising"]),
+    ("E-Commerce Marketing", "/ecommerce-marketing/", [r"e-?commerce marketing", r"ecommerce marketing", r"online store marketing"]),
+    ("Amazon Marketing", "/amazon-marketing/", [r"amazon"]),
+    ("Native Advertising", "/native-advertising/", [r"native ad"]),
+    ("WhatsApp Marketing", "/whatsapp-marketing-services/", [r"whatsapp"]),
+    ("Influencer Marketing", "/influencer-marketing/", [r"influencer"]),
+    ("Digital PR", "/digital-pr/", [r"digital pr"]),
+    ("Online Reputation", "/online-reputation-management/", [r"reputation", r"\borm\b"]),
+    ("Content Marketing", "/organic-marketing-services/", [r"content marketing", r"organic marketing", r"content writing", r"copywriting"]),
+    ("Branding & Design", "/branding-and-design/", [r"branding", r"brand identity", r"\blogo\b"]),
+    ("UI/UX Design", "/ui-ux-design/", [r"ui/?ux", r"ux design", r"ui design"]),
+    ("Website Development", "/website-development/", [r"website development", r"web development", r"web design"]),
+    ("Custom Software", "/custom-software-development/", [r"custom software", r"software development"]),
+    ("E-Commerce Development", "/ecommerce-development/", [r"e-?commerce development", r"shopify", r"woocommerce", r"online store"]),
+    ("Mobile App Development", "/mobile-app-development/", [r"mobile app", r"app development"]),
+    ("Lead Generation", "/lead-generation/", [r"lead generation", r"lead gen"]),
+    ("Generative Engine Optimisation", "/generative-search-optimisation/", [r"generative engine", r"\bgeo\b", r"\bgso\b"]),
+    ("Conversion Rate Optimisation", "/conversion-rate-optimisation/", [r"conversion rate", r"\bcro\b", r"landing page"]),
+    ("Data Strategy", "/data-strategy-consulting-services/", [r"data strategy", r"\bga4\b"]),
+]
+
+def _service_buttons(text, limit=6):
+    t = " " + (text or "").lower() + " "
+    out = []
+    for label, url, pats in SERVICES_MENU:
+        if any(re.search(p, t) for p in pats):
+            out.append({"label": label, "url": url})
+        if len(out) >= limit:
+            break
+    return out
+
 def send_verification(args):
     """Step 1 — email a 6-digit OTP via the contact Apps Script (action=request_otp).
     The script needs a valid phone + JS token, so guard for those before calling."""
@@ -408,6 +445,7 @@ def handle_chat(payload):
         "captured": captured,
         "endState": "captured" if captured else "active",
         "provider": used,
+        "services": _service_buttons(reply) or _service_buttons(user_last),
         "sources": [{"title": c["title"], "url": c["url"]} for c in ctx[:3]],
         "actions": {"whatsapp": _wa_link(), "booking": BOOKING_URL},
     }
