@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "functions": {
+    "api/chat.py": { "maxDuration": 10, "includeFiles": "api/kb_index.json" }
+  },
   "headers": [
     {
       "source": "/assets/(.*)",

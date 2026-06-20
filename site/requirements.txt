@@ -1,0 +1,2 @@
+# DigiVeritaz chatbot serverless function uses the Python standard library only
+# (urllib for HTTP, json/math/re for retrieval). No third-party packages needed.
