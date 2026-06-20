@@ -109,7 +109,7 @@ HARD RULES:
 - Only discuss DigiVeritaz, its services and case studies. Politely decline anything else and pivot back.
 - NEVER quote or estimate specific prices — say pricing depends on scope and route them to a quick call.
 - NEVER invent prices, guarantees, statistics or case-study numbers. Ground every specific claim in CONTEXT. If unsure, say so and offer a callback.
-- LEAD CAPTURE WITH EMAIL VERIFICATION (two steps): once you have the visitor's name and email (and ideally phone), call the send_verification tool to email them a 6-digit code. Then tell them you've emailed a 6-digit code and ask them to type it here. When they reply with the code, call the verify_and_capture tool with that code plus all their details. Treat the lead as captured ONLY after verify_and_capture succeeds. If it fails, ask them to re-check the code, offer to resend, or hand off to WhatsApp. Don't demand every field at once — name + email is enough to start verification.
+- LEAD CAPTURE WITH EMAIL VERIFICATION (two steps): collect the visitor's name, email AND phone number — all three are required before verification. Then call the send_verification tool. ONLY after the tool result confirms code_sent=true may you tell them a 6-digit code was emailed and ask them to type it here. If the tool says it failed or needs a phone, ask for the missing/valid detail and do NOT claim a code was sent. When they reply with the code, call verify_and_capture with the code plus all their details. Treat the lead as captured ONLY after verify_and_capture returns verified=true. If it fails, ask them to re-check the code, offer to resend, or hand off to WhatsApp.
 - Keep replies short, confident and helpful (2-4 sentences). Use the visitor's words.
 - If asked for a human, or after hours, or unsure: capture details and offer WhatsApp at +%(wa)s — never dead-end.
 
@@ -126,10 +126,10 @@ _LEAD_PROPS = {
 TOOLS = [
     {"type": "function", "function": {
         "name": "send_verification",
-        "description": "Email a 6-digit verification code to the visitor. Call once you have their name and email (phone optional). This must happen before a lead can be saved.",
+        "description": "Email a 6-digit verification code to the visitor. REQUIRES name, email AND a valid phone number — the system rejects it without a phone. Must happen before a lead can be saved.",
         "parameters": {"type": "object",
             "properties": {"name": {"type": "string"}, "email": {"type": "string"}, "phone": {"type": "string"}},
-            "required": ["email"]},
+            "required": ["name", "email", "phone"]},
     }},
     {"type": "function", "function": {
         "name": "verify_and_capture",
@@ -195,14 +195,25 @@ def _apps_post(fields):
         print("APPS_POST_ERROR " + str(e))
         return {}
 
+def _jsok():
+    import random, string
+    return "dv-" + "".join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10))
+
+def _digits(s):
+    return re.sub(r"[^0-9]", "", s or "")
+
 def send_verification(args):
-    """Step 1 — email a 6-digit OTP using the existing contact Apps Script (action=request_otp)."""
+    """Step 1 — email a 6-digit OTP via the contact Apps Script (action=request_otp).
+    The script needs a valid phone + JS token, so guard for those before calling."""
+    if len(_digits(args.get("phone"))) < 10:
+        print("OTP_SEND " + json.dumps({"email": args.get("email"), "ok": False, "err": "need_phone"}, ensure_ascii=False))
+        return {"ok": False, "error": "need_phone"}
     res = _apps_post({"action": "request_otp", "fullname": args.get("name", ""),
                       "email": args.get("email", ""), "phone": args.get("phone", ""),
-                      "_jsok": "dv-chatbot", "_ts": str(int(time.time() * 1000) - 60000)})
+                      "_jsok": _jsok(), "_ts": str(int(time.time() * 1000) - 9000)})
     ok = bool(res.get("ok"))
     print("OTP_SEND " + json.dumps({"email": args.get("email"), "ok": ok, "err": res.get("error")}, ensure_ascii=False))
-    return ok
+    return {"ok": ok, "error": res.get("error")}
 
 def verify_and_capture(args):
     """Step 2 — verify the OTP and save the lead via the existing flow (action=submit_form + otp)."""
@@ -217,11 +228,11 @@ def verify_and_capture(args):
                       "phone": args.get("phone", ""), "company": args.get("business", ""),
                       "budget": args.get("budget", ""),
                       "message": ("[chatbot lead] " + extra).strip(),
-                      "source": "website-chatbot", "_jsok": "dv-chatbot",
-                      "_ts": str(int(time.time() * 1000) - 60000)})
+                      "source": "website-chatbot", "_jsok": _jsok(),
+                      "_ts": str(int(time.time() * 1000) - 9000)})
     ok = bool(res.get("ok"))
     print("LEAD_VERIFY " + json.dumps({"email": args.get("email"), "ok": ok, "err": res.get("error")}, ensure_ascii=False))
-    return ok
+    return {"ok": ok, "error": res.get("error")}
 
 def log_event(**kw):
     print("ANALYTICS " + json.dumps(kw, ensure_ascii=False))
@@ -242,6 +253,7 @@ def handle_chat(payload):
             messages.append({"role": m["role"], "content": m["content"]})
 
     reply, used, captured = None, None, False
+    otp_sent_ok, otp_fail = False, None
 
     for key in GROQ_KEYS:
         try:
@@ -256,11 +268,24 @@ def handle_chat(payload):
                     except Exception:
                         args = {}
                     if fn == "send_verification":
-                        result = {"code_sent": send_verification(args)}
+                        sv = send_verification(args)
+                        if sv.get("ok"):
+                            otp_sent_ok = True
+                            result = {"code_sent": True, "instruction": "A code was emailed. Tell the visitor to check their inbox and type the 6-digit code here."}
+                        elif sv.get("error") in ("need_phone", "bad_phone"):
+                            otp_fail = "phone"
+                            result = {"code_sent": False, "instruction": "A valid phone number is required before sending the code. Ask the visitor for their phone number. Do NOT say a code was sent."}
+                        else:
+                            otp_fail = "other"
+                            result = {"code_sent": False, "instruction": "The code could not be sent. Apologise briefly and offer to continue on WhatsApp at +" + WHATSAPP + ". Do NOT say a code was sent."}
                     elif fn == "verify_and_capture":
-                        ok = verify_and_capture(args)
+                        vr = verify_and_capture(args)
+                        ok = bool(vr.get("ok"))
                         captured = captured or ok
-                        result = {"verified": ok, "saved": ok}
+                        if ok:
+                            result = {"verified": True, "saved": True, "instruction": "Thank them — their details are saved and the team will follow up within one business day. Offer a call or WhatsApp."}
+                        else:
+                            result = {"verified": False, "instruction": "The code was wrong or expired. Ask them to re-check and re-enter it, offer to resend, or hand off to WhatsApp. Do NOT say the lead was saved."}
                     else:
                         result = {"error": "unknown_tool"}
                     messages.append({"role": "tool", "tool_call_id": tc.get("id", ""),
@@ -283,6 +308,17 @@ def handle_chat(payload):
         reply = ("I'm having a brief technical hiccup. Please WhatsApp us at +%s, or drop "
                  "your name and email here and the team will get back to you today." % WHATSAPP)
         used = "fallback"
+
+    # Deterministic guard: never let the model claim a code was sent when it wasn't
+    # (covers both a failed send AND the model hallucinating "sent" without calling the tool).
+    claims_sent = bool(re.search(r"(sent|emailed)[^.]{0,40}code|code[^.]{0,40}(sent|emailed)", reply or "", re.I))
+    if not otp_sent_ok:
+        if otp_fail == "other":
+            reply = ("I couldn't send the verification code just now. Let's continue on WhatsApp at +%s and the "
+                     "team will help you right away." % WHATSAPP)
+        elif otp_fail == "phone" or claims_sent:
+            reply = ("Almost there! Before I email your 6-digit verification code, I just need a phone number too "
+                     "— what's the best number to reach you on? (Prefer to skip it? Message us on WhatsApp at +%s.)" % WHATSAPP)
 
     log_event(event="chat", provider=used, captured=captured, page=page, q=user_last[:120])
     return {
