@@ -229,6 +229,62 @@ def _extract_contact(msgs):
         out["name"] = name.strip()[:60]
     return out
 
+_PLACEHOLDER_NAMES = {"visitor", "user", "customer", "name", "your name", "client", "there", "test", "example", "someone"}
+
+def _clean_name(n):
+    n = (n or "").strip().strip(".")
+    if not n or n.lower() in _PLACEHOLDER_NAMES:
+        return ""
+    if not re.fullmatch(r"[A-Za-z][A-Za-z.'\- ]{1,59}", n):
+        return ""
+    return n
+
+def _last_otp(msgs):
+    for mm in reversed(msgs or []):
+        if mm.get("role") == "user":
+            hit = re.search(r"\b(\d{6})\b", mm.get("content", "") or "")
+            if hit:
+                return hit.group(1)
+    return ""
+
+def _loadargs(tc):
+    try:
+        return json.loads((tc.get("function") or {}).get("arguments") or "{}")
+    except Exception:
+        return {}
+
+def _parse_inline_tools(text):
+    """Some models emit a tool call as text (<function=name>{json}</function>) instead of a
+    native tool_call. Parse + strip them so the raw block never leaks to the visitor."""
+    calls = []
+    for hit in re.finditer(r"<function\s*=\s*([A-Za-z_]+)\s*>\s*(\{.*?\})", text or "", re.S):
+        try:
+            calls.append((hit.group(1), json.loads(hit.group(2))))
+        except Exception:
+            calls.append((hit.group(1), {}))
+    cleaned = re.sub(r"<function\b.*", "", text or "", flags=re.S).strip()
+    return cleaned, calls
+
+def _otp_reply(state, known):
+    wa, email = WHATSAPP, known.get("email", "")
+    if state == "verified":
+        return ("You're all set — thank you! Your details are verified and saved, and our team will reach out "
+                "within one business day. Want to talk sooner? WhatsApp +%s or book a call: %s" % (wa, BOOKING_URL))
+    if state in ("sent", "rate"):
+        to = (" to " + email) if email else ""
+        spam = " and spam (you may already have one from a moment ago)" if state == "rate" else ""
+        return "I've emailed a 6-digit verification code%s. Please check your inbox%s and type the code here to confirm." % (to, spam)
+    if state == "need_email":
+        return "Happy to set that up! Could you share your name, email and phone? I'll email a quick 6-digit code to verify and get the team on it."
+    if state == "need_phone":
+        return "Almost there — what's the best phone number to reach you on? I'll email a 6-digit code to confirm. (Prefer WhatsApp? +%s)" % wa
+    if state == "need_name":
+        return "Thanks! And your name? Then I'll email you a 6-digit verification code to confirm."
+    if state == "bad_code":
+        return ("That code didn't match or has expired. Please re-enter the 6-digit code from your email, or say "
+                "'resend' for a new one. You can also reach us on WhatsApp at +%s." % wa)
+    return "I couldn't send the code just now — let's continue on WhatsApp at +%s and the team will help right away." % wa
+
 def send_verification(args):
     """Step 1 — email a 6-digit OTP via the contact Apps Script (action=request_otp).
     The script needs a valid phone + JS token, so guard for those before calling."""
@@ -280,53 +336,49 @@ def handle_chat(payload):
             messages.append({"role": m["role"], "content": m["content"]})
 
     reply, used, captured = None, None, False
-    otp_sent_ok, otp_fail = False, None
+    otp_state = None
     known = _extract_contact(msgs_in)
 
     for key in GROQ_KEYS:
         try:
             m = _groq(messages, key, tools=TOOLS)
-            tcs = m.get("tool_calls") or []
-            if tcs:
-                messages.append(m)
-                for tc in tcs:
-                    fn = tc.get("function", {}).get("name")
-                    try:
-                        args = json.loads(tc["function"].get("arguments") or "{}")
-                    except Exception:
-                        args = {}
-                    for _k in ("name", "email", "phone"):
-                        if not str(args.get(_k) or "").strip() and known.get(_k):
-                            args[_k] = known[_k]
-                    if fn == "send_verification":
-                        sv = send_verification(args)
-                        if sv.get("ok"):
-                            otp_sent_ok = True
-                            result = {"code_sent": True, "instruction": "A code was emailed. Tell the visitor to check their inbox and type the 6-digit code here."}
-                        elif sv.get("error") == "otp_rate_limited":
-                            otp_sent_ok = True
-                            result = {"code_sent": True, "instruction": "A code was already emailed moments ago. Tell them to check their inbox and spam folder and type the 6-digit code here (a new one can be requested in a minute)."}
-                        elif sv.get("error") in ("need_phone", "bad_phone"):
-                            otp_fail = "phone"
-                            result = {"code_sent": False, "instruction": "A valid phone number is required before sending the code. Ask the visitor for their phone number. Do NOT say a code was sent."}
-                        else:
-                            otp_fail = "other"
-                            result = {"code_sent": False, "instruction": "The code could not be sent. Apologise briefly and offer to continue on WhatsApp at +" + WHATSAPP + ". Do NOT say a code was sent."}
-                    elif fn == "verify_and_capture":
-                        vr = verify_and_capture(args)
-                        ok = bool(vr.get("ok"))
-                        captured = captured or ok
-                        if ok:
-                            result = {"verified": True, "saved": True, "instruction": "Thank them — their details are saved and the team will follow up within one business day. Offer a call or WhatsApp."}
-                        else:
-                            result = {"verified": False, "instruction": "The code was wrong or expired. Ask them to re-check and re-enter it, offer to resend, or hand off to WhatsApp. Do NOT say the lead was saved."}
+            content = m.get("content") or ""
+            calls = [((tc.get("function") or {}).get("name"), _loadargs(tc)) for tc in (m.get("tool_calls") or [])]
+            if not calls and "<function" in content:
+                content, calls = _parse_inline_tools(content)
+            for fn, args in calls:
+                args = args if isinstance(args, dict) else {}
+                if fn == "send_verification":
+                    # Build the lead ONLY from what the visitor actually typed (never the model's guesses).
+                    email = known.get("email", "")
+                    phone = known.get("phone", "")
+                    name = known.get("name", "") or _clean_name(args.get("name"))
+                    if not email:
+                        otp_state = "need_email"
+                    elif len(_digits(phone)) < 10:
+                        otp_state = "need_phone"
+                    elif not name:
+                        otp_state = "need_name"
                     else:
-                        result = {"error": "unknown_tool"}
-                    messages.append({"role": "tool", "tool_call_id": tc.get("id", ""),
-                                     "content": json.dumps(result)})
-                reply = _groq(messages, key).get("content")
+                        sv = send_verification({"name": name, "email": email, "phone": phone})
+                        otp_state = "sent" if sv.get("ok") else ("rate" if sv.get("error") == "otp_rate_limited" else "send_fail")
+                elif fn == "verify_and_capture":
+                    otp = str(args.get("otp") or "").strip() or _last_otp(msgs_in)
+                    email = known.get("email", "") or args.get("email", "")
+                    if re.fullmatch(r"\d{6}", otp or "") and email:
+                        vr = verify_and_capture({"name": known.get("name", ""), "email": email,
+                                                 "phone": known.get("phone", ""), "business": args.get("business", ""),
+                                                 "budget": args.get("budget", ""), "service": args.get("service", ""),
+                                                 "industry": args.get("industry", ""), "timeline": args.get("timeline", ""),
+                                                 "notes": args.get("notes", ""), "otp": otp})
+                        captured = captured or bool(vr.get("ok"))
+                        otp_state = "verified" if vr.get("ok") else "bad_code"
+                    else:
+                        otp_state = "bad_code"
+            if calls:
+                reply = _otp_reply(otp_state, known)
             else:
-                reply = m.get("content")
+                reply = re.sub(r"<function\b.*", "", content, flags=re.S).strip()
             used = "groq"
             break
         except Exception as e:
@@ -343,16 +395,12 @@ def handle_chat(payload):
                  "your name and email here and the team will get back to you today." % WHATSAPP)
         used = "fallback"
 
-    # Deterministic guard: never let the model claim a code was sent when it wasn't
-    # (covers both a failed send AND the model hallucinating "sent" without calling the tool).
-    claims_sent = bool(re.search(r"(sent|emailed)[^.]{0,40}code|code[^.]{0,40}(sent|emailed)", reply or "", re.I))
-    if not otp_sent_ok:
-        if otp_fail == "other":
-            reply = ("I couldn't send the verification code just now. Let's continue on WhatsApp at +%s and the "
-                     "team will help you right away." % WHATSAPP)
-        elif otp_fail == "phone" or claims_sent:
-            reply = ("Almost there! Before I email your 6-digit verification code, I just need a phone number too "
-                     "— what's the best number to reach you on? (Prefer to skip it? Message us on WhatsApp at +%s.)" % WHATSAPP)
+    # Guard: if the model claimed a code was sent as plain text (no tool call), correct it.
+    if otp_state is None and re.search(r"(sent|emailed)[^.]{0,40}code|code[^.]{0,40}(sent|emailed)", reply or "", re.I):
+        reply = ("Happy to help! To email your 6-digit verification code I just need your name, email and phone "
+                 "— could you share those? (Prefer WhatsApp? +%s)" % WHATSAPP)
+    if captured:
+        otp_state = "verified"
 
     log_event(event="chat", provider=used, captured=captured, page=page, q=user_last[:120])
     return {
