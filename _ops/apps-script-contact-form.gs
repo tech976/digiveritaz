@@ -27,6 +27,9 @@ var NOTIFY_EMAILS = [
 ].join(',');
 var SUBJECT_PREFIX = '[Website Lead] ';
 
+// Progressive popup (DV-LEAD v2) writes here — upsert by LeadID. Auto-created.
+var LEAD_SHEET_NAME = 'DV Leads (Popup)';
+
 // ============================================================
 // HARDENING TUNABLES
 // ============================================================
@@ -84,6 +87,12 @@ function doPost(e) {
     // (3) JS-ok token (proves JavaScript executed on the page)
     if (!p._jsok || !/^dv-[a-z0-9]{8,12}$/i.test(p._jsok)) {
       return json({ ok: false, error: 'no_js' });
+    }
+
+    // (3b) progressive popup (DV-LEAD v2) — dispatch BEFORE the email/timing gates
+    // so a step-1 "number only" save isn't rejected for having no email yet.
+    if (p.action === 'lead_save') {
+      return handleLeadSave_(p, Date.now());
     }
 
     // (4) time-on-page check
@@ -458,3 +467,118 @@ function json(obj) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+
+// ============================================================
+// ACTION 3 — lead_save: progressive popup upsert (DV-LEAD v2)
+// One row per LeadID. Step 1 saves the number (Partial); later
+// steps update the same row; final step marks it Complete.
+// Abandon after step 1 => the number stays as a Partial lead.
+// ============================================================
+function handleLeadSave_(p, nowMs) {
+  var leadId = String(p.leadId || '').slice(0, 64);
+  if (!leadId) leadId = 'srv-' + nowMs;
+
+  var phoneDigits = String(p.phone || '').replace(/\D+/g, '');
+  if (phoneDigits.length < 8) return json({ ok: false, error: 'no_phone' });
+
+  var complete = (p.complete === '1' || p.complete === 'true' || String(p.status) === 'Complete');
+  var status = complete ? 'Complete' : 'Partial';
+
+  var v = {
+    phone:   p.phone   || '',
+    service: p.service || '',
+    name:    p.name    || '',
+    email:   p.email   || '',
+    company: p.company || '',
+    message: p.message || '',
+    source:  p._source || 'website-popup',
+    page:    p._page   || '',
+    consent: p.consent || '',
+    verified: p.verified || ''
+  };
+
+  var lock = LockService.getScriptLock();
+  try { lock.waitLock(8000); } catch (e) { /* proceed without lock if busy */ }
+  try {
+    var sheet = getLeadSheet_();
+    var data = sheet.getDataRange().getValues();   // row 0 = header
+    var rowIdx = -1;                                // 1-based sheet row
+    for (var r = 1; r < data.length; r++) {
+      if (String(data[r][1]) === leadId) { rowIdx = r + 1; break; }
+    }
+    var now = new Date();
+    var isNew = (rowIdx === -1);
+
+    if (isNew) {
+      sheet.appendRow([now, leadId, status, v.phone, v.service, v.name, v.email,
+                       v.company, v.message, v.source, v.page, v.consent, v.verified, now]);
+    } else {
+      var row = data[rowIdx - 1].slice();
+      row[2] = status;
+      function setIf(col, val) { if (val !== '' && val != null) row[col] = val; }
+      setIf(3, v.phone); setIf(4, v.service); setIf(5, v.name); setIf(6, v.email);
+      setIf(7, v.company); setIf(8, v.message); setIf(9, v.source); setIf(10, v.page); setIf(11, v.consent); setIf(12, v.verified);
+      row[13] = now;
+      sheet.getRange(rowIdx, 1, 1, row.length).setValues([row]);
+      v = { phone: row[3], service: row[4], name: row[5], email: row[6], company: row[7], message: row[8], source: row[9], verified: row[12] };
+    }
+
+    // Email notifications: a heads-up the moment a number lands, and the full
+    // lead when the form is completed. (Sheet is the source of truth regardless.)
+    if (isNew)   notifyLead_(leadId, status, v, false);
+    if (complete) notifyLead_(leadId, 'Complete', v, true);
+
+    return json({ ok: true, leadId: leadId, status: status });
+  } catch (err) {
+    console.error('handleLeadSave_ ' + (err && err.stack ? err.stack : err));
+    return json({ ok: false, error: 'save_failed' });
+  } finally {
+    try { lock.releaseLock(); } catch (e) {}
+  }
+}
+
+function getLeadSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(LEAD_SHEET_NAME);
+  if (!sh) {
+    sh = ss.insertSheet(LEAD_SHEET_NAME);
+    sh.appendRow(['Created', 'LeadID', 'Status', 'Phone', 'Service', 'Name', 'Email',
+                  'Company/Website', 'Message', 'Source', 'Page', 'Consent', 'Verified', 'Updated']);
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function notifyLead_(leadId, status, v, full) {
+  try {
+    var tag = full ? '✅ FULL LEAD' : '🟡 New number';
+    var subject = SUBJECT_PREFIX + tag + ' — ' + (v.phone || '');
+    var body = [
+      tag + '  (status: ' + status + ')',
+      '',
+      'Phone:           ' + (v.phone || '—'),
+      'OTP verified:    ' + (v.verified || 'No'),
+      'Service:         ' + (v.service || '—'),
+      'Name:            ' + (v.name || '—'),
+      'Email:           ' + (v.email || '—'),
+      'Company/Website: ' + (v.company || '—'),
+      'Message:         ' + (v.message || '—'),
+      '',
+      'Lead ID:         ' + leadId,
+      'Source:          ' + (v.source || 'website popup'),
+      '',
+      (full
+        ? 'This lead completed the full form.'
+        : 'Only the number is in so far — if they drop off, follow up on WhatsApp.')
+    ].join('\n');
+    MailApp.sendEmail({
+      to: NOTIFY_EMAILS,
+      subject: subject,
+      name: 'DigiVeritaz Leads',
+      replyTo: 'info@digiveritaz.com',
+      body: body
+    });
+  } catch (e) {
+    console.error('notifyLead_ ' + e);
+  }
+}
