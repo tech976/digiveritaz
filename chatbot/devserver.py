@@ -11,6 +11,9 @@ Reads keys from the repo-root .env (git-ignored).
 """
 import os, sys, json
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+# Serve XSLT/XML with content types the browser will apply (for sitemap stylesheet preview)
+SimpleHTTPRequestHandler.extensions_map.setdefault(".xsl", "text/xsl")
+SimpleHTTPRequestHandler.extensions_map[".xml"] = "application/xml"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(ROOT)
