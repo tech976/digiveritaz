@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:s="http://www.sitemaps.org/schemas/sitemap/0.9">
+  xmlns:s="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes" doctype-system="about:legacy-compat"/>
 
 <xsl:template match="/">
@@ -72,15 +73,14 @@
         <p class="sub">This is an XML sitemap for <strong>DigiVeritaz</strong>, generated for search engines such as Google and Bing. It lists the pages we want indexed.</p>
         <div class="count"><xsl:value-of select="count(s:urlset/s:url)"/> URLs</div>
         <table>
-          <thead><tr><th class="idx">#</th><th>URL</th><th>Last Modified</th><th>Change Freq</th><th>Priority</th></tr></thead>
+          <thead><tr><th class="idx">#</th><th>URL</th><th>Last Modified</th><th>Images</th></tr></thead>
           <tbody>
             <xsl:for-each select="s:urlset/s:url">
               <tr>
                 <td class="idx"><xsl:value-of select="position()"/></td>
                 <td><a href="{s:loc}"><xsl:value-of select="s:loc"/></a></td>
                 <td class="num"><xsl:value-of select="s:lastmod"/></td>
-                <td class="num"><xsl:value-of select="s:changefreq"/></td>
-                <td class="num"><xsl:value-of select="s:priority"/></td>
+                <td class="num"><xsl:value-of select="count(image:image)"/></td>
               </tr>
             </xsl:for-each>
           </tbody>

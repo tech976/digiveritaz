@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.digiveritaz.com/uk/</loc>
@@ -11,6 +12,7 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -21,6 +23,7 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/seo/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/seo/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -31,6 +34,7 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/pay-per-click/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/pay-per-click/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -41,6 +45,7 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/performance-marketing-agency/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/performance-marketing-agency/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -51,6 +56,7 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/paid-social-media-advertising/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/paid-social-media-advertising/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -61,5 +67,6 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/generative-search-optimisation/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/generative-search-optimisation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 </urlset>

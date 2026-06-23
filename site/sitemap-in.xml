@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.digiveritaz.com/</loc>
@@ -11,6 +12,7 @@
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/"/>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -18,6 +20,7 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -25,6 +28,7 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -32,6 +36,7 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -39,6 +44,7 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -46,6 +52,7 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -53,55 +60,138 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <!-- Service pages -->
   <!-- Marketing -->
-  <url><loc>https://www.digiveritaz.com/seo/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/seo/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/seo/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/seo/"/></url>
-  <url><loc>https://www.digiveritaz.com/social-media-management/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/influencer-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/digital-pr/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/online-reputation-management/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/organic-marketing-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/whatsapp-marketing-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/performance-marketing-agency/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/performance-marketing-agency/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/performance-marketing-agency/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/performance-marketing-agency/"/></url>
-  <url><loc>https://www.digiveritaz.com/ecommerce-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/generative-search-optimisation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/generative-search-optimisation/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/generative-search-optimisation/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/generative-search-optimisation/"/></url>
+  <url><loc>https://www.digiveritaz.com/seo/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/seo/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/seo/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/seo/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/social-media-management/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/influencer-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/digital-pr/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/online-reputation-management/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/organic-marketing-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/whatsapp-marketing-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/performance-marketing-agency/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/performance-marketing-agency/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/performance-marketing-agency/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/performance-marketing-agency/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/ecommerce-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/generative-search-optimisation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/generative-search-optimisation/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/generative-search-optimisation/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/generative-search-optimisation/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
   <!-- Advertising -->
-  <url><loc>https://www.digiveritaz.com/pay-per-click/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/pay-per-click/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/pay-per-click/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/pay-per-click/"/></url>
-  <url><loc>https://www.digiveritaz.com/display-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/facebook-instagram-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/shopping-ads/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/paid-social-media-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/paid-social-media-advertising/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/paid-social-media-advertising/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/paid-social-media-advertising/"/></url>
-  <url><loc>https://www.digiveritaz.com/amazon-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/native-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.digiveritaz.com/pay-per-click/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/pay-per-click/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/pay-per-click/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/pay-per-click/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/display-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/facebook-instagram-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/shopping-ads/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/paid-social-media-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority><xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/paid-social-media-advertising/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/paid-social-media-advertising/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/paid-social-media-advertising/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/amazon-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/native-advertising/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
   <!-- Design & Content -->
-  <url><loc>https://www.digiveritaz.com/ui-ux-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/product-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/branding-and-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/communication-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/content-copy-writing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.digiveritaz.com/ui-ux-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/product-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/branding-and-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/communication-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/content-copy-writing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
   <!-- Strategy & Data -->
-  <url><loc>https://www.digiveritaz.com/conversion-rate-optimisation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/revenue-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/cmo-consultancy/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/landing-page-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/real-estate-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/research-and-insights/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/strategy-and-planning/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/analytics-configuration/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/google-tag-manager/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/data-strategy-consulting-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.digiveritaz.com/conversion-rate-optimisation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/revenue-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/cmo-consultancy/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/landing-page-design/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/real-estate-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/research-and-insights/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/strategy-and-planning/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/analytics-configuration/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/google-tag-manager/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/data-strategy-consulting-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
   <!-- Tech & Development -->
-  <url><loc>https://www.digiveritaz.com/website-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/custom-software-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/ecommerce-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/wordpress-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/mobile-app-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/linux-hosting/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/business-email/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.digiveritaz.com/crm-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.digiveritaz.com/website-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/custom-software-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/ecommerce-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/wordpress-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/mobile-app-development/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/linux-hosting/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/business-email/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/crm-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
 
   <!-- Blog posts -->
   <url>
@@ -109,6 +199,7 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Native%20Advertising%207%20High-Converting%20Formats%20for%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -116,6 +207,7 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/UI%20UX%20Design%208%20Core%20Principles%20That%20Boost%20Conversions.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -123,6 +215,7 @@
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Shopping%20Ads%20India%2010%20Hacks%20to%20Maximise%20Your%20ROAS%20in%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -130,6 +223,7 @@
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/CMO%20Consultancy%20When%20Your%20Business%20Needs%20a%20Fractional%20CMO.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -137,6 +231,7 @@
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Display%20Advertising%208%20Ways%20to%20Cut%20CPC%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -144,6 +239,7 @@
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Digital%20PR%20India%209%20Link-Building%20Tactics%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -151,6 +247,7 @@
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Brand%20Identity%20Design%207%20Elements%20That%20Build%20Trust%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -158,6 +255,7 @@
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Online%20Reputation%20Management%208%20Proven%20Steps%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -165,6 +263,7 @@
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Influencer%20Marketing%20India%20Complete%20ROI%20Guide%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -172,6 +271,7 @@
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Social%20Media%20Management%20Full%20ROI%20Breakdown%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -179,6 +279,7 @@
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Native%20Advertising%20vs%20Display%20Ads%20ROI%20Comparison%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -186,6 +287,7 @@
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Data%20Strategy%20for%20Smarter%20Marketing%20Decisions%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -193,6 +295,7 @@
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/10%20E-Commerce%20Marketing%20Strategies%20to%20Boost%20Sales%20in%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -200,6 +303,7 @@
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Generate%20B2B%20Leads%20from%20LinkedIn%20Ads%20in%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -207,6 +311,7 @@
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/WhatsApp%20Marketing%20for%20Business%202026%20Complete%20Strategy%20Guide.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -214,6 +319,7 @@
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Build%20a%20High-Converting%20Landing%20Page%20That%20Gets%20Leads.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -221,6 +327,7 @@
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/7%20Performance%20Marketing%20Strategies%20That%20Slash%20Your%20CAC%20in%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -228,6 +335,7 @@
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20Ads%20vs%20Facebook%20Ads%20Which%20Gets%20You%20More%20Leads%20in%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -235,6 +343,7 @@
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/10%20Local%20SEO%20Mistakes%20Killing%20Your%20Google%20Rankings.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -242,6 +351,7 @@
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/What%20Is%20Generative%20Search%20Optimisation%20GSO%202026.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -249,6 +359,7 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Vernacular%20SEO%20India%207%20Untapped%20Strategies%20for%20Regional%20Search.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -256,6 +367,7 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Email%20Automation%2010%20Flows%20That%20Generate%20Revenue%20on%20Autopilot.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -263,6 +375,7 @@
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Personal%20Branding%20for%20Founders%209%20Steps%20to%20Industry%20Authority.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -270,6 +383,7 @@
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/YouTube%20Marketing%208%20Proven%20Ways%20to%20Turn%20Views%20into%20Leads.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -277,6 +391,7 @@
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Social%20Media%20Strategy%202026%2011%20Tactics%20for%20Indian%20Brands.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -284,6 +399,7 @@
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20Analytics%204%207%20Reports%20Every%20Marketer%20Must%20Set%20Up.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -291,6 +407,7 @@
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Content%20Marketing%20ROI%2010%20Frameworks%20That%20Prove%20It%20Pays.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -298,6 +415,7 @@
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/LinkedIn%20Ads%20B2B%209%20Strategies%20for%2050L%20Pipeline.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -305,6 +423,7 @@
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/8%20CRO%20Fixes%20That%20Doubled%20Sales.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -312,6 +431,7 @@
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Local%20SEO%20India%2010%20GBP%20Hacks%20That%203X%20Footfall.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -319,6 +439,7 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/11%20ChatGPT%20Prompts%20That%20Write%2012%20Percent%20Converting%20Ad%20Copy.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -326,6 +447,7 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20Ads%20Budget%207%20Formulas%20Agencies%20Use%20to%20Win.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -333,6 +455,7 @@
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Rank%20Number%201%20on%20Amazon%20India%209%20Listing%20Hacks.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -340,6 +463,7 @@
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/12%20Lead%20Gen%20Strategies%20That%20Cut%20CPL%20by%2060.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -347,6 +471,7 @@
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/SEO%20vs%20GEO%2010%20Critical%20Differences.webp?v=2</image:loc></image:image>
   </url>
 
   <url>
@@ -354,6 +479,7 @@
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Meta%20Ads%20Not%20Converting%209%20Hidden%20Reasons.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -361,6 +487,7 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/WhatsApp%20Marketing%20India%208%20Templates%20That%20Convert.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -368,6 +495,7 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/7%20Performance%20Marketing%20Strategies%20for%20D2C.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -375,171 +503,232 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/11%20AI%20Marketing%20Tools%20That%20Replaced%20My%205L%20Agency%20Stack.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/generative-engine-optimization-tactics/</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Generative%20Engine%20Optimization.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/how-to-run-facebook-ads-without-website-2026/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Run%20Facebook%20Ads%20Without%20a%20Website.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/keyword-strategy-google-ads-high-converting-keywords-2026/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Keyword%20Strategy%20for%20Google%20Ads.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/turn-social-media-followers-into-leads-2026/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Turn%20Social%20Media%20Followers%20into%20High-Quality%20Leads%202026.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/google-ads-clicks-no-conversions-7-fixes/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20Ads%20Clicks%20but%20No%20Conversions%207%20Fixes.webp?v=2</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/ai-lead-generation-marketing-automation/</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Use%20AI%20for%20Lead%20Generation%20and%20Marketing%20Automation.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/how-ai-is-transforming-digital-marketing-2026/</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20AI%20Is%20Transforming%20Digital%20Marketing%20in%202026.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/performance-marketing-generate-leads-increase-roi/</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/How%20to%20Use%20Performance%20Marketing%20to%20Generate%20Leads%20and%20Increase%20ROI.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/google-io-2026-what-every-marketer-needs-to-act-on-now/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20IO%202026%20What%20Every%20Marketer%20Needs%20to%20Act%20On%20Now.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/seo-for-small-businesses-2026-step-by-step-guide/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/SEO%20for%20Small%20Businesses%20in%202026.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/why-website-not-generating-leads-10-fixes/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Why%20Your%20Website%20Is%20Not%20Generating%20Leads.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/how-performance-marketing-agencies-deliver-measurable-roi/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/local-seo-competitor-research-win-google-map-pack-in-2026/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/the-future-of-seo-competition-predictions-what-to-prepare-for/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/what-is-generative-ai-seo/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/local-seo-checklist-for-2026/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/top-importance-of-a-website-for-your-business/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/top-5-benefits-of-a-multi-channel-marketing-campaign/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/top-12-advantages-of-search-engine-marketing/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/how-to-build-a-strong-digital-presence-for-your-brand/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/why-local-seo-matters-more-than-ever-in-2025/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/how-to-integrate-chatgpt-with-your-paid-campaigns-for-better-ux/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/optimize-for-ai-geo-strategies-for-modern-brands/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/blog/our-formula-for-foolproof-performance-marketing-wins/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 
   <!-- Case studies -->
-  <url><loc>https://www.digiveritaz.com/case-study/hyundai-elite-i20-lead-generation-campaign/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/hyundai-pledge-to-be-safe/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/stem-rx-regenerative-hospital-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/shape-u-clinic-aesthetic-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/jk-shah-classes-quality-leads/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/siws-school-admissions-ppc/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/shiamak-one-year-program-stepping-up-digital-engagement-for-aspiring-dancers/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/khyber-cement-cementing-regional-awareness-through-digital-visibility/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/transcon-triumph-building-leads-visibility-through-multi-platform-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/zedex-mobility-car-booking-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/rawood-sheed-timber-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/legal-junction-building-a-long-term-lead-engine-for-rent-agreement-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/my-bid-app-multi-platform-growth/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/ppc-case-study-tulsi-realty-9-meraki-panvel-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/seo-case-study-mayapuri-com/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/seo-case-study-themauve-co/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/ebco-forging-digital-success-with-integrated-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.digiveritaz.com/case-study/case-study-gy3-fashion-sales-branding/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.digiveritaz.com/case-study/hyundai-elite-i20-lead-generation-campaign/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/transcon.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/hyundai-pledge-to-be-safe/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Kypber%20Cement.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/stem-rx-regenerative-hospital-marketing/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Shapeu.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/shape-u-clinic-aesthetic-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Siws.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/jk-shah-classes-quality-leads/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/WYBID.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/siws-school-admissions-ppc/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/The%20Rawood%20Shed.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/shiamak-one-year-program-stepping-up-digital-engagement-for-aspiring-dancers/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/EBCO.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/khyber-cement-cementing-regional-awareness-through-digital-visibility/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/JK%20SHah%20.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/transcon-triumph-building-leads-visibility-through-multi-platform-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Legal%20Junction.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/zedex-mobility-car-booking-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Stem%20RX.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/rawood-sheed-timber-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Zedex.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/legal-junction-building-a-long-term-lead-engine-for-rent-agreement-services/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/mauve.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/my-bid-app-multi-platform-growth/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Shamik.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/ppc-case-study-tulsi-realty-9-meraki-panvel-lead-generation/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Pledge%20to%20Be%20Safe.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/seo-case-study-mayapuri-com/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/GY3.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/seo-case-study-themauve-co/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Mayapuri.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/ebco-forging-digital-success-with-integrated-campaigns/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/i20%20Lead%20Generation.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://www.digiveritaz.com/case-study/case-study-gy3-fashion-sales-branding/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Tusli.webp</image:loc></image:image>
+  </url>
 
   <!-- Legal -->
   <url>
@@ -547,11 +736,13 @@
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.digiveritaz.com/terms-and-conditions/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
 </urlset>
