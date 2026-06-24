@@ -434,6 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
+  var OTP_ENDPOINT = '/api/otp'; // MSG91-backed phone OTP (WhatsApp channel)
   var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
@@ -483,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<button class="dvm-send" type="button" id="dvm-getotp">Get Verification Code</button>'
       +'</div>'
       +'<div id="dvm-stage2" style="display:none">'
-      +'<p class="dvm-sub" style="margin-top:0">Enter the 6-digit code we emailed to <strong id="dvm-otpemail"></strong>.</p>'
+      +'<p class="dvm-sub" style="margin-top:0">Enter the 6-digit code we sent on WhatsApp to <strong id="dvm-otpphone"></strong>.</p>'
       +'<div class="dvm-field full"><label>Verification Code <span class="req">*</span></label><input type="text" name="otp" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit code"></div>'
       +'<button class="dvm-send" type="submit" id="dvm-verify">Verify &amp; Send</button>'
       +'<div style="margin-top:10px;font-size:.9rem"><a href="#" id="dvm-resend">Resend code</a> &nbsp;&middot;&nbsp; <a href="#" id="dvm-edit">Edit details</a></div>'
@@ -539,19 +540,37 @@ document.addEventListener('DOMContentLoaded', function () {
   function dvmBase(data, action){
     return Object.assign({}, data, { _subject:'New lead from DigiVeritaz (popup)', _template:'table', _captcha:'false', _source:'website-popup-form', _page: location.pathname || '/', action: action });
   }
+  function dvmPostJSON(url, obj, cb){
+    fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(obj) })
+      .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'bad_response' }; }); })
+      .then(cb).catch(function(){ cb({ ok:false, error:'network' }); });
+  }
+  function dvmFinish(){
+    var card=document.querySelector('#dvm-overlay .dvm-card');
+    if(card){
+      card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
+        + '<div class="dvm-thanks"><h3>Thank you!</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
+      card.querySelector('.dvm-close').addEventListener('click', closeModal);
+    }
+  }
   function dvmRequestOtp(isResend){
     var data=dvmCollect();
     if(!data.fullname || !data.email || !data.phone){ dvmMsg('Please fill in your name, email and phone.', '#dc2626'); return; }
     if(!data.budget){ dvmMsg('Please select a budget range.', '#dc2626'); return; }
     var btn=document.getElementById('dvm-getotp'); if(btn) btn.disabled=true;
     dvmMsg(isResend ? 'Sending a new code…' : 'Sending verification code…');
-    var payload=dvmBase(data, 'request_otp'); delete payload.otp;
-    dvmPost(payload, function(res){
+    // Capture the lead immediately (progressive upsert) so the number isn't lost if they drop off.
+    var lead=dvmBase(data, 'lead_save'); delete lead.otp; dvmPost(lead, function(){});
+    // Send the WhatsApp OTP via our MSG91-backed endpoint.
+    dvmPostJSON(OTP_ENDPOINT, { action: isResend ? 'resend' : 'send', phone: data.phone }, function(res){
       if(btn) btn.disabled=false;
       if(res && res.ok){
-        var em=document.getElementById('dvm-otpemail'); if(em) em.textContent=data.email;
-        dvmShowStage(2); dvmMsg('Code sent! Check your inbox (and spam folder).', '#16a34a');
+        var ph=document.getElementById('dvm-otpphone'); if(ph) ph.textContent=data.phone;
+        dvmShowStage(2); dvmMsg('Code sent on WhatsApp! Check your messages.', '#16a34a');
         var oi=document.getElementById('dvm-otp'); if(oi){ try{ oi.focus(); }catch(e){} }
+      } else if(res && res.error==='otp_not_configured'){
+        // OTP not set up yet — the lead is already saved, so don't dead-end the user.
+        dvmFinish();
       } else {
         var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
         dvmMsg('Could not send code: '+e, '#dc2626');
@@ -561,21 +580,18 @@ document.addEventListener('DOMContentLoaded', function () {
   function onSubmit(ev){
     ev.preventDefault();
     var data=dvmCollect();
-    if(!/^[0-9]{6}$/.test(String(data.otp || ''))){ dvmMsg('Enter the 6-digit code from your email.', '#dc2626'); return; }
+    if(!/^[0-9]{4,8}$/.test(String(data.otp || ''))){ dvmMsg('Enter the code we sent on WhatsApp.', '#dc2626'); return; }
     var btn=document.getElementById('dvm-verify'); if(btn) btn.disabled=true;
     dvmMsg('Verifying…');
-    dvmPost(dvmBase(data, 'submit_form'), function(res){
-      if(res && res.ok){
-        var card=document.querySelector('#dvm-overlay .dvm-card');
-        if(card){
-          card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
-            + '<div class="dvm-thanks"><h3>Thank you!</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
-          card.querySelector('.dvm-close').addEventListener('click', closeModal);
-        }
+    dvmPostJSON(OTP_ENDPOINT, { action:'verify', phone: data.phone, otp: data.otp }, function(res){
+      if(res && (res.ok || res.verified)){
+        // Phone verified — upsert the full lead, flagged verified.
+        var lead=dvmBase(data, 'lead_save'); lead.otp_verified='yes'; delete lead.otp;
+        dvmPost(lead, function(){ dvmFinish(); });
       } else {
         if(btn) btn.disabled=false;
         var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
-        dvmMsg('Submission failed: '+e, '#dc2626');
+        dvmMsg('Verification failed: '+e, '#dc2626');
       }
     });
   }

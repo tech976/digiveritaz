@@ -17,6 +17,7 @@ REPO = os.path.dirname(ROOT)
 SITE = os.path.join(REPO, "site")
 sys.path.insert(0, os.path.join(SITE, "api"))
 import chat as chatmod  # site/api/chat.py
+import otp as otpmod    # site/api/otp.py
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 3000
 
@@ -35,16 +36,19 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split("?")[0].rstrip("/")
-        if path == "/api/chat":
+        if path in ("/api/chat", "/api/otp"):
             n = int(self.headers.get("Content-Length") or 0)
             try:
                 payload = json.loads(self.rfile.read(n) or b"{}")
             except Exception:
                 payload = {}
             try:
-                self._json(200, chatmod.handle_chat(payload))
+                if path == "/api/otp":
+                    self._json(200, otpmod.handle_otp(payload))
+                else:
+                    self._json(200, chatmod.handle_chat(payload))
             except Exception as e:
-                self._json(200, {"reply": "Server error: " + str(e), "endState": "error"})
+                self._json(200, {"ok": False, "reply": "Server error: " + str(e), "endState": "error"})
         else:
             self._json(404, {"error": "not found"})
 
@@ -55,6 +59,8 @@ class Handler(SimpleHTTPRequestHandler):
         p = self.path.split("?")[0]
         if p.rstrip("/") == "/api/chat":
             return self._json(200, {"ok": True, "service": "digiveritaz-chat"})
+        if p.rstrip("/") == "/api/otp":
+            return self._json(200, {"ok": True, "service": "digiveritaz-otp"})
         # Vercel-style clean URL resolution
         if p != "/" and p.endswith("/"):
             if self._exists(p + "index.html"):

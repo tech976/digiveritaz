@@ -47,6 +47,16 @@ BOOKING_URL  = os.environ.get("BOOKING_URL", "/contact-us/")
 HTTP_TIMEOUT = 8  # keep under Vercel Hobby's 10s function limit
 UA = "Mozilla/5.0 (compatible; DigiVeritazBot/1.0; +https://www.digiveritaz.com)"  # Cloudflare blocks default urllib UA
 
+# ---- MSG91 phone OTP (WhatsApp channel is configured on the OTP template in MSG91) ----
+MSG91_AUTHKEY  = os.environ.get("MSG91_AUTHKEY", "").strip()
+MSG91_TEMPLATE = os.environ.get("MSG91_TEMPLATE_ID", "").strip()
+MSG91_CC       = os.environ.get("MSG91_COUNTRY", "91").strip() or "91"
+MSG91_EXPIRY   = os.environ.get("MSG91_OTP_EXPIRY", "5").strip() or "5"
+MSG91_LENGTH   = os.environ.get("MSG91_OTP_LENGTH", "6").strip() or "6"
+OTP_DEV_MODE   = os.environ.get("OTP_DEV_MODE", "").strip() == "1"
+OTP_DEV_CODE   = os.environ.get("OTP_DEV_CODE", "123456").strip() or "123456"
+MSG91_BASE     = "https://control.msg91.com/api/v5"
+
 # ---------------------------------------------------------------- knowledge base
 _KB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kb_index.json")
 _STOP = set("a an the of to for and or in on at is are be by with your you our we it this that as from will can".split())
@@ -109,7 +119,7 @@ HARD RULES:
 - Only discuss DigiVeritaz, its services and case studies. Politely decline anything else and pivot back.
 - NEVER quote or estimate specific prices — say pricing depends on scope and route them to a quick call.
 - NEVER invent prices, guarantees, statistics or case-study numbers. Ground every specific claim in CONTEXT. If unsure, say so and offer a callback.
-- LEAD CAPTURE WITH EMAIL VERIFICATION (two steps): collect the visitor's name, email AND phone number — all three are required before verification. Then call the send_verification tool. ONLY after the tool result confirms code_sent=true may you tell them a 6-digit code was emailed and ask them to type it here. If the tool says it failed or needs a phone, ask for the missing/valid detail and do NOT claim a code was sent. When they reply with the code, call verify_and_capture with the code plus all their details. Treat the lead as captured ONLY after verify_and_capture returns verified=true. If it fails, ask them to re-check the code, offer to resend, or hand off to WhatsApp.
+- LEAD CAPTURE WITH WHATSAPP VERIFICATION (two steps): collect the visitor's name, email AND phone number — all three are required before verification. Then call the send_verification tool. ONLY after the tool result confirms ok=true may you tell them a 6-digit code was sent to their number on WhatsApp and ask them to type it here. If the tool says it failed or needs a phone, ask for the missing/valid detail and do NOT claim a code was sent. When they reply with the code, call verify_and_capture with the code plus all their details. Treat the lead as captured ONLY after verify_and_capture returns ok=true. If it fails, ask them to re-check the code, offer to resend, or hand off to WhatsApp.
 - Keep replies short, confident and helpful (2-4 sentences). Use the visitor's words.
 - If asked for a human, or after hours, or unsure: capture details and offer WhatsApp at +%(wa)s — never dead-end.
 
@@ -126,7 +136,7 @@ _LEAD_PROPS = {
 TOOLS = [
     {"type": "function", "function": {
         "name": "send_verification",
-        "description": "Email a 6-digit verification code to the visitor. REQUIRES name, email AND a valid phone number — the system rejects it without a phone. Must happen before a lead can be saved.",
+        "description": "Send a 6-digit verification code to the visitor's phone over WhatsApp (via MSG91). REQUIRES name, email AND a valid phone number — the system rejects it without a phone. Must happen before a lead can be saved.",
         "parameters": {"type": "object",
             "properties": {"name": {"type": "string"}, "email": {"type": "string"}, "phone": {"type": "string"}},
             "required": ["name", "email", "phone"]},
@@ -136,7 +146,7 @@ TOOLS = [
         "description": "Verify the 6-digit code the visitor typed and, if valid, save the lead. Call only after send_verification and after the visitor provides the code.",
         "parameters": {"type": "object",
             "properties": dict(_LEAD_PROPS, otp={"type": "string", "description": "the 6-digit code the visitor typed"}),
-            "required": ["email", "otp"]},
+            "required": ["phone", "otp"]},
     }},
 ]
 
@@ -202,6 +212,28 @@ def _jsok():
 def _digits(s):
     return re.sub(r"[^0-9]", "", s or "")
 
+def _msg91_mobile(phone):
+    d = _digits(phone)
+    return d if (d.startswith(MSG91_CC) and len(d) > 10) else MSG91_CC + d[-10:]
+
+def _msg91(method, path, qs):
+    """Call the MSG91 OTP API (channel = whatever the template is set to in MSG91)."""
+    url = MSG91_BASE + path + "?" + urllib.parse.urlencode(qs)
+    data = b"{}" if method == "POST" else None
+    req = urllib.request.Request(url, data=data, method=method, headers={
+        "authkey": MSG91_AUTHKEY, "Content-Type": "application/json",
+        "Accept": "application/json", "User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
+            return json.loads(r.read().decode("utf-8", "replace"))
+    except urllib.error.HTTPError as e:
+        try:
+            return json.loads(e.read().decode("utf-8", "replace"))
+        except Exception:
+            return {"type": "error", "message": "http_%s" % e.code}
+    except Exception as e:
+        return {"type": "error", "message": str(e)}
+
 def _extract_contact(msgs):
     """Pull name/email/phone out of the whole conversation so a tool call that omits
     one (e.g. user sends the phone in a later message) still has the full set."""
@@ -266,22 +298,22 @@ def _parse_inline_tools(text):
     return cleaned, calls
 
 def _otp_reply(state, known):
-    wa, email = WHATSAPP, known.get("email", "")
+    wa, phone = WHATSAPP, known.get("phone", "")
     if state == "verified":
         return ("You're all set — thank you! Your details are verified and saved, and our team will reach out "
                 "within one business day. Want to talk sooner? WhatsApp +%s or book a call: %s" % (wa, BOOKING_URL))
     if state in ("sent", "rate"):
-        to = (" to " + email) if email else ""
-        spam = " and spam (you may already have one from a moment ago)" if state == "rate" else ""
-        return "I've emailed a 6-digit verification code%s. Please check your inbox%s and type the code here to confirm." % (to, spam)
+        to = (" to " + phone) if phone else ""
+        again = " (you may already have one from a moment ago)" if state == "rate" else ""
+        return "I've sent a 6-digit verification code on WhatsApp%s. Please check your WhatsApp%s and type the code here to confirm." % (to, again)
     if state == "need_email":
-        return "Happy to set that up! Could you share your name, email and phone? I'll email a quick 6-digit code to verify and get the team on it."
+        return "Happy to set that up! Could you share your name, email and phone? I'll send a quick 6-digit code on WhatsApp to verify and get the team on it."
     if state == "need_phone":
-        return "Almost there — what's the best phone number to reach you on? I'll email a 6-digit code to confirm. (Prefer WhatsApp? +%s)" % wa
+        return "Almost there — what's the best phone number to reach you on? I'll send a 6-digit code to that number on WhatsApp to confirm."
     if state == "need_name":
-        return "Thanks! And your name? Then I'll email you a 6-digit verification code to confirm."
+        return "Thanks! And your name? Then I'll send you a 6-digit verification code on WhatsApp to confirm."
     if state == "bad_code":
-        return ("That code didn't match or has expired. Please re-enter the 6-digit code from your email, or say "
+        return ("That code didn't match or has expired. Please re-enter the 6-digit code from WhatsApp, or say "
                 "'resend' for a new one. You can also reach us on WhatsApp at +%s." % wa)
     return "I couldn't send the code just now — let's continue on WhatsApp at +%s and the team will help right away." % wa
 
@@ -331,36 +363,52 @@ def _services_for(reply, user_last):
     return s
 
 def send_verification(args):
-    """Step 1 — email a 6-digit OTP via the contact Apps Script (action=request_otp).
-    The script needs a valid phone + JS token, so guard for those before calling."""
-    if len(_digits(args.get("phone"))) < 10:
-        print("OTP_SEND " + json.dumps({"email": args.get("email"), "ok": False, "err": "need_phone"}, ensure_ascii=False))
+    """Step 1 — send a 6-digit OTP over WhatsApp via MSG91. Requires a valid phone."""
+    phone = args.get("phone", "")
+    if len(_digits(phone)) < 10:
+        print("OTP_SEND " + json.dumps({"phone": phone, "ok": False, "err": "need_phone"}, ensure_ascii=False))
         return {"ok": False, "error": "need_phone"}
-    res = _apps_post({"action": "request_otp", "fullname": args.get("name", ""),
-                      "email": args.get("email", ""), "phone": args.get("phone", ""),
-                      "_jsok": _jsok(), "_ts": str(int(time.time() * 1000) - 9000)})
-    ok = bool(res.get("ok"))
-    print("OTP_SEND " + json.dumps({"email": args.get("email"), "ok": ok, "err": res.get("error")}, ensure_ascii=False))
-    return {"ok": ok, "error": res.get("error")}
+    if OTP_DEV_MODE:
+        print("OTP_SEND " + json.dumps({"phone": phone, "ok": True, "dev": True}, ensure_ascii=False))
+        return {"ok": True}
+    if not MSG91_AUTHKEY or not MSG91_TEMPLATE:
+        return {"ok": False, "error": "otp_not_configured"}
+    res = _msg91("POST", "/otp", {"template_id": MSG91_TEMPLATE, "mobile": _msg91_mobile(phone),
+                                  "otp_expiry": MSG91_EXPIRY, "otp_length": MSG91_LENGTH})
+    ok = str(res.get("type", "")).lower() == "success"
+    print("OTP_SEND " + json.dumps({"phone": phone, "ok": ok, "err": None if ok else res.get("message")}, ensure_ascii=False))
+    return {"ok": ok, "error": None if ok else (res.get("message") or "send_failed")}
 
 def verify_and_capture(args):
-    """Step 2 — verify the OTP and save the lead via the existing flow (action=submit_form + otp)."""
+    """Step 2 — verify the WhatsApp OTP via MSG91, then save the lead (Apps Script lead_save)."""
     print("LEAD " + json.dumps(dict({k: v for k, v in args.items() if v and k != "otp"}, source="website-chatbot"), ensure_ascii=False))
+    phone, otp = args.get("phone", ""), _digits(args.get("otp", ""))
+    if OTP_DEV_MODE:
+        vok = (otp == OTP_DEV_CODE)
+    elif not MSG91_AUTHKEY:
+        return {"ok": False, "error": "otp_not_configured"}
+    else:
+        vres = _msg91("GET", "/otp/verify", {"mobile": _msg91_mobile(phone), "otp": otp})
+        vmsg = str(vres.get("message", "")).lower()
+        vok = (str(vres.get("type", "")).lower() == "success") or ("verified" in vmsg)
+    if not vok:
+        print("LEAD_VERIFY " + json.dumps({"phone": phone, "ok": False, "err": "otp_mismatch"}, ensure_ascii=False))
+        return {"ok": False, "error": "otp_mismatch"}
+    # Phone verified -> save the lead via the progressive upsert (no email OTP needed).
     extra = " | ".join(filter(None, [
         "service: " + args["service"] if args.get("service") else "",
         "industry: " + args["industry"] if args.get("industry") else "",
         "timeline: " + args["timeline"] if args.get("timeline") else "",
         "notes: " + args["notes"] if args.get("notes") else ""]))
-    res = _apps_post({"action": "submit_form", "otp": args.get("otp", ""),
+    res = _apps_post({"action": "lead_save", "otp_verified": "yes",
                       "fullname": args.get("name", ""), "email": args.get("email", ""),
                       "phone": args.get("phone", ""), "company": args.get("business", ""),
                       "budget": args.get("budget", ""),
                       "message": ("[chatbot lead] " + extra).strip(),
                       "source": "website-chatbot", "_jsok": _jsok(),
                       "_ts": str(int(time.time() * 1000) - 9000)})
-    ok = bool(res.get("ok"))
-    print("LEAD_VERIFY " + json.dumps({"email": args.get("email"), "ok": ok, "err": res.get("error")}, ensure_ascii=False))
-    return {"ok": ok, "error": res.get("error")}
+    print("LEAD_VERIFY " + json.dumps({"phone": phone, "ok": True, "saved": bool(res.get("ok"))}, ensure_ascii=False))
+    return {"ok": True, "error": None}  # phone verified; lead logged + saved (best-effort)
 
 def log_event(**kw):
     print("ANALYTICS " + json.dumps(kw, ensure_ascii=False))
@@ -410,9 +458,10 @@ def handle_chat(payload):
                 elif fn == "verify_and_capture":
                     otp = str(args.get("otp") or "").strip() or _last_otp(msgs_in)
                     email = known.get("email", "") or args.get("email", "")
-                    if re.fullmatch(r"\d{6}", otp or "") and email:
+                    phone = known.get("phone", "")
+                    if re.fullmatch(r"\d{6}", otp or "") and len(_digits(phone)) >= 10:
                         vr = verify_and_capture({"name": known.get("name", ""), "email": email,
-                                                 "phone": known.get("phone", ""), "business": args.get("business", ""),
+                                                 "phone": phone, "business": args.get("business", ""),
                                                  "budget": args.get("budget", ""), "service": args.get("service", ""),
                                                  "industry": args.get("industry", ""), "timeline": args.get("timeline", ""),
                                                  "notes": args.get("notes", ""), "otp": otp})
@@ -442,8 +491,8 @@ def handle_chat(payload):
 
     # Guard: if the model claimed a code was sent as plain text (no tool call), correct it.
     if otp_state is None and re.search(r"(sent|emailed)[^.]{0,40}code|code[^.]{0,40}(sent|emailed)", reply or "", re.I):
-        reply = ("Happy to help! To email your 6-digit verification code I just need your name, email and phone "
-                 "— could you share those? (Prefer WhatsApp? +%s)" % WHATSAPP)
+        reply = ("Happy to help! To send your 6-digit verification code on WhatsApp I just need your name, email and phone "
+                 "— could you share those?")
     if captured:
         otp_state = "verified"
 

@@ -12,12 +12,21 @@ Actions (JSON body):
   {"action":"verify", "phone":"9XXXXXXXXX","otp":"123456"} -> MSG91 verifies it
   {"action":"resend", "phone":"9XXXXXXXXX"}            -> MSG91 resends
 
+WhatsApp delivery: MSG91 sends the OTP over the channel configured for your OTP
+template in the MSG91 dashboard (Advanced settings -> primary channel: SMS /
+WhatsApp / Voice). To send over WhatsApp (Meta), set WhatsApp as the primary
+channel and use a Meta-approved WhatsApp Authentication template. No code change
+is needed here — this same send/verify API is used regardless of channel.
+
 Env vars (set in Vercel -> Project -> Settings -> Environment Variables):
   MSG91_AUTHKEY      (required)  your MSG91 Auth Key
-  MSG91_TEMPLATE_ID  (required)  DLT-approved OTP template id from MSG91
+  MSG91_TEMPLATE_ID  (required)  WhatsApp/DLT-approved OTP template id from MSG91
   MSG91_OTP_EXPIRY   (optional)  minutes, default 5
   MSG91_OTP_LENGTH   (optional)  digits, default 6
   MSG91_COUNTRY      (optional)  country code, default 91 (India)
+  OTP_DEV_MODE       (optional)  "1" = test mode: no MSG91 call; verify accepts
+                                 OTP_DEV_CODE. Use for local/preview testing only.
+  OTP_DEV_CODE       (optional)  accepted code in dev mode, default 123456
 
 Stdlib only (urllib) so Vercel builds it as a single function with no deps.
 """
@@ -52,6 +61,8 @@ def _cfg():
         "expiry":   os.environ.get("MSG91_OTP_EXPIRY", "5").strip() or "5",
         "length":   os.environ.get("MSG91_OTP_LENGTH", "6").strip() or "6",
         "cc":       os.environ.get("MSG91_COUNTRY", "91").strip() or "91",
+        "dev":      os.environ.get("OTP_DEV_MODE", "").strip() == "1",
+        "devcode":  os.environ.get("OTP_DEV_CODE", "123456").strip() or "123456",
     }
 
 
@@ -83,6 +94,21 @@ def handle_otp(payload):
     cfg = _cfg()
     action = (payload.get("action") or "").lower()
     phone = payload.get("phone") or ""
+
+    # ---- DEV/test mode: exercise the full UX without MSG91 (no real OTP sent) ----
+    if cfg["dev"]:
+        digits = re.sub(r"\D", "", str(phone))
+        if len(digits) < 10:
+            return {"ok": False, "error": "bad_phone"}
+        if action in ("send", "resend"):
+            return {"ok": True, "dev": True, "request_id": "dev",
+                    "hint": "dev mode — enter %s" % cfg["devcode"]}
+        if action == "verify":
+            otp = re.sub(r"\D", "", str(payload.get("otp") or ""))
+            ok = otp == cfg["devcode"]
+            return {"ok": ok, "verified": ok, "dev": True,
+                    "error": None if ok else "otp_mismatch"}
+        return {"ok": False, "error": "unknown_action"}
 
     if not cfg["authkey"] or not cfg["template"]:
         # Misconfigured: tell the frontend so it can let the lead continue
