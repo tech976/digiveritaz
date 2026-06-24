@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/why-every-business-needs-performance-marketing-in-2026/</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Why%20Every%20Business%20Needs%20Performance%20Marketing%20in%202026.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/native-advertising-formats-that-convert-2026/</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
