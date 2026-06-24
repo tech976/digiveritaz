@@ -316,16 +316,31 @@
   document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') rescueCapture(); });
 
   /* triggers (overlay mode only) */
+  var PROPOSAL_URL = '/get-proposal/';
   function wire(){
-    var nodes = document.querySelectorAll('a.btn, button.btn, a.dvl-trigger, .dvl-open');
+    var nodes = document.querySelectorAll('a.btn, button.btn, a.dvl-trigger, .dvl-open, .dv-m-call');
     Array.prototype.forEach.call(nodes, function(el){
       if (el.__dvlWired) return;
       var t = (el.textContent || '').trim().toLowerCase();
-      var hit = (t === 'book a call') || /free proposal/.test(t) || el.classList.contains('dvl-open') || el.classList.contains('dvl-trigger');
-      if (hit) { el.__dvlWired = true; el.classList.add('dv-shine'); el.addEventListener('click', function(e){ e.preventDefault(); openModal(); }); }
+      var hit = (t === 'book a call') || /free proposal/.test(t) || el.classList.contains('dvl-open') || el.classList.contains('dvl-trigger') || el.classList.contains('dv-m-call');
+      if (hit) {
+        el.__dvlWired = true; el.classList.add('dv-shine');
+        /* every conversion CTA -> navigate to the proposal page (not the popup) */
+        el.addEventListener('click', function(e){
+          var h = el.getAttribute && el.getAttribute('href');
+          if (!h || h === '#' || el.classList.contains('dv-m-call')) { e.preventDefault(); e.stopImmediatePropagation(); location.href = PROPOSAL_URL; }
+        }, true);
+      }
     });
   }
-  window.dvOpenModal = openModal;
+  window.dvOpenModal = function(){ try { location.href = PROPOSAL_URL; } catch(e){} };
+
+  /* delegated catch — Explore / See-how / Browse-archive CTAs (incl. JS-rewritten
+     hrefs) also land on the proposal page. Capture phase beats other handlers. */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest && e.target.closest('.pv-cta, .dvh-clients-link');
+    if (a) { e.preventDefault(); e.stopImmediatePropagation(); try { location.href = PROPOSAL_URL; } catch(x){} }
+  }, true);
 
   function ready(){
     var host = document.getElementById('dvl-inline');
