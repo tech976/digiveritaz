@@ -204,8 +204,8 @@
   }
 
   /* ---- OTP via MSG91 OTP Widget (exposeMethods -> our own UI) ---- */
-  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932AU7GUTdj6a196381P1' };
-  var DEV = /^(localhost|127\.|0\.0\.0\.0|10\.|192\.168\.|::1)/.test(location.hostname) || location.hostname === '';
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var DEV = false; /* always send a REAL OTP via MSG91 — no dev skip */
   var msg91Ready = false, msg91Tried = false;
   function otpDigits(){ return ($('#dvl-phone').value||'').replace(/[^0-9]/g,'').slice(-10); }
   function initMsg91(){
@@ -232,13 +232,13 @@
     err('Sending code…');
     loadMsg91(function(ok){
       if (!ok || typeof window.sendOtp !== 'function') { err('Couldn’t reach verification — tap Verify to continue.'); return; }
-      window.sendOtp('91' + otpDigits(), function(){ err(''); }, function(){ err('Couldn’t send the code. Tap “Resend code”.'); });
+      window.sendOtp('91' + otpDigits(), function(){ err(''); }, function(e){ try{console.error('MSG91 sendOtp FAILED:',e);}catch(_){} err('Couldn’t send the code. Tap “Resend code”.'); });
     });
   }
   function otpResend(e){ if(e&&e.preventDefault)e.preventDefault();
     if (DEV) { err('Dev/preview: OTP is skipped.'); return; }
     err('Sending a new code…');
-    if (typeof window.retryOtp === 'function') { window.retryOtp(null, function(){ err('A new code has been sent.'); }, function(){ err('Could not resend — try again.'); }); }
+    if (typeof window.retryOtp === 'function') { window.retryOtp(null, function(){ err('A new code has been sent.'); }, function(e){ try{console.error('MSG91 retryOtp FAILED:',e);}catch(_){} err('Could not resend — try again.'); }); }
     else { otpSend(); }
   }
   function onVerify(){
