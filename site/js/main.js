@@ -434,7 +434,9 @@ document.addEventListener('DOMContentLoaded', function () {
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
-  var OTP_ENDPOINT = '/api/otp'; // MSG91-backed phone OTP (WhatsApp channel)
+  // MSG91 OTP widget (WhatsApp primary + SMS fallback configured in MSG91 dashboard).
+  var MSG91_WIDGET = { widgetId: '3666766e6633313737383230', tokenAuth: '520932AU7GUTdj6a196381P1' };
+  var _otpReady = false, _otpLoading = false;
   var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
@@ -484,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<button class="dvm-send" type="button" id="dvm-getotp">Get Verification Code</button>'
       +'</div>'
       +'<div id="dvm-stage2" style="display:none">'
-      +'<p class="dvm-sub" style="margin-top:0">Enter the 6-digit code we sent on WhatsApp to <strong id="dvm-otpphone"></strong>.</p>'
+      +'<p class="dvm-sub" style="margin-top:0">Enter the verification code we sent to <strong id="dvm-otpphone"></strong>.</p>'
       +'<div class="dvm-field full"><label>Verification Code <span class="req">*</span></label><input type="text" name="otp" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit code"></div>'
       +'<button class="dvm-send" type="submit" id="dvm-verify">Verify &amp; Send</button>'
       +'<div style="margin-top:10px;font-size:.9rem"><a href="#" id="dvm-resend">Resend code</a> &nbsp;&middot;&nbsp; <a href="#" id="dvm-edit">Edit details</a></div>'
@@ -540,11 +542,22 @@ document.addEventListener('DOMContentLoaded', function () {
   function dvmBase(data, action){
     return Object.assign({}, data, { _subject:'New lead from DigiVeritaz (popup)', _template:'table', _captcha:'false', _source:'website-popup-form', _page: location.pathname || '/', action: action });
   }
-  function dvmPostJSON(url, obj, cb){
-    fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(obj) })
-      .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'bad_response' }; }); })
-      .then(cb).catch(function(){ cb({ ok:false, error:'network' }); });
+  // Load MSG91 widget on demand; exposes window.sendOtp / verifyOtp / retryOtp.
+  function loadOtpWidget(cb){
+    if (_otpReady) { cb(true); return; }
+    function init(){ try { window.initSendOTP({ widgetId: MSG91_WIDGET.widgetId, tokenAuth: MSG91_WIDGET.tokenAuth, exposeMethods: true, success: function(){}, failure: function(){} }); _otpReady = true; cb(true); } catch(e){ cb(false); } }
+    if (window.initSendOTP) { init(); return; }
+    if (_otpLoading) { var n=0, t=setInterval(function(){ if(_otpReady){ clearInterval(t); cb(true); } else if(++n>40){ clearInterval(t); cb(false); } }, 200); return; }
+    _otpLoading = true;
+    var urls = ['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0;
+    (function attempt(){
+      var sc=document.createElement('script'); sc.src=urls[i]; sc.async=true;
+      sc.onload=function(){ if(window.initSendOTP) init(); else cb(false); };
+      sc.onerror=function(){ i++; if(i<urls.length) attempt(); else { _otpLoading=false; cb(false); } };
+      document.head.appendChild(sc);
+    })();
   }
+  function otpMobile(phone){ var d=String(phone||'').replace(/\D/g,''); return (d.length>10 && d.indexOf('91')===0) ? d : ('91'+d.slice(-10)); }
   function dvmFinish(){
     var card=document.querySelector('#dvm-overlay .dvm-card');
     if(card){
@@ -561,20 +574,13 @@ document.addEventListener('DOMContentLoaded', function () {
     dvmMsg(isResend ? 'Sending a new code…' : 'Sending verification code…');
     // Capture the lead immediately (progressive upsert) so the number isn't lost if they drop off.
     var lead=dvmBase(data, 'lead_save'); delete lead.otp; dvmPost(lead, function(){});
-    // Send the WhatsApp OTP via our MSG91-backed endpoint.
-    dvmPostJSON(OTP_ENDPOINT, { action: isResend ? 'resend' : 'send', phone: data.phone }, function(res){
-      if(btn) btn.disabled=false;
-      if(res && res.ok){
-        var ph=document.getElementById('dvm-otpphone'); if(ph) ph.textContent=data.phone;
-        dvmShowStage(2); dvmMsg('Code sent on WhatsApp! Check your messages.', '#16a34a');
-        var oi=document.getElementById('dvm-otp'); if(oi){ try{ oi.focus(); }catch(e){} }
-      } else if(res && res.error==='otp_not_configured'){
-        // OTP not set up yet — the lead is already saved, so don't dead-end the user.
-        dvmFinish();
-      } else {
-        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
-        dvmMsg('Could not send code: '+e, '#dc2626');
-      }
+    // Send the OTP via the MSG91 widget (WhatsApp primary, SMS fallback).
+    loadOtpWidget(function(ok){
+      if(!ok){ if(btn) btn.disabled=false; dvmMsg('Couldn’t load the verification service. Please try again, or WhatsApp us.', '#dc2626'); return; }
+      var onSent=function(){ if(btn) btn.disabled=false; var ph=document.getElementById('dvm-otpphone'); if(ph) ph.textContent=data.phone; dvmShowStage(2); dvmMsg('Code sent! Check your phone for the SMS.', '#16a34a'); var oi=document.getElementById('dvm-otp'); if(oi){ try{ oi.focus(); }catch(e){} } };
+      var onErr=function(err){ if(btn) btn.disabled=false; dvmMsg((err && (err.message||err.msg)) || 'Could not send code — please check the number.', '#dc2626'); };
+      if(isResend && window.retryOtp){ window.retryOtp(null, onSent, onErr); }
+      else { window.sendOtp(otpMobile(data.phone), onSent, onErr); }
     });
   }
   function onSubmit(ev){
@@ -583,16 +589,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if(!/^[0-9]{4,8}$/.test(String(data.otp || ''))){ dvmMsg('Enter the code we sent on WhatsApp.', '#dc2626'); return; }
     var btn=document.getElementById('dvm-verify'); if(btn) btn.disabled=true;
     dvmMsg('Verifying…');
-    dvmPostJSON(OTP_ENDPOINT, { action:'verify', phone: data.phone, otp: data.otp }, function(res){
-      if(res && (res.ok || res.verified)){
-        // Phone verified — upsert the full lead, flagged verified.
-        var lead=dvmBase(data, 'lead_save'); lead.otp_verified='yes'; delete lead.otp;
-        dvmPost(lead, function(){ dvmFinish(); });
-      } else {
-        if(btn) btn.disabled=false;
-        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
-        dvmMsg('Verification failed: '+e, '#dc2626');
-      }
+    if(!window.verifyOtp){ if(btn) btn.disabled=false; dvmMsg('Verification service not ready — please resend the code.', '#dc2626'); return; }
+    window.verifyOtp(String(data.otp), function(){
+      // Phone verified — upsert the full lead, flagged verified.
+      var lead=dvmBase(data, 'lead_save'); lead.otp_verified='yes'; delete lead.otp;
+      dvmPost(lead, function(){ dvmFinish(); });
+    }, function(err){
+      if(btn) btn.disabled=false;
+      dvmMsg((err && (err.message||err.msg)) || 'That code didn’t match. Please try again.', '#dc2626');
     });
   }
 

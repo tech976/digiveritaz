@@ -204,7 +204,7 @@
   }
 
   /* ---- OTP via MSG91 OTP Widget (exposeMethods -> our own UI) ---- */
-  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932AU7GUTdj6a196381P1' };
   var DEV = /^(localhost|127\.|0\.0\.0\.0|10\.|192\.168\.|::1)/.test(location.hostname) || location.hostname === '';
   var msg91Ready = false, msg91Tried = false;
   function otpDigits(){ return ($('#dvl-phone').value||'').replace(/[^0-9]/g,'').slice(-10); }
