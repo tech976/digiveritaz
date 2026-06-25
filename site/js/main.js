@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
   // MSG91 OTP widget (WhatsApp primary + SMS fallback configured in MSG91 dashboard).
-  var MSG91_WIDGET = { widgetId: '3666766e6633313737383230', tokenAuth: '520932AU7GUTdj6a196381P1' };
+  var MSG91_WIDGET = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var _otpReady = false, _otpLoading = false;
   var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
   var SERVICES = [
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function onSubmit(ev){
     ev.preventDefault();
     var data=dvmCollect();
-    if(!/^[0-9]{4,8}$/.test(String(data.otp || ''))){ dvmMsg('Enter the code we sent on WhatsApp.', '#dc2626'); return; }
+    if(!/^[0-9]{4,8}$/.test(String(data.otp || ''))){ dvmMsg('Enter the code we sent via SMS.', '#dc2626'); return; }
     var btn=document.getElementById('dvm-verify'); if(btn) btn.disabled=true;
     dvmMsg('Verifying…');
     if(!window.verifyOtp){ if(btn) btn.disabled=false; dvmMsg('Verification service not ready — please resend the code.', '#dc2626'); return; }

@@ -245,7 +245,7 @@
     var code=($('#dvl-otp').value||'').replace(/[^0-9]/g,'');
     if(code.length<4){ err('Enter the code from the SMS.'); return; }
     var btn=$('#dvl-verify'); if(btn) btn.disabled=true; err('Verifying…');
-    function cont(tag){ state.verified=tag; save(false); err(''); if(btn) btn.disabled=false; go(2); }
+    function cont(tag){ state.otp_verified=(/^yes/i.test(tag)?'yes':'no'); save(false); err(''); if(btn) btn.disabled=false; go(2); }
     if (DEV) { cont('Yes (dev)'); return; }
     if (typeof window.verifyOtp !== 'function') { cont('Unverified (sdk offline)'); return; }
     window.verifyOtp(code, function(){ cont('Yes'); }, function(){ if(btn) btn.disabled=false; err('Incorrect or expired code. Resend and try again.'); });
@@ -278,7 +278,15 @@
       body.set('_ts', String(DVL_LOAD));
       body.set('_jsok', jsok);
       body.set('_subject', complete ? 'New FULL lead — DigiVeritaz' : 'New lead (number captured) — DigiVeritaz');
-      Object.keys(state).forEach(function(k){ if (state[k] != null && state[k] !== '') body.set(k, state[k]); });
+      /* standardized field names — identical to the contact form / DV-POPUP / chatbot */
+      if (state.fullname || state.name) body.set('fullname', state.fullname || state.name);
+      if (state.phone) body.set('phone', state.phone);
+      if (state.email) body.set('email', state.email);
+      if (state.company) body.set('company', state.company);
+      if (state.message) body.set('message', state.message);
+      if (state.consent) body.set('consent', state.consent);
+      if (state.service) body.append('services[]', state.service);
+      if (state.otp_verified) body.set('otp_verified', state.otp_verified);
       var ok = false;
       try { ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body.toString()], {type:'application/x-www-form-urlencoded;charset=UTF-8'}))); } catch(e){}
       if (!ok) { fetch(ENDPOINT, { method:'POST', body: body, mode:'no-cors', keepalive:true }).catch(function(){}); }
