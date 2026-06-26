@@ -3,18 +3,21 @@
      • Overlay popup  — opens from CTAs (full-page takeover, logo + close).
      • Inline page    — if a #dvl-inline container exists, the form renders into it
                         (used by the standalone /get-proposal/ page).
-   Flow (no OTP): Step1 service+phone+consent -> Proceed (number saved instantly);
+   Flow: Step1 service+phone+consent -> Proceed (number saved instantly) + SMS OTP;
    Step2 name+email; Step3 company/website+message -> Submit (full lead).
    Abandon after step 1 = the number is already a Partial lead.
-   When used as an overlay, this MUST load BEFORE main.min.js (window.__dvmInit
-   disables the legacy popup). Not connected to the contact-us page. */
+   This is the CTA popup: every CTA opens it. It is loaded on every page by main.js
+   and coexists with the wide auto-open popup (it no longer disables it).
+   Not connected to the contact-us page. */
 ;(function(){
   if (window.__dvLeadV2) return; window.__dvLeadV2 = true;
-  window.__dvmInit = true; /* neutralise legacy DV-POPUP in main.min.js */
+  /* This is the CTA popup ("Get Your Free Proposal"). It coexists with the wide
+     auto-open popup in main.js, so it must NOT disable that one. */
 
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
   var DVL_LOAD = Date.now();
-  var SERVICES = ['SEO & Organic Growth','Paid Advertising','Performance Marketing','E-Commerce Marketing','WhatsApp & Native Ads','Branding & Design','Web / App Development','Not sure — need guidance'];
+  /* same 12 services as the wide popup so both write identical Sheet columns ([value, label]) */
+  var SERVICES = [['Organic Marketing','Organic Marketing'],['Paid Social Media','Paid Social Media Advertising'],['PPC','Pay-Per-Click Advertising'],['Performance Marketing','Performance Marketing'],['E-commerce','E-commerce Platforms'],['Data Strategy','Data Strategy & Consulting'],['Native Advertising','Native Advertising'],['WhatsApp','WhatsApp Marketing'],['Branding','Branding & Design'],['SEO','Search Engine Optimization'],['GSO','Generative Search Optimisation'],['Tech & Development','Tech & Development']];
 
   var leadId = '', jsok = '', state = {}, savedOnce = false, completed = false, step = 1, inline = false;
 
@@ -82,6 +85,9 @@
     + '#dvl-otp{text-align:center;letter-spacing:.45em;font-weight:800;font-size:1.25rem}'
     + '.dvl-resendrow{margin-top:16px;text-align:center;color:#64748b;font-size:.86rem}'
     + '.dvl-resendrow a{color:#16a34a;font-weight:700;text-decoration:none}'
+    + '.dvl-checks{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-top:4px}'
+    + '.dvl-chk{display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155;font-weight:500;cursor:pointer;line-height:1.3}'
+    + '.dvl-chk input{width:17px;height:17px;accent-color:#16a34a;cursor:pointer;flex:0 0 auto}'
     + 'body.dvl-lock{overflow:hidden}'
     + 'body.dvl-lock .dv-mbar,body.dvl-lock .dv-wafloat,body.dvl-lock .dv-topbar,body.dvl-lock .to-top{display:none !important}'
     + '@media (max-width:480px){.dvl-title{font-size:1.42rem}.dvl-body{padding:28px 18px 44px}}';
@@ -90,7 +96,8 @@
 
   /* ---------- shared form markup + wiring ---------- */
   function formInner(){
-    var opts = '<option value="">Service interested in…</option>' + SERVICES.map(function(s){ return '<option value="'+esc(s)+'">'+esc(s)+'</option>'; }).join('');
+    var opts = '<option value="">Service interested in…</option>' + SERVICES.map(function(s){ return '<option value="'+esc(s[0])+'">'+esc(s[1])+'</option>'; }).join('');
+    var checks = SERVICES.map(function(s){ return '<label class="dvl-chk"><input type="checkbox" name="services[]" value="'+esc(s[0])+'">'+esc(s[1])+'</label>'; }).join('');
     return ''
     + '<h2 class="dvl-title">Get Your Free Proposal</h2>'
     + '<p class="dvl-sub">Tell us where you want to grow — we’ll send a tailored plan within one business day.</p>'
@@ -117,6 +124,8 @@
     + '</div>'
     + '<div class="dvl-step" data-step="3">'
     +   '<div class="dvl-f"><label>Company / Website</label><input type="text" name="company" id="dvl-company" placeholder="Company name or website" autocomplete="organization"></div>'
+    +   '<div class="dvl-f"><label>Budget Range</label><select name="budget" id="dvl-budget"><option value="">-- Please select budget range --</option><option>INR 40k &ndash; 60k</option><option>INR 60k to 1 Lac</option><option>INR 1 Lac and above</option></select></div>'
+    +   '<div class="dvl-f"><label>Select the services you need</label><div class="dvl-checks">'+checks+'</div></div>'
     +   '<div class="dvl-f"><label>What do you need help with?</label><textarea name="message" id="dvl-message" rows="3" placeholder="Goals, budget, timeline, platforms…"></textarea></div>'
     +   '<div class="dvl-actions"><button class="dvl-back" type="button" data-goto="2">Back</button><button class="dvl-btn" type="submit" id="dvl-submit">Submit &amp; Get Proposal</button></div>'
     + '</div>'
@@ -261,6 +270,9 @@
     ev.preventDefault();
     state.company = $('#dvl-company').value.trim();
     state.message = $('#dvl-message').value.trim();
+    var bud = $('#dvl-budget'); state.budget = bud ? bud.value : '';
+    var svc = []; Array.prototype.forEach.call(document.querySelectorAll('.dvl-checks input:checked'), function(c){ svc.push(c.value); });
+    state.servicesList = svc;
     completed = true;
     save(true); go(4);
   }
@@ -285,7 +297,12 @@
       if (state.company) body.set('company', state.company);
       if (state.message) body.set('message', state.message);
       if (state.consent) body.set('consent', state.consent);
-      if (state.service) body.append('services[]', state.service);
+      if (state.budget) body.set('budget', state.budget);
+      /* services[] = step-1 primary interest + any step-3 checkboxes (deduped) */
+      var svcSet = [];
+      if (state.service) svcSet.push(state.service);
+      if (state.servicesList && state.servicesList.length) state.servicesList.forEach(function(s){ if (svcSet.indexOf(s) < 0) svcSet.push(s); });
+      svcSet.forEach(function(s){ body.append('services[]', s); });
       if (state.otp_verified) body.set('otp_verified', state.otp_verified);
       var ok = false;
       try { ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body.toString()], {type:'application/x-www-form-urlencoded;charset=UTF-8'}))); } catch(e){}
@@ -323,31 +340,27 @@
   window.addEventListener('pagehide', rescueCapture);
   document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') rescueCapture(); });
 
-  /* triggers (overlay mode only) */
+  /* triggers — every conversion CTA on every page OPENS the popup (overlay) */
   var PROPOSAL_URL = '/get-proposal/';
+  var CTA_RE = /book a call|proposal|get started|get a quote|request a quote|free quote|talk to us|talk to an expert|get in touch|book a demo|consultation|strategy call|grow my|scale my|claim my/i;
   function wire(){
-    var nodes = document.querySelectorAll('a.btn, button.btn, a.dvl-trigger, .dvl-open, .dv-m-call');
+    var nodes = document.querySelectorAll('a.btn, button.btn, a.dvl-trigger, .dvl-open, .dv-m-call, .pv-cta, .dvh-clients-link');
     Array.prototype.forEach.call(nodes, function(el){
       if (el.__dvlWired) return;
       var t = (el.textContent || '').trim().toLowerCase();
-      var hit = (t === 'book a call') || /free proposal/.test(t) || el.classList.contains('dvl-open') || el.classList.contains('dvl-trigger') || el.classList.contains('dv-m-call');
+      var hit = CTA_RE.test(t) || el.classList.contains('dvl-open') || el.classList.contains('dvl-trigger') || el.classList.contains('dv-m-call') || el.classList.contains('pv-cta') || el.classList.contains('dvh-clients-link');
       if (hit) {
         el.__dvlWired = true; el.classList.add('dv-shine');
-        /* every conversion CTA -> navigate to the proposal page (not the popup) */
-        el.addEventListener('click', function(e){
-          var h = el.getAttribute && el.getAttribute('href');
-          if (!h || h === '#' || el.classList.contains('dv-m-call')) { e.preventDefault(); e.stopImmediatePropagation(); location.href = PROPOSAL_URL; }
-        }, true);
+        el.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openModal(); }, true);
       }
     });
   }
-  window.dvOpenModal = function(){ try { location.href = PROPOSAL_URL; } catch(e){} };
+  window.dvOpenModal = function(){ try { openModal(); } catch(e){} };
 
-  /* delegated catch — Explore / See-how / Browse-archive CTAs (incl. JS-rewritten
-     hrefs) also land on the proposal page. Capture phase beats other handlers. */
+  /* delegated safety net — catch CTAs injected after wire() runs (capture phase) */
   document.addEventListener('click', function(e){
-    var a = e.target && e.target.closest && e.target.closest('.pv-cta, .dvh-clients-link');
-    if (a) { e.preventDefault(); e.stopImmediatePropagation(); try { location.href = PROPOSAL_URL; } catch(x){} }
+    var a = e.target && e.target.closest && e.target.closest('.dvl-open, .dvl-trigger, .pv-cta, .dvh-clients-link');
+    if (a) { e.preventDefault(); e.stopImmediatePropagation(); try { openModal(); } catch(x){} }
   }, true);
 
   function ready(){
@@ -355,11 +368,7 @@
     if (host) { mountInline(host); return; }   /* standalone page — no popup, no auto-open */
     wire();
     setTimeout(wire, 1200);
-    try {
-      if (!/\/contact-us(\/|$)/.test(location.pathname) && !sessionStorage.getItem('dvlSeen')) {
-        setTimeout(function(){ sessionStorage.setItem('dvlSeen','1'); openModal(); }, 6000);
-      }
-    } catch(e){}
+    /* no auto-open here — the wide popup (main.js) handles the one-time auto-open */
   }
   if (document.readyState !== 'loading') ready();
   else document.addEventListener('DOMContentLoaded', ready);
