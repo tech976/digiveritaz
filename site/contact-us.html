@@ -237,13 +237,13 @@
           </div>
           <script>
           (function(){
-            // Stamp page-load time + JS-execution token so the server can reject impossibly-fast and JS-less submissions.
-            document.addEventListener('DOMContentLoaded', function(){
-              try {
-                document.getElementById('_ts').value = String(Date.now());
-                document.getElementById('_jsok').value = 'dv-' + Math.random().toString(36).slice(2, 12);
-              } catch(e) {}
-            });
+            // Stamp page-load time + JS token SYNCHRONOUSLY (these hidden inputs are above this
+            // script, so they exist now). DOMContentLoaded was unreliable here, leaving _ts/_jsok
+            // blank so the Apps Script rejected the partial save — the popups stamp at open time.
+            try {
+              document.getElementById('_ts').value = String(Date.now());
+              document.getElementById('_jsok').value = 'dv-' + Math.random().toString(36).slice(2, 12);
+            } catch(e) {}
 
             var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
             var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
