@@ -268,6 +268,13 @@
   }
   function onSubmit(ev){
     ev.preventDefault();
+    /* Enter fires the form submit on ANY step — route it to the current step's
+       action so it can't skip OTP/details straight to the thank-you screen. */
+    var s = String(step);
+    if (s === '1') { onProceed(); return; }
+    if (s === 'otp') { onVerify(); return; }
+    if (s === '2') { onContinue(); return; }
+    if (s !== '3') return;
     state.company = $('#dvl-company').value.trim();
     state.message = $('#dvl-message').value.trim();
     var bud = $('#dvl-budget'); state.budget = bud ? bud.value : '';
