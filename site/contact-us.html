@@ -258,6 +258,7 @@
             var submitBtn = document.getElementById('cf-submit');
             var formMsg   = document.getElementById('cf-msg');
             var verified = false, ready = false, sent = false;
+            var cfLeadId = 'cf-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8);
 
             function omsg(t,c){ if(otpMsg){ otpMsg.textContent=t||''; otpMsg.style.color=c||'#374151'; } }
             function fmsg(t,c){ if(formMsg){ formMsg.textContent=t||''; formMsg.style.color=c||'#374151'; } }
@@ -275,6 +276,7 @@
 
             function doSend(isResend){
               if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }
+              if(!isResend){ var pd=collect(); delete pd.otp; sendLead(Object.assign({}, pd, { action:'lead_save', leadId:cfLeadId, status:'Partial', _source:'website-contact-form', _page:(location.pathname||'/contact-us/'), _subject:'New lead (number captured) — DigiVeritaz' })); }
               getBtn.disabled=true; omsg(isResend?'Sending a new code…':'Sending OTP…');
               loadMsg91(function(ok){
                 if(!ok || typeof window.sendOtp!=='function'){ getBtn.disabled=false; omsg('Could not reach the OTP service. Please try again.','#dc2626'); return; }
@@ -304,7 +306,7 @@
               if(!phoneOk()){ fmsg('Please enter a valid 10-digit phone number.','#dc2626'); return; }
               if(!verified){ fmsg('Please verify your mobile number with the OTP first.','#dc2626'); return; }
               submitBtn.disabled=true; submitBtn.style.opacity='.6'; fmsg('Submitting…');
-              var payload=Object.assign({}, d, { action:'lead_save', otp_verified:'yes', status:'Complete', complete:'1', _source:'website-contact-form', _page:(location.pathname||'/contact-us/'), _subject:'New lead from DigiVeritaz (contact page)' });
+              var payload=Object.assign({}, d, { action:'lead_save', leadId:cfLeadId, otp_verified:'yes', status:'Complete', complete:'1', _source:'website-contact-form', _page:(location.pathname||'/contact-us/'), _subject:'New lead from DigiVeritaz (contact page)' });
               delete payload.otp;
               sendLead(payload);
               form.innerHTML='<div style="text-align:center;padding:40px 20px"><h3 style="color:#16a34a;margin:0 0 12px">Thank you!</h3><p style="color:#374151;font-size:1.05rem">Your details are in. A strategist will get back to you within one business day.</p></div>';

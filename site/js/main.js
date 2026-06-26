@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ['GSO','Generative Search Optimisation'],
     ['Tech & Development','Tech & Development']
   ];
-  var ready=false, verified=false, sent=false;
+  var ready=false, verified=false, sent=false, dvmLeadId='';
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function $(id){ return document.getElementById(id); }
   var OTPBTN='flex:0 0 auto;white-space:nowrap;background:#22c55e;color:#fff;border:0;padding:0 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem';
@@ -512,6 +512,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function doSend(isResend){
     if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }
+    if(!isResend) saveLead(false);   /* capture the number as a Partial lead before OTP */
     var g=$('dvm-getotp'); if(g) g.disabled=true; omsg(isResend?'Sending a new code…':'Sending OTP…');
     loadMsg91(function(ok){
       if(!ok || typeof window.sendOtp!=='function'){ if(g) g.disabled=false; omsg('Could not reach the OTP service. Please try again.','#dc2626'); return; }
@@ -530,6 +531,19 @@ document.addEventListener('DOMContentLoaded', function () {
   function collect(){ var form=$('dvm-form'); var fd=new FormData(form), o={}; fd.forEach(function(v,k){ if(o[k]!==undefined){ if(!Array.isArray(o[k])) o[k]=[o[k]]; o[k].push(v); } else o[k]=v; }); return o; }
   function sendLead(payload){ var b=new URLSearchParams(); Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ b.append(k,x); }); else if(v!=null) b.append(k,String(v)); }); var ok=false; try{ ok=!!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([b.toString()],{type:'application/x-www-form-urlencoded;charset=UTF-8'}))); }catch(e){} if(!ok){ fetch(ENDPOINT,{method:'POST',body:b,mode:'no-cors',keepalive:true}).catch(function(){}); } }
 
+  function saveLead(complete){
+    var d=collect();
+    var payload=Object.assign({}, d, {
+      action:'lead_save', leadId: dvmLeadId,
+      otp_verified: verified ? 'yes' : '',
+      status: complete ? 'Complete' : 'Partial',
+      complete: complete ? '1' : '',
+      _source:'website-popup-form', _page:(location.pathname||'/'),
+      _subject: complete ? 'New lead from DigiVeritaz (popup)' : 'New lead (number captured) — DigiVeritaz'
+    });
+    delete payload.otp;
+    sendLead(payload);
+  }
   function onSubmit(ev){
     ev.preventDefault();
     var d=collect();
@@ -539,9 +553,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if(!d.budget){ fmsg('Please select a budget range.','#dc2626'); return; }
     if(!verified){ fmsg('Please verify your mobile number with the OTP first.','#dc2626'); return; }
     var b=$('dvm-submit'); if(b){ b.disabled=true; b.style.opacity='.6'; } fmsg('Submitting…');
-    var payload=Object.assign({}, d, { action:'lead_save', otp_verified:'yes', status:'Complete', complete:'1', _source:'website-popup-form', _page:(location.pathname||'/'), _subject:'New lead from DigiVeritaz (popup)' });
-    delete payload.otp;
-    sendLead(payload);
+    saveLead(true);
     dvmFinish();
   }
   function dvmFinish(){
@@ -560,6 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openModal(){
     buildModal();
+    if(!dvmLeadId) dvmLeadId='dvm-'+DVM_LOAD.toString(36)+'-'+Math.random().toString(36).slice(2,8);
     var ov=$('dvm-overlay'); if(!ov) return;
     var ts=$('dvm-ts'), js=$('dvm-jsok');
     if(ts) ts.value=String(DVM_LOAD);
