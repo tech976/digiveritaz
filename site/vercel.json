@@ -72,6 +72,9 @@
     "api/chat.py": {
       "maxDuration": 10,
       "includeFiles": "api/kb_index.json"
+    },
+    "api/otp.py": {
+      "maxDuration": 10
     }
   }
 }

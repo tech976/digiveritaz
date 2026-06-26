@@ -430,11 +430,16 @@ document.addEventListener('DOMContentLoaded', function () {
     build('all');
   })();
 });
-/* DV-POPUP v1 (abhishek-edits): "Lets Get Project Started" popup (instant) + CTA shine */
+/* DV-POPUP v3 (abhishek-edits): "Lets Get Project Started" — the WIDE popup that
+   AUTO-OPENS once per session (3s, desktop only). It is NOT wired to any CTA.
+   All CTAs open the separate "Get Your Free Proposal" phone popup (dv-lead.js),
+   which this file loads. Phone OTP via MSG91 ("Get OTP" beside the phone; Submit
+   unlocks only after the number is verified). Saves to Apps Script (lead_save). */
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
-  var DVM_LOAD = Date.now(); // page-load time, used for the server-side anti-bot timing check
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var DVM_LOAD = Date.now();
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
     ['Paid Social Media','Paid Social Media Advertising'],
@@ -449,29 +454,30 @@ document.addEventListener('DOMContentLoaded', function () {
     ['GSO','Generative Search Optimisation'],
     ['Tech & Development','Tech & Development']
   ];
+  var ready=false, verified=false, sent=false, dvmLeadId='';
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function $(id){ return document.getElementById(id); }
+  var OTPBTN='flex:0 0 auto;white-space:nowrap;background:#22c55e;color:#fff;border:0;padding:0 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem';
+  var OTPINP='flex:1 1 auto;padding:11px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:1rem;text-align:center;letter-spacing:.2em';
 
   function buildModal(){
-    if (document.getElementById('dvm-overlay')) return;
-    var checks = SERVICES.map(function(s){
-      return '<label><input type="checkbox" name="services[]" value="'+esc(s[0])+'">'+esc(s[1])+'</label>';
-    }).join('');
+    if ($('dvm-overlay')) return;
+    var checks = SERVICES.map(function(s){ return '<label><input type="checkbox" name="services[]" value="'+esc(s[0])+'">'+esc(s[1])+'</label>'; }).join('');
     var html = ''
       +'<div class="dvm-card" role="document">'
       +'<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
       +'<h2 class="dvm-title">Lets Get Project Started</h2>'
       +'<p class="dvm-sub">Share your goals, budget and timeline &mdash; we&rsquo;ll send a tailored proposal within one business day.</p>'
       +'<form id="dvm-form" class="dvm-form" novalidate>'
-      +'<input type="hidden" name="_subject" value="New lead from DigiVeritaz website">'
+      +'<input type="hidden" name="_subject" value="New lead from DigiVeritaz (popup)">'
       +'<input type="hidden" name="_template" value="table">'
       +'<input type="hidden" name="_captcha" value="false">'
-      +'<div class="dvm-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label><label>Address<input type="text" name="address_line" tabindex="-1" autocomplete="off"></label></div>'
+      +'<div class="dvm-hp" aria-hidden="true" style="position:absolute;left:-9999px"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label><label>Address<input type="text" name="address_line" tabindex="-1" autocomplete="off"></label></div>'
       +'<input type="hidden" name="_ts" id="dvm-ts"><input type="hidden" name="_jsok" id="dvm-jsok">'
-      +'<div id="dvm-stage1">'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
       +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
-      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="+91 9XXXXXXXXX" required></div>'
+      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"><button type="button" id="dvm-getotp" style="'+OTPBTN+'">Get OTP</button></div><div id="dvm-otp-row" style="display:none;gap:8px;align-items:stretch;margin-top:8px"><input type="text" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit OTP" style="'+OTPINP+'"><button type="button" id="dvm-verify" style="'+OTPBTN+';background:#0f2a5a">Verify</button></div><div id="dvm-otp-msg" style="font-size:.82rem;margin-top:6px;min-height:1em"></div></div>'
       +'</div>'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>'
@@ -480,119 +486,119 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-seclabel">Select the Services You Need</div>'
       +'<div class="dvm-checks">'+checks+'</div>'
       +'<div class="dvm-field full" style="margin-bottom:14px"><label>Project Brief</label><textarea name="message" rows="2" placeholder="Tentative start date, goals, platforms of interest&hellip;"></textarea></div>'
-      +'<button class="dvm-send" type="button" id="dvm-getotp">Get Verification Code</button>'
-      +'</div>'
-      +'<div id="dvm-stage2" style="display:none">'
-      +'<p class="dvm-sub" style="margin-top:0">Enter the 6-digit code we emailed to <strong id="dvm-otpemail"></strong>.</p>'
-      +'<div class="dvm-field full"><label>Verification Code <span class="req">*</span></label><input type="text" name="otp" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit code"></div>'
-      +'<button class="dvm-send" type="submit" id="dvm-verify">Verify &amp; Send</button>'
-      +'<div style="margin-top:10px;font-size:.9rem"><a href="#" id="dvm-resend">Resend code</a> &nbsp;&middot;&nbsp; <a href="#" id="dvm-edit">Edit details</a></div>'
-      +'</div>'
-      +'<div class="dvm-msg" id="dvm-msg"></div>'
+      +'<button class="dvm-send" type="submit" id="dvm-submit" disabled style="opacity:.5">Submit</button>'
+      +'<div class="dvm-msg" id="dvm-msg" style="text-align:center;margin-top:10px"></div>'
       +'</form>'
       +'</div>';
     var ov = document.createElement('div');
     ov.className = 'dvm-overlay'; ov.id = 'dvm-overlay';
-    ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true');
-    ov.setAttribute('aria-label','Start your project'); ov.setAttribute('aria-hidden','true');
+    ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true'); ov.setAttribute('aria-label','Start your project'); ov.setAttribute('aria-hidden','true');
     ov.innerHTML = html;
     document.body.appendChild(ov);
     ov.querySelector('.dvm-close').addEventListener('click', closeModal);
     ov.addEventListener('mousedown', function(e){ if (e.target === ov) closeModal(); });
-    document.getElementById('dvm-form').addEventListener('submit', onSubmit);
-    document.getElementById('dvm-getotp').addEventListener('click', function(){ dvmRequestOtp(false); });
-    document.getElementById('dvm-resend').addEventListener('click', function(e){ e.preventDefault(); dvmRequestOtp(true); });
-    document.getElementById('dvm-edit').addEventListener('click', function(e){ e.preventDefault(); dvmShowStage(1); dvmMsg(''); });
+    wireForm();
+  }
+
+  function omsg(t,c){ var m=$('dvm-otp-msg'); if(m){ m.textContent=t||''; m.style.color=c||'#475569'; } }
+  function fmsg(t,c){ var m=$('dvm-msg'); if(m){ m.textContent=t||''; m.style.color=c||'#475569'; } }
+  function digits(){ var p=$('dvm-phone'); return ((p&&p.value)||'').replace(/[^0-9]/g,'').slice(-10); }
+  function phoneOk(){ return /^[6-9][0-9]{9}$/.test(digits()); }
+  function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim()); }
+  function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=!verified; b.style.opacity=verified?'1':'.5'; } }
+
+  function initMsg91(){ if(ready) return true; if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
+  function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; (function go(){ var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ cb(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else cb(false); }; document.head.appendChild(s); })(); }
+
+  function doSend(isResend){
+    if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }
+    if(!isResend) saveLead(false);   /* capture the number as a Partial lead before OTP */
+    var g=$('dvm-getotp'); if(g) g.disabled=true; omsg(isResend?'Sending a new code…':'Sending OTP…');
+    loadMsg91(function(ok){
+      if(!ok || typeof window.sendOtp!=='function'){ if(g) g.disabled=false; omsg('Could not reach the OTP service. Please try again.','#dc2626'); return; }
+      var onSent=function(){ sent=true; if(g){ g.disabled=false; g.textContent='Resend'; } var r=$('dvm-otp-row'); if(r) r.style.display='flex'; omsg('OTP sent to +91 '+digits()+' via SMS.','#16a34a'); var oi=$('dvm-otp'); if(oi){ try{oi.focus();}catch(e){} } };
+      var onErr=function(err){ if(g) g.disabled=false; try{console.error('MSG91 sendOtp',err);}catch(e){} omsg('Could not send OTP — check the number and try again.','#dc2626'); };
+      if(isResend && window.retryOtp){ window.retryOtp(null,onSent,onErr); } else { window.sendOtp('91'+digits(),onSent,onErr); }
+    });
+  }
+  function doVerify(){
+    var oi=$('dvm-otp'); var code=((oi&&oi.value)||'').replace(/[^0-9]/g,'');
+    if(code.length<4){ omsg('Enter the code from the SMS.','#dc2626'); return; }
+    if(typeof window.verifyOtp!=='function'){ omsg('Verification not ready — resend the code.','#dc2626'); return; }
+    var v=$('dvm-verify'); if(v) v.disabled=true; omsg('Verifying…');
+    window.verifyOtp(code, function(){ verified=true; if(v) v.disabled=false; var r=$('dvm-otp-row'); if(r) r.style.display='none'; var g=$('dvm-getotp'); if(g){ g.textContent='Verified ✓'; g.disabled=true; g.style.background='#16a34a'; } var p=$('dvm-phone'); if(p) p.readOnly=true; omsg('Mobile number verified ✓','#16a34a'); setSubmit(); fmsg(''); }, function(err){ if(v) v.disabled=false; try{console.error('MSG91 verifyOtp',err);}catch(e){} omsg('Incorrect or expired code. Resend and try again.','#dc2626'); });
+  }
+  function collect(){ var form=$('dvm-form'); var fd=new FormData(form), o={}; fd.forEach(function(v,k){ if(o[k]!==undefined){ if(!Array.isArray(o[k])) o[k]=[o[k]]; o[k].push(v); } else o[k]=v; }); return o; }
+  function sendLead(payload){ var b=new URLSearchParams(); Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ b.append(k,x); }); else if(v!=null) b.append(k,String(v)); }); var ok=false; try{ ok=!!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([b.toString()],{type:'application/x-www-form-urlencoded;charset=UTF-8'}))); }catch(e){} if(!ok){ fetch(ENDPOINT,{method:'POST',body:b,mode:'no-cors',keepalive:true}).catch(function(){}); } }
+
+  function saveLead(complete){
+    var d=collect();
+    var payload=Object.assign({}, d, {
+      action:'lead_save', leadId: dvmLeadId,
+      otp_verified: verified ? 'yes' : '',
+      status: complete ? 'Complete' : 'Partial',
+      complete: complete ? '1' : '',
+      _source:'website-popup-form', _page:(location.pathname||'/'),
+      _subject: complete ? 'New lead from DigiVeritaz (popup)' : 'New lead (number captured) — DigiVeritaz'
+    });
+    delete payload.otp;
+    sendLead(payload);
+  }
+  function onSubmit(ev){
+    ev.preventDefault();
+    var d=collect();
+    if(!d.fullname){ fmsg('Please enter your name.','#dc2626'); return; }
+    if(!emailOk(d.email)){ fmsg('Please enter a valid email.','#dc2626'); return; }
+    if(!phoneOk()){ fmsg('Please enter a valid 10-digit phone number.','#dc2626'); return; }
+    if(!d.budget){ fmsg('Please select a budget range.','#dc2626'); return; }
+    if(!verified){ fmsg('Please verify your mobile number with the OTP first.','#dc2626'); return; }
+    var b=$('dvm-submit'); if(b){ b.disabled=true; b.style.opacity='.6'; } fmsg('Submitting…');
+    saveLead(true);
+    dvmFinish();
+  }
+  function dvmFinish(){
+    var card=document.querySelector('#dvm-overlay .dvm-card');
+    if(card){ card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button><div class="dvm-thanks" style="text-align:center;padding:34px 12px"><h3 style="color:#0f2a5a;margin:0 0 10px">Thank you!</h3><p style="color:#64748b">We&rsquo;ve received your details and will get back to you within one business day.</p></div>'; card.querySelector('.dvm-close').addEventListener('click', closeModal); }
+  }
+
+  function wireForm(){
+    var f=$('dvm-form'); if(f) f.addEventListener('submit', onSubmit);
+    var g=$('dvm-getotp'); if(g) g.addEventListener('click', function(){ doSend(sent); });
+    var v=$('dvm-verify'); if(v) v.addEventListener('click', doVerify);
+    var p=$('dvm-phone'); if(p) p.addEventListener('input', function(){ if(verified){ verified=false; setSubmit(); } });
+    var oi=$('dvm-otp'); if(oi) oi.addEventListener('input', function(){ oi.value=oi.value.replace(/[^0-9]/g,'').slice(0,6); });
+    setSubmit();
   }
 
   function openModal(){
     buildModal();
-    var ov = document.getElementById('dvm-overlay'); if (!ov) return;
-    var ts = document.getElementById('dvm-ts'), js = document.getElementById('dvm-jsok');
-    if (ts) ts.value = String(DVM_LOAD);
-    if (js) js.value = 'dv-' + Math.random().toString(36).slice(2, 12);
+    if(!dvmLeadId) dvmLeadId='dvm-'+DVM_LOAD.toString(36)+'-'+Math.random().toString(36).slice(2,8);
+    var ov=$('dvm-overlay'); if(!ov) return;
+    var ts=$('dvm-ts'), js=$('dvm-jsok');
+    if(ts) ts.value=String(DVM_LOAD);
+    if(js) js.value='dv-'+Math.random().toString(36).slice(2,12);
     ov.classList.add('is-open'); ov.setAttribute('aria-hidden','false');
     document.body.classList.add('dvm-lock');
-    var f = ov.querySelector('input[name=fullname]'); if (f) { try { f.focus(); } catch(e){} }
+    var fn=ov.querySelector('input[name=fullname]'); if(fn){ try{ fn.focus(); }catch(e){} }
   }
-  function closeModal(){
-    var ov = document.getElementById('dvm-overlay'); if (!ov) return;
-    ov.classList.remove('is-open'); ov.setAttribute('aria-hidden','true');
-    document.body.classList.remove('dvm-lock');
-  }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+  function closeModal(){ var ov=$('dvm-overlay'); if(!ov) return; ov.classList.remove('is-open'); ov.setAttribute('aria-hidden','true'); document.body.classList.remove('dvm-lock'); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 
-  function dvmMsg(t,c){ var m=document.getElementById('dvm-msg'); if(m){ m.textContent=t||''; m.style.color=c||'#374151'; } }
-  function dvmShowStage(n){ var s1=document.getElementById('dvm-stage1'), s2=document.getElementById('dvm-stage2'); if(s1)s1.style.display=(n===1)?'':'none'; if(s2)s2.style.display=(n===2)?'':'none'; }
-  function dvmCollect(){
-    var form=document.getElementById('dvm-form'); var fd=new FormData(form), data={};
-    fd.forEach(function(v,k){ if(data[k]!==undefined){ if(!Array.isArray(data[k])) data[k]=[data[k]]; data[k].push(v); } else data[k]=v; });
-    return data;
-  }
-  function dvmPost(payload, cb){
-    var body=new URLSearchParams();
-    Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ body.append(k,x); }); else if(v!=null) body.append(k,String(v)); });
-    fetch(ENDPOINT, { method:'POST', body: body })
-      .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'bad_response' }; }); })
-      .then(cb).catch(function(){ cb({ ok:false, error:'network' }); });
-  }
-  function dvmBase(data, action){
-    return Object.assign({}, data, { _subject:'New lead from DigiVeritaz (popup)', _template:'table', _captcha:'false', _source:'website-popup-form', _page: location.pathname || '/', action: action });
-  }
-  function dvmRequestOtp(isResend){
-    var data=dvmCollect();
-    if(!data.fullname || !data.email || !data.phone){ dvmMsg('Please fill in your name, email and phone.', '#dc2626'); return; }
-    if(!data.budget){ dvmMsg('Please select a budget range.', '#dc2626'); return; }
-    var btn=document.getElementById('dvm-getotp'); if(btn) btn.disabled=true;
-    dvmMsg(isResend ? 'Sending a new code…' : 'Sending verification code…');
-    var payload=dvmBase(data, 'request_otp'); delete payload.otp;
-    dvmPost(payload, function(res){
-      if(btn) btn.disabled=false;
-      if(res && res.ok){
-        var em=document.getElementById('dvm-otpemail'); if(em) em.textContent=data.email;
-        dvmShowStage(2); dvmMsg('Code sent! Check your inbox (and spam folder).', '#16a34a');
-        var oi=document.getElementById('dvm-otp'); if(oi){ try{ oi.focus(); }catch(e){} }
-      } else {
-        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
-        dvmMsg('Could not send code: '+e, '#dc2626');
-      }
-    });
-  }
-  function onSubmit(ev){
-    ev.preventDefault();
-    var data=dvmCollect();
-    if(!/^[0-9]{6}$/.test(String(data.otp || ''))){ dvmMsg('Enter the 6-digit code from your email.', '#dc2626'); return; }
-    var btn=document.getElementById('dvm-verify'); if(btn) btn.disabled=true;
-    dvmMsg('Verifying…');
-    dvmPost(dvmBase(data, 'submit_form'), function(res){
-      if(res && res.ok){
-        var card=document.querySelector('#dvm-overlay .dvm-card');
-        if(card){
-          card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button>'
-            + '<div class="dvm-thanks"><h3>Thank you!</h3><p>We&rsquo;ve received your details and will get back to you within one business day.</p></div>';
-          card.querySelector('.dvm-close').addEventListener('click', closeModal);
-        }
-      } else {
-        if(btn) btn.disabled=false;
-        var e=(res && res.error) || 'unknown'; if(res && res.detail) e+=' ('+res.detail+')';
-        dvmMsg('Submission failed: '+e, '#dc2626');
-      }
-    });
-  }
+  /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
+     phone popup, handled by dv-lead.js — which we load here on every page. */
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1779281010'; document.head.appendChild(s); }
 
-  function wire(){
-    var nodes = document.querySelectorAll('a.btn, button.btn');
-    Array.prototype.forEach.call(nodes, function(el){
-      var t = (el.textContent || '').trim().toLowerCase();
-      var book = (t === 'book a call');
-      var prop = /free proposal/.test(t);
-      if (book || prop) el.classList.add('dv-shine');
-      if (book){
-        el.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+  function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
+  function dvReady(){
+    loadDvLead();
+    /* the WIDE popup only auto-opens once (3s, desktop, not on contact/proposal pages) */
+    try {
+      if (isDesktop() && !/\/(contact-us|get-proposal)(\/|$)/.test(location.pathname) && !sessionStorage.getItem('dvmSeen')) {
+        setTimeout(function(){ try{ sessionStorage.setItem('dvmSeen','1'); }catch(e){} openModal(); }, 3000);
       }
-    });
+    } catch(e){}
   }
-  window.dvOpenModal = openModal; function dvReady(){ wire(); if(!/\/contact-us(\/|$)/.test(location.pathname)) setTimeout(function(){ openModal(); }, 3000); } if (document.readyState !== 'loading') dvReady();
+  if (document.readyState !== 'loading') dvReady();
   else document.addEventListener('DOMContentLoaded', dvReady);
 })();
 /* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (WhatsApp / Phone / Email) */
