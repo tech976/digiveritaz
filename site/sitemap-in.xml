@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/what-is-performance-marketing-how-does-it-work/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/what-is-performance-marketing-how-does-it-work.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/seo-vs-ppc-which-is-right-for-your-business-2026/</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
