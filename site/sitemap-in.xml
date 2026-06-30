@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/what-is-cro-why-conversion-rate-optimisation-growth-secret/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/what-is-cro-why-conversion-rate-optimisation-growth-secret.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/how-to-build-strong-digital-presence-for-your-brand/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
