@@ -195,6 +195,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/custom-vs-template-ecommerce-website-whats-better-2026/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/custom-vs-template-ecommerce-website-whats-better-2026.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/digital-marketing-for-ecommerce-complete-2026-guide/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
