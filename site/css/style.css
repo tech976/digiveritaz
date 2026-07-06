@@ -1641,6 +1641,7 @@ section{padding:72px 0}
 .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .card .thumb{aspect-ratio:16/10;background:#eef2f7;background-size:cover;background-position:center}
+.card-grid .card .thumb{aspect-ratio:16/9;background-size:contain}
 .card .thumb[style*="Case%20Studies"]{aspect-ratio:4/3}
 .card .body{padding:22px}
 .card h3{font-size:1.15rem}

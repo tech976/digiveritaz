@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-ads-performance-max-settings-killing-roas-2026/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/google-ads-performance-max-settings-killing-roas-2026.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/amazon-marketing-strategy-indian-sellers-2026/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
