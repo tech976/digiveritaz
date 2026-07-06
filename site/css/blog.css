@@ -114,8 +114,8 @@ body.home-themed .card-grid .card:hover{
 
 /* Thumb — flat, slight zoom on hover */
 body.home-themed .card-grid .card .thumb{
-  aspect-ratio:16/9 !important;
-  background-size:contain !important;
+  aspect-ratio:3/2 !important;
+  background-size:cover !important;
   background-position:center !important;
   background-color:var(--dvh-cream-2) !important;
   border-bottom:1.5px solid var(--dvh-rule) !important;
