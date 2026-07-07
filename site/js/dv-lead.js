@@ -21,6 +21,20 @@
 
   var leadId = '', jsok = '', state = {}, savedOnce = false, completed = false, step = 1, inline = false;
 
+  /* Return-URL: buttons link to /get-proposal/?next=<dest>. After the lead is
+     captured, we send the visitor on to where their button was headed.
+     Only allow same-site paths ("/...") or absolute http(s) URLs — blocks
+     "//host", "javascript:" and other open-redirect tricks. */
+  var RETURN_URL = (function(){
+    try {
+      var u = new URLSearchParams(location.search).get('next');
+      if (!u) return '';
+      if (/^\/(?!\/)/.test(u)) return u;
+      if (/^https?:\/\//i.test(u)) return u;
+    } catch(e){}
+    return '';
+  })();
+
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function $(s,c){ return (c||document).querySelector(s); }
 
@@ -282,6 +296,11 @@
     state.servicesList = svc;
     completed = true;
     save(true); go(4);
+    if (RETURN_URL) {
+      var tp = document.querySelector('.dvl-thanks p');
+      if (tp) tp.innerHTML = 'We’ve got your details — taking you where you were headed…';
+      setTimeout(function(){ try { location.href = RETURN_URL; } catch(e){} }, 1600);
+    }
   }
 
   /* progressive, reliable save — survives page close via sendBeacon */
