@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-search-ads-quality-score-fixes-cut-cpc-india/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/google-search-ads-quality-score-fixes-cut-cpc-india.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ads-performance-max-settings-killing-roas-2026/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
