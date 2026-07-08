@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/facebook-ads-manager-2026-targeting-changes/</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/facebook-ads-manager-2026-targeting-changes.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/local-service-ads-india-google-guaranteed/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
