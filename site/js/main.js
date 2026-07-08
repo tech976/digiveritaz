@@ -215,8 +215,17 @@ document.addEventListener('DOMContentLoaded', function () {
           // Drop focus so the browser doesn't auto-scroll the parent item to the top
           if (link.blur) link.blur();
           if (navList) {
-            // Restore scroll on next frame in case anything tried to shift it
-            requestAnimationFrame(function () { navList.scrollTop = prevScroll; });
+            // Pin the tapped item to the top of the drawer so its (long) submenu
+            // reveals from its first item — otherwise the Services mega-menu opens
+            // scrolled into the middle and the top services get cut off. Re-pin a
+            // couple of times to win over the browser's late focus/anchor auto-scroll.
+            var pin = function () {
+              var r = parent.getBoundingClientRect(), c = navList.getBoundingClientRect();
+              navList.scrollTop += r.top - c.top - 6;
+            };
+            requestAnimationFrame(pin);
+            setTimeout(pin, 60);
+            setTimeout(pin, 180);
           }
         }
       });

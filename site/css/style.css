@@ -8455,3 +8455,30 @@ body.dvm-lock{overflow:hidden}
 
 /* DV-CHAT-MOBILE-HIDE v1: hide floating chat launcher on mobile (Live Chat button in bar opens it) */
 @media(max-width:768px){.dvc-launch{display:none!important}}
+
+/* DV-MOBILE-NAV-FIX v1: collapse the Services mega-menu inside the hamburger drawer and
+   align submenu collapse to the drawer breakpoint (1050px) so it can't float into the
+   middle of the screen or intercept taps on Android. */
+@media (max-width:1050px){
+  .site-header .nav ul{position:absolute;top:calc(100% + 10px);left:12px;right:12px;max-height:calc(100vh - 96px);overflow-y:auto;-webkit-overflow-scrolling:touch;overflow-anchor:none}
+  /* every submenu (incl. the wide mega) becomes a hidden, in-flow stacked list */
+  .nav ul .has-dd .dd-menu,
+  .nav ul .has-mega .dd-menu.mega-menu{
+    position:static!important;transform:none!important;min-width:0!important;max-width:100%!important;
+    box-shadow:none!important;border:0!important;padding:2px 0 6px 12px!important;background:transparent!important;
+    opacity:1!important;visibility:visible!important;pointer-events:auto!important;display:none!important;
+  }
+  /* only reveal a submenu when its parent item is opened (tap) */
+  .nav ul .has-dd.open>.dd-menu,
+  .nav ul .has-dd:focus-within>.dd-menu,
+  .nav ul .has-mega.open>.dd-menu.mega-menu,
+  .nav ul .has-mega:focus-within>.dd-menu.mega-menu{display:flex!important}
+  /* cap the (long) expanded mega so it scrolls INSIDE itself from its first item,
+     instead of blowing up the drawer height and letting the top services scroll off */
+  .nav ul .has-mega.open>.dd-menu.mega-menu,
+  .nav ul .has-mega:focus-within>.dd-menu.mega-menu{max-height:52vh!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .nav ul .mega-menu .mm-grid{grid-template-columns:1fr!important;gap:6px!important}
+  .nav ul .mega-menu .mm-head{padding:8px 10px 4px!important;border:0!important}
+  .nav ul .mega-menu .mm-foot{border:0!important;margin-top:8px!important;padding-top:8px!important;text-align:left!important}
+  .nav ul.open,.nav ul.open li,.nav ul.open a{pointer-events:auto}
+}
