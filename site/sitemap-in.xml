@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/meta-advantage-plus-vs-manual-campaigns-india/</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/meta-advantage-plus-vs-manual-campaigns-india.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/facebook-ads-real-estate-india-qualified-site-visits/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
