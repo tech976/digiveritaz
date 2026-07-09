@@ -195,6 +195,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/amazon-ppc-india-lower-acos-without-losing-rank/</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/amazon-ppc-india-lower-acos-without-losing-rank.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/performance-max-vs-standard-shopping-ads-india/</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
