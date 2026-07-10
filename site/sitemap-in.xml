@@ -202,6 +202,14 @@
     <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/digital-marketing-agency-in-mumbai.webp</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://www.digiveritaz.com/digital-marketing-agency-in-navi-mumbai/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/digital-marketing-agency-in-navi-mumbai.webp</image:loc></image:image>
+  </url>
+
   <!-- Blog posts -->
   <url>
     <loc>https://www.digiveritaz.com/blog/amazon-ppc-india-lower-acos-without-losing-rank/</loc>
