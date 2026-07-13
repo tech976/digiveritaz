@@ -45,8 +45,8 @@
 <link rel="preconnect" href="https://www.digiveritaz.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.simpleicons.org">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=optional"></noscript>
 <style id="dv-critical">:root { --green: #22c55e; --green-dark: #16a34a; --ink: #0b1220; --ink-2: #111827; --muted: #6b7280; --bg: #ffffff; --bg-2: #f6f8fb; --border: #e5e7eb; --radius: 14px; --shadow: 0 10px 30px rgba(17,24,39,.08); --max: 1200px; }
 * { box-sizing: border-box; }
 body, html { margin: 0px; padding: 0px; }
@@ -1871,7 +1871,8 @@ body.home-themed .ig-feed-foot .btn-outline:hover { background: linear-gradient(
     else if(!mob&&on){ if(raf){cancelAnimationFrame(raf);raf=null;} teardown(); }
     else if(mob&&on)measure();
   }
-  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+  function deferInit(){ (window.requestIdleCallback||function(f){return setTimeout(f,300);})(init); }
+  if(document.readyState==='complete')deferInit();else window.addEventListener('load',deferInit);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(onResize,200);});
 })();</script>
 <script>/* header: swap wordmark -> profile CTA once hero is scrolled past */
