@@ -4,11 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NZZXD89B');</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];var z=false;function L(){if(z)return;z=true;w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}['scroll','mousemove','touchstart','keydown','click','pointerdown'].forEach(function(e){w.addEventListener(e,L,{once:true,passive:true});});d.addEventListener('visibilitychange',function(){if(d.visibilityState==='hidden')L();});w.addEventListener('pagehide',L,{once:true});})(window,document,'script','dataLayer','GTM-NZZXD89B');</script>
 <!-- End Google Tag Manager -->
 <title>Best Digital Marketing Agency in India | Digiveritaz</title>
 <meta name="description" content="Digiveritaz is a performance-driven digital marketing agency in India delivering SEO, PPC, branding and growth strategies for measurable business success.">
@@ -906,7 +902,8 @@ body.home-themed .ig-feed-foot .btn-outline:hover { background: linear-gradient(
     ['scroll','mousemove','touchstart','keydown','click'].forEach(function(e){
       window.addEventListener(e, loadGA, {once:true, passive:true});
     });
-    setTimeout(loadGA, 3500); // fallback so non-interacting sessions are still tracked
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')loadGA();});
+    window.addEventListener('pagehide', loadGA, {once:true});
   })();
 </script>
 <meta name="google-site-verification" content="TGFfTGBKQCHjqUDNpgrqrKP5ILbC42CtTDM1z16mJ_4">
