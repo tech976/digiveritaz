@@ -19,7 +19,7 @@
   /* same 12 services as the wide popup so both write identical Sheet columns ([value, label]) */
   var SERVICES = [['Organic Marketing','Organic Marketing'],['Paid Social Media','Paid Social Media Advertising'],['PPC','Pay-Per-Click Advertising'],['Performance Marketing','Performance Marketing'],['E-commerce','E-commerce Platforms'],['Data Strategy','Data Strategy & Consulting'],['Native Advertising','Native Advertising'],['WhatsApp','WhatsApp Marketing'],['Branding','Branding & Design'],['SEO','Search Engine Optimization'],['GSO','Generative Search Optimisation'],['Tech & Development','Tech & Development']];
 
-  var leadId = '', jsok = '', state = {}, savedOnce = false, completed = false, step = 1, inline = false;
+  var leadId = '', jsok = '', state = {}, savedOnce = false, completed = false, step = 1, inline = false, formStart = 0;
 
   /* Return-URL: buttons link to /get-proposal/?next=<dest>. After the lead is
      captured, we send the visitor on to where their button was headed.
@@ -183,6 +183,7 @@
   /* ---------- inline page mode ---------- */
   function mountInline(el){
     injectCSS();
+    formStart = Date.now();   /* anti-spam _ts: measure dwell from form-mount, not page-load */
     el.innerHTML = '<div class="dvl-page"><header class="dvl-topbar">'+BRAND+'</header>'
                  + '<div class="dvl-body"><div class="dvl-inner">'+formInner()+'</div></div></div>';
     inline = true;
@@ -313,7 +314,7 @@
       body.set('status', complete ? 'Complete' : 'Partial');
       body.set('_source', inline ? 'get-proposal-page' : 'website-popup-v2');
       body.set('_page', location.pathname || '/');
-      body.set('_ts', String(DVL_LOAD));
+      body.set('_ts', String(formStart || DVL_LOAD));
       body.set('_jsok', jsok);
       body.set('_subject', complete ? 'New FULL lead — DigiVeritaz' : 'New lead (number captured) — DigiVeritaz');
       /* standardized field names — identical to the contact form / DV-POPUP / chatbot */
@@ -349,6 +350,7 @@
 
   function openModal(){
     buildModal();
+    formStart = Date.now();   /* anti-spam _ts: measure dwell from form-open, not page-load */
     var ov = $('#dvl-overlay'); if (!ov) return;
     if (!leadId) { leadId = 'dvl-' + DVL_LOAD.toString(36) + '-' + Math.random().toString(36).slice(2,8); }
     jsok = 'dv-' + Math.random().toString(36).slice(2,12);
