@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ['GSO','Generative Search Optimisation'],
     ['Tech & Development','Tech & Development']
   ];
-  var ready=false, verified=false, sent=false, dvmLeadId='';
+  var ready=false, verified=false, sent=false, dvmLeadId='', warmed=false;
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function $(id){ return document.getElementById(id); }
   var OTPBTN='flex:0 0 auto;white-space:nowrap;background:#22c55e;color:#fff;border:0;padding:0 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem';
@@ -516,8 +516,9 @@ document.addEventListener('DOMContentLoaded', function () {
   function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim()); }
   function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=!verified; b.style.opacity=verified?'1':'.5'; } }
 
-  function initMsg91(){ if(ready) return true; if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
-  function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; (function go(){ var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ cb(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else cb(false); }; document.head.appendChild(s); })(); }
+  function initMsg91(){ if(ready) return true; if(typeof window.sendOtp==='function'){ ready=true; return true; } if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
+  function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } if(loadMsg91._loading){ loadMsg91._q.push(cb); return; } loadMsg91._loading=true; loadMsg91._q=[cb]; var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; function done(ok){ loadMsg91._loading=false; var q=loadMsg91._q; loadMsg91._q=[]; q.forEach(function(fn){ try{ fn(ok); }catch(e){} }); } (function go(){ if(typeof window.initSendOTP==='function'){ done(initMsg91()); return; } var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ done(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else done(false); }; document.head.appendChild(s); })(); }
+  function warmMsg91(){ if(warmed) return; warmed=true; try{ loadMsg91(function(){}); }catch(e){} }
 
   function doSend(isResend){
     if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }
@@ -581,6 +582,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openModal(){
     buildModal();
+    warmMsg91();   /* preload + init MSG91 on open so window.sendOtp is ready before "Get OTP" is clicked */
     if(!dvmLeadId) dvmLeadId='dvm-'+DVM_LOAD.toString(36)+'-'+Math.random().toString(36).slice(2,8);
     var ov=$('dvm-overlay'); if(!ov) return;
     var ts=$('dvm-ts'), js=$('dvm-jsok');
