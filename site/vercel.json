@@ -66,6 +66,11 @@
       "source": "/top-12-advantages-of-search-engine-marketing/",
       "destination": "/blog/top-12-advantages-of-search-engine-marketing/",
       "permanent": true
+    },
+    {
+      "source": "/blog/how-to-build-strong-digital-presence-for-your-brand/",
+      "destination": "/blog/how-to-build-a-strong-digital-presence-for-your-brand/",
+      "permanent": true
     }
   ],
   "functions": {
