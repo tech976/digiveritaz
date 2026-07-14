@@ -248,6 +248,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 </section>
+<script>/* Reveal above-fold hero elements at render so the LCP hero title paints on time
+(the deferred reveal observer otherwise gates it behind load+idle). Same .is-in class
+and .9s transition, so the fade-up animation is unchanged — only its timing is earlier. */
+(function(){function r(){var n=document.querySelectorAll('.hero .dvh-reveal');for(var i=0;i<n.length;i++)n[i].classList.add('is-in');}try{requestAnimationFrame(function(){requestAnimationFrame(r);});}catch(e){r();}})();</script>
 
 <style>
 .dvw-wrap{padding:56px 0 22px}
