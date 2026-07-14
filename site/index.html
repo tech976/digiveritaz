@@ -1007,20 +1007,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (UK_TZ[tz]) swap("tz");
     else { try { window.__DV_REGION = { region: null, via: "tz", tz: tz }; } catch(e){} }
   }
-  // Region detection is not time-critical (the UK swap is visually identical to
-  // the default H1), so run it after load / when idle to keep the /cdn-cgi/trace
-  // request out of the LCP window on mobile.
-  function dvDetect(){
-    if (!window.fetch) { tzFallback(); return; }
-    fetch("/cdn-cgi/trace", { cache: "no-store" })
-      .then(function(r){ if (!r.ok) throw new Error("trace " + r.status); return r.text(); })
-      .then(function(txt){
-        var m = /(?:^|\n)loc=([A-Z]{2})/.exec(txt || "");
-        if (m && m[1] === "GB") swap("cf:GB");
-        else { try { window.__DV_REGION = { region: null, via: "cf", loc: m ? m[1] : null }; } catch(e){} }
-      })
-      .catch(tzFallback);
-  }
+  // Region detection: the UK H1 swap is visually identical to the default H1 on
+  // the homepage (a no-op), so we use the instant, local timezone signal only and
+  // avoid the slow /cdn-cgi/trace network request (it was ~1.5s in the LCP chain).
+  function dvDetect(){ try { tzFallback(); } catch(e){} }
   var dvRIC = window.requestIdleCallback || function(f){ return setTimeout(f, 1500); };
   if (document.readyState === "complete") dvRIC(dvDetect);
   else window.addEventListener("load", function(){ dvRIC(dvDetect); });
