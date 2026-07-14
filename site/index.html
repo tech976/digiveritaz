@@ -1063,12 +1063,7 @@ and .9s transition, so the fade-up animation is unchanged — only its timing is
   /* reveal the mobile marquee synchronously so it paints at FCP (fixes the late LCP); scroll animation stays deferred */
   try{ box=document.querySelector('.hero .hv-a-reviews'); if(box&&window.matchMedia&&window.matchMedia('(max-width:768px)').matches)setup(); }catch(e){}
   function deferInit(){ (window.requestIdleCallback||function(f){return setTimeout(f,300);})(init); }
-  /* Start the marquee scroll on first interaction (same pattern as GTM/gtag here).
-     The cards are already built + visible statically via setup() above; only the
-     auto-scroll waits. This keeps the offscreen clones from painting as a late,
-     large LCP candidate during load, so LCP settles on the early static paint. */
-  var dvMqStarted=false;function dvMqKick(){ if(dvMqStarted)return; dvMqStarted=true; deferInit(); }
-  ['pointerdown','touchstart','wheel','scroll','keydown','mousemove'].forEach(function(ev){ window.addEventListener(ev,dvMqKick,{once:true,passive:true}); });
+  if(document.readyState==='complete')deferInit();else window.addEventListener('load',deferInit);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(onResize,200);});
 })();</script>
 <script>/* header: swap wordmark -> profile CTA once hero is scrolled past */
