@@ -1066,6 +1066,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     else if(!mob&&on){ if(raf){cancelAnimationFrame(raf);raf=null;} teardown(); }
     else if(mob&&on)measure();
   }
+  /* reveal the mobile marquee synchronously so it paints at FCP (fixes the late LCP); scroll animation stays deferred */
+  try{ box=document.querySelector('.hero .hv-a-reviews'); if(box&&window.matchMedia&&window.matchMedia('(max-width:768px)').matches)setup(); }catch(e){}
   function deferInit(){ (window.requestIdleCallback||function(f){return setTimeout(f,300);})(init); }
   if(document.readyState==='complete')deferInit();else window.addEventListener('load',deferInit);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(onResize,200);});
