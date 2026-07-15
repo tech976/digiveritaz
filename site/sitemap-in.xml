@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/programmatic-advertising-india-dsps-rtb/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/programmatic-advertising-india-dsps-rtb.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/display-advertising-retargeting-audience-segments/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
