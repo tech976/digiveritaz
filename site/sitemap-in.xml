@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/display-advertising-retargeting-audience-segments/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/display-advertising-retargeting-audience-segments.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/meta-shopping-ads-instagram-catalogue-sales-channel/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
