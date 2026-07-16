@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/linkedin-ads-b2b-india-lower-cost-per-lead/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/linkedin-ads-b2b-india-lower-cost-per-lead.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/youtube-ads-india-cut-cost-per-view/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
