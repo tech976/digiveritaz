@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/aeo-2026-get-cited-chatgpt-gemini-perplexity/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/aeo-2026-get-cited-chatgpt-gemini-perplexity.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/ai-poisoning-protect-brand-chatgpt-gemini/</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
