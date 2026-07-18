@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       appsScriptPromise.then(function () {
         // Treat any successful network call as success — no-cors hides
         // the actual response status but the POST did reach Apps Script.
-        window.location.href = 'thank-you.html';
+        window.location.href = '/thank-you/';
       }).catch(function () {
         // Apps Script unreachable — fall back to FormSubmit.co AJAX.
         fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
           return res.json().then(function (j) { return { ok: res.ok, body: j }; });
         }).then(function (result) {
           if (result.ok && (result.body.success === 'true' || result.body.success === true)) {
-            window.location.href = 'thank-you.html';
+            window.location.href = '/thank-you/';
           } else {
             if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
             openMailtoFallback();
@@ -568,7 +568,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function dvmFinish(){
     var card=document.querySelector('#dvm-overlay .dvm-card');
-    if(card){ card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button><div class="dvm-thanks" style="text-align:center;padding:34px 12px"><h3 style="color:#0f2a5a;margin:0 0 10px">Thank you!</h3><p style="color:#64748b">We&rsquo;ve received your details and will get back to you within one business day.</p></div>'; card.querySelector('.dvm-close').addEventListener('click', closeModal); }
+    if(card){ card.innerHTML = '<button class="dvm-close" type="button" aria-label="Close">&times;</button><div class="dvm-thanks" style="text-align:center;padding:34px 12px"><h3 style="color:#0f2a5a;margin:0 0 10px">Thank you!</h3><p style="color:#64748b">We&rsquo;ve received your details &mdash; taking you to your confirmation&hellip;</p></div>'; card.querySelector('.dvm-close').addEventListener('click', closeModal); }
+    /* saveLead(true) already ran and uses sendBeacon/keepalive, so the lead write and
+       the automated email survive this navigation. Redirect so the conversion is
+       tracked on the dedicated /thank-you/ URL. */
+    try { (window.dataLayer = window.dataLayer || []).push({ event:'lead_submitted', form_location:'popup', lead_id: dvmLeadId }); } catch(e){}
+    setTimeout(function(){ try { window.location.href = '/thank-you/?src=popup&lid=' + encodeURIComponent(dvmLeadId); } catch(e){} }, 400);
   }
 
   function wireForm(){
@@ -597,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1784000000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1784400000'; document.head.appendChild(s); }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
   function dvReady(){
@@ -735,6 +740,14 @@ document.addEventListener('DOMContentLoaded', function () {
       var rep = (d && d.reply) || "Sorry, please try again.";
       var svcs = (d && d.services) || [];
       msgs.push({ role: "assistant", content: rep, services: svcs }); addMsg("assistant", rep, svcs); save();
+      /* The chatbot captures OTP-verified leads server-side (api/chat.py -> Apps Script)
+         and already returns d.captured. Fire the conversion here — we deliberately do NOT
+         redirect, because yanking the user out of an open conversation would be hostile. */
+      if (d && d.captured && !window.__dvChatLeadTracked) {
+        window.__dvChatLeadTracked = true;
+        try { (window.dataLayer = window.dataLayer || []).push({ event:'lead_submitted', form_location:'chatbot' }); } catch(e){}
+        try { if (typeof window.gtag === 'function') window.gtag('event','generate_lead',{ form_location:'chatbot' }); } catch(e){}
+      }
     }).catch(function(){
       typing(false);
       addMsg("assistant", "I'm having a connection issue — please WhatsApp us at +91 99566 55662 and the team will help right away.");

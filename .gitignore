@@ -7,3 +7,10 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Scratch images / office lock files accidentally left in the repo root
+# (real site imagery lives in site/assets as .webp)
+/*.png
+/*.jpg
+/*.jpeg
+.~lock.*#

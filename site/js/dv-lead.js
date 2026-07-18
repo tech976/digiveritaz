@@ -21,19 +21,9 @@
 
   var leadId = '', jsok = '', state = {}, savedOnce = false, completed = false, step = 1, inline = false, formStart = 0;
 
-  /* Return-URL: buttons link to /get-proposal/?next=<dest>. After the lead is
-     captured, we send the visitor on to where their button was headed.
-     Only allow same-site paths ("/...") or absolute http(s) URLs — blocks
-     "//host", "javascript:" and other open-redirect tricks. */
-  var RETURN_URL = (function(){
-    try {
-      var u = new URLSearchParams(location.search).get('next');
-      if (!u) return '';
-      if (/^\/(?!\/)/.test(u)) return u;
-      if (/^https?:\/\//i.test(u)) return u;
-    } catch(e){}
-    return '';
-  })();
+  /* Every completed submission redirects here so the conversion fires on a real,
+     trackable URL (GTM/GA4) instead of an in-place "thank you" screen. */
+  var THANKYOU_URL = '/thank-you/';
 
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function $(s,c){ return (c||document).querySelector(s); }
@@ -296,12 +286,22 @@
     var svc = []; Array.prototype.forEach.call(document.querySelectorAll('.dvl-checks input:checked'), function(c){ svc.push(c.value); });
     state.servicesList = svc;
     completed = true;
-    save(true); go(4);
-    if (RETURN_URL) {
-      var tp = document.querySelector('.dvl-thanks p');
-      if (tp) tp.innerHTML = 'We’ve got your details — taking you where you were headed…';
-      setTimeout(function(){ try { location.href = RETURN_URL; } catch(e){} }, 1600);
-    }
+    /* save() FIRST — it uses navigator.sendBeacon (fetch keepalive fallback), which the
+       browser delivers even after we navigate away, so the Apps Script lead write and the
+       automated email to the form filler are NOT affected by the redirect below. */
+    save(true);
+    go(4);
+    try { (window.dataLayer = window.dataLayer || []).push({ event:'lead_submitted', form_location: (inline ? 'proposal' : 'popup'), lead_id: leadId }); } catch(e){}
+    /* Every completed submission lands on the dedicated /thank-you/ page so the
+       conversion can be tracked on a real URL (GTM/GA4). Step 4 shows for a beat
+       first so the user sees confirmation even if the redirect is slow.
+       src/lid let the thank-you page de-duplicate (transaction_id) so refreshes
+       and bookmark hits don't inflate the conversion count. */
+    setTimeout(function(){
+      try {
+        location.href = THANKYOU_URL + '?src=' + (inline ? 'proposal' : 'popup') + '&lid=' + encodeURIComponent(leadId);
+      } catch(e){}
+    }, 400);
   }
 
   /* progressive, reliable save — survives page close via sendBeacon */

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];var z=false;function L(){if(z)return;z=true;w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}['scroll','mousemove','touchstart','keydown','click','pointerdown'].forEach(function(e){w.addEventListener(e,L,{once:true,passive:true});});d.addEventListener('visibilitychange',function(){if(d.visibilityState==='hidden')L();});w.addEventListener('pagehide',L,{once:true});})(window,document,'script','dataLayer','GTM-NZZXD89B');</script>
+<!-- Google Tag Manager — loads IMMEDIATELY (conversion page, must not be interaction-gated) -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NZZXD89B');</script>
 <!-- End Google Tag Manager -->
 <title>Thank You | DigiVeritaz</title>
 <meta name="description" content="Thank you for contacting DigiVeritaz. We'll respond within one business day.">
@@ -55,13 +55,32 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","LocalBusiness","ProfessionalService"],"@id":"https://www.digiveritaz.com/#organization","name":"DigiVeritaz","alternateName":"DigiVeritaz Digital Marketing Agency","url":"https://www.digiveritaz.com","logo":"https://www.digiveritaz.com/assets/logo.webp","image":"https://www.digiveritaz.com/assets/logo.webp","description":"DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.","telephone":"+91-9956655662","email":"durvamukherjee@digiveritaz.com","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"1st Floor, Ujagar Chambers, Bus Depot, Sion-Trombay Rd, opp. Deonar, Deonar, Chembur","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400088","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":19.0432,"longitude":72.9086},"areaServed":["IN","US","AE","GB","SG","AU","CA"],"sameAs":["https://www.facebook.com/digiveritaz","https://www.instagram.com/digiveritaz","https://www.linkedin.com/company/digiveritaz","https://twitter.com/digiveritaz"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"600","bestRating":"5","worstRating":"1"}},{"@type":"WebSite","@id":"https://www.digiveritaz.com/#website","url":"https://www.digiveritaz.com","name":"DigiVeritaz","publisher":{"@id":"https://www.digiveritaz.com/#organization"},"inLanguage":"en-IN"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.digiveritaz.com/"},{"@type":"ListItem","position":2,"name":"Thank You","item":"https://www.digiveritaz.com/thank-you/"}]}</script>
 <script>(function(){var t=localStorage.getItem('dv-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
-<!-- Google tag (gtag.js) — delayed until interaction -->
+<!-- Google tag (gtag.js) — loads IMMEDIATELY on this page.
+     This is the conversion endpoint: every completed form redirects here, so the tag
+     must fire on load. Interaction-gating it (as on marketing pages) would silently
+     drop conversions from users who land and never scroll/click. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZNDMZ3X554"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-ZNDMZ3X554');
-  (function(){var z=false;function L(){if(z)return;z=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-ZNDMZ3X554';document.head.appendChild(s);}['scroll','mousemove','touchstart','keydown','click','pointerdown'].forEach(function(e){window.addEventListener(e,L,{once:true,passive:true});});document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')L();});window.addEventListener('pagehide',L,{once:true});})();
+  /* Conversion event for GA4 / GTM triggers.
+     Forms redirect here as /thank-you/?src=<popup|proposal|contact>&lid=<leadId>.
+     We fire once per lead id and remember it, so a refresh, back/forward, bookmark
+     or bot hit cannot inflate the conversion count. */
+  (function(){
+    var p = new URLSearchParams(location.search);
+    var lid = p.get('lid') || '';
+    var src = p.get('src') || 'unknown';
+    var key = 'dv-conv-' + lid;
+    var already = false;
+    try { already = !!(lid && sessionStorage.getItem(key)); } catch(e){}
+    if (!lid || already) return;              // no lead id => direct/refresh visit, don't count
+    try { sessionStorage.setItem(key, '1'); } catch(e){}
+    gtag('event', 'generate_lead', { form_location: src, transaction_id: lid, page_path: '/thank-you/' });
+    dataLayer.push({ event: 'lead_submitted', form_location: src, lead_id: lid, page_path: '/thank-you/' });
+  })();
 </script>
 <meta name="google-site-verification" content="TGFfTGBKQCHjqUDNpgrqrKP5ILbC42CtTDM1z16mJ_4">
 </head>
@@ -208,5 +227,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
-<script src="/js/main.min.js?v=1784100000" defer></script>
+<script src="/js/main.min.js?v=1784400000" defer></script>
 </body></html>

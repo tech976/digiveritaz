@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-ads-budget-caps-2026-pacing-update/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/Google%20Ads%20Budget%20Caps%20What%20the%202026%20Update%20Means%20for%20Your%20Spend.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/cms-for-ai-discovery-get-found-ai-search/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
