@@ -276,6 +276,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-ads-brand-consistency-pmax-search-alignment/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/google-ads-brand-consistency-pmax-search-alignment.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ads-budget-cap-removal-august-2026/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
