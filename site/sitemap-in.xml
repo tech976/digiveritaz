@@ -276,6 +276,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/trust-gap-marketing-why-ad-spend-not-closing-deals/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/trust-gap-marketing-why-ad-spend-not-closing-deals.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ads-brand-consistency-pmax-search-alignment/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
