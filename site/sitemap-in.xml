@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-ai-overviews-zero-click-content-strategy/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/google-ai-overviews-zero-click-content-strategy.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ads-budget-caps-2026-pacing-update/</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
