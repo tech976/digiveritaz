@@ -276,6 +276,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/advertising-on-chatgpt-guide-indian-brands/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/advertising-on-chatgpt-guide-indian-brands.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ai-overviews-zero-click-content-strategy/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
