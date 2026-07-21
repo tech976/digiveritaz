@@ -64,10 +64,11 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v9-utm-attribution',
+      build: 'v10-attr-by-header',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
-        mail_quota_remaining: quota
+        mail_quota_remaining: quota,
+        attribution_columns: detectAttrHeaders_()   // which campaign headers this sheet will fill
       }
     });
   }
@@ -289,6 +290,37 @@ function handleLeadSave_(p, nowMs) {
     }
   }
   return json({ ok: true });
+}
+
+// ============================================================
+// Diagnostic: report which campaign headers row 1 actually exposes, and where.
+// Hit  <exec-url>?diag=1  after deploying to confirm both the build AND the sheet
+// headers in one shot — e.g. {"utm_source":"P","utm_medium":"Q", ...}.
+// An empty object means no recognised headers were found, so nothing will be written.
+// ============================================================
+function detectAttrHeaders_() {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    if (!sheet) return { error: 'sheet_not_found' };
+    var lastCol = sheet.getLastColumn();
+    if (lastCol < 1) return {};
+    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+    var known = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','keyword',
+                 'click_id','gclid','gbraid','gad_campaignid','gad_source','device',
+                 'landing_page','referrer','campaign'];
+    var found = {};
+    for (var i = 0; i < headers.length; i++) {
+      var h = String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_');
+      if (known.indexOf(h) >= 0) found[h] = colLetter_(i + 1);
+    }
+    return found;
+  } catch (err) { return { error: String(err) }; }
+}
+
+function colLetter_(n) {
+  var s = '';
+  while (n > 0) { var m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - m) / 26); }
+  return s;
 }
 
 // ============================================================
