@@ -39,7 +39,11 @@ var CRM_WEBHOOK_SECRET = PropertiesService.getScriptProperties().getProperty('CR
 // HARDENING TUNABLES
 // ============================================================
 var REQUIRED_FIELDS = ['fullname', 'email', 'phone'];
-var HONEYPOT_FIELDS = ['_honey', 'website', 'address_line'];
+// Honeypots. 'website' / 'address_line' are kept so injected bot payloads are still
+// caught, but the real forms no longer USE those names: Chrome ignores
+// autocomplete="off" on address/website-looking fields and was autofilling them,
+// which silently discarded genuine leads. The live forms now post _hp_site/_hp_addr.
+var HONEYPOT_FIELDS = ['_honey', '_hp_site', '_hp_addr', 'website', 'address_line'];
 var MAX_FIELD_LEN = 2000;
 var MIN_TIME_ON_PAGE_MS = 3000;
 var MAX_TIME_ON_PAGE_MS = 172800000;     // 48h window (widened from 2h so long-open tabs are not dropped)
@@ -64,7 +68,7 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v10-attr-by-header',
+      build: 'v11-honeypot-autofill-fix',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
