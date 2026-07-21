@@ -25,6 +25,21 @@
 
   var LEAD_ID = 'blog-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
 
+  /* Anti-bot fields the Apps Script requires on EVERY post (doPost rejects with
+     'no_js' / 'invalid_timing' before it ever reaches handleLeadSave_):
+       _jsok — must match /^dv-[a-z0-9]{8,12}$/i, proves JS ran
+       _ts   — page-load epoch ms; the submit must be >=3s and <=48h after it.
+     Use the navigation start so even a fast submit clears the 3s minimum. */
+  var JSOK = (function () {
+    var s = '';
+    while (s.length < 10) { s += Math.random().toString(36).slice(2); }
+    return 'dv-' + s.slice(0, 10);
+  })();
+  var FORM_TS = (function () {
+    try { if (window.performance && performance.timeOrigin) return Math.round(performance.timeOrigin); } catch (e) {}
+    return Date.now();
+  })();
+
   /* ---- OTP via the MSG91 widget — same widget/token as the popup and contact page ---- */
   var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var msg91Ready = false, verified = false, otpSent = false, partialSaved = false;
@@ -194,6 +209,8 @@
       b.set('status', complete ? 'Complete' : 'Partial');
       b.set('_source', 'blog-sidebar-form');
       b.set('_page', location.pathname || '/blog/');
+      b.set('_ts', String(FORM_TS));      /* required — see FORM_TS above */
+      b.set('_jsok', JSOK);               /* required — see JSOK above */
       b.set('_subject', complete ? 'New lead from DigiVeritaz (blog form)' : 'New lead (number captured) — DigiVeritaz');
       if (state.fullname) b.set('fullname', state.fullname);
       if (state.email) b.set('email', state.email);
