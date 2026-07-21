@@ -331,6 +331,8 @@
       if (state.servicesList && state.servicesList.length) state.servicesList.forEach(function(s){ if (svcSet.indexOf(s) < 0) svcSet.push(s); });
       svcSet.forEach(function(s){ body.append('services[]', s); });
       if (state.otp_verified) body.set('otp_verified', state.otp_verified);
+      /* campaign attribution (utm_* / gclid) captured on the landing page — see DV-ATTR in main.js */
+      try { var a = (typeof window.dvAttr === 'function') ? window.dvAttr() : {}; for (var ak in a) if (a[ak]) body.set(ak, a[ak]); } catch (e) {}
       var ok = false;
       try { ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body.toString()], {type:'application/x-www-form-urlencoded;charset=UTF-8'}))); } catch(e){}
       if (!ok) { fetch(ENDPOINT, { method:'POST', body: body, mode:'no-cors', keepalive:true }).catch(function(){}); }

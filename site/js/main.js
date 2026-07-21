@@ -1,4 +1,62 @@
 // DigiVeritaz static site — minimal JS
+
+/* ============================================================
+   DV-ATTR v1 — campaign attribution for Google Ads / UTM tracking.
+   Captures utm_* + gclid on the landing page and PERSISTS them, because a visitor
+   usually arrives on a blog/landing page and submits somewhere else entirely
+   (/get-proposal/, contact page) — without persistence the campaign is lost by
+   the time the form is filled.
+   Last-touch within a 90-day window: a fresh tagged click overwrites the stored
+   set, so the campaign that actually drove the conversion gets the credit.
+   Every form reads this via window.dvAttr() and posts it with the lead.
+   ============================================================ */
+;(function () {
+  var KEY = 'dv-attr', MAX_AGE_DAYS = 90;
+  var FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'];
+
+  function read() {
+    try {
+      var raw = localStorage.getItem(KEY); if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || !o._at) return null;
+      if (Date.now() - o._at > MAX_AGE_DAYS * 864e5) { localStorage.removeItem(KEY); return null; }
+      return o;
+    } catch (e) { return null; }
+  }
+
+  function capture() {
+    try {
+      var q = new URLSearchParams(location.search), found = {}, any = false;
+      FIELDS.forEach(function (f) {
+        var v = q.get(f);
+        if (v) { found[f] = String(v).slice(0, 200); any = true; }
+      });
+      /* a bare gclid (auto-tagging, no utm_*) still means Google Ads */
+      if (any) {
+        if (!found.utm_source && (found.gclid || found.gbraid || found.wbraid)) {
+          found.utm_source = 'google'; found.utm_medium = found.utm_medium || 'cpc';
+        }
+        found.landing_page = (location.pathname || '/') + (location.search || '');
+        found.referrer = (document.referrer || '').slice(0, 300);
+        found._at = Date.now();
+        try { localStorage.setItem(KEY, JSON.stringify(found)); } catch (e) {}
+        return found;
+      }
+      return read();
+    } catch (e) { return null; }
+  }
+
+  var current = capture();
+
+  /* Returns the stored campaign data (flat object) — {} when the visit is organic/direct. */
+  window.dvAttr = function () {
+    var o = current || read() || {};
+    var out = {};
+    FIELDS.concat(['landing_page','referrer']).forEach(function (f) { if (o[f]) out[f] = o[f]; });
+    return out;
+  };
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   // Scroll reveal
   var revealTargets = document.querySelectorAll('.reveal, section > .container > .section-head, section > .container > .panel, section .hero-grid > *, .svc-card, .wwd-card, .why-card, .tcard, .card, .rev-card');
@@ -539,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.verifyOtp(code, function(){ verified=true; if(v) v.disabled=false; var r=$('dvm-otp-row'); if(r) r.style.display='none'; var g=$('dvm-getotp'); if(g){ g.textContent='Verified ✓'; g.disabled=true; g.style.background='#16a34a'; } var p=$('dvm-phone'); if(p) p.readOnly=true; omsg('Mobile number verified ✓','#16a34a'); setSubmit(); fmsg(''); }, function(err){ if(v) v.disabled=false; try{console.error('MSG91 verifyOtp',err);}catch(e){} omsg('Incorrect or expired code. Resend and try again.','#dc2626'); });
   }
   function collect(){ var form=$('dvm-form'); var fd=new FormData(form), o={}; fd.forEach(function(v,k){ if(o[k]!==undefined){ if(!Array.isArray(o[k])) o[k]=[o[k]]; o[k].push(v); } else o[k]=v; }); return o; }
-  function sendLead(payload){ var b=new URLSearchParams(); Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ b.append(k,x); }); else if(v!=null) b.append(k,String(v)); }); var ok=false; try{ ok=!!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([b.toString()],{type:'application/x-www-form-urlencoded;charset=UTF-8'}))); }catch(e){} if(!ok){ fetch(ENDPOINT,{method:'POST',body:b,mode:'no-cors',keepalive:true}).catch(function(){}); } }
+  function sendLead(payload){ var b=new URLSearchParams(); Object.keys(payload).forEach(function(k){ var v=payload[k]; if(Array.isArray(v)) v.forEach(function(x){ b.append(k,x); }); else if(v!=null) b.append(k,String(v)); }); try{var _a=(typeof window.dvAttr==='function')?window.dvAttr():{};for(var _k in _a){if(_a[_k])b.set(_k,_a[_k]);}}catch(e){} var ok=false; try{ ok=!!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([b.toString()],{type:'application/x-www-form-urlencoded;charset=UTF-8'}))); }catch(e){} if(!ok){ fetch(ENDPOINT,{method:'POST',body:b,mode:'no-cors',keepalive:true}).catch(function(){}); } }
 
   function saveLead(complete){
     var d=collect();
@@ -602,14 +660,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1784500000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1785000000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1784900000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1785000000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }

@@ -219,6 +219,8 @@
       if (state.consent) b.set('consent', state.consent);
       if (state.otp_verified) b.set('otp_verified', state.otp_verified);
       if (state.service) b.append('services[]', state.service);
+      /* campaign attribution (utm_* / gclid) captured on the landing page — see DV-ATTR in main.js */
+      try { var a = (typeof window.dvAttr === 'function') ? window.dvAttr() : {}; for (var k in a) if (a[k]) b.set(k, a[k]); } catch (e) {}
       var ok = false;
       try {
         ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT,

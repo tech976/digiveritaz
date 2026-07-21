@@ -64,7 +64,7 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v8-mailapp-crm-feed-userack',
+      build: 'v9-utm-attribution',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota
@@ -228,7 +228,10 @@ function handleSubmitForm_(p, nowMs) {
     new Date(), safeCell_(p.fullname || p.name || ''), safeCell_(p.email || ''),
     safeCell_(p.phone || ''), safeCell_(p.company || ''), safeCell_(p.budget || ''),
     safeCell_(services), safeCell_(p.message || ''), safeCell_(p._page || ''),
-    safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), ''
+    safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), '',
+    safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
+    safeCell_(p.utm_term || ''), safeCell_(p.utm_content || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || ''),
+    safeCell_(p.landing_page || ''), safeCell_(p.referrer || '')
   ]);
 
   postLeadToCRM_(p, services);  // CRM — also send this completed lead to the CRM
@@ -261,7 +264,10 @@ function handleLeadSave_(p, nowMs) {
     safeCell_(p.phone || ''), safeCell_(p.company || ''), safeCell_(p.budget || ''),
     safeCell_(services), safeCell_(p.message || ''), safeCell_(p._page || ''),
     safeCell_(p._source || 'website'), safeCell_(complete ? 'Complete' : 'Partial'),
-    safeCell_(p.otp_verified || ''), safeCell_(leadId)
+    safeCell_(p.otp_verified || ''), safeCell_(leadId),
+    safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
+    safeCell_(p.utm_term || ''), safeCell_(p.utm_content || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || ''),
+    safeCell_(p.landing_page || ''), safeCell_(p.referrer || '')
   ];
 
   var lock = LockService.getScriptLock();
@@ -316,7 +322,15 @@ function postLeadToCRM_(p, services) {
       status:       'Complete',
       leadId:       p.leadId || '',
       _source:      p._source || 'website',
-      _page:        p._page || ''
+      _page:        p._page || '',
+      utm_source:   p.utm_source || '',
+      utm_medium:   p.utm_medium || '',
+      utm_campaign: p.utm_campaign || '',
+      utm_term:     p.utm_term || '',
+      utm_content:  p.utm_content || '',
+      gclid:        p.gclid || p.gbraid || p.wbraid || '',
+      landing_page: p.landing_page || '',
+      referrer:     p.referrer || ''
     };
     UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
       method: 'post',
@@ -339,7 +353,8 @@ function readAllLeadRows_() {
   if (!sheet) return [];
   var values = sheet.getDataRange().getDisplayValues();
   if (values.length < 2) return [];
-  var keys = ['timestamp','name','email','phone','company','budget','services','message','page','source','status','otp_verified','leadId'];
+  var keys = ['timestamp','name','email','phone','company','budget','services','message','page','source','status','otp_verified','leadId',
+              'utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','landing_page','referrer'];
   var out = [];
   for (var r = 1; r < values.length; r++) {
     var row = values[r], obj = {};
@@ -391,6 +406,8 @@ function sendNotification_(p, services) {
     '-----------------------------------------\n' +
     'Page:     ' + (p._page   || '') + '\n' +
     'Source:   ' + (p._source || 'website') + '\n' +
+    'Campaign: ' + [(p.utm_source||''), (p.utm_medium||''), (p.utm_campaign||'')].filter(String).join(' / ') +
+                   (p.gclid ? '  (gclid ' + p.gclid + ')' : '') + '\n' +
     'Time:     ' + new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST\n';
   MailApp.sendEmail({ to: NOTIFY_EMAILS, subject: subject, name: 'DigiVeritaz Website', replyTo: email || undefined, body: body });
 }
