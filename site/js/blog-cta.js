@@ -220,7 +220,16 @@
       if (state.otp_verified) b.set('otp_verified', state.otp_verified);
       if (state.service) b.append('services[]', state.service);
       /* campaign attribution (utm_* / gclid) captured on the landing page — see DV-ATTR in main.js */
-      try { var a = (typeof window.dvAttr === 'function') ? window.dvAttr() : {}; for (var k in a) if (a[k]) b.set(k, a[k]); } catch (e) {}
+      try {
+        var a = (typeof window.dvAttr === 'function') ? window.dvAttr() : null;
+        if (!a || !Object.keys(a).length) {   // fall back to the stored record if main.js is absent
+          try { var raw = localStorage.getItem('dv-attr'); var o = raw ? JSON.parse(raw) : null;
+            if (o && o._at && Date.now() - o._at <= 90*864e5) { a = {};
+              ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','gad_campaignid','gad_source','device','landing_page','referrer']
+                .forEach(function(f){ if (o[f]) a[f] = o[f]; }); } } catch (e2) {}
+        }
+        for (var k in (a || {})) if (a[k]) b.set(k, a[k]);
+      } catch (e) {}
       var ok = false;
       try {
         ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT,

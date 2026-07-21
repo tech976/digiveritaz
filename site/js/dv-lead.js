@@ -25,6 +25,55 @@
      trackable URL (GTM/GA4) instead of an in-place "thank you" screen. */
   var THANKYOU_URL = '/thank-you/';
 
+  /* ---- campaign attribution (utm_* / gclid) ----
+     main.js normally owns this via window.dvAttr, but /get-proposal/ loads dv-lead.js
+     ALONE — no main.js — so without a self-contained copy every proposal-page lead
+     loses its campaign, and a visitor landing straight on /get-proposal/?utm_... is
+     never captured at all. Same storage key and rules as DV-ATTR in main.js. */
+  var ATTR_KEY = 'dv-attr', ATTR_DAYS = 90;
+  var ATTR_FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
+                     'gclid','gbraid','wbraid','gad_campaignid','gad_source','device'];
+  function attrRead(){
+    try {
+      var r = localStorage.getItem(ATTR_KEY); if (!r) return null;
+      var o = JSON.parse(r); if (!o || !o._at) return null;
+      if (Date.now() - o._at > ATTR_DAYS * 864e5) { localStorage.removeItem(ATTR_KEY); return null; }
+      return o;
+    } catch(e){ return null; }
+  }
+  function attrCapture(){
+    try {
+      var q = new URLSearchParams(location.search), f = {}, any = false;
+      ATTR_FIELDS.forEach(function(k){ var v = q.get(k); if (v) { f[k] = String(v).slice(0,200); any = true; } });
+      if (!any) return attrRead();
+      if (!f.utm_source && (f.gclid || f.gbraid || f.wbraid || f.gad_campaignid)) {
+        f.utm_source = 'google'; f.utm_medium = f.utm_medium || 'cpc';
+      }
+      ['utm_campaign','utm_term','utm_content','utm_source','utm_medium'].forEach(function(k){
+        if (f[k] && /^\{.*\}$/.test(f[k])) {
+          if (k === 'utm_campaign' && f.gad_campaignid) f[k] = f.gad_campaignid; else delete f[k];
+        }
+      });
+      f.landing_page = (location.pathname || '/') + (location.search || '');
+      f.referrer = (document.referrer || '').slice(0,300);
+      f._at = Date.now();
+      try { localStorage.setItem(ATTR_KEY, JSON.stringify(f)); } catch(e){}
+      return f;
+    } catch(e){ return null; }
+  }
+  var ATTR_NOW = attrCapture();
+  function getAttr(){
+    try {
+      if (typeof window.dvAttr === 'function') {
+        var a = window.dvAttr();
+        if (a) { for (var k in a) { if (a[k]) return a; } }   // use main.js's copy when it has data
+      }
+    } catch(e){}
+    var o = ATTR_NOW || attrRead() || {}, out = {};
+    ATTR_FIELDS.concat(['landing_page','referrer']).forEach(function(f){ if (o[f]) out[f] = o[f]; });
+    return out;
+  }
+
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function $(s,c){ return (c||document).querySelector(s); }
 
@@ -332,7 +381,7 @@
       svcSet.forEach(function(s){ body.append('services[]', s); });
       if (state.otp_verified) body.set('otp_verified', state.otp_verified);
       /* campaign attribution (utm_* / gclid) captured on the landing page — see DV-ATTR in main.js */
-      try { var a = (typeof window.dvAttr === 'function') ? window.dvAttr() : {}; for (var ak in a) if (a[ak]) body.set(ak, a[ak]); } catch (e) {}
+      try { var a = getAttr(); for (var ak in a) if (a[ak]) body.set(ak, a[ak]); } catch (e) {}
       var ok = false;
       try { ok = !!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body.toString()], {type:'application/x-www-form-urlencoded;charset=UTF-8'}))); } catch(e){}
       if (!ok) { fetch(ENDPOINT, { method:'POST', body: body, mode:'no-cors', keepalive:true }).catch(function(){}); }
