@@ -25,6 +25,30 @@
 
   var LEAD_ID = 'blog-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
 
+  /* ---- OTP via the MSG91 widget — same widget/token as the popup and contact page ---- */
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var msg91Ready = false, verified = false, otpSent = false, partialSaved = false;
+
+  function initMsg91() {
+    if (msg91Ready) return true;
+    if (typeof window.initSendOTP !== 'function') return false;
+    try {
+      window.initSendOTP({ widgetId: MSG91.widgetId, tokenAuth: MSG91.tokenAuth, exposeMethods: true, success: function(){}, failure: function(){} });
+      msg91Ready = true;
+    } catch (e) {}
+    return msg91Ready;
+  }
+  function loadMsg91(cb) {
+    if (initMsg91()) { cb && cb(true); return; }
+    var urls = ['https://verify.msg91.com/otp-provider.js', 'https://verify.phone91.com/otp-provider.js'], i = 0;
+    (function attempt() {
+      var s = document.createElement('script'); s.src = urls[i]; s.async = true;
+      s.onload = function () { cb && cb(initMsg91()); };
+      s.onerror = function () { i++; if (i < urls.length) attempt(); else cb && cb(false); };
+      document.head.appendChild(s);
+    })();
+  }
+
   function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
   /* ---------------- styles ---------------- */
@@ -49,6 +73,14 @@
       '.dvb-f input,.dvb-f select,.dvb-f textarea{width:100%;box-sizing:border-box;padding:12px 13px;border:1.5px solid #e5e7eb;border-radius:11px;font-size:.95rem;font-family:inherit;color:#0f172a;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}',
       '.dvb-f textarea{resize:vertical;min-height:78px}',
       '.dvb-f input:focus,.dvb-f select:focus,.dvb-f textarea:focus{border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.15)}',
+      /* phone + OTP rows */
+      '.dvb-phone,.dvb-otp-row{display:flex;gap:7px}',
+      '.dvb-phone input,.dvb-otp-row input{flex:1 1 auto;min-width:0}',
+      '.dvb-otp-row[hidden]{display:none}',
+      '.dvb-otp-btn,.dvb-verify-btn{flex:0 0 auto;white-space:nowrap;border:0;border-radius:11px;padding:0 12px;font-family:inherit;font-weight:700;font-size:.82rem;color:#fff;background:#16a34a;cursor:pointer;transition:opacity .2s}',
+      '.dvb-verify-btn{background:#0f2a5a}',
+      '.dvb-otp-btn[disabled],.dvb-verify-btn[disabled]{opacity:.55;cursor:not-allowed}',
+      '.dvb-otp-msg{min-height:1em;margin:0 0 10px;font-size:.76rem;line-height:1.4;color:#64748b}',
       '.dvb-consent{display:flex;gap:8px;align-items:flex-start;margin:6px 0 12px;font-size:.74rem;color:#64748b;line-height:1.45}',
       '.dvb-consent input{flex:0 0 auto;width:16px;height:16px;margin-top:1px;accent-color:#16a34a;cursor:pointer}',
       '.dvb-consent a{color:#16a34a;text-decoration:none}',
@@ -94,11 +126,13 @@
         '<p class="dvb-sub">Tell us what you need. A strategist replies within one business day.</p>' +
         '<div class="dvb-f"><input type="text" name="fullname" placeholder="Name*" autocomplete="name"></div>' +
         '<div class="dvb-f"><input type="email" name="email" placeholder="Email address*" autocomplete="email"></div>' +
-        '<div class="dvb-f"><input type="tel" name="phone" placeholder="Phone number*" inputmode="numeric" maxlength="10" autocomplete="tel"></div>' +
+        '<div class="dvb-f dvb-phone"><input type="tel" name="phone" placeholder="Phone number*" inputmode="numeric" maxlength="10" autocomplete="tel"><button type="button" class="dvb-otp-btn">Get OTP</button></div>' +
+        '<div class="dvb-f dvb-otp-row" hidden><input type="text" name="otp" placeholder="6-digit OTP" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button type="button" class="dvb-verify-btn">Verify</button></div>' +
+        '<div class="dvb-otp-msg"></div>' +
         '<div class="dvb-f"><select name="service"><option value="">Interested Service</option>' + opts + '</select></div>' +
         '<div class="dvb-f"><textarea name="message" placeholder="Briefly describe your needs, i.e. brief your tentative start date, references, budgets, etc."></textarea></div>' +
         '<label class="dvb-consent"><input type="checkbox" checked><span>I agree to DigiVeritaz’s <a href="/terms-and-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>. This consent overrides any DNC/NDNC registration.</span></label>' +
-        '<button class="dvb-btn" type="submit">Send</button>' +
+        '<button class="dvb-btn" type="submit" disabled>Send</button>' +
         '<div class="dvb-err"></div>' +
         '<p class="dvb-trust">60+ brands · 1.15L+ leads delivered · 4–10× ROAS</p>' +
       '</form>';
@@ -113,22 +147,25 @@
       '</div>';
   }
 
-  /* ---------------- lead save (same transport as the rest of the site) ---------------- */
-  function saveLead(state) {
+  /* ---------------- lead save (same transport + field names as the rest of the site) ----------------
+     Upserted by leadId in the Apps Script, exactly like the popup/contact form: a Partial row is
+     written the moment the number is verified, then updated to Complete on submit. */
+  function saveLead(state, complete) {
     try {
       var b = new URLSearchParams();
       b.set('action', 'lead_save');
       b.set('leadId', LEAD_ID);
-      b.set('complete', '1');
-      b.set('status', 'Complete');
+      b.set('complete', complete ? '1' : '');
+      b.set('status', complete ? 'Complete' : 'Partial');
       b.set('_source', 'blog-sidebar-form');
       b.set('_page', location.pathname || '/blog/');
-      b.set('_subject', 'New lead from DigiVeritaz (blog form)');
+      b.set('_subject', complete ? 'New lead from DigiVeritaz (blog form)' : 'New lead (number captured) — DigiVeritaz');
       if (state.fullname) b.set('fullname', state.fullname);
       if (state.email) b.set('email', state.email);
       if (state.phone) b.set('phone', state.phone);
       if (state.message) b.set('message', state.message);
       if (state.consent) b.set('consent', state.consent);
+      if (state.otp_verified) b.set('otp_verified', state.otp_verified);
       if (state.service) b.append('services[]', state.service);
       var ok = false;
       try {
@@ -143,23 +180,92 @@
     var err = form.querySelector('.dvb-err');
     var btn = form.querySelector('.dvb-btn');
     var phone = form.querySelector('input[name=phone]');
-    phone.addEventListener('input', function () { phone.value = phone.value.replace(/[^0-9]/g, '').slice(0, 10); });
+    var otpRow = form.querySelector('.dvb-otp-row');
+    var otpInput = form.querySelector('input[name=otp]');
+    var getBtn = form.querySelector('.dvb-otp-btn');
+    var verBtn = form.querySelector('.dvb-verify-btn');
+    var otpMsg = form.querySelector('.dvb-otp-msg');
+
+    function msg(t, c) { otpMsg.textContent = t || ''; otpMsg.style.color = c || '#64748b'; }
+    function digits() { return (phone.value || '').replace(/[^0-9]/g, '').slice(-10); }
+    function phoneOk() { return /^[6-9][0-9]{9}$/.test(digits()); }
+    function v(n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; }
+    function gate() { btn.disabled = !verified; }
+
+    phone.addEventListener('input', function () {
+      phone.value = phone.value.replace(/[^0-9]/g, '').slice(0, 10);
+      if (verified) {                       // number changed after verifying -> re-verify
+        verified = false; otpSent = false;
+        getBtn.textContent = 'Get OTP'; getBtn.disabled = false;
+        otpRow.hidden = true; phone.readOnly = false;
+        msg(''); gate();
+      }
+    });
+    otpInput.addEventListener('input', function () { otpInput.value = otpInput.value.replace(/[^0-9]/g, '').slice(0, 6); });
+
+    /* --- send / resend the code --- */
+    getBtn.addEventListener('click', function () {
+      if (!phoneOk()) { msg('Enter a valid 10-digit mobile number.', '#dc2626'); return; }
+      getBtn.disabled = true;
+      msg(otpSent ? 'Sending a new code…' : 'Sending OTP…');
+      /* capture the number as a Partial lead straight away, so an abandoned form
+         still leaves us a contactable number — same behaviour as the popup form. */
+      if (!partialSaved) {
+        partialSaved = true;
+        saveLead({ phone: digits(), fullname: v('fullname'), email: v('email'), service: v('service'), message: v('message') }, false);
+      }
+      var resend = otpSent;
+      loadMsg91(function (ok) {
+        if (!ok) { getBtn.disabled = false; msg('Could not reach the OTP service. Please try again.', '#dc2626'); return; }
+        var onOk = function () {
+          otpSent = true; getBtn.disabled = false; getBtn.textContent = 'Resend';
+          otpRow.hidden = false;
+          msg('OTP sent to +91 ' + digits() + ' via SMS.', '#16a34a');
+          try { otpInput.focus(); } catch (e) {}
+        };
+        var onFail = function (e) { getBtn.disabled = false; try { console.error('MSG91 sendOtp', e); } catch (_) {} msg('Could not send OTP — check the number and try again.', '#dc2626'); };
+        if (resend && typeof window.retryOtp === 'function') window.retryOtp(null, onOk, onFail);
+        else if (typeof window.sendOtp === 'function') window.sendOtp('91' + digits(), onOk, onFail);
+        else { getBtn.disabled = false; msg('Verification unavailable right now.', '#dc2626'); }
+      });
+    });
+
+    /* --- verify the code --- */
+    verBtn.addEventListener('click', function () {
+      var code = (otpInput.value || '').replace(/[^0-9]/g, '');
+      if (code.length < 4) { msg('Enter the code from the SMS.', '#dc2626'); return; }
+      if (typeof window.verifyOtp !== 'function') { msg('Verification not ready — resend the code.', '#dc2626'); return; }
+      verBtn.disabled = true; msg('Verifying…');
+      window.verifyOtp(code, function () {
+        verified = true; verBtn.disabled = false;
+        otpRow.hidden = true; phone.readOnly = true;
+        getBtn.textContent = 'Verified ✓'; getBtn.disabled = true; getBtn.style.background = '#16a34a';
+        msg('Mobile number verified ✓', '#16a34a');
+        gate();
+      }, function () {
+        verBtn.disabled = false;
+        msg('Incorrect or expired code. Resend and try again.', '#dc2626');
+      });
+    });
+
+    gate();
 
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var v = function (n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; };
-      var name = v('fullname'), email = v('email'), ph = v('phone');
+      var name = v('fullname'), email = v('email'), ph = digits();
       var consent = form.querySelector('.dvb-consent input').checked;
       if (!name) { err.textContent = 'Please enter your name.'; return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Please enter a valid email.'; return; }
-      if (!/^[6-9][0-9]{9}$/.test(ph)) { err.textContent = 'Please enter a valid 10-digit mobile number.'; return; }
+      if (!phoneOk()) { err.textContent = 'Please enter a valid 10-digit mobile number.'; return; }
+      if (!verified) { err.textContent = 'Please verify your mobile number with the OTP first.'; return; }
       if (!consent) { err.textContent = 'Please accept the T&C to continue.'; return; }
       err.textContent = '';
       btn.disabled = true; btn.textContent = 'Sending…';
 
       /* save FIRST — sendBeacon survives the redirect, so the Apps Script write and the
          automated email to the form filler are unaffected by the navigation below. */
-      saveLead({ fullname: name, email: email, phone: ph, service: v('service'), message: v('message'), consent: consent ? 'Yes' : '' });
+      saveLead({ fullname: name, email: email, phone: ph, service: v('service'), message: v('message'),
+                 consent: consent ? 'Yes' : '', otp_verified: 'yes' }, true);
       try { (window.dataLayer = window.dataLayer || []).push({ event: 'lead_submitted', form_location: 'blog', lead_id: LEAD_ID }); } catch (e) {}
       setTimeout(function () {
         try { location.href = '/thank-you/?src=blog&lid=' + encodeURIComponent(LEAD_ID); } catch (e) {}
