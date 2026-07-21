@@ -293,8 +293,10 @@ function handleLeadSave_(p, nowMs) {
 
 // ============================================================
 // Campaign attribution — written BY HEADER NAME, not by fixed position.
-// Put any of these headers in row 1, in ANY column (P, Z, wherever) and it fills:
-//     utm_source | utm_medium | utm_campaign | utm_content | click_id
+// Put any of these headers in row 1, in ANY column (start at P, or anywhere) and it fills:
+//     utm_source | utm_medium | utm_campaign | utm_term | utm_content | keyword
+//     click_id | gclid | gbraid | gad_campaignid | gad_source | device
+//     landing_page | referrer
 // Or use ONE combined column headed:  campaign     -> "google / cpc / brand-search"
 // Headers you leave out are skipped; nothing else on the row moves.
 // ============================================================
@@ -310,12 +312,21 @@ function writeAttr_(sheet, rowIndex, p) {
     }
     var src = p.utm_source || '', med = p.utm_medium || '', camp = p.utm_campaign || '';
     var vals = {
-      utm_source:   src,
-      utm_medium:   med,
-      utm_campaign: camp,
-      utm_content:  p.utm_content || p.utm_term || '',
-      click_id:     p.gclid || p.gbraid || p.wbraid || '',
-      campaign:     [src, med, camp].filter(String).join(' / ')
+      utm_source:     src,
+      utm_medium:     med,
+      utm_campaign:   camp,
+      utm_term:       p.utm_term || '',
+      utm_content:    p.utm_content || '',
+      keyword:        p.utm_term || p.utm_content || '',      // alias, whichever the ads carry
+      click_id:       p.gclid || p.gbraid || p.wbraid || '',  // gclid, or gbraid/wbraid on iOS
+      gclid:          p.gclid || '',
+      gbraid:         p.gbraid || '',
+      gad_campaignid: p.gad_campaignid || '',
+      gad_source:     p.gad_source || '',
+      device:         p.device || '',
+      landing_page:   p.landing_page || '',
+      referrer:       p.referrer || '',
+      campaign:       [src, med, camp].filter(String).join(' / ')   // single-column summary
     };
     for (var key in vals) {
       if (!Object.prototype.hasOwnProperty.call(vals, key)) continue;
