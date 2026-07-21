@@ -29,24 +29,55 @@
   var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var msg91Ready = false, verified = false, otpSent = false, partialSaved = false;
 
+  /* The widget attaches window.sendOtp/verifyOtp ASYNCHRONOUSLY, a moment after
+     initSendOTP() returns — so we must wait for the methods rather than testing for them
+     immediately (that produced "Verification unavailable right now."). dv-lead.js dodges
+     this by pre-warming when its popup opens; we pre-warm on first touch of the form.
+     initSendOTP is also guarded by a window-level flag because dv-lead.js is loaded on
+     the same page and would otherwise init the same widget twice. */
+  function otpReady() { return typeof window.sendOtp === 'function' && typeof window.verifyOtp === 'function'; }
+
   function initMsg91() {
-    if (msg91Ready) return true;
+    if (otpReady()) { msg91Ready = true; return true; }
     if (typeof window.initSendOTP !== 'function') return false;
-    try {
-      window.initSendOTP({ widgetId: MSG91.widgetId, tokenAuth: MSG91.tokenAuth, exposeMethods: true, success: function(){}, failure: function(){} });
-      msg91Ready = true;
-    } catch (e) {}
-    return msg91Ready;
+    if (!window.__dvMsg91Inited) {
+      try {
+        window.initSendOTP({ widgetId: MSG91.widgetId, tokenAuth: MSG91.tokenAuth, exposeMethods: true, success: function(){}, failure: function(){} });
+        window.__dvMsg91Inited = true;
+      } catch (e) { return false; }
+    }
+    return true;                    // init fired; methods land shortly — waitForOtp() handles it
   }
+
+  function waitForOtp(cb) {
+    var t0 = Date.now();
+    (function poll() {
+      if (otpReady()) { msg91Ready = true; return cb(true); }
+      if (Date.now() - t0 > 8000) return cb(false);
+      setTimeout(poll, 120);
+    })();
+  }
+
   function loadMsg91(cb) {
-    if (initMsg91()) { cb && cb(true); return; }
+    cb = cb || function () {};
+    if (otpReady()) { msg91Ready = true; return cb(true); }
+    if (typeof window.initSendOTP === 'function') { return initMsg91() ? waitForOtp(cb) : cb(false); }
+    if (window.__dvMsg91Loading) return waitForOtp(cb);   // another script is already fetching it
+    window.__dvMsg91Loading = true;
     var urls = ['https://verify.msg91.com/otp-provider.js', 'https://verify.phone91.com/otp-provider.js'], i = 0;
     (function attempt() {
       var s = document.createElement('script'); s.src = urls[i]; s.async = true;
-      s.onload = function () { cb && cb(initMsg91()); };
-      s.onerror = function () { i++; if (i < urls.length) attempt(); else cb && cb(false); };
+      s.onload = function () { initMsg91(); waitForOtp(cb); };
+      s.onerror = function () { i++; if (i < urls.length) attempt(); else { window.__dvMsg91Loading = false; cb(false); } };
       document.head.appendChild(s);
     })();
+  }
+
+  /* load + init ahead of the click so the methods are ready when the user asks for a code */
+  function warmMsg91() {
+    if (window.__dvMsg91Warmed) return;
+    window.__dvMsg91Warmed = true;
+    loadMsg91();
   }
 
   function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -187,6 +218,12 @@
     var otpMsg = form.querySelector('.dvb-otp-msg');
 
     function msg(t, c) { otpMsg.textContent = t || ''; otpMsg.style.color = c || '#64748b'; }
+
+    /* start fetching/initialising the OTP widget as soon as the reader touches the form,
+       so it is ready by the time they press "Get OTP" */
+    ['focusin', 'input'].forEach(function (evt) {
+      form.addEventListener(evt, function once() { warmMsg91(); form.removeEventListener(evt, once); }, { once: true });
+    });
     function digits() { return (phone.value || '').replace(/[^0-9]/g, '').slice(-10); }
     function phoneOk() { return /^[6-9][0-9]{9}$/.test(digits()); }
     function v(n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; }
@@ -215,8 +252,13 @@
         saveLead({ phone: digits(), fullname: v('fullname'), email: v('email'), service: v('service'), message: v('message') }, false);
       }
       var resend = otpSent;
+      warmMsg91();
       loadMsg91(function (ok) {
-        if (!ok) { getBtn.disabled = false; msg('Could not reach the OTP service. Please try again.', '#dc2626'); return; }
+        if (!ok || typeof window.sendOtp !== 'function') {
+          getBtn.disabled = false;
+          msg('Could not reach the verification service. Please try again.', '#dc2626');
+          return;
+        }
         var onOk = function () {
           otpSent = true; getBtn.disabled = false; getBtn.textContent = 'Resend';
           otpRow.hidden = false;
@@ -225,8 +267,7 @@
         };
         var onFail = function (e) { getBtn.disabled = false; try { console.error('MSG91 sendOtp', e); } catch (_) {} msg('Could not send OTP — check the number and try again.', '#dc2626'); };
         if (resend && typeof window.retryOtp === 'function') window.retryOtp(null, onOk, onFail);
-        else if (typeof window.sendOtp === 'function') window.sendOtp('91' + digits(), onOk, onFail);
-        else { getBtn.disabled = false; msg('Verification unavailable right now.', '#dc2626'); }
+        else window.sendOtp('91' + digits(), onOk, onFail);
       });
     });
 
@@ -234,8 +275,9 @@
     verBtn.addEventListener('click', function () {
       var code = (otpInput.value || '').replace(/[^0-9]/g, '');
       if (code.length < 4) { msg('Enter the code from the SMS.', '#dc2626'); return; }
-      if (typeof window.verifyOtp !== 'function') { msg('Verification not ready — resend the code.', '#dc2626'); return; }
       verBtn.disabled = true; msg('Verifying…');
+      loadMsg91(function (ok) {
+      if (!ok || typeof window.verifyOtp !== 'function') { verBtn.disabled = false; msg('Verification not ready — please resend the code.', '#dc2626'); return; }
       window.verifyOtp(code, function () {
         verified = true; verBtn.disabled = false;
         otpRow.hidden = true; phone.readOnly = true;
@@ -245,6 +287,7 @@
       }, function () {
         verBtn.disabled = false;
         msg('Incorrect or expired code. Resend and try again.', '#dc2626');
+      });
       });
     });
 
