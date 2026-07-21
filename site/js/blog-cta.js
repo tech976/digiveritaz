@@ -37,7 +37,9 @@
       '.blog-article.dvb-on .container{max-width:1200px}',
       '.dvb-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:40px;align-items:start}',
       '.dvb-main{min-width:0}',
-      '.dvb-side{position:sticky;top:96px}',
+      /* --dvb-top is measured at runtime from the real sticky header (topbar + nav pill)
+         so the card never tucks under it; the 150px fallback covers a no-JS/odd case. */
+      '.dvb-side{position:sticky;top:var(--dvb-top,150px)}',
 
       /* form card */
       '.dvb-form{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:22px 20px;box-shadow:0 18px 40px -28px rgba(2,6,23,.45)}',
@@ -165,6 +167,21 @@
     });
   }
 
+  /* Keep the sticky sidebar clear of the sticky header. The header's offset and height
+     both change across breakpoints (and the top contact bar may or may not be present),
+     so measure instead of hard-coding: sticky-top = header's own top + its height + gap. */
+  function syncStickyTop() {
+    try {
+      var h = document.querySelector('.site-header');
+      if (!h) return;
+      var top = parseFloat(getComputedStyle(h).top);
+      if (isNaN(top)) top = 0;
+      var height = h.getBoundingClientRect().height || 0;
+      if (!height) return;
+      document.documentElement.style.setProperty('--dvb-top', Math.round(top + height + 18) + 'px');
+    } catch (e) {}
+  }
+
   /* ---------------- inject ---------------- */
   function run() {
     var sec = document.querySelector('section.blog-article');
@@ -210,6 +227,12 @@
     sec.classList.add('dvb-on');
 
     wireForm(side.querySelector('.dvb-form'));
+
+    syncStickyTop();
+    /* re-measure once webfonts/layout settle, and whenever the breakpoint changes */
+    setTimeout(syncStickyTop, 400);
+    window.addEventListener('load', syncStickyTop);
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(syncStickyTop, 150); }, { passive: true });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
