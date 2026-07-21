@@ -231,6 +231,7 @@ function handleSubmitForm_(p, nowMs) {
     safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), '',
     safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
     safeCell_(p.utm_term || ''), safeCell_(p.utm_content || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || ''),
+    safeCell_(p.gad_campaignid || ''), safeCell_(p.device || ''),
     safeCell_(p.landing_page || ''), safeCell_(p.referrer || '')
   ]);
 
@@ -267,6 +268,7 @@ function handleLeadSave_(p, nowMs) {
     safeCell_(p.otp_verified || ''), safeCell_(leadId),
     safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
     safeCell_(p.utm_term || ''), safeCell_(p.utm_content || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || ''),
+    safeCell_(p.gad_campaignid || ''), safeCell_(p.device || ''),
     safeCell_(p.landing_page || ''), safeCell_(p.referrer || '')
   ];
 
@@ -329,6 +331,8 @@ function postLeadToCRM_(p, services) {
       utm_term:     p.utm_term || '',
       utm_content:  p.utm_content || '',
       gclid:        p.gclid || p.gbraid || p.wbraid || '',
+      gad_campaignid: p.gad_campaignid || '',
+      device:       p.device || '',
       landing_page: p.landing_page || '',
       referrer:     p.referrer || ''
     };
@@ -354,7 +358,7 @@ function readAllLeadRows_() {
   var values = sheet.getDataRange().getDisplayValues();
   if (values.length < 2) return [];
   var keys = ['timestamp','name','email','phone','company','budget','services','message','page','source','status','otp_verified','leadId',
-              'utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','landing_page','referrer'];
+              'utm_source','utm_medium','utm_campaign','utm_term','utm_content','click_id','gad_campaignid','device','landing_page','referrer'];
   var out = [];
   for (var r = 1; r < values.length; r++) {
     var row = values[r], obj = {};

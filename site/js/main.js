@@ -12,7 +12,10 @@
    ============================================================ */
 ;(function () {
   var KEY = 'dv-attr', MAX_AGE_DAYS = 90;
-  var FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'];
+  /* gad_campaignid / gad_source / device come from Google Ads auto-tagging and are the
+     reliable fallback when a ValueTrack placeholder like {campaignid} fails to resolve. */
+  var FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
+                'gclid','gbraid','wbraid','gad_campaignid','gad_source','device'];
 
   function read() {
     try {
@@ -33,9 +36,18 @@
       });
       /* a bare gclid (auto-tagging, no utm_*) still means Google Ads */
       if (any) {
-        if (!found.utm_source && (found.gclid || found.gbraid || found.wbraid)) {
+        if (!found.utm_source && (found.gclid || found.gbraid || found.wbraid || found.gad_campaignid)) {
           found.utm_source = 'google'; found.utm_medium = found.utm_medium || 'cpc';
         }
+        /* An unresolved ValueTrack placeholder ('{campaignid}', '{keyword}' …) would otherwise
+           be recorded verbatim on every lead. Substitute the real auto-tagged campaign id
+           where we have it, and drop the placeholder where we don't. */
+        ['utm_campaign','utm_term','utm_content','utm_source','utm_medium'].forEach(function (f) {
+          if (found[f] && /^\{.*\}$/.test(found[f])) {
+            if (f === 'utm_campaign' && found.gad_campaignid) found[f] = found.gad_campaignid;
+            else delete found[f];
+          }
+        });
         found.landing_page = (location.pathname || '/') + (location.search || '');
         found.referrer = (document.referrer || '').slice(0, 300);
         found._at = Date.now();
@@ -660,14 +672,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1785000000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1785100000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1785000000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1785100000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
