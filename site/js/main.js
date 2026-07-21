@@ -68,21 +68,25 @@
     return out;
   };
 
-  /* Carry the campaign THROUGH to the conversion pages instead of relying on storage
-     alone. Clicking a CTA used to land on a bare /get-proposal/ with the params gone
-     from the URL — they still resolved from localStorage, but that is invisible when
-     debugging and is lost outright if storage is blocked (Safari private mode / ITP).
-     Appending them keeps the attribution in the URL where it can be seen and where
-     dv-lead.js can read it directly. Scoped to our own conversion pages only. */
+  /* Carry the campaign THROUGH internal navigation instead of relying on storage alone.
+     Clicking a link used to land on a bare URL with the params gone — they still
+     resolved from localStorage, but that is invisible when debugging and is lost
+     outright if storage is blocked (Safari private mode / ITP).
+
+     NOTE: this is applied to all internal PAGE links (blog, services, conversion
+     pages) because every page carries a CTA or a lead form. It is deliberately NOT
+     applied to external hosts, mailto/tel, in-page anchors, or direct file links. */
   var CARRY = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
                'gclid','gbraid','wbraid','gad_campaignid','device'];
   function decorate(link) {
     try {
       var o = current || read(); if (!o) return;
-      var href = link.getAttribute('href'); if (!href || href.charAt(0) === '#') return;
+      var href = link.getAttribute('href');
+      if (!href || href.charAt(0) === '#') return;
+      if (/^(mailto:|tel:|javascript:|sms:|whatsapp:)/i.test(href)) return;
       var u = new URL(link.href, location.origin);
       if (u.host !== location.host) return;                       // never leak to third parties
-      if (!/^\/(get-proposal|contact-us)\/?$/.test(u.pathname)) return;
+      if (/\.[a-z0-9]{2,5}$/i.test(u.pathname) && !/\.html?$/i.test(u.pathname)) return;  // asset/file link
       var touched = false;
       CARRY.forEach(function (k) {
         if (o[k] && !u.searchParams.has(k)) { u.searchParams.set(k, o[k]); touched = true; }
@@ -705,14 +709,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1785400000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.js?v=1785500000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1785400000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.js?v=1785500000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
