@@ -118,6 +118,9 @@
       '.dvb-btn{width:100%;border:0;border-radius:12px;padding:13px 16px;font-family:inherit;font-weight:800;font-size:1rem;color:#06230f;background:linear-gradient(135deg,#22c55e,#16a34a);cursor:pointer;box-shadow:0 12px 26px -12px rgba(22,163,74,.55);transition:transform .15s,opacity .2s}',
       '.dvb-btn:hover{transform:translateY(-1px)}',
       '.dvb-btn[disabled]{background:#e2e8f0;color:#94a3b8;box-shadow:none;cursor:not-allowed;transform:none}',
+      '.dvb-btn.is-locked{opacity:.7}',
+      '.dvb-hint{margin-top:7px;font-size:.74rem;color:#64748b;text-align:center;line-height:1.4}',
+      '.dvb-hint[hidden]{display:none}',
       '.dvb-err{min-height:1em;margin-top:8px;font-size:.8rem;color:#dc2626;text-align:center}',
       '.dvb-trust{margin:12px 0 0;padding-top:12px;border-top:1px dashed #e5e7eb;font-size:.74rem;color:#64748b;text-align:center;line-height:1.5}',
 
@@ -163,7 +166,8 @@
         '<div class="dvb-f"><select name="service"><option value="">Interested Service</option>' + opts + '</select></div>' +
         '<div class="dvb-f"><textarea name="message" placeholder="Briefly describe your needs, i.e. brief your tentative start date, references, budgets, etc."></textarea></div>' +
         '<label class="dvb-consent"><input type="checkbox" checked><span>I agree to DigiVeritaz’s <a href="/terms-and-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>. This consent overrides any DNC/NDNC registration.</span></label>' +
-        '<button class="dvb-btn" type="submit" disabled>Send</button>' +
+        '<button class="dvb-btn" type="submit">Send</button>' +
+        '<div class="dvb-hint">Verify your mobile number above to submit.</div>' +
         '<div class="dvb-err"></div>' +
         '<p class="dvb-trust">60+ brands · 1.15L+ leads delivered · 4–10× ROAS</p>' +
       '</form>';
@@ -216,6 +220,7 @@
     var getBtn = form.querySelector('.dvb-otp-btn');
     var verBtn = form.querySelector('.dvb-verify-btn');
     var otpMsg = form.querySelector('.dvb-otp-msg');
+    var hint = form.querySelector('.dvb-hint');
 
     function msg(t, c) { otpMsg.textContent = t || ''; otpMsg.style.color = c || '#64748b'; }
 
@@ -227,7 +232,14 @@
     function digits() { return (phone.value || '').replace(/[^0-9]/g, '').slice(-10); }
     function phoneOk() { return /^[6-9][0-9]{9}$/.test(digits()); }
     function v(n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; }
-    function gate() { btn.disabled = !verified; }
+    /* Deliberately do NOT disable Send while unverified. A dead button with no
+       explanation just looks broken — the user fills everything in, clicks, and
+       nothing happens. Instead keep it clickable and let the submit handler say
+       exactly what is missing. The hint below mirrors the contact page's wording. */
+    function gate() {
+      btn.classList.toggle('is-locked', !verified);
+      hint.hidden = verified;
+    }
 
     phone.addEventListener('input', function () {
       phone.value = phone.value.replace(/[^0-9]/g, '').slice(0, 10);
