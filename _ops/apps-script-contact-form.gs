@@ -228,10 +228,9 @@ function handleSubmitForm_(p, nowMs) {
     new Date(), safeCell_(p.fullname || p.name || ''), safeCell_(p.email || ''),
     safeCell_(p.phone || ''), safeCell_(p.company || ''), safeCell_(p.budget || ''),
     safeCell_(services), safeCell_(p.message || ''), safeCell_(p._page || ''),
-    safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), '',
-    safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
-    safeCell_(p.utm_content || p.utm_term || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || '')
+    safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), ''
   ]);
+  writeAttr_(sheet, sheet.getLastRow(), p);   // campaign cells, by header name
 
   postLeadToCRM_(p, services);  // CRM — also send this completed lead to the CRM
 
@@ -263,9 +262,7 @@ function handleLeadSave_(p, nowMs) {
     safeCell_(p.phone || ''), safeCell_(p.company || ''), safeCell_(p.budget || ''),
     safeCell_(services), safeCell_(p.message || ''), safeCell_(p._page || ''),
     safeCell_(p._source || 'website'), safeCell_(complete ? 'Complete' : 'Partial'),
-    safeCell_(p.otp_verified || ''), safeCell_(leadId),
-    safeCell_(p.utm_source || ''), safeCell_(p.utm_medium || ''), safeCell_(p.utm_campaign || ''),
-    safeCell_(p.utm_content || p.utm_term || ''), safeCell_(p.gclid || p.gbraid || p.wbraid || '')
+    safeCell_(p.otp_verified || ''), safeCell_(leadId)
   ];
 
   var lock = LockService.getScriptLock();
@@ -275,7 +272,8 @@ function handleLeadSave_(p, nowMs) {
     if (!sheet) return json({ ok: false, error: 'Sheet "' + SHEET_NAME + '" not found' });
     var rowIndex = leadId ? findRowByLeadId_(sheet, leadId) : -1;
     if (rowIndex > 0) { sheet.getRange(rowIndex, 1, 1, row.length).setValues([row]); }  // update this lead's row
-    else { sheet.appendRow(row); }                                                      // first time we see this lead
+    else { sheet.appendRow(row); rowIndex = sheet.getLastRow(); }                        // first time we see this lead
+    writeAttr_(sheet, rowIndex, p);                                                     // campaign cells, by header name
   } finally { try { lock.releaseLock(); } catch (e) {} }
 
   // Email the team only ONCE, on the Complete submission.
@@ -291,6 +289,42 @@ function handleLeadSave_(p, nowMs) {
     }
   }
   return json({ ok: true });
+}
+
+// ============================================================
+// Campaign attribution — written BY HEADER NAME, not by fixed position.
+// Put any of these headers in row 1, in ANY column (P, Z, wherever) and it fills:
+//     utm_source | utm_medium | utm_campaign | utm_content | click_id
+// Or use ONE combined column headed:  campaign     -> "google / cpc / brand-search"
+// Headers you leave out are skipped; nothing else on the row moves.
+// ============================================================
+function writeAttr_(sheet, rowIndex, p) {
+  try {
+    if (!sheet || !rowIndex || rowIndex < 2) return;
+    var lastCol = sheet.getLastColumn();
+    if (lastCol < 1) return;
+    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+    var norm = [];
+    for (var i = 0; i < headers.length; i++) {
+      norm.push(String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_'));
+    }
+    var src = p.utm_source || '', med = p.utm_medium || '', camp = p.utm_campaign || '';
+    var vals = {
+      utm_source:   src,
+      utm_medium:   med,
+      utm_campaign: camp,
+      utm_content:  p.utm_content || p.utm_term || '',
+      click_id:     p.gclid || p.gbraid || p.wbraid || '',
+      campaign:     [src, med, camp].filter(String).join(' / ')
+    };
+    for (var key in vals) {
+      if (!Object.prototype.hasOwnProperty.call(vals, key)) continue;
+      var col = norm.indexOf(key);
+      if (col >= 0 && vals[key]) sheet.getRange(rowIndex, col + 1).setValue(safeCell_(vals[key]));
+    }
+  } catch (err) {
+    console.error('writeAttr_ failed: ' + err);   // never block the lead save
+  }
 }
 
 function findRowByLeadId_(sheet, leadId) {
@@ -353,8 +387,11 @@ function readAllLeadRows_() {
   if (!sheet) return [];
   var values = sheet.getDataRange().getDisplayValues();
   if (values.length < 2) return [];
-  var keys = ['timestamp','name','email','phone','company','budget','services','message','page','source','status','otp_verified','leadId',
-              'utm_source','utm_medium','utm_campaign','utm_content','click_id'];
+  var base = ['timestamp','name','email','phone','company','budget','services','message','page','source','status','otp_verified','leadId'];
+  var keys = base.slice();
+  for (var h = base.length; h < values[0].length; h++) {            // extra columns keyed by their own header
+    keys.push(String(values[0][h] || ('col' + (h + 1))).trim().toLowerCase().replace(/\s+/g, '_'));
+  }
   var out = [];
   for (var r = 1; r < values.length; r++) {
     var row = values[r], obj = {};
