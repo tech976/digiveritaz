@@ -43,11 +43,29 @@ async function handler(req, res) {
   const name = H.clean(t.n, 80);
   if (!H.validEmail(email)) return res.status(400).json({ ok: false, error: 'otp_expired' });
 
+  // Refuse before comparing if this code has already burned its attempts, whether
+  // that shows in the token or only in this instance's tally (replayed token).
+  const used = Math.max(Number(t.a) || 0, H.failCount(String(t.c || '')));
+  if (used >= H.MAX_ATTEMPTS) {
+    return res.status(200).json({ ok: false, error: 'otp_attempts' });
+  }
+
   // constant-time compare of the keyed digest
   const got = Buffer.from(H.codeDigest(email, code));
   const want = Buffer.from(String(t.c || ''));
   if (got.length !== want.length || !crypto.timingSafeEqual(got, want)) {
-    return res.status(400).json({ ok: false, error: 'otp_invalid' });
+    const n = Math.max(used + 1, H.bumpFail(String(t.c || '')));
+    if (n >= H.MAX_ATTEMPTS) {
+      return res.status(200).json({ ok: false, error: 'otp_attempts' });
+    }
+    // hand back a token carrying the new count; the client swaps it in, so the
+    // next guess cannot silently start from zero
+    return res.status(200).json({
+      ok: false,
+      error: 'otp_invalid',
+      attemptsLeft: H.MAX_ATTEMPTS - n,
+      token: H.issueToken({ e: t.e, n: t.n, c: t.c, x: t.x, a: n })
+    });
   }
 
   // ---- register with the digest service -----------------------------------

@@ -75,6 +75,7 @@
     mail_failed: 'We could not send the email just now. Please try again in a minute.',
     otp_invalid: 'That code is not correct. Please check and try again.',
     otp_expired: 'That code has expired. Request a new one.',
+    otp_attempts: 'Too many incorrect codes. Request a new one to try again.',
     subscribe_failed: 'We could not complete your subscription. Please try again shortly.',
     server: 'Something went wrong at our end. Please try again.',
     network: 'Network problem. Please check your connection and try again.'
@@ -185,9 +186,32 @@
     req.then(function (res) {
       busy(b2, false);
       if (!res || !res.ok) {
-        showErr(e2, msgFor(res && res.error));
+        /* The server re-issues the token with the attempt count baked in. Swapping
+           it in is what makes the limit stick — keep the old one and the next guess
+           would start from zero again. */
+        if (res && res.token) state.token = res.token;
+
+        var msg = msgFor(res && res.error);
+        if (res && res.error === 'otp_invalid' && typeof res.attemptsLeft === 'number') {
+          msg += res.attemptsLeft === 1
+            ? ' 1 attempt left.'
+            : ' ' + res.attemptsLeft + ' attempts left.';
+        }
+        showErr(e2, msg);
+
         for (var j = 0; j < otpInputs.length; j++) otpInputs[j].value = '';
-        otpInputs[0].focus();
+
+        if (res && res.error === 'otp_attempts') {
+          // out of tries: block further guessing and let them get a fresh code now
+          for (var k = 0; k < otpInputs.length; k++) otpInputs[k].disabled = true;
+          b2.disabled = true;
+          if (state.tick) { clearInterval(state.tick); state.tick = null; }
+          var rb = $('ain-resend'), tl = $('ain-timer');
+          rb.disabled = false; tl.textContent = '';
+          rb.focus();
+        } else {
+          otpInputs[0].focus();
+        }
         return;
       }
       if (state.tick) { clearInterval(state.tick); state.tick = null; }
@@ -224,6 +248,10 @@
     req.then(function (res) {
       if (!res || !res.ok) { showErr(e2, msgFor(res && res.error)); btn.disabled = false; return; }
       state.token = res.token;      // the old token is now stale
+      clearErr(e2);
+      for (var j = 0; j < otpInputs.length; j++) { otpInputs[j].disabled = false; otpInputs[j].value = ''; }
+      b2.disabled = false;
+      otpInputs[0].focus();
       startResendTimer();
     });
   });

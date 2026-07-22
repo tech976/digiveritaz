@@ -13,6 +13,29 @@
 const crypto = require('node:crypto');
 
 const OTP_TTL_MS = 10 * 60 * 1000;
+const MAX_ATTEMPTS = 3;
+
+/* Attempt limiting on a stateless token is not free. The count lives in the token
+   and the server re-issues it on every wrong guess, so an honest client burns its
+   three tries and is done. A scripted client could replay the FIRST token forever
+   and reset the count, so we also keep a short-lived in-process tally: Vercel keeps
+   instances warm between invocations, which catches repeat guessing against the
+   same code even when the token is rewound. It is not airtight across cold starts —
+   the real control for a determined attacker is edge rate limiting on the route. */
+const recentFails = new Map();          // codeDigest -> { n, exp }
+
+function bumpFail(key) {
+  const now = Date.now();
+  for (const [k, v] of recentFails) if (v.exp < now) recentFails.delete(k);
+  const cur = recentFails.get(key) || { n: 0, exp: now + OTP_TTL_MS };
+  cur.n += 1;
+  recentFails.set(key, cur);
+  return cur.n;
+}
+function failCount(key) {
+  const v = recentFails.get(key);
+  return v && v.exp > Date.now() ? v.n : 0;
+}
 
 function b64url(buf) {
   return Buffer.from(buf).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -109,5 +132,6 @@ function body(req) {
 }
 
 module.exports = {
-  OTP_TTL_MS, codeDigest, issueToken, readToken, validEmail, clean, esc, sendMail, cors, body
+  OTP_TTL_MS, MAX_ATTEMPTS, codeDigest, issueToken, readToken, validEmail, clean, esc,
+  sendMail, cors, body, bumpFail, failCount
 };
