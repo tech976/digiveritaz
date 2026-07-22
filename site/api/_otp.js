@@ -69,8 +69,11 @@ function esc(s) {
 async function sendMail({ to, subject, html, text }) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return { ok: false, status: 0, detail: 'RESEND_API_KEY is not set' };
-  // Must be an address on a domain verified in Resend, or every send is rejected.
-  const from = process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.com>';
+  /* Must be an address on a domain VERIFIED in Resend or every send 403s. The
+     verified domain on this account is digiveritaz.tech, not digiveritaz.com —
+     sending from .com returned "The digiveritaz.com domain is not verified".
+     Replies still go to the main domain via reply_to below. */
+  const from = process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.tech>';
 
   let r;
   try {
