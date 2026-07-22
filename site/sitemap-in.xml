@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/creator-team-marketing-influencer-squads-big-events/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/creator-team-marketing-influencer-squads-big-events.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-click-tracking-redirect-ga4-attribution-utm/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
