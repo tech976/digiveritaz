@@ -276,6 +276,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/gsc-social-insights-track-instagram-tiktok-youtube/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/gsc-social-insights-track-instagram-tiktok-youtube.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/fake-dmca-claims-protect-google-rankings/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
