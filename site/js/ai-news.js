@@ -18,8 +18,12 @@
   if (window.__dvAiNews) return;
   window.__dvAiNews = true;
 
-  var API_SEND = '/api/otp-send';
-  var API_VERIFY = '/api/otp-verify';
+  /* Trailing slashes are deliberate. site/vercel.json sets trailingSlash:true, so
+     /api/otp-send 308-redirects to /api/otp-send/ — fetch follows it and the POST
+     still works, but it costs an extra round trip on every call. Requesting the
+     canonical form skips the hop. */
+  var API_SEND = '/api/otp-send/';
+  var API_VERIFY = '/api/otp-verify/';
 
   /* Local review mode. `python -m http.server` cannot run the Vercel functions, so
      on localhost we simulate the round-trip instead of failing. Never active on the
