@@ -11,12 +11,18 @@ const H = require('./_otp.js');
 const SUBSCRIBE_URL = process.env.SUBSCRIBE_API_URL ||
   'https://email-automation-blond-nine.vercel.app/api/subscribers';
 
+  /* Cloudflare sits in front of Vercel and replaces origin 5xx responses with its
+     own "error code: 502" page, destroying the JSON body that explains what broke.
+     The browser then fails to parse it and shows a generic message, and there is
+     nothing to debug from outside. So application-level failures return HTTP 200
+     with ok:false — the client checks the ok field, never the status code. 4xx is
+     left alone; Cloudflare passes those through intact. */
 module.exports = async (req, res) => {
   try {
     return await handler(req, res);
   } catch (e) {
     console.error('otp-verify crashed:', e && e.stack ? e.stack : e);
-    return res.status(500).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
+    return res.status(200).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
   }
 };
 
@@ -54,14 +60,14 @@ async function handler(req, res) {
     });
   } catch (e) {
     console.error('otp-verify: subscribe call threw', String(e));
-    return res.status(502).json({ ok: false, error: 'subscribe_failed' });
+    return res.status(200).json({ ok: false, error: 'subscribe_failed' });
   }
 
   const raw = await sub.text().catch(() => '');
   const already = !sub.ok && /already subscribed/i.test(raw);
   if (!sub.ok && !already) {
     console.error('otp-verify: subscribe API', sub.status, raw);
-    return res.status(502).json({ ok: false, error: 'subscribe_failed' });
+    return res.status(200).json({ ok: false, error: 'subscribe_failed' });
   }
 
   // Already on the list: they still proved ownership, so report success — but do

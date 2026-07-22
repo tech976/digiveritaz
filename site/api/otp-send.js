@@ -7,6 +7,12 @@
 const crypto = require('node:crypto');
 const H = require('./_otp.js');
 
+  /* Cloudflare sits in front of Vercel and replaces origin 5xx responses with its
+     own "error code: 502" page, destroying the JSON body that explains what broke.
+     The browser then fails to parse it and shows a generic message, and there is
+     nothing to debug from outside. So application-level failures return HTTP 200
+     with ok:false — the client checks the ok field, never the status code. 4xx is
+     left alone; Cloudflare passes those through intact. */
 module.exports = async (req, res) => {
   try {
     return await handler(req, res);
@@ -14,7 +20,7 @@ module.exports = async (req, res) => {
     // Without this the function dies and the edge returns an opaque 502, which
     // tells the user "something went wrong" and tells us nothing at all.
     console.error('otp-send crashed:', e && e.stack ? e.stack : e);
-    return res.status(500).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
+    return res.status(200).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
   }
 };
 
@@ -58,7 +64,7 @@ async function handler(req, res) {
     console.error('otp-send: Resend failed', mail.status, mail.detail);
     // Resend's own message (bad key, unverified sender, ...) is the only thing that
     // makes this debuggable from outside; it contains no secret.
-    return res.status(502).json({ ok: false, error: 'mail_failed', status: mail.status, detail: String(mail.detail).slice(0, 300) });
+    return res.status(200).json({ ok: false, error: 'mail_failed', status: mail.status, detail: String(mail.detail).slice(0, 300) });
   }
 
   const token = H.issueToken({
