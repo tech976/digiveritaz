@@ -40,6 +40,9 @@ async function handler(req, res) {
       // distinguishes "code default" from "env override" -- without this you cannot
       // tell a stale deploy from a NEWS_FROM that is quietly winning
       newsFromEnvSet: !!process.env.NEWS_FROM,
+      // step 2 of the subscribe-key handover: must read true BEFORE the digest
+      // service starts enforcing, or every signup 401s in the gap
+      hasSubscribeKey: !!process.env.SUBSCRIBE_API_KEY,
       from: process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.tech>'
     });
   }
