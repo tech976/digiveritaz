@@ -8,8 +8,32 @@ const crypto = require('node:crypto');
 const H = require('./_otp.js');
 
 module.exports = async (req, res) => {
+  try {
+    return await handler(req, res);
+  } catch (e) {
+    // Without this the function dies and the edge returns an opaque 502, which
+    // tells the user "something went wrong" and tells us nothing at all.
+    console.error('otp-send crashed:', e && e.stack ? e.stack : e);
+    return res.status(500).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
+  }
+};
+
+async function handler(req, res) {
   H.cors(req, res);
   if (req.method === 'OPTIONS') return res.status(204).end();
+
+  // Config probe — reports only whether things are SET, never their values.
+  if (req.method === 'GET' && req.query && req.query.diag === '1') {
+    return res.status(200).json({
+      ok: true,
+      node: process.version,
+      hasFetch: typeof fetch === 'function',
+      hasResendKey: !!process.env.RESEND_API_KEY,
+      resendKeyPrefix: (process.env.RESEND_API_KEY || '').slice(0, 3),
+      hasOtpSecret: !!process.env.OTP_SECRET,
+      from: process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.com>'
+    });
+  }
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'method' });
 
   const b = H.body(req);
@@ -32,7 +56,9 @@ module.exports = async (req, res) => {
 
   if (!mail.ok) {
     console.error('otp-send: Resend failed', mail.status, mail.detail);
-    return res.status(502).json({ ok: false, error: 'mail_failed' });
+    // Resend's own message (bad key, unverified sender, ...) is the only thing that
+    // makes this debuggable from outside; it contains no secret.
+    return res.status(502).json({ ok: false, error: 'mail_failed', status: mail.status, detail: String(mail.detail).slice(0, 300) });
   }
 
   const token = H.issueToken({
@@ -43,7 +69,7 @@ module.exports = async (req, res) => {
   });
 
   return res.status(200).json({ ok: true, token });
-};
+}
 
 function otpHtml(name, code) {
   const who = name ? H.esc(name) : 'there';

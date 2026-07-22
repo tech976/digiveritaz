@@ -12,6 +12,15 @@ const SUBSCRIBE_URL = process.env.SUBSCRIBE_API_URL ||
   'https://email-automation-blond-nine.vercel.app/api/subscribers';
 
 module.exports = async (req, res) => {
+  try {
+    return await handler(req, res);
+  } catch (e) {
+    console.error('otp-verify crashed:', e && e.stack ? e.stack : e);
+    return res.status(500).json({ ok: false, error: 'server_error', detail: String(e && e.message || e).slice(0, 200) });
+  }
+};
+
+async function handler(req, res) {
   H.cors(req, res);
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'method' });
@@ -74,8 +83,8 @@ module.exports = async (req, res) => {
   // as a failed subscription, or they will try again and hit "already subscribed".
   if (!mail.ok) console.error('otp-verify: welcome mail failed', mail.status, mail.detail);
 
-  return res.status(200).json({ ok: true });
-};
+  return res.status(200).json({ ok: true, welcomeMail: mail.ok });
+}
 
 function welcomeHtml(name) {
   const who = name ? H.esc(name) : 'there';
