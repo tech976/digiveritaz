@@ -73,7 +73,16 @@ async function handler(req, res) {
   try {
     sub = await fetch(SUBSCRIBE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        /* Shared secret gating the digest service's subscribe endpoint, which was
+           previously open to the world -- anyone could POST an address straight to
+           it and skip this OTP entirely. Rollout is deliberately ordered: this
+           header ships FIRST and is harmless while empty, then SUBSCRIBE_API_KEY is
+           set here, and only then does their side start requiring it. Reverse that
+           order and every signup 401s in between. */
+        'x-subscribe-key': process.env.SUBSCRIBE_API_KEY || ''
+      },
       body: JSON.stringify({ email, name })
     });
   } catch (e) {
