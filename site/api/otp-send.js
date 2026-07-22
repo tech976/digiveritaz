@@ -37,7 +37,10 @@ async function handler(req, res) {
       hasResendKey: !!process.env.RESEND_API_KEY,
       resendKeyPrefix: (process.env.RESEND_API_KEY || '').slice(0, 3),
       hasOtpSecret: !!process.env.OTP_SECRET,
-      from: process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.com>'
+      // distinguishes "code default" from "env override" -- without this you cannot
+      // tell a stale deploy from a NEWS_FROM that is quietly winning
+      newsFromEnvSet: !!process.env.NEWS_FROM,
+      from: process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.tech>'
     });
   }
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'method' });
