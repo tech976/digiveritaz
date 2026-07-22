@@ -69,7 +69,8 @@ function esc(s) {
 async function sendMail({ to, subject, html, text }) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return { ok: false, status: 0, detail: 'RESEND_API_KEY is not set' };
-  const from = process.env.NEWS_FROM || 'DigiVeritaz AI News <news@digiveritaz.com>';
+  // Must be an address on a domain verified in Resend, or every send is rejected.
+  const from = process.env.NEWS_FROM || 'DigiVeritaz AI News <tech@digiveritaz.com>';
 
   let r;
   try {
