@@ -8482,3 +8482,15 @@ body.dvm-lock{overflow:hidden}
   .nav ul .mega-menu .mm-foot{border:0!important;margin-top:8px!important;padding-top:8px!important;text-align:left!important}
   .nav ul.open,.nav ul.open li,.nav ul.open a{pointer-events:auto}
 }
+
+/* --- Nav density between the mobile breakpoint and ~1300px -----------------
+   Seven top-level items do not fit at these widths with the default 20px link
+   padding: labels break mid-word ("About / Us") and the active pill clips.
+   Tighten spacing rather than drop an item. Also fixes the pre-existing wrap
+   that affected the six-item nav below ~1130px. */
+@media (min-width:1051px) and (max-width:1300px){
+  .nav{gap:10px}
+  .nav ul{gap:2px}
+  .nav a.navlink{padding:11px 11px;font-size:.92rem;white-space:nowrap}
+  .nav .cta{margin-left:2px}
+}

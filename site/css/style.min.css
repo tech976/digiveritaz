@@ -172,3 +172,4 @@ body.dvm-lock{overflow:hidden}
 .nav ul .mega-menu .mm-foot{border:0!important;margin-top:8px!important;padding-top:8px!important;text-align:left!important}
 .nav ul.open,.nav ul.open li,.nav ul.open a{pointer-events:auto}
 }
+@media (min-width:1051px) and (max-width:1300px){.nav{gap:10px}.nav ul{gap:2px}.nav a.navlink{padding:11px 11px;font-size:.92rem;white-space:nowrap}.nav .cta{margin-left:2px}}
