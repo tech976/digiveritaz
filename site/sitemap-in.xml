@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/brand-safety-meta-protect-ads-reputation-2026/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/brand-safety-meta-protect-ads-reputation-2026.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/meta-pocket-app-ai-interactive-posts-quizzes-polls/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
