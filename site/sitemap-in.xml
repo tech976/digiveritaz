@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/meta-pocket-app-ai-interactive-posts-quizzes-polls/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/meta-pocket-app-ai-interactive-posts-quizzes-polls.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/creator-team-marketing-influencer-squads-big-events/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
