@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ai-data-privacy-marketers-chatgpt-gemini-safely/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ai-data-privacy-marketers-chatgpt-gemini-safely.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/x-twitter-video-editor-green-screen-captions-brands/</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
