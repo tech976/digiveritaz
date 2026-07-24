@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/eu-vs-meta-addictive-apps-ruling-ad-strategy/</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/eu-vs-meta-addictive-apps-ruling-ad-strategy.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/youtube-ai-search-optimize-video-discovery-2026/</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
