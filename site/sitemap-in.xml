@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/intent-based-advertising-2026-beyond-keyword-only/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/intent-based-advertising-2026-beyond-keyword-only.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-no-ai-seo-hack-expertise-speed-reputation/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
