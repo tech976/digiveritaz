@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-no-ai-seo-hack-expertise-speed-reputation/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/google-no-ai-seo-hack-expertise-speed-reputation.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/claude-cowork-data-what-ai-used-for-at-work/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
