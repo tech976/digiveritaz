@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/marketing-email-types-2026-compliance-conversion-guide/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/marketing-email-types-2026-compliance-conversion-guide.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/evergreen-content-dying-expert-voices-trust-rankings/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
