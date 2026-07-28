@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/best-times-to-post-instagram-2026/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/best-times-to-post-instagram-2026.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/wasting-money-on-ai-7-stage-maturity-audit/</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
