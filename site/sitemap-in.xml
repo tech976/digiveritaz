@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ios-27-smarter-siri-voice-search-indian-brands/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ios-27-smarter-siri-voice-search-indian-brands.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/marketing-email-types-2026-compliance-conversion-guide/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
