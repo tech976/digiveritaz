@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/wasting-money-on-ai-7-stage-maturity-audit/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/wasting-money-on-ai-7-stage-maturity-audit.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/ai-data-trust-war-microsoft-vs-openai-marketing-ai-stack/</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
