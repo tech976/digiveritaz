@@ -1679,7 +1679,7 @@ section{padding:72px 0}
 .blog-article .prose ul,.blog-article .prose ol{margin:0 0 1.3em;padding-left:1.4em}
 .blog-article .prose li{margin:.4em 0}
 .blog-article .prose strong{color:#0b1220;font-weight:700}
-.blog-article .prose a{color:var(--green);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.blog-article .prose a{color:var(--green);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:600}
 .blog-article .prose a:hover{text-decoration-thickness:2px}
 .blog-article .prose blockquote{border-left:4px solid var(--green);background:linear-gradient(90deg,rgba(34,197,94,.06),transparent);padding:18px 24px;margin:1.6em 0;border-radius:0 12px 12px 0;font-style:italic;color:#334155}
 .blog-article .prose img{max-width:100%;height:auto;border-radius:12px;margin:1.4em 0;border:1px solid var(--border)}
