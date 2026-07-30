@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/cloning-brand-voice-ai-train-content-tools/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/cloning-brand-voice-ai-train-content-tools.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-link-priority-hidden-nofollow-links-seo/</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
