@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/hidden-cost-ai-marketing-strategic-thinkers/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/hidden-cost-ai-marketing-strategic-thinkers.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/problem-first-advertising-ai-search-product-listings/</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
