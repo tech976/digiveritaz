@@ -8523,3 +8523,20 @@ body.dvm-lock{overflow:hidden}
   .site-footer .foot-askai-title{font-size:1rem;margin-bottom:12px}
   .foot-askai-row{gap:10px}
 }
+
+
+/* contact: what-happens-next block */
+.c-about{padding:70px 0 90px}
+.c-about h2{margin:14px 0 18px}
+.c-about h3{margin:34px 0 10px;font-size:1.25rem}
+.c-about p{margin:0 0 16px;line-height:1.75}
+.c-about p a{
+  color:var(--green-dark);font-weight:600;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+}
+.c-about p a:hover{color:var(--green);text-decoration-thickness:2px}
+[data-theme="dark"] .c-about p a{color:#22c55e}
+@media(max-width:640px){
+  .c-about{padding:48px 0 60px}
+  .c-about h3{font-size:1.14rem;margin-top:28px}
+}
