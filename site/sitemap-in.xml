@@ -290,6 +290,27 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/alibaba-qwen-vs-chatgpt-indian-marketers/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/alibaba-qwen-vs-chatgpt-indian-marketers.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/blog/captcha-bot-screens-hiding-website-from-google/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/captcha-bot-screens-hiding-website-from-google.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/blog/on-device-ai-iphone-mobile-marketing-privacy-2026/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/on-device-ai-iphone-mobile-marketing-privacy-2026.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/buffer-ai-insights-social-media-reporting-2026/</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
@@ -1363,6 +1384,48 @@
   </url>
   <url><loc>https://www.digiveritaz.com/case-study/case-study-gy3-fashion-sales-branding/</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Tusli.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/individual-design-handbags-meta-ads/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Individual%20Design.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/sarvah-integrative-health-nutrition-lead-generation/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Sarvah.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/mai-wellbeing-womens-health-social-media/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Mai%20Wellbeing.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/startupbase-startup-consulting-lead-generation/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/StartupBase.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/figure-slim-aesthetic-clinic-lead-generation/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Figure%20Slim.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/case-study/target-wellness-aesthetic-clinic-campaigns/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Case%20Studies/Target%20Wellness.webp</image:loc></image:image>
   </url>
 
   <!-- Legal -->
