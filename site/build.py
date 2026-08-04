@@ -294,6 +294,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
             <li><a href="/case-study/">Case Studies</a></li>
             <li><a href="/blog/">Blog</a></li>
             <li><a href="/faq/">FAQ</a></li>
+            <li><a href="/careers/">Careers</a></li>
             <li><a href="/contact-us/">Contact</a></li>
           </ul>
         </div>

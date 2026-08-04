@@ -62,6 +62,14 @@
   </url>
 
   <url>
+    <loc>https://www.digiveritaz.com/careers/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/faq/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>

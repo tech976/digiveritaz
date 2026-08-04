@@ -725,7 +725,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadBlogCta();
     /* the WIDE popup only auto-opens once (3s, desktop, not on contact/proposal pages) */
     try {
-      if (isDesktop() && !/\/(contact-us|get-proposal)(\/|$)/.test(location.pathname) && !sessionStorage.getItem('dvmSeen')) {
+      if (isDesktop() && !/\/(contact-us|get-proposal|careers)(\/|\.html|$)/.test(location.pathname) && !sessionStorage.getItem('dvmSeen')) {
         setTimeout(function(){ try{ sessionStorage.setItem('dvmSeen','1'); }catch(e){} openModal(); }, 3000);
       }
     } catch(e){}
