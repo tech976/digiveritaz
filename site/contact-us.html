@@ -277,9 +277,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (phoneEl) phoneEl.addEventListener('input', function(){ if(verified){ verified=false; setSubmit(); } });
             if (otpEl) otpEl.addEventListener('input', function(){ otpEl.value=otpEl.value.replace(/[^0-9]/g,'').slice(0,6); });
 
-            /* MSG91 OTP widget (SMS) — same widget as the site-wide popup */
-            function initMsg91(){ if(ready) return true; if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
-            function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; (function go(){ var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ cb(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else cb(false); }; document.head.appendChild(s); })(); }
+            /* MSG91 OTP widget (SMS) — same widget as the site-wide popup.
+               The widget attaches window.sendOtp/verifyOtp ASYNCHRONOUSLY, a moment after
+               initSendOTP() returns — so we must poll for the methods rather than test for
+               them immediately. Testing immediately made the first "Get OTP" click always
+               fail with "Could not reach the OTP service" and only the second click work.
+               dv-lead.js is loaded on this page too, so the init is guarded by a
+               window-level flag to avoid initialising the same widget twice. */
+            function otpReady(){ return typeof window.sendOtp==='function' && typeof window.verifyOtp==='function'; }
+            function initMsg91(){ if(otpReady()){ ready=true; return true; } if(typeof window.initSendOTP!=='function') return false; if(!window.__dvMsg91Inited){ try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); window.__dvMsg91Inited=true; }catch(e){ return false; } } return true; }
+            function waitForOtp(cb){ var t0=Date.now(); (function poll(){ if(otpReady()){ ready=true; return cb(true); } if(Date.now()-t0>8000) return cb(false); setTimeout(poll,120); })(); }
+            function loadMsg91(cb){ cb=cb||function(){}; if(otpReady()){ ready=true; return cb(true); } if(typeof window.initSendOTP==='function'){ return initMsg91()?waitForOtp(cb):cb(false); } if(window.__dvMsg91Loading) return waitForOtp(cb); window.__dvMsg91Loading=true; var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; (function go(){ var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ initMsg91()?waitForOtp(cb):cb(false); }; s.onerror=function(){ i++; if(i<urls.length) go(); else { window.__dvMsg91Loading=false; cb(false); } }; document.head.appendChild(s); })(); }
+            /* pre-warm on first interaction so the widget is ready before "Get OTP" is clicked */
+            (function(){ var warm=function(){ try{ loadMsg91(function(){}); }catch(e){} };
+              if(phoneEl) phoneEl.addEventListener('focus', warm, {once:true});
+              var f=document.getElementById('contact-form')||document; f.addEventListener('focusin', warm, {once:true}); })();
 
             function doSend(isResend){
               if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }

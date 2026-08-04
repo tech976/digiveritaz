@@ -504,27 +504,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (location.hash === '#apply') openPanel(null);
 
       // ---- OTP (same MSG91 widget as the contact form) -------------------
+      /* The widget attaches window.sendOtp/verifyOtp ASYNCHRONOUSLY, a moment after
+         initSendOTP() returns — so poll for the methods instead of testing for them
+         immediately. Testing immediately made the first "Send OTP" click always fail
+         with "Could not reach the OTP service" and only the second click work.
+         dv-lead.js loads on this page too, hence the window-level init guard. */
+      function otpReady(){ return typeof window.sendOtp === 'function' && typeof window.verifyOtp === 'function'; }
       function initMsg91(){
-        if (ready) return true;
+        if (otpReady()) { ready = true; return true; }
         if (typeof window.initSendOTP !== 'function') return false;
-        try {
-          window.initSendOTP({widgetId: MSG91.widgetId, tokenAuth: MSG91.tokenAuth, exposeMethods: true,
-                              success: function(){}, failure: function(){}});
-          ready = true;
-        } catch(e) {}
-        return ready;
+        if (!window.__dvMsg91Inited) {
+          try {
+            window.initSendOTP({widgetId: MSG91.widgetId, tokenAuth: MSG91.tokenAuth, exposeMethods: true,
+                                success: function(){}, failure: function(){}});
+            window.__dvMsg91Inited = true;
+          } catch(e) { return false; }
+        }
+        return true;                      // init fired; methods land shortly — waitForOtp handles it
+      }
+      function waitForOtp(cb){
+        var t0 = Date.now();
+        (function poll(){
+          if (otpReady()) { ready = true; return cb(true); }
+          if (Date.now() - t0 > 8000) return cb(false);
+          setTimeout(poll, 120);
+        })();
       }
       function loadMsg91(cb){
-        if (initMsg91()) { cb(true); return; }
+        cb = cb || function(){};
+        if (otpReady()) { ready = true; return cb(true); }
+        if (typeof window.initSendOTP === 'function') { return initMsg91() ? waitForOtp(cb) : cb(false); }
+        if (window.__dvMsg91Loading) return waitForOtp(cb);
+        window.__dvMsg91Loading = true;
         var urls = ['https://verify.msg91.com/otp-provider.js', 'https://verify.phone91.com/otp-provider.js'], i = 0;
         (function go(){
           var sc = document.createElement('script');
           sc.src = urls[i]; sc.async = true;
-          sc.onload = function(){ cb(initMsg91()); };
-          sc.onerror = function(){ i++; if (i < urls.length) go(); else cb(false); };
+          sc.onload = function(){ initMsg91() ? waitForOtp(cb) : cb(false); };
+          sc.onerror = function(){ i++; if (i < urls.length) go(); else { window.__dvMsg91Loading = false; cb(false); } };
           document.head.appendChild(sc);
         })();
       }
+      /* pre-warm as soon as the apply panel is touched, so the widget is ready by click time */
+      (function(){ var warm = function(){ try { loadMsg91(function(){}); } catch(e) {} };
+        if (phoneEl) phoneEl.addEventListener('focus', warm, {once:true});
+        if (panel) panel.addEventListener('focusin', warm, {once:true}); })();
 
       phoneEl.addEventListener('input', function(){ if (verified) { verified = false; setSubmit(); } });
       otpEl.addEventListener('input', function(){ otpEl.value = otpEl.value.replace(/[^0-9]/g, '').slice(0, 6); });
