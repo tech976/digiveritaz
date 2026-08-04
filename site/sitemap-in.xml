@@ -282,6 +282,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/alibaba-qwen-vs-chatgpt-indian-marketers/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/alibaba-qwen-vs-chatgpt-indian-marketers.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/captcha-bot-screens-hiding-website-from-google/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
