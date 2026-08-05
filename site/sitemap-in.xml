@@ -290,6 +290,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/tiktok-shop-sales-channel-pepsico-mars/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/tiktok-shop-sales-channel-pepsico-mars.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/alibaba-qwen-vs-chatgpt-indian-marketers/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
