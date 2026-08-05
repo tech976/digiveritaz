@@ -290,6 +290,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/kimi-k3-ai-website-builders-web-development/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/kimi-k3-ai-website-builders-web-development.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/tiktok-ai-ad-study-relevance-beats-volume/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
