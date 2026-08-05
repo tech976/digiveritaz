@@ -917,3 +917,266 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.readyState !== "loading") build();
   else document.addEventListener("DOMContentLoaded", build);
 })();
+/* DV-SEARCH v1 — header site search.
+   Injects an icon-only button immediately to the LEFT of the "Book A Call" CTA. Clicking it
+   expands the pill into an input; typing filters a lazily-fetched index of every page and its
+   sections. The index (/search-index.json) is only fetched on first open, so pages that never
+   use search pay nothing for it. */
+;(function(){
+  if (window.__dvSearch) return; window.__dvSearch = true;
+
+  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>';
+  var XICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+  var MAX_PAGES = 12, MAX_HITS_PER_PAGE = 3;
+
+  var idx = null, loading = false, wrap, btn, input, clear, panel, sel = -1;
+
+  /* ---------- matching ---------- */
+  function norm(s){
+    return String(s || '').toLowerCase()
+      .replace(/[‘’“”]/g, "'")
+      .replace(/[^a-z0-9'\s-]/g, ' ')
+      .replace(/\s+/g, ' ').trim();
+  }
+  function tokens(q){ return norm(q).split(' ').filter(Boolean); }
+
+  /* True when a and b differ by at most one edit (substitute / insert / delete). */
+  function within1(a, b){
+    if (Math.abs(a.length - b.length) > 1) return false;
+    var i = 0, j = 0, diff = 0;
+    while (i < a.length && j < b.length){
+      if (a[i] === b[j]){ i++; j++; continue; }
+      if (++diff > 1) return false;
+      if (a.length > b.length) i++;
+      else if (b.length > a.length) j++;
+      else { i++; j++; }
+    }
+    return diff + (a.length - i) + (b.length - j) <= 1;
+  }
+
+  /* Matching is word-aware, in tiers, because plain substring matching is far too loose:
+       any length : the token must at least START a word  ("lead" -> "leads")
+       4+ chars   : whole word within one edit           ("veritaz" -> "veritas")
+       6+ chars   : allowed to sit mid-word within one edit ("veritas" -> "digiveritaz")
+     Without the length floor on the last tier, "per" would match "expert" and drag half the
+     blog into a search for "cost per lead". */
+  function near(tok, hay){
+    var words = hay.split(/[^a-z0-9']+/), L = tok.length, i, w;
+    for (i = 0; i < words.length; i++){
+      w = words[i];
+      if (!w || w.length > 40) continue;
+      if (w.lastIndexOf(tok, 0) === 0) return true;             // prefix of a word
+      if (L >= 4 && within1(tok, w)) return true;               // whole word, 1 edit
+      if (L >= 6 && w.length > L){                              // inside a longer word, 1 edit
+        for (var k = 1; k + L - 1 <= w.length; k++){
+          if (within1(tok, w.substr(k, L))) return true;
+          if (k + L < w.length && within1(tok, w.substr(k, L + 1))) return true;
+        }
+      }
+    }
+    return false;
+  }
+  /* all=true -> every token must appear (precise); all=false -> any token counts (fallback) */
+  function hits(toks, hay, all){
+    var h = norm(hay), n = 0;
+    for (var i = 0; i < toks.length; i++){
+      if (near(toks[i], h)) n++;
+      else if (all) return 0;
+    }
+    return n;
+  }
+
+  function scan(toks, all){
+    var out = [];
+    for (var i = 0; i < idx.p.length; i++){
+      var p = idx.p[i], score = 0, matched = [];
+      var head = p.ti + ' ' + (p.h1 || '') + ' ' + p.d + ' ' + (p.i || '');
+      score += hits(toks, p.ti, all) * 100;
+      score += hits(toks, head, all) * 40;
+      for (var j = 0; j < p.s.length; j++){
+        var sec = p.s[j], n;
+        if ((n = hits(toks, sec.h, all))) { matched.push({ h: sec.h, t: sec.t, w: 20 }); score += n * 20; }
+        else if ((n = hits(toks, sec.h + ' ' + sec.t, all))) { matched.push({ h: sec.h, t: sec.t, w: 8 }); score += n * 8; }
+      }
+      if (!score) continue;
+      if (p.k === 'Service' || p.k === 'Page') score += 12;   // nudge money pages up
+      matched.sort(function(a, b){ return b.w - a.w; });
+      out.push({ p: p, score: score, sec: matched.slice(0, MAX_HITS_PER_PAGE) });
+    }
+    out.sort(function(a, b){ return b.score - a.score || a.p.ti.localeCompare(b.p.ti); });
+    return out;
+  }
+
+  /* Try the precise all-tokens pass first. If a stray or mistyped word ("bg veritas") would
+     otherwise dead-end the query, fall back to any-token so the user still gets somewhere. */
+  function search(q){
+    var toks = tokens(q);
+    if (!toks.length || !idx) return { res: [], loose: false };
+    var strict = scan(toks, true);
+    if (strict.length || toks.length < 2) return { res: strict, loose: false };
+    return { res: scan(toks, false), loose: true };
+  }
+
+  /* ---------- rendering ---------- */
+  function esc(s){
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  /* Wrap hits in sentinels first, then swap for <mark> — marking directly would let a later
+     token match inside the tag text an earlier token just inserted. */
+  function mark(text, toks){
+    var out = esc(text), i;
+    for (i = 0; i < toks.length; i++){
+      var t = toks[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (t.length < 2) continue;
+      out = out.replace(new RegExp('\\b(' + t + ')', 'ig'), '\u0001$1\u0002');
+    }
+    return out.replace(/\u0001/g, '<mark>').replace(/\u0002/g, '</mark>');
+  }
+  /* Chrome/Edge scroll straight to the matched text; other browsers just open the page. */
+  function hitHref(url, heading){
+    try { return url + '#:~:text=' + encodeURIComponent(heading.slice(0, 90)); }
+    catch (e) { return url; }
+  }
+
+  function render(q){
+    var toks = tokens(q);
+    if (!toks.length){ panel.innerHTML = ''; setPanel(false); return; }
+    if (!idx){
+      panel.innerHTML = '<div class="dv-srch-status">' + (loading ? 'Loading…' : 'Search unavailable right now.') + '</div>';
+      setPanel(true); return;
+    }
+    var found = search(q), res = found.res;
+    if (!res.length){
+      panel.innerHTML = '<div class="dv-srch-status">No matches for “' + esc(q) + '”.</div>';
+      setPanel(true); return;
+    }
+    var total = res.length, html = '', shown = res.slice(0, MAX_PAGES);
+    if (found.loose){
+      html += '<div class="dv-srch-status">No page matches all of “' + esc(q) + '” — showing the closest results.</div>';
+    }
+    for (var i = 0; i < shown.length; i++){
+      var r = shown[i], p = r.p;
+      html += '<div class="dv-srch-group">';
+      html += '<div class="dv-srch-page"><span class="dv-srch-kind">' + esc(p.k) + '</span><span>' + mark(p.ti, toks) + '</span></div>';
+      html += '<a class="dv-srch-hit" href="' + esc(p.u) + '"><span class="dv-srch-hit-h">' + mark(p.h1 || p.ti, toks) + '</span>'
+            + '<span class="dv-srch-hit-t">' + mark((p.d || p.i || '').slice(0, 150), toks) + '</span></a>';
+      for (var j = 0; j < r.sec.length; j++){
+        var s = r.sec[j];
+        html += '<a class="dv-srch-hit" href="' + esc(hitHref(p.u, s.h)) + '">'
+              + '<span class="dv-srch-hit-h">' + mark(s.h, toks) + '</span>'
+              + (s.t ? '<span class="dv-srch-hit-t">' + mark(s.t, toks) + '</span>' : '') + '</a>';
+      }
+      html += '</div>';
+    }
+    if (total > shown.length){
+      html += '<span class="dv-srch-more">' + (total - shown.length) + ' more page' + (total - shown.length > 1 ? 's' : '') + ' match — keep typing to narrow</span>';
+    }
+    panel.innerHTML = html; sel = -1; setPanel(true);
+  }
+
+  /* ---------- index ---------- */
+  function load(){
+    if (idx || loading) return;
+    loading = true;
+    fetch('/search-index.json', { credentials: 'same-origin' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){ idx = j; loading = false; if (input.value.trim()) render(input.value); })
+      .catch(function(){ loading = false; if (input.value.trim()) render(input.value); });
+  }
+
+  /* ---------- open/close ---------- */
+  function setPanel(on){ wrap.classList.toggle('show-panel', !!on); }
+  function isMobile(){ return window.matchMedia('(max-width:1050px)').matches; }
+  function open(){
+    wrap.classList.add('open'); load();
+    try { input.focus(); } catch(e){}
+    if (input.value.trim()) render(input.value);
+  }
+  function close(){
+    if (isMobile()) { setPanel(false); return; }   // stays expanded inside the mobile menu
+    wrap.classList.remove('open'); setPanel(false);
+  }
+
+  function items(){ return panel.querySelectorAll('.dv-srch-hit'); }
+  function move(d){
+    var list = items(); if (!list.length) return;
+    if (sel >= 0 && list[sel]) list[sel].classList.remove('sel');
+    sel = (sel + d + list.length) % list.length;
+    list[sel].classList.add('sel');
+    try { list[sel].scrollIntoView({ block: 'nearest' }); } catch(e){}
+  }
+
+  function build(){
+    var cta = document.querySelector('.nav ul li.cta');
+    var ul = document.querySelector('.nav ul');
+    if (!ul || document.querySelector('.dv-srch')) return;
+
+    wrap = document.createElement('li');
+    wrap.className = 'dv-srch';
+    wrap.innerHTML =
+      '<div class="dv-srch-box">'
+      + '<button type="button" class="dv-srch-btn" aria-label="Search this site" aria-expanded="false">' + ICON + '</button>'
+      + '<input type="search" class="dv-srch-input" placeholder="Search services, blogs, case studies…" aria-label="Search this site" autocomplete="off">'
+      + '<button type="button" class="dv-srch-clear" aria-label="Clear search">' + XICON + '</button>'
+      + '</div>'
+      + '<div class="dv-srch-panel" role="listbox" aria-label="Search results"></div>';
+
+    if (cta) ul.insertBefore(wrap, cta); else ul.appendChild(wrap);
+
+    btn = wrap.querySelector('.dv-srch-btn');
+    input = wrap.querySelector('.dv-srch-input');
+    clear = wrap.querySelector('.dv-srch-clear');
+    panel = wrap.querySelector('.dv-srch-panel');
+
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      if (wrap.classList.contains('open') && !isMobile()){
+        if (input.value.trim()){ input.value = ''; wrap.classList.remove('has-q'); setPanel(false); input.focus(); }
+        else close();
+      } else open();
+      btn.setAttribute('aria-expanded', wrap.classList.contains('open') ? 'true' : 'false');
+    });
+
+    var timer;
+    input.addEventListener('input', function(){
+      wrap.classList.toggle('has-q', !!input.value.trim());
+      clearTimeout(timer);
+      timer = setTimeout(function(){ render(input.value); }, 110);
+    });
+    input.addEventListener('focus', load);
+
+    clear.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      input.value = ''; wrap.classList.remove('has-q'); setPanel(false); input.focus();
+    });
+
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Escape'){ input.value=''; wrap.classList.remove('has-q'); close(); input.blur(); }
+      else if (e.key === 'ArrowDown'){ e.preventDefault(); move(1); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); move(-1); }
+      else if (e.key === 'Enter'){
+        var list = items();
+        if (sel >= 0 && list[sel]){ e.preventDefault(); location.href = list[sel].getAttribute('href'); }
+        else if (list.length){ e.preventDefault(); location.href = list[0].getAttribute('href'); }
+      }
+    });
+
+    document.addEventListener('click', function(e){
+      if (!wrap.contains(e.target)) close();
+    });
+    /* "/" focuses search, the way most docs sites behave */
+    document.addEventListener('keydown', function(e){
+      if (e.key === '/' && !/^(input|textarea|select)$/i.test((e.target.tagName || '')) && !e.target.isContentEditable){
+        e.preventDefault(); open();
+      }
+    });
+    window.addEventListener('resize', function(){
+      if (isMobile()) wrap.classList.add('open');
+    });
+    if (isMobile()) wrap.classList.add('open');
+  }
+
+  if (document.readyState !== 'loading') build();
+  else document.addEventListener('DOMContentLoaded', build);
+})();
+
