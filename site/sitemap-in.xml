@@ -290,6 +290,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ai-killing-branded-search-measure-brand-demand/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ai-killing-branded-search-measure-brand-demand.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-not-showing-website-pages-fix/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
