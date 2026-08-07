@@ -30,7 +30,14 @@
         }
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
-    els.forEach(e => io.observe(e));
+    // observe in batches — registering several hundred targets in one go is itself
+    // a long task on a mid-range phone
+    let i = 0;
+    (function batch(){
+      const end = Math.min(i + 40, els.length);
+      for(; i < end; i++) io.observe(els[i]);
+      if(i < els.length) (window.requestIdleCallback || setTimeout)(batch, 1);
+    })();
   }
 
   /* ---------- 2. 3D card tilt on hover ---------- */
@@ -132,12 +139,23 @@
     nums.forEach(n => io.observe(n));
   }
 
-  /* ---------- Init ---------- */
+  /* ---------- Init ----------
+     These four setups used to run back-to-back in one task. Over the ~1,300-element
+     home DOM that measured as a single 410 ms long task, which is exactly the window
+     where an early tap or scroll gets delayed (bad INP). Nothing here is needed for
+     first paint — the hero reveal is already handled by the inline double-rAF in
+     index.html — so each setup now gets its own idle slot and no single task blocks
+     input for long. */
+  const idle = window.requestIdleCallback
+    ? (fn) => window.requestIdleCallback(fn, { timeout: 900 })
+    : (fn) => setTimeout(fn, 1);
+
   function init(){
-    setupReveal();
-    setupTilt();
-    setupParallax();
-    setupCounters();
+    // reveal first: it governs whether below-the-fold content is visible at all
+    idle(setupReveal);
+    idle(setupCounters);
+    idle(setupTilt);
+    idle(setupParallax);
   }
 
   if(document.readyState === 'loading'){
