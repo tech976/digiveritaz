@@ -1011,3 +1011,139 @@ body.home-themed .contact-strip .strip-row{grid-template-columns:.8fr 1.25fr 1.1
 }
 [data-theme="dark"] .contact-strip .strip-item:nth-child(n+3){border-top-color:#1e293b}
 
+/* DV-CONTACT-SPLIT v1 — intro copy on the left, form on the right.
+   The form used to sit alone in a centred column with its heading stacked on top, so the
+   pitch scrolled away the moment someone started filling it in. Splitting it puts the
+   reassurance beside the fields, where it can work on the click-to-submit drop-off.
+   Typography below mirrors the old `.c-form-card .form-head` rules verbatim so the intro
+   looks identical to before — it has just moved. */
+body.home-themed .contact-main .wrap{
+  max-width:1180px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)!important;
+  gap:56px!important;
+  align-items:start!important;
+}
+
+/* ---- left column ---- */
+body.home-themed .contact-main .c-intro{padding-top:4px}
+@media (min-width:981px){
+  /* keep the pitch in view while a long form is scrolled */
+  body.home-themed .contact-main .c-intro{position:sticky;top:104px}
+}
+body.home-themed .contact-main .c-intro .eyebrow{
+  display:inline-flex!important;align-items:center;gap:10px!important;
+  padding:8px 14px!important;border-radius:999px!important;
+  background:var(--dvh-ink)!important;color:var(--dvh-spot)!important;
+  font-family:'JetBrains Mono',monospace!important;
+  font-size:.72rem!important;font-weight:600!important;
+  letter-spacing:.16em!important;text-transform:uppercase!important;
+  margin-bottom:18px!important;border:0!important;box-shadow:none!important;
+}
+body.home-themed .contact-main .c-intro .eyebrow:before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--dvh-spot);box-shadow:none;
+}
+body.home-themed .contact-main .c-intro h2{
+  font-family:'Inter Tight','Inter',sans-serif!important;
+  font-size:clamp(1.9rem,3.4vw,2.7rem)!important;
+  font-weight:900!important;letter-spacing:-.035em!important;line-height:1.05!important;
+  color:var(--dvh-ink)!important;margin:0 0 14px!important;
+}
+body.home-themed .contact-main .c-intro-lead{
+  font-family:'Inter',sans-serif!important;
+  font-size:1.02rem!important;line-height:1.6!important;
+  color:var(--dvh-text)!important;margin:0 0 28px!important;max-width:44ch;
+}
+body.home-themed .contact-main .c-intro-steps-lbl{
+  font-family:'JetBrains Mono',monospace!important;
+  font-size:.72rem!important;font-weight:600!important;
+  letter-spacing:.16em!important;text-transform:uppercase!important;
+  color:var(--dvh-mute,#6b7280)!important;margin:0 0 16px!important;
+}
+body.home-themed .contact-main .c-intro-points{
+  list-style:none;margin:0 0 30px;padding:0;display:grid;gap:16px;counter-reset:none;
+}
+body.home-themed .contact-main .c-intro-points li{
+  display:flex;gap:13px;align-items:flex-start;
+  font-family:'Inter',sans-serif;font-size:.94rem;line-height:1.55;
+  color:var(--dvh-text);max-width:44ch;
+}
+/* numbered step marker — the sequence is the reassurance, so it reads as 1-2-3 */
+body.home-themed .contact-main .c-intro-points .n{
+  flex:0 0 26px;width:26px;height:26px;margin-top:1px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:50%;background:var(--dvh-ink);color:var(--dvh-spot);
+  font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:700;line-height:1;
+}
+body.home-themed .contact-main .c-intro-points .t{display:block}
+body.home-themed .contact-main .c-intro-points strong{
+  font-weight:700;color:var(--dvh-ink);
+}
+body.home-themed .contact-main .c-intro-talk{
+  border-top:1px solid var(--dvh-rule);padding-top:20px;
+  display:flex;flex-direction:column;gap:10px;align-items:flex-start;
+}
+body.home-themed .contact-main .c-intro-talk-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dvh-mute,#6b7280);
+}
+body.home-themed .contact-main .c-intro-talk a{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--dvh-ink);text-decoration:none;transition:color .2s ease;
+}
+body.home-themed .contact-main .c-intro-talk a:hover{color:var(--dvh-spot-text,#16a34a)}
+body.home-themed .contact-main .c-intro-talk svg{
+  width:17px;height:17px;flex:0 0 17px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;color:var(--dvh-spot-text,#16a34a);
+}
+
+/* the card no longer carries the heading, so drop the head's old top allowance */
+body.home-themed .contact-main .c-form-card > form{margin-top:0}
+
+/* ---- dark ----
+   The old rules for this copy were scoped to `.c-form-card .form-head`; moving it out of
+   the card orphaned them, which left near-black text on the #0b1220 dark background.
+   Re-stated here against the new selectors, matching the same palette. */
+[data-theme="dark"] body.home-themed .contact-main .c-intro h2{color:#f1f5f9!important}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-lead{color:#cbd5e1!important}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-steps-lbl{color:#94a3b8!important}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-points li{color:#cbd5e1}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-points strong{color:#f1f5f9}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-points .n{
+  background:#1e293b;color:#86efac;
+}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-points svg,
+[data-theme="dark"] body.home-themed .contact-main .c-intro-talk svg{color:#86efac}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-talk{border-top-color:rgba(241,245,249,.1)}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-talk-lbl{color:#94a3b8}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-talk a{color:#f1f5f9}
+[data-theme="dark"] body.home-themed .contact-main .c-intro-talk a:hover{color:#86efac}
+/* the eyebrow pill is ink-on-cream in light; it needs lifting off the dark background */
+[data-theme="dark"] body.home-themed .contact-main .c-intro .eyebrow{
+  background:#1e293b!important;color:#86efac!important;
+}
+[data-theme="dark"] body.home-themed .contact-main .c-intro .eyebrow:before{background:#86efac}
+
+/* ---- stack ----
+   Stacking the two columns naively would push the form ~660px down the page behind a
+   wall of copy, which is the opposite of what we want on the traffic that converts worst.
+   So on narrow screens `.c-intro` becomes display:contents, its children join the grid
+   directly, and only the heading + lead stay above the form. The three steps and the
+   phone/email fallback move below it, where they catch anyone who hesitates mid-form. */
+@media (max-width:980px){
+  body.home-themed .contact-main .wrap{
+    grid-template-columns:1fr!important;gap:0!important;max-width:720px!important;
+  }
+  body.home-themed .contact-main .c-intro{display:contents}
+  body.home-themed .contact-main .c-intro .eyebrow{order:1}
+  body.home-themed .contact-main .c-intro h2{order:2}
+  body.home-themed .contact-main .c-intro-lead{order:3;margin-bottom:26px!important;max-width:none}
+  body.home-themed .contact-main .c-form-card{order:4;margin-bottom:40px!important}
+  body.home-themed .contact-main .c-intro-steps-lbl{order:5}
+  body.home-themed .contact-main .c-intro-points{order:6;gap:14px;margin-bottom:28px}
+  body.home-themed .contact-main .c-intro-points li{max-width:none}
+  body.home-themed .contact-main .c-intro-talk{order:7}
+}
