@@ -290,6 +290,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ai-generated-films-video-marketing/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ai-generated-films-video-marketing.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-enhanced-brand-lift-cost-worth-it/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
