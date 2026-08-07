@@ -290,6 +290,13 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ai-rewriting-marketing-rulebook-customer-journey/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ai-rewriting-marketing-rulebook-customer-journey.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-search-agents-ai-brain-seo/</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
