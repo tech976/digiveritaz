@@ -340,7 +340,10 @@
        automated email to the form filler are NOT affected by the redirect below. */
     save(true);
     go(4);
-    try { (window.dataLayer = window.dataLayer || []).push({ event:'lead_submitted', form_location: (inline ? 'proposal' : 'popup'), lead_id: leadId }); } catch(e){}
+    /* cta_variant closes the loop on the homepage headline-CTA test: without it a
+       variant could win on clicks while losing on actual leads and look like a win. */
+    var ctaVariant = ''; try { ctaVariant = localStorage.getItem('dv_cta_ab') || ''; } catch(e){}
+    try { (window.dataLayer = window.dataLayer || []).push({ event:'lead_submitted', form_location: (inline ? 'proposal' : 'popup'), lead_id: leadId, cta_variant: ctaVariant }); } catch(e){}
     /* Every completed submission lands on the dedicated /thank-you/ page so the
        conversion can be tracked on a real URL (GTM/GA4). Step 4 shows for a beat
        first so the user sees confirmation even if the redirect is slow.
