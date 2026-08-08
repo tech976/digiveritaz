@@ -290,6 +290,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/ai-search-quality-links-over-quantity-link-building-2026/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/ai-search-quality-links-over-quantity-link-building-2026.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-local-service-ads-performance-max-migration/</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
