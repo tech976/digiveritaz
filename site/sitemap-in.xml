@@ -290,6 +290,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/scrunch-ahrefs-brand-radar-track-ai-search-visibility/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/scrunch-ahrefs-brand-radar-track-ai-search-visibility.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/world-cup-creators-beat-celebrities-brand-impact/</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
