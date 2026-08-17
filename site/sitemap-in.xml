@@ -290,6 +290,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/vertical-video-default-brand-first-short-form-strategy/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/vertical-video-default-brand-first-short-form-strategy.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-algorithm-shake-up-july-2026-protect-rankings/</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
