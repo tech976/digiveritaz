@@ -290,6 +290,14 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/5-tools-ecommerce-brands-win-holiday-sales-2026/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/Blogs/5-tools-ecommerce-brands-win-holiday-sales-2026.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.digiveritaz.com/blog/robots-txt-vs-noindex-configuration-mistake/</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>monthly</changefreq>
