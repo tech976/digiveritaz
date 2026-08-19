@@ -223,14 +223,40 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Theme toggle
+  /* The homepage keeps its dark rules in a separate home-dark.min.css so the light-mode
+     critical path stays small. index.html only document.write()s that file when
+     localStorage ALREADY says dark, which meant a first-time click set data-theme="dark"
+     against a stylesheet that had never been fetched — the toggle appeared dead until a
+     reload. Fetch it on demand here, and only flip the attribute once it has actually
+     loaded so there is no flash of half-themed page. Every other page ships its dark
+     rules inside style.min.css, where there is no bundle link to find and this is a no-op. */
+  function ensureDarkCss(done) {
+    var bundle = document.querySelector('link[href*="home-bundle.min.css"]');
+    if (!bundle) return done();                                             // not the homepage
+    if (document.querySelector('link[href*="home-dark.min.css"]')) return done();  // already there
+    var v = (bundle.getAttribute('href').match(/\?v=(\d+)/) || [])[1];      // track the bundle's cache-buster
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/css/home-dark.min.css' + (v ? '?v=' + v : '');
+    var fired = false;
+    var fire = function () { if (!fired) { fired = true; done(); } };
+    link.onload = fire;
+    link.onerror = fire;                       // still toggle if the file 404s
+    setTimeout(fire, 1500);                    // never leave the button unresponsive
+    document.head.appendChild(link);
+  }
+
   var themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
       var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
       var next = current === 'dark' ? 'light' : 'dark';
-      if (next === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-      else document.documentElement.removeAttribute('data-theme');
       try { localStorage.setItem('dv-theme', next); } catch (e) {}
+      if (next === 'dark') {
+        ensureDarkCss(function () { document.documentElement.setAttribute('data-theme', 'dark'); });
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
     });
   }
 
