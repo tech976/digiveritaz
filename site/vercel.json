@@ -71,6 +71,211 @@
       "source": "/blog/how-to-build-strong-digital-presence-for-your-brand/",
       "destination": "/blog/how-to-build-a-strong-digital-presence-for-your-brand/",
       "permanent": true
+    },
+    {
+      "source": "/seo/",
+      "destination": "/services/seo/",
+      "permanent": true
+    },
+    {
+      "source": "/social-media-management/",
+      "destination": "/services/social-media-management/",
+      "permanent": true
+    },
+    {
+      "source": "/influencer-marketing/",
+      "destination": "/services/influencer-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/digital-pr/",
+      "destination": "/services/digital-pr/",
+      "permanent": true
+    },
+    {
+      "source": "/online-reputation-management/",
+      "destination": "/services/online-reputation-management/",
+      "permanent": true
+    },
+    {
+      "source": "/organic-marketing-services/",
+      "destination": "/services/organic-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/whatsapp-marketing-services/",
+      "destination": "/services/whatsapp-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/performance-marketing-agency/",
+      "destination": "/services/performance-marketing-agency/",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-marketing/",
+      "destination": "/services/ecommerce-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/generative-search-optimisation/",
+      "destination": "/services/generative-search-optimisation/",
+      "permanent": true
+    },
+    {
+      "source": "/pay-per-click/",
+      "destination": "/services/pay-per-click/",
+      "permanent": true
+    },
+    {
+      "source": "/display-advertising/",
+      "destination": "/services/display-advertising/",
+      "permanent": true
+    },
+    {
+      "source": "/facebook-instagram-advertising/",
+      "destination": "/services/facebook-instagram-advertising/",
+      "permanent": true
+    },
+    {
+      "source": "/shopping-ads/",
+      "destination": "/services/shopping-ads/",
+      "permanent": true
+    },
+    {
+      "source": "/paid-social-media-advertising/",
+      "destination": "/services/paid-social-media-advertising/",
+      "permanent": true
+    },
+    {
+      "source": "/amazon-marketing/",
+      "destination": "/services/amazon-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/native-advertising/",
+      "destination": "/services/native-advertising/",
+      "permanent": true
+    },
+    {
+      "source": "/ui-ux-design/",
+      "destination": "/services/ui-ux-design/",
+      "permanent": true
+    },
+    {
+      "source": "/product-design/",
+      "destination": "/services/product-design/",
+      "permanent": true
+    },
+    {
+      "source": "/branding-and-design/",
+      "destination": "/services/branding-and-design/",
+      "permanent": true
+    },
+    {
+      "source": "/communication-design/",
+      "destination": "/services/communication-design/",
+      "permanent": true
+    },
+    {
+      "source": "/content-copy-writing/",
+      "destination": "/services/content-copy-writing/",
+      "permanent": true
+    },
+    {
+      "source": "/conversion-rate-optimisation/",
+      "destination": "/services/conversion-rate-optimisation/",
+      "permanent": true
+    },
+    {
+      "source": "/revenue-generation/",
+      "destination": "/services/revenue-generation/",
+      "permanent": true
+    },
+    {
+      "source": "/lead-generation/",
+      "destination": "/services/lead-generation/",
+      "permanent": true
+    },
+    {
+      "source": "/cmo-consultancy/",
+      "destination": "/services/cmo-consultancy/",
+      "permanent": true
+    },
+    {
+      "source": "/landing-page-design/",
+      "destination": "/services/landing-page-design/",
+      "permanent": true
+    },
+    {
+      "source": "/real-estate-lead-generation/",
+      "destination": "/services/real-estate-lead-generation/",
+      "permanent": true
+    },
+    {
+      "source": "/research-and-insights/",
+      "destination": "/services/research-and-insights/",
+      "permanent": true
+    },
+    {
+      "source": "/strategy-and-planning/",
+      "destination": "/services/strategy-and-planning/",
+      "permanent": true
+    },
+    {
+      "source": "/analytics-configuration/",
+      "destination": "/services/analytics-configuration/",
+      "permanent": true
+    },
+    {
+      "source": "/google-tag-manager/",
+      "destination": "/services/google-tag-manager/",
+      "permanent": true
+    },
+    {
+      "source": "/data-strategy-consulting-services/",
+      "destination": "/services/data-strategy-consulting-services/",
+      "permanent": true
+    },
+    {
+      "source": "/website-development/",
+      "destination": "/services/website-development/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-software-development/",
+      "destination": "/services/custom-software-development/",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-development/",
+      "destination": "/services/ecommerce-development/",
+      "permanent": true
+    },
+    {
+      "source": "/wordpress-development/",
+      "destination": "/services/wordpress-development/",
+      "permanent": true
+    },
+    {
+      "source": "/mobile-app-development/",
+      "destination": "/services/mobile-app-development/",
+      "permanent": true
+    },
+    {
+      "source": "/linux-hosting/",
+      "destination": "/services/linux-hosting/",
+      "permanent": true
+    },
+    {
+      "source": "/business-email/",
+      "destination": "/services/business-email/",
+      "permanent": true
+    },
+    {
+      "source": "/crm-services/",
+      "destination": "/services/crm-services/",
+      "permanent": true
     }
   ],
   "functions": {

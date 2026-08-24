@@ -9,7 +9,7 @@ OUT = pathlib.Path(__file__).parent
 NAV_ITEMS = [
     ("index.html", "Home", "nav.home"),
     ("about-us.html", "About Us", "nav.about"),
-    ("services.html", "Services", "nav.services"),
+    ("services/index.html", "Services", "nav.services"),
     ("case-study.html", "Case Study", "nav.cases"),
     ("blog.html", "Blog", "nav.blog"),
     ("contact-us.html", "Contact Us", "nav.contact"),
@@ -27,55 +27,55 @@ _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from services_data import SERVICES as DOC_SERVICES, CATEGORIES as SVC_CATEGORIES, CARD_META as SVC_CARD_META
 
 SERVICE_TITLE_MAP = {
-    "seo.html": "SEO",
-    "social-media-management.html": "Social Media Management",
-    "influencer-marketing.html": "Influencer Marketing",
-    "digital-pr.html": "Digital PR",
-    "online-reputation-management.html": "Online Reputation Management",
-    "organic-marketing-services.html": "Content Marketing",
-    "whatsapp-marketing-services.html": "WhatsApp Marketing",
-    "performance-marketing-agency.html": "Performance Marketing",
-    "ecommerce-marketing.html": "E-Commerce Marketing",
-    "generative-search-optimisation.html": "Generative Engine Optimisation",
-    "pay-per-click.html": "Search PPC",
-    "display-advertising.html": "Display Advertising",
-    "facebook-instagram-advertising.html": "Facebook &amp; Instagram Ads",
-    "shopping-ads.html": "Shopping Ads",
-    "paid-social-media-advertising.html": "Social Media Advertising",
-    "amazon-marketing.html": "Amazon Marketing",
-    "native-advertising.html": "Native Advertising",
-    "ui-ux-design.html": "UI/UX Design",
-    "product-design.html": "Product Design",
-    "branding-and-design.html": "Brand Identity",
-    "communication-design.html": "Communication Design",
-    "content-copy-writing.html": "Content &amp; Copywriting",
-    "conversion-rate-optimisation.html": "Conversion Rate Optimisation",
-    "revenue-generation.html": "Revenue Generation",
-    "lead-generation.html": "Lead Generation",
-    "cmo-consultancy.html": "CMO Consultancy",
-    "landing-page-design.html": "Landing Page Design",
-    "real-estate-lead-generation.html": "Real Estate Lead Generation",
-    "research-and-insights.html": "Research &amp; Insights",
-    "strategy-and-planning.html": "Strategy &amp; Planning",
-    "analytics-configuration.html": "Analytics Configuration",
-    "google-tag-manager.html": "Google Tag Manager",
-    "data-strategy-consulting-services.html": "Data Strategy",
-    "website-development.html": "Website Development",
-    "custom-software-development.html": "Custom Software",
-    "ecommerce-development.html": "E-Commerce Development",
-    "wordpress-development.html": "WordPress Development",
-    "mobile-app-development.html": "Mobile App Development",
-    "linux-hosting.html": "Linux Hosting",
-    "business-email.html": "Business Email",
-    "crm-services.html": "CRM Services",
+    "services/seo.html": "SEO",
+    "services/social-media-management.html": "Social Media Management",
+    "services/influencer-marketing.html": "Influencer Marketing",
+    "services/digital-pr.html": "Digital PR",
+    "services/online-reputation-management.html": "Online Reputation Management",
+    "services/organic-marketing.html": "Content Marketing",
+    "services/whatsapp-marketing.html": "WhatsApp Marketing",
+    "services/performance-marketing-agency.html": "Performance Marketing",
+    "services/ecommerce-marketing.html": "E-Commerce Marketing",
+    "services/generative-search-optimisation.html": "Generative Engine Optimisation",
+    "services/pay-per-click.html": "Search PPC",
+    "services/display-advertising.html": "Display Advertising",
+    "services/facebook-instagram-advertising.html": "Facebook &amp; Instagram Ads",
+    "services/shopping-ads.html": "Shopping Ads",
+    "services/paid-social-media-advertising.html": "Social Media Advertising",
+    "services/amazon-marketing.html": "Amazon Marketing",
+    "services/native-advertising.html": "Native Advertising",
+    "services/ui-ux-design.html": "UI/UX Design",
+    "services/product-design.html": "Product Design",
+    "services/branding-and-design.html": "Brand Identity",
+    "services/communication-design.html": "Communication Design",
+    "services/content-copy-writing.html": "Content &amp; Copywriting",
+    "services/conversion-rate-optimisation.html": "Conversion Rate Optimisation",
+    "services/revenue-generation.html": "Revenue Generation",
+    "services/lead-generation.html": "Lead Generation",
+    "services/cmo-consultancy.html": "CMO Consultancy",
+    "services/landing-page-design.html": "Landing Page Design",
+    "services/real-estate-lead-generation.html": "Real Estate Lead Generation",
+    "services/research-and-insights.html": "Research &amp; Insights",
+    "services/strategy-and-planning.html": "Strategy &amp; Planning",
+    "services/analytics-configuration.html": "Analytics Configuration",
+    "services/google-tag-manager.html": "Google Tag Manager",
+    "services/data-strategy-consulting-services.html": "Data Strategy",
+    "services/website-development.html": "Website Development",
+    "services/custom-software-development.html": "Custom Software",
+    "services/ecommerce-development.html": "E-Commerce Development",
+    "services/wordpress-development.html": "WordPress Development",
+    "services/mobile-app-development.html": "Mobile App Development",
+    "services/linux-hosting.html": "Linux Hosting",
+    "services/business-email.html": "Business Email",
+    "services/crm-services.html": "CRM Services",
 }
 
-SERVICE_SLUGS = set(SERVICE_TITLE_MAP.keys()) | {"services.html"}
+SERVICE_SLUGS = set(SERVICE_TITLE_MAP.keys()) | {"services/index.html"}
 
 def build_nav(current):
     def is_active(href):
         if href == current: return True
-        if href == "services.html" and current in SERVICE_SLUGS:
+        if href == "services/index.html" and current in SERVICE_SLUGS:
             return True
         if href == "blog.html" and current.startswith("blog-"):
             return True
@@ -91,7 +91,7 @@ def build_nav(current):
                 for slug in slugs
             )
             cols.append(f'<div class="mm-col"><div class="mm-head">{cat}</div>{items}</div>')
-        view_all = f'<a class="mm-all" href="/services/"{" data-active=\"1\"" if current == "services.html" else ""}>View all services →</a>'
+        view_all = f'<a class="mm-all" href="/services/"{" data-active=\"1\"" if current == "services/index.html" else ""}>View all services →</a>'
         return (
             '<div class="dd-menu mega-menu" role="menu">'
             '<span class="dd-bridge" aria-hidden="true"></span>'
@@ -103,7 +103,7 @@ def build_nav(current):
     lis_parts = []
     for h, t, k in NAV_ITEMS:
         active_cls = " active" if is_active(h) else ""
-        if h == "services.html":
+        if h == "services/index.html":
             lis_parts.append(
                 f'<li class="has-dd has-mega"><a class="navlink{active_cls}" href="{h}" data-i18n="{k}">{t} <span class="dd-caret" aria-hidden="true">▾</span></a>{dropdown_html()}</li>'
             )
@@ -277,12 +277,12 @@ FOOT = """<footer class="site-footer" role="contentinfo">
         <div>
           <h4>Services</h4>
           <ul>
-            <li><a href="/seo/">SEO</a></li>
-            <li><a href="/pay-per-click/">Pay Per Click</a></li>
-            <li><a href="/performance-marketing-agency/">Performance Marketing</a></li>
-            <li><a href="/ecommerce-marketing/">E-Commerce</a></li>
-            <li><a href="/whatsapp-marketing-services/">WhatsApp Marketing</a></li>
-            <li><a href="/branding-and-design/">Branding &amp; Design</a></li>
+            <li><a href="/services/seo/">SEO</a></li>
+            <li><a href="/services/pay-per-click/">Pay Per Click</a></li>
+            <li><a href="/services/performance-marketing-agency/">Performance Marketing</a></li>
+            <li><a href="/services/ecommerce-marketing/">E-Commerce</a></li>
+            <li><a href="/services/whatsapp-marketing/">WhatsApp Marketing</a></li>
+            <li><a href="/services/branding-and-design/">Branding &amp; Design</a></li>
           </ul>
         </div>
 
@@ -389,6 +389,7 @@ def write(name, title, desc, body, keywords=None, extra_jsonld=""):
     head = head.replace("{nav}", build_nav(name))
     main = '\n<main id="main" role="main">\n'
     closemain = '\n</main>\n'
+    (OUT / name).parent.mkdir(parents=True, exist_ok=True)
     (OUT / name).write_text(head + main + body + closemain + FOOT.replace("{css_ver}", str(CSS_VER)))
 
 # ---------- ABOUT ----------
@@ -540,70 +541,70 @@ about_body = """
       <p>A broad set of digital marketing services, tailored to every stage of growth.</p>
     </div>
     <div class="expertise-grid">
-      <a class="exp-card reveal" href="/organic-marketing-services/">
+      <a class="exp-card reveal" href="/services/organic-marketing/">
         <span class="exp-num">01</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M12 21c5-4 9-9 9-14 0-2-1-3-3-3-3 0-4 3-6 3s-3-3-6-3c-2 0-3 1-3 3 0 5 4 10 9 14z"/></svg></div>
         <h3>Organic Marketing</h3>
         <p>SEO, content, and social working together for long-term compounding growth.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="/paid-social-media-advertising/">
+      <a class="exp-card reveal delay-1" href="/services/paid-social-media-advertising/">
         <span class="exp-num">02</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></div>
         <h3>Paid Social Advertising</h3>
         <p>Meta, LinkedIn, Pinterest and Snapchat ads engineered to convert.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="/pay-per-click/">
+      <a class="exp-card reveal delay-2" href="/services/pay-per-click/">
         <span class="exp-num">03</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <h3>Pay-Per-Click (PPC)</h3>
         <p>High-intent traffic via Google, Bing, Shopping and performance search.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal" href="/performance-marketing-agency/">
+      <a class="exp-card reveal" href="/services/performance-marketing-agency/">
         <span class="exp-num">04</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg></div>
         <h3>Performance Marketing</h3>
         <p>Full-funnel campaigns tied to CAC, ROAS and real revenue.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="/ecommerce-marketing/">
+      <a class="exp-card reveal delay-1" href="/services/ecommerce-marketing/">
         <span class="exp-num">05</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg></div>
         <h3>E-Commerce Platforms</h3>
         <p>Amazon, Flipkart, Shopify and D2C growth from listing to loyalty.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="/data-strategy-consulting-services/">
+      <a class="exp-card reveal delay-2" href="/services/data-strategy-consulting-services/">
         <span class="exp-num">06</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
         <h3>Data Strategy &amp; Consulting</h3>
         <p>Attribution, analytics and a measurement stack that drives decisions.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal" href="/native-advertising/">
+      <a class="exp-card reveal" href="/services/native-advertising/">
         <span class="exp-num">07</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="7.5" r="0.7"/></svg></div>
         <h3>Native Advertising</h3>
         <p>Premium publisher and marketplace placements that feel organic.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-1" href="/whatsapp-marketing-services/">
+      <a class="exp-card reveal delay-1" href="/services/whatsapp-marketing/">
         <span class="exp-num">08</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg></div>
         <h3>WhatsApp Marketing</h3>
         <p>Conversational commerce, broadcasts and chatbot automation.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-2" href="/branding-and-design/">
+      <a class="exp-card reveal delay-2" href="/services/branding-and-design/">
         <span class="exp-num">09</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg></div>
         <h3>Branding &amp; Design</h3>
         <p>Research-led identity systems and creative direction that convert.</p>
         <span class="exp-link">Explore</span>
       </a>
-      <a class="exp-card reveal delay-3" href="/generative-search-optimisation/">
+      <a class="exp-card reveal delay-3" href="/services/generative-search-optimisation/">
         <span class="exp-num">10</span>
         <div class="exp-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><path d="M12 5V2"/><path d="M2 12h2M20 12h2"/></svg></div>
         <h3>Generative Search Optimisation</h3>
@@ -1019,7 +1020,7 @@ svc_body = f"""
 </section>
 {_svc_tabs_script}
 """
-write("services.html",
+write("services/index.html",
       "Best Digital Marketing Services in India | Digiveritaz",
       "Explore Digiveritaz full-suite digital marketing services in India including SEO, PPC, performance marketing, paid social, WhatsApp marketing and branding.",
       svc_body,

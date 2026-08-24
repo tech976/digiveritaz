@@ -44,9 +44,9 @@ WWD_OVERRIDE_SCRIPT = """<script>
     "seo":   "/uk/seo/",
     "paid":  "/uk/paid-social-media-advertising/",
     "perf":  "/uk/performance-marketing-agency/",
-    "ecom":  "/ecommerce-marketing/",
-    "wa":    "/whatsapp-marketing-services/",
-    "brand": "/branding-and-design/"
+    "ecom":  "/services/ecommerce-marketing/",
+    "wa":    "/services/whatsapp-marketing/",
+    "brand": "/services/branding-and-design/"
   };
   function patch(){
     document.querySelectorAll(".wwd-row").forEach(function(row){
@@ -113,7 +113,7 @@ def main():
             changes.append(f"  ⚠ footer: '{old}' not found")
 
     # 3) Static preview CTA (the "Explore SEO Services" link)
-    static_cta_old = '<a class="pv-cta" href="/seo/">Explore SEO Services</a>'
+    static_cta_old = '<a class="pv-cta" href="/services/seo/">Explore SEO Services</a>'
     static_cta_new = '<a class="pv-cta" href="/uk/seo/">Explore SEO Services</a>'
     if static_cta_old in html:
         html = html.replace(static_cta_old, static_cta_new, 1)
