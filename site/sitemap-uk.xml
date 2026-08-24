@@ -7,14 +7,13 @@
   <url>
     <loc>https://www.digiveritaz.com/uk/</loc>
     <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
-
   <url>
     <loc>https://www.digiveritaz.com/uk/services/</loc>
     <lastmod>2026-08-24</lastmod>
@@ -26,56 +25,432 @@
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://www.digiveritaz.com/uk/services/seo/</loc>
+    <loc>https://www.digiveritaz.com/uk/services/amazon-marketing/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/seo/"/>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/seo/"/>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/amazon-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/amazon-marketing/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
-
   <url>
-    <loc>https://www.digiveritaz.com/uk/services/pay-per-click/</loc>
+    <loc>https://www.digiveritaz.com/uk/services/analytics-configuration/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/pay-per-click/"/>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/pay-per-click/"/>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/analytics-configuration/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/analytics-configuration/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
-
   <url>
-    <loc>https://www.digiveritaz.com/uk/services/performance-marketing-agency/</loc>
+    <loc>https://www.digiveritaz.com/uk/services/branding-and-design/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/performance-marketing-agency/"/>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/performance-marketing-agency/"/>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/branding-and-design/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/branding-and-design/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
-
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/business-email/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/business-email/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/business-email/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/cmo-consultancy/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/cmo-consultancy/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/cmo-consultancy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/communication-design/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/communication-design/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/communication-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/content-copy-writing/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/content-copy-writing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/content-copy-writing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/conversion-rate-optimisation/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/conversion-rate-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/conversion-rate-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/crm-services/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/crm-services/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/crm-services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/custom-software-development/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/custom-software-development/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/custom-software-development/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/data-strategy-consulting-services/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/data-strategy-consulting-services/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/data-strategy-consulting-services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/digital-pr/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/digital-pr/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/digital-pr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/display-advertising/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/display-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/display-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/ecommerce-development/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/ecommerce-development/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/ecommerce-development/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/ecommerce-marketing/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/ecommerce-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/ecommerce-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/facebook-instagram-advertising/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/facebook-instagram-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/facebook-instagram-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/generative-search-optimisation/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/generative-search-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/generative-search-optimisation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/google-tag-manager/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/google-tag-manager/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/google-tag-manager/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/influencer-marketing/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/influencer-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/influencer-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/landing-page-design/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/landing-page-design/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/landing-page-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/lead-generation/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/lead-generation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/lead-generation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/linux-hosting/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/linux-hosting/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/linux-hosting/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/mobile-app-development/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/mobile-app-development/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/mobile-app-development/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/native-advertising/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/native-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/native-advertising/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/online-reputation-management/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/online-reputation-management/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/online-reputation-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/organic-marketing/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/organic-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/organic-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
   <url>
     <loc>https://www.digiveritaz.com/uk/services/paid-social-media-advertising/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/paid-social-media-advertising/"/>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/paid-social-media-advertising/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
-
   <url>
-    <loc>https://www.digiveritaz.com/uk/services/generative-search-optimisation/</loc>
+    <loc>https://www.digiveritaz.com/uk/services/pay-per-click/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/generative-search-optimisation/"/>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/generative-search-optimisation/"/>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/pay-per-click/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/pay-per-click/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/performance-marketing-agency/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/performance-marketing-agency/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/performance-marketing-agency/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/product-design/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/product-design/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/product-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/real-estate-lead-generation/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/real-estate-lead-generation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/real-estate-lead-generation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/research-and-insights/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/research-and-insights/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/research-and-insights/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/revenue-generation/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/revenue-generation/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/revenue-generation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/seo/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/shopping-ads/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/shopping-ads/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/shopping-ads/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/social-media-management/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/social-media-management/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/social-media-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/strategy-and-planning/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/strategy-and-planning/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/strategy-and-planning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/ui-ux-design/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/ui-ux-design/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/ui-ux-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/website-development/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/website-development/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/website-development/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/whatsapp-marketing/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/whatsapp-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/whatsapp-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/services/wordpress-development/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/services/wordpress-development/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/services/wordpress-development/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/about-us/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/about-us/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/about-us/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
+    <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/uk/contact-us/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.digiveritaz.com/uk/contact-us/"/>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.digiveritaz.com/contact-us/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/"/>
     <image:image><image:loc>https://www.digiveritaz.com/assets/logo.webp</image:loc></image:image>
   </url>
