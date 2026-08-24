@@ -276,6 +276,31 @@
       "source": "/crm-services/",
       "destination": "/services/crm-services/",
       "permanent": true
+    },
+    {
+      "source": "/uk/seo/",
+      "destination": "/uk/services/seo/",
+      "permanent": true
+    },
+    {
+      "source": "/uk/pay-per-click/",
+      "destination": "/uk/services/pay-per-click/",
+      "permanent": true
+    },
+    {
+      "source": "/uk/performance-marketing-agency/",
+      "destination": "/uk/services/performance-marketing-agency/",
+      "permanent": true
+    },
+    {
+      "source": "/uk/paid-social-media-advertising/",
+      "destination": "/uk/services/paid-social-media-advertising/",
+      "permanent": true
+    },
+    {
+      "source": "/uk/generative-search-optimisation/",
+      "destination": "/uk/services/generative-search-optimisation/",
+      "permanent": true
     }
   ],
   "functions": {

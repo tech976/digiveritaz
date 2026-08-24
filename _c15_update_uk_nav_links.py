@@ -41,9 +41,9 @@ WWD_OVERRIDE_SCRIPT = """<script>
    MutationObserver that fixes the CTA href whenever the preview re-renders. */
 (function(){
   var MAP = {
-    "seo":   "/uk/seo/",
-    "paid":  "/uk/paid-social-media-advertising/",
-    "perf":  "/uk/performance-marketing-agency/",
+    "seo":   "/uk/services/seo/",
+    "paid":  "/uk/services/paid-social-media-advertising/",
+    "perf":  "/uk/services/performance-marketing-agency/",
     "ecom":  "/services/ecommerce-marketing/",
     "wa":    "/services/whatsapp-marketing/",
     "brand": "/services/branding-and-design/"
@@ -114,7 +114,7 @@ def main():
 
     # 3) Static preview CTA (the "Explore SEO Services" link)
     static_cta_old = '<a class="pv-cta" href="/services/seo/">Explore SEO Services</a>'
-    static_cta_new = '<a class="pv-cta" href="/uk/seo/">Explore SEO Services</a>'
+    static_cta_new = '<a class="pv-cta" href="/uk/services/seo/">Explore SEO Services</a>'
     if static_cta_old in html:
         html = html.replace(static_cta_old, static_cta_new, 1)
         changes.append("  ✓ static preview CTA href → /uk/seo/")
