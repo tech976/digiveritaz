@@ -311,5 +311,15 @@
     "api/otp.py": {
       "maxDuration": 10
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/uk/sitemap.xml",
+      "destination": "/sitemap-uk.xml"
+    },
+    {
+      "source": "/uk/sitemap-uk.xml",
+      "destination": "/sitemap-uk.xml"
+    }
+  ]
 }
