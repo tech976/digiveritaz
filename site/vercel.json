@@ -301,6 +301,11 @@
       "source": "/uk/generative-search-optimisation/",
       "destination": "/uk/services/generative-search-optimisation/",
       "permanent": true
+    },
+    {
+      "source": "/sitemap-uk.xml",
+      "destination": "/uk/sitemap.xml",
+      "permanent": true
     }
   ],
   "functions": {
@@ -314,12 +319,8 @@
   },
   "rewrites": [
     {
-      "source": "/uk/sitemap.xml",
-      "destination": "/sitemap-uk.xml"
-    },
-    {
       "source": "/uk/sitemap-uk.xml",
-      "destination": "/sitemap-uk.xml"
+      "destination": "/uk/sitemap.xml"
     }
   ]
 }
