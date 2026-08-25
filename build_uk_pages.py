@@ -81,8 +81,11 @@ def localise(src_html, slug, uk_url, in_url):
                   f'<link rel="alternate" hreflang="en-IN" href="{in_url}">\n'
                   '<link rel="alternate" hreflang="x-default" href="https://www.digiveritaz.com/">',
                   head, count=1)
-    # breadcrumb + schema self-references
+    # breadcrumb + schema self-references. Must run BEFORE the hreflang
+    # block is written, or it rewrites the en-IN href to the UK url too.
     head = head.replace(in_url, uk_url)
+    head = re.sub(r'(hreflang="en-IN" href=")[^"]*(")',
+                  lambda m: m.group(1) + in_url + m.group(2), head)
     return head + body
 
 
