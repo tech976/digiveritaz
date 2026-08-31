@@ -514,7 +514,7 @@ function sendUserAck_(p) {
           'Thank you for filling out the form on DigiVeritaz. We have received your ' +
           'details and our team will reach out to you shortly — usually within one ' +
           'business day.\n\n' +
-          'If it is urgent, call us at +91 99566 55662.\n\n' +
+          'If it is urgent, call us at +91 88509 34184.\n\n' +
           '— Team DigiVeritaz\nhttps://www.digiveritaz.com',
     htmlBody: buildAckEmail_(hi)
   });
@@ -532,7 +532,7 @@ function buildAckEmail_(hi) {
         '<a href="https://www.digiveritaz.com" style="background:#16a34a;color:#fff;text-decoration:none;padding:12px 26px;border-radius:999px;font-weight:600;display:inline-block">Visit DigiVeritaz</a>' +
       '</p>' +
       '<p style="color:#6b7280;font-size:.9rem;line-height:1.6">Need us sooner? Call ' +
-        '<a href="tel:+919956655662" style="color:#16a34a">+91 99566 55662</a> or just reply to this email.</p>' +
+        '<a href="tel:+918850934184" style="color:#16a34a">+91 88509 34184</a> or just reply to this email.</p>' +
       '<p style="color:#6b7280;font-size:.85rem;margin-top:18px">— Team DigiVeritaz</p>' +
     '</div>';
 }

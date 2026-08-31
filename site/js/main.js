@@ -771,8 +771,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var bar = document.createElement('div');
     bar.className = 'dv-topbar';
     bar.innerHTML = '<div class="dv-tb-inner">'
-      + '<a class="dv-tb-item dv-tb-wa" href="https://wa.me/919956655662" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">' + WA + '+91 99566 55662</a>'
-      + '<a class="dv-tb-item dv-tb-ph" href="tel:+919956655662" aria-label="Call us">' + PH + '+91 99566 55662</a>'
+      + '<a class="dv-tb-item dv-tb-wa" href="https://wa.me/918850934184" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">' + WA + '+91 88509 34184</a>'
+      + '<a class="dv-tb-item dv-tb-ph" href="tel:+918850934184" aria-label="Call us">' + PH + '+91 88509 34184</a>'
       + '<a class="dv-tb-item dv-tb-em" href="mailto:info@digiveritaz.com" aria-label="Email us">' + EM + 'info@digiveritaz.com</a>'
       + '</div>';
     var header = document.querySelector('header.site-header');
@@ -805,7 +805,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var wa = document.createElement('a');
     wa.className = 'dv-wafloat';
-    wa.href = 'https://wa.me/919956655662';
+    wa.href = 'https://wa.me/918850934184';
     wa.target = '_blank'; wa.rel = 'noopener';
     wa.setAttribute('aria-label', 'Chat on WhatsApp');
     wa.innerHTML = WA;
@@ -827,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* DV-CHATBOT v1 — lead-qualification chat widget (talks to /api/chat) */
 ;(function(){
   if (window.__dvChat) return; window.__dvChat = true;
-  var WA = "https://wa.me/919956655662";
+  var WA = "https://wa.me/918850934184";
   var BOOK = "/contact-us/";
   var GREETING = "Hi! 👋 I'm Veri from DigiVeritaz. What are you trying to achieve — more leads, better ROAS, or something else? I can point you to the right service and set up a quick call.";
   var I_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
@@ -892,7 +892,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }).catch(function(){
       typing(false);
-      addMsg("assistant", "I'm having a connection issue — please WhatsApp us at +91 99566 55662 and the team will help right away.");
+      addMsg("assistant", "I'm having a connection issue — please WhatsApp us at +91 88509 34184 and the team will help right away.");
     });
   }
 

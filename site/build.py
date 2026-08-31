@@ -132,7 +132,7 @@ ORG_SCHEMA = {
             "logo": DEFAULT_OG_IMAGE,
             "image": DEFAULT_OG_IMAGE,
             "description": "DigiVeritaz is a Mumbai-based digital marketing agency delivering SEO, PPC, performance marketing, paid social, e-commerce growth, WhatsApp marketing, branding and data strategy services across India and worldwide.",
-            "telephone": "+91-9956655662",
+            "telephone": "+91-8850934184",
             "email": "durvamukherjee@digiveritaz.com",
             "priceRange": "$$",
             "address": {
@@ -307,7 +307,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg></span>
-            <div><strong>Phone</strong><a href="tel:+919956655662">+91 99566 55662</a><br><a href="tel:+917045337060">+91 70453 37060</a></div>
+            <div><strong>Phone</strong><a href="tel:+918850934184">+91 88509 34184</a><br><a href="tel:+917045337060">+91 70453 37060</a></div>
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
@@ -669,7 +669,7 @@ contact_body = """
 
       <div class="strip-item">
         <span class="sl">Phone</span>
-        <a class="sv" href="tel:+919956655662">+91 99566 55662</a>
+        <a class="sv" href="tel:+918850934184">+91 88509 34184</a>
         <span class="sv-sub"><a href="tel:+917045337060">+91 70453 37060</a></span>
       </div>
 
@@ -800,7 +800,7 @@ write("contact-us.html",
 # ---------- THANK YOU ----------
 ty_body = """<section class="hero"><div class="container text-center">
 <h1 class="play">Thank <span class="green_text">You!</span></h1>
-<p class="lead" style="margin:0 auto">We've received your message and will get back to you shortly. If your inquiry is urgent, please call us directly at <a href="tel:+919956655662">+91 99566 55662</a> or <a href="tel:+917045337060">+91 70453 37060</a>.</p>
+<p class="lead" style="margin:0 auto">We've received your message and will get back to you shortly. If your inquiry is urgent, please call us directly at <a href="tel:+918850934184">+91 88509 34184</a> or <a href="tel:+917045337060">+91 70453 37060</a>.</p>
 <div class="mt-20"><a class="btn" href="/">Back to Home</a></div>
 </div></section>"""
 write("thank-you.html", "Thank You | DigiVeritaz",
@@ -2081,7 +2081,7 @@ privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Ho
 <h2>8. Security</h2><p>We implement industry-standard safeguards to protect your data, though no method of transmission over the Internet is 100% secure.</p>
 <h2>9. External Links</h2><p>Our site may contain links to external sites whose privacy practices we do not control.</p>
 <h2>10. Marketing Opt-Out</h2><p>You can opt out of marketing communications at any time by using the unsubscribe link in our emails.</p>
-<h2>11. Contact</h2><p>Privacy Officer: Durva Mukherjee · durvamukherjee@digiveritaz.com · +91 99566 55662 · Ujagar Chambers, Deonar, Chembur, Mumbai, Maharashtra 400088.</p>
+<h2>11. Contact</h2><p>Privacy Officer: Durva Mukherjee · durvamukherjee@digiveritaz.com · +91 88509 34184 · Ujagar Chambers, Deonar, Chembur, Mumbai, Maharashtra 400088.</p>
 <h2>12. Updates</h2><p>We may update this policy from time to time. Material changes will be communicated via our website.</p>
 </div></section>
 """

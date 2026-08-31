@@ -2,7 +2,7 @@
 """Remove the middle phone number (+91 70214 50830) site-wide.
 
 Per HR: footer contact section should list only:
-  +91 99566 55662
+  +91 88509 34184
   +91 70453 37060
 
 The third number (+91 70214 50830) was historically present in 3
