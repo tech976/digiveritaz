@@ -79,7 +79,8 @@ async function runAudit(){
       const p = queue.shift();
       const u = `/api/analyze?url=${encodeURIComponent(p.url)}`
               + `&keyphrase=${encodeURIComponent(keyphraseOf(p))}`
-              + `&keyphrase_source=${encodeURIComponent(sourceOf(p))}`;
+              + `&keyphrase_source=${encodeURIComponent(sourceOf(p))}`
+              + `&secondary=${encodeURIComponent(p.secondary_keyphrase || "")}`;
       let rep = null;
       for (let attempt = 0; attempt < 2 && !rep; attempt++){
         try { rep = await (await fetch(u)).json(); }
@@ -279,7 +280,7 @@ function render(){
       `<td class="path" title="${esc(p.path)}">${esc(p.path)}</td>
        <td class="hide-sm sub">${esc(p.section)}</td>
        <td class="kp hide-md">${esc(keyphraseOf(p))}${
-         sourceOf(p) !== "sheet" ? '<span class="tag" title="Guessed from the web address — set a real one in the page report">guess</span>' : ""}</td>
+         sourceOf(p) === "derived" ? '<span class="tag" title="Guessed from the web address — set a real one in the page report">guess</span>' : ""}</td>
        <td class="num">${pending ? '<span class="spin"></span>'
             : `<span class="score ${g}">${s.overall ?? "—"}</span>`}</td>
        <td class="verdict-col">${pending ? "" : `<span class="verdict ${g}">${G.verdict(s.overall).word}</span>`}</td>
@@ -402,8 +403,10 @@ function openDrawer(p){
       <input id="d-kp" value="${esc(keyphraseOf(p))}" placeholder="e.g. seo agency in mumbai">
       <button class="btn btn-primary" id="d-recheck">Check again</button>
     </div>
-    ${sourceOf(p) !== "sheet"
-      ? `<p class="hint">⚠︎ This phrase was guessed from the web address, so the results below may be misleading. Set the real one for an accurate report.</p>` : ""}`;
+    ${sourceOf(p) === "derived"
+      ? `<p class="hint">⚠︎ This phrase was guessed from the web address, so the results below may be misleading. Set the real one for an accurate report.</p>`
+      : p.secondary_keyphrase
+        ? `<p class="sub">Also targeting “${esc(p.secondary_keyphrase)}” in the description.</p>` : ""}`;
   body.append(kwbox);
 
   if (!r){
@@ -458,7 +461,8 @@ function openDrawer(p){
     else if (!kp) { delete overrides[p.path]; save(); }
     const btn = $("#d-recheck"); btn.disabled = true; btn.textContent = "Checking…";
     const u = `/api/analyze?url=${encodeURIComponent(p.url)}&keyphrase=${encodeURIComponent(kp)}`
-            + `&keyphrase_source=${encodeURIComponent(sourceOf(p))}`;
+            + `&keyphrase_source=${encodeURIComponent(sourceOf(p))}`
+            + `&secondary=${encodeURIComponent(p.secondary_keyphrase || "")}`;
     try { RESULTS.set(p.path, await (await fetch(u)).json()); } catch {}
     render(); summarise(); openDrawer(p);
   };

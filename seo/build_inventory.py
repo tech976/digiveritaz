@@ -92,6 +92,15 @@ def main():
     if os.path.isfile(kw_path):
         clusters = json.load(open(kw_path, encoding="utf-8")).get("clusters", {})
 
+    # The title/description plan assigns a primary and secondary keyword per
+    # page. It is the most specific source there is, so it outranks the
+    # keyword-cluster sheet and the slug fallback.
+    mp_path = os.path.join(HERE, "data", "meta_plan.json")
+    plan = {}
+    if os.path.isfile(mp_path):
+        plan = {e["path"]: e for e in
+                json.load(open(mp_path, encoding="utf-8"))["entries"]}
+
     urls = collect(f"{ORIGIN}/sitemap.xml", live)
     seen, pages = set(), []
     for loc, lastmod in urls:
@@ -100,13 +109,21 @@ def main():
         seen.add(loc)
         path = urllib.parse.urlparse(loc).path
         cluster = clusters.get(path)
+        pl = plan.get(path)
+        if pl:
+            kp, sec, src = pl["primary_keyword"], pl["secondary_keyword"], "plan"
+        elif cluster:
+            kp, sec, src = cluster["focus"], None, "sheet"
+        else:
+            kp, sec, src = derive_keyphrase(path), None, "derived"
         pages.append({
             "url": loc,
             "path": path,
             "section": section_of(path),
             "lastmod": lastmod or None,
-            "keyphrase": cluster["focus"] if cluster else derive_keyphrase(path),
-            "keyphrase_source": "sheet" if cluster else "derived",
+            "keyphrase": kp,
+            "secondary_keyphrase": sec,
+            "keyphrase_source": src,
             "cluster_sheet": cluster["sheet"] if cluster else None,
             "cluster_volume": cluster["total_volume"] if cluster else None,
         })
@@ -124,7 +141,10 @@ def main():
     print(f"{len(pages)} URLs -> {out}")
     for s, n in sorted(by_sec.items(), key=lambda kv: -kv[1]):
         print(f"  {n:>4}  {s}")
-    print(f"  {sum(1 for p in pages if p['keyphrase_source'] == 'sheet')} pages have a keyphrase from the sheet")
+    for src, label in (("plan", "from the title/description plan"),
+                       ("sheet", "from the keyword sheet"),
+                       ("derived", "guessed from the URL")):
+        print(f"  {sum(1 for p in pages if p['keyphrase_source'] == src):>4}  keyphrase {label}")
 
 
 if __name__ == "__main__":

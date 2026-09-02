@@ -27,7 +27,8 @@ def run(params):
 
     kp = (params.get("keyphrase") or "").strip() or None
     src = (params.get("keyphrase_source") or "derived").strip()
-    return 200, engine.analyze_url(url, kp, src)
+    sec = (params.get("secondary") or "").strip() or None
+    return 200, engine.analyze_url(url, kp, src, secondary=sec)
 
 
 class handler(BaseHTTPRequestHandler):

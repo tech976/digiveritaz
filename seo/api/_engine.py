@@ -363,10 +363,10 @@ def _band(v, good, ok):
 
 
 def analyze(url, html_str, keyphrase=None, status_code=200, fetch_ms=None,
-            keyphrase_source="derived", synonyms=None):
+            keyphrase_source="derived", secondary=None):
     f = parse_html(html_str)
     r = _Report()
-    synonyms = synonyms or []
+    secondary = _clean(secondary or "")
 
     parsed_url = urllib.parse.urlparse(url)
     host = parsed_url.netloc.lower().replace("www.", "")
@@ -409,10 +409,20 @@ def analyze(url, html_str, keyphrase=None, status_code=200, fetch_ms=None,
                   "The focus keyphrase does not appear in the SEO title.", weight=3)
 
         if desc:
-            r.add(G, "meta_keyphrase", "Keyphrase in meta description",
-                  GOOD if kp_hits(kp, desc) else BAD,
-                  "The meta description contains the focus keyphrase." if kp_hits(kp, desc)
-                  else "The meta description does not contain the focus keyphrase.", weight=2)
+            # A secondary keyphrase in the description is a deliberate strategy
+            # (primary in the title, secondary in the description), so either
+            # one counts here.
+            if kp_hits(kp, desc):
+                r.add(G, "meta_keyphrase", "Keyphrase in meta description", GOOD,
+                      "The meta description contains the focus keyphrase.", weight=2)
+            elif secondary and kp_hits(secondary, desc):
+                r.add(G, "meta_keyphrase", "Keyphrase in meta description", GOOD,
+                      f"The meta description contains the secondary keyphrase "
+                      f"(\u201c{secondary}\u201d), which covers a second search term.", weight=2)
+            else:
+                r.add(G, "meta_keyphrase", "Keyphrase in meta description", BAD,
+                      "The meta description contains neither the focus keyphrase"
+                      + (" nor the secondary one." if secondary else "."), weight=2)
 
         r.add(G, "slug_keyphrase", "Keyphrase in slug",
               GOOD if kp_hits(kp, slug.replace("-", " ")) else OK,
@@ -589,11 +599,12 @@ def analyze(url, html_str, keyphrase=None, status_code=200, fetch_ms=None,
           f"Responded {status_code}." + ("" if status_code == 200 else " Should be 200."),
           weight=3, value=status_code)
     return _readability(r, f, content, wc, url, kp, keyphrase_source, status_code, fetch_ms,
-                        title, desc, tpx, h1s, imgs, internal, external, types)
+                        title, desc, tpx, h1s, imgs, internal, external, types, secondary)
 
 
 def _readability(r, f, content, wc, url, kp, kp_source, status_code, fetch_ms,
-                 title, desc, tpx, h1s, imgs, internal, external, schema_types):
+                 title, desc, tpx, h1s, imgs, internal, external, schema_types,
+                 secondary=None):
     R = "readability"
 
     fre = flesch_reading_ease(content)
@@ -670,6 +681,7 @@ def _readability(r, f, content, wc, url, kp, kp_source, status_code, fetch_ms,
         "status": status_code,
         "fetch_ms": fetch_ms,
         "keyphrase": kp or None,
+        "secondary_keyphrase": secondary or None,
         "keyphrase_source": kp_source,
         "scores": {"seo": seo_score, "readability": read_score, "overall": overall},
         "grade": grade_of(overall),
@@ -725,10 +737,11 @@ def fetch(url, timeout=HTTP_TIMEOUT):
         return 0, "", int((time.time() - t0) * 1000), str(e)
 
 
-def analyze_url(url, keyphrase=None, keyphrase_source="derived", timeout=HTTP_TIMEOUT):
+def analyze_url(url, keyphrase=None, keyphrase_source="derived", timeout=HTTP_TIMEOUT,
+                secondary=None):
     status, html_str, ms, err = fetch(url, timeout)
     if err or not html_str:
         return {"url": url, "status": status, "fetch_ms": ms, "error": err or "empty response",
                 "scores": {"seo": None, "readability": None, "overall": None},
                 "grade": "unknown", "checks": [], "counts": {}, "facts": {}}
-    return analyze(url, html_str, keyphrase, status, ms, keyphrase_source)
+    return analyze(url, html_str, keyphrase, status, ms, keyphrase_source, secondary)
