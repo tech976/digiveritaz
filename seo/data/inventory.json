@@ -1,0 +1,2937 @@
+{
+ "origin": "https://www.digiveritaz.com",
+ "source": "local sitemap",
+ "count": 293,
+ "pages": [
+  {
+   "url": "https://www.digiveritaz.com/",
+   "path": "/",
+   "section": "Home",
+   "lastmod": "2026-05-27",
+   "keyphrase": "digital marketing agency",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Home Page",
+   "cluster_volume": 109560
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/5-tools-ecommerce-brands-win-holiday-sales-2026/",
+   "path": "/blog/5-tools-ecommerce-brands-win-holiday-sales-2026/",
+   "section": "Blog",
+   "lastmod": "2026-08-18",
+   "keyphrase": "5 tools ecommerce brands win holiday sales 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/advertising-on-chatgpt-guide-indian-brands/",
+   "path": "/blog/advertising-on-chatgpt-guide-indian-brands/",
+   "section": "Blog",
+   "lastmod": "2026-07-20",
+   "keyphrase": "advertising on chatgpt guide indian brands",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/aeo-2026-get-cited-chatgpt-gemini-perplexity/",
+   "path": "/blog/aeo-2026-get-cited-chatgpt-gemini-perplexity/",
+   "section": "Blog",
+   "lastmod": "2026-07-18",
+   "keyphrase": "aeo 2026 get cited chatgpt gemini perplexity",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-content-gap-analysis-beat-competitors-seo/",
+   "path": "/blog/ai-content-gap-analysis-beat-competitors-seo/",
+   "section": "Blog",
+   "lastmod": "2026-07-18",
+   "keyphrase": "ai content gap analysis beat competitors seo",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-data-privacy-marketers-chatgpt-gemini-safely/",
+   "path": "/blog/ai-data-privacy-marketers-chatgpt-gemini-safely/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "ai data privacy marketers chatgpt gemini safely",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-data-trust-war-microsoft-vs-openai-marketing-ai-stack/",
+   "path": "/blog/ai-data-trust-war-microsoft-vs-openai-marketing-ai-stack/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "ai data trust war microsoft vs openai marketing ai stack",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-generated-films-video-marketing/",
+   "path": "/blog/ai-generated-films-video-marketing/",
+   "section": "Blog",
+   "lastmod": "2026-08-07",
+   "keyphrase": "ai generated films video marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-killing-branded-search-measure-brand-demand/",
+   "path": "/blog/ai-killing-branded-search-measure-brand-demand/",
+   "section": "Blog",
+   "lastmod": "2026-08-06",
+   "keyphrase": "ai killing branded search measure brand demand",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-lead-generation-marketing-automation/",
+   "path": "/blog/ai-lead-generation-marketing-automation/",
+   "section": "Blog",
+   "lastmod": "2026-05-25",
+   "keyphrase": "ai lead generation marketing automation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-mass-emails-backfiring-2026-outreach-playbook/",
+   "path": "/blog/ai-mass-emails-backfiring-2026-outreach-playbook/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "ai mass emails backfiring 2026 outreach playbook",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-poisoning-protect-brand-chatgpt-gemini/",
+   "path": "/blog/ai-poisoning-protect-brand-chatgpt-gemini/",
+   "section": "Blog",
+   "lastmod": "2026-07-17",
+   "keyphrase": "ai poisoning protect brand chatgpt gemini",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-rewriting-marketing-rulebook-customer-journey/",
+   "path": "/blog/ai-rewriting-marketing-rulebook-customer-journey/",
+   "section": "Blog",
+   "lastmod": "2026-08-07",
+   "keyphrase": "ai rewriting marketing rulebook customer journey",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-search-quality-links-over-quantity-link-building-2026/",
+   "path": "/blog/ai-search-quality-links-over-quantity-link-building-2026/",
+   "section": "Blog",
+   "lastmod": "2026-08-08",
+   "keyphrase": "ai search quality links over quantity link building 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ai-video-editing-tools-social-media-scale-content/",
+   "path": "/blog/ai-video-editing-tools-social-media-scale-content/",
+   "section": "Blog",
+   "lastmod": "2026-08-12",
+   "keyphrase": "ai video editing tools social media scale content",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/alibaba-qwen-vs-chatgpt-indian-marketers/",
+   "path": "/blog/alibaba-qwen-vs-chatgpt-indian-marketers/",
+   "section": "Blog",
+   "lastmod": "2026-08-04",
+   "keyphrase": "alibaba qwen vs chatgpt indian marketers",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/amazon-marketing-strategy-indian-sellers-2026/",
+   "path": "/blog/amazon-marketing-strategy-indian-sellers-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-03",
+   "keyphrase": "amazon marketing strategy indian sellers 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/amazon-ppc-india-lower-acos-without-losing-rank/",
+   "path": "/blog/amazon-ppc-india-lower-acos-without-losing-rank/",
+   "section": "Blog",
+   "lastmod": "2026-07-09",
+   "keyphrase": "amazon ppc india lower acos without losing rank",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/best-ai-marketing-tools-2026/",
+   "path": "/blog/best-ai-marketing-tools-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "best ai marketing tools 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/best-platforms-for-local-advertising-india-2026/",
+   "path": "/blog/best-platforms-for-local-advertising-india-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-01",
+   "keyphrase": "best platforms for local advertising india 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/best-times-to-post-instagram-2026/",
+   "path": "/blog/best-times-to-post-instagram-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "best times to post instagram 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/big-websites-blocking-google-seo-content-strategy/",
+   "path": "/blog/big-websites-blocking-google-seo-content-strategy/",
+   "section": "Blog",
+   "lastmod": "2026-08-13",
+   "keyphrase": "big websites blocking google seo content strategy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/brand-identity-design-trust-elements-2026/",
+   "path": "/blog/brand-identity-design-trust-elements-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-17",
+   "keyphrase": "brand identity design trust elements 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/brand-safety-meta-protect-ads-reputation-2026/",
+   "path": "/blog/brand-safety-meta-protect-ads-reputation-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "brand safety meta protect ads reputation 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/buffer-ai-insights-social-media-reporting-2026/",
+   "path": "/blog/buffer-ai-insights-social-media-reporting-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-31",
+   "keyphrase": "buffer ai insights social media reporting 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/buffer-api-deprecation-2027-social-media-teams/",
+   "path": "/blog/buffer-api-deprecation-2027-social-media-teams/",
+   "section": "Blog",
+   "lastmod": "2026-08-19",
+   "keyphrase": "buffer api deprecation 2027 social media teams",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/captcha-bot-screens-hiding-website-from-google/",
+   "path": "/blog/captcha-bot-screens-hiding-website-from-google/",
+   "section": "Blog",
+   "lastmod": "2026-08-04",
+   "keyphrase": "captcha bot screens hiding website from google",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/chatgpt-prompts-marketing-ad-copy/",
+   "path": "/blog/chatgpt-prompts-marketing-ad-copy/",
+   "section": "Blog",
+   "lastmod": "2026-06-03",
+   "keyphrase": "chatgpt prompts marketing ad copy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/chatgpt-rarely-names-one-best-brand-ai-share-of-voice/",
+   "path": "/blog/chatgpt-rarely-names-one-best-brand-ai-share-of-voice/",
+   "section": "Blog",
+   "lastmod": "2026-08-14",
+   "keyphrase": "chatgpt rarely names one best brand ai share of voice",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/claude-cowork-data-what-ai-used-for-at-work/",
+   "path": "/blog/claude-cowork-data-what-ai-used-for-at-work/",
+   "section": "Blog",
+   "lastmod": "2026-07-27",
+   "keyphrase": "claude cowork data what ai used for at work",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/click-to-whatsapp-ads-turn-clicks-into-conversations/",
+   "path": "/blog/click-to-whatsapp-ads-turn-clicks-into-conversations/",
+   "section": "Blog",
+   "lastmod": "2026-07-16",
+   "keyphrase": "click to whatsapp ads turn clicks into conversations",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/cloning-brand-voice-ai-train-content-tools/",
+   "path": "/blog/cloning-brand-voice-ai-train-content-tools/",
+   "section": "Blog",
+   "lastmod": "2026-07-30",
+   "keyphrase": "cloning brand voice ai train content tools",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/cmo-consultancy-fractional-cmo-guide-2026/",
+   "path": "/blog/cmo-consultancy-fractional-cmo-guide-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-20",
+   "keyphrase": "cmo consultancy fractional cmo guide 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/cms-for-ai-discovery-get-found-ai-search/",
+   "path": "/blog/cms-for-ai-discovery-get-found-ai-search/",
+   "section": "Blog",
+   "lastmod": "2026-07-18",
+   "keyphrase": "cms for ai discovery get found ai search",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/content-marketing-roi-frameworks/",
+   "path": "/blog/content-marketing-roi-frameworks/",
+   "section": "Blog",
+   "lastmod": "2026-06-05",
+   "keyphrase": "content marketing roi frameworks",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/conversion-rate-optimization-fixes/",
+   "path": "/blog/conversion-rate-optimization-fixes/",
+   "section": "Blog",
+   "lastmod": "2026-06-04",
+   "keyphrase": "conversion rate optimization fixes",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/creator-team-marketing-influencer-squads-big-events/",
+   "path": "/blog/creator-team-marketing-influencer-squads-big-events/",
+   "section": "Blog",
+   "lastmod": "2026-07-22",
+   "keyphrase": "creator team marketing influencer squads big events",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/custom-vs-template-ecommerce-website-whats-better-2026/",
+   "path": "/blog/custom-vs-template-ecommerce-website-whats-better-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-02",
+   "keyphrase": "custom vs template ecommerce website whats better 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/data-strategy-smarter-marketing-decisions-2026/",
+   "path": "/blog/data-strategy-smarter-marketing-decisions-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-14",
+   "keyphrase": "data strategy smarter marketing decisions 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/digital-marketing-for-ecommerce-complete-2026-guide/",
+   "path": "/blog/digital-marketing-for-ecommerce-complete-2026-guide/",
+   "section": "Blog",
+   "lastmod": "2026-07-02",
+   "keyphrase": "digital marketing for ecommerce complete 2026 guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/digital-pr-india-earned-media-tactics-2026/",
+   "path": "/blog/digital-pr-india-earned-media-tactics-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-18",
+   "keyphrase": "digital pr india earned media tactics 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/dirty-customer-data-silver-layer-marketing-stack/",
+   "path": "/blog/dirty-customer-data-silver-layer-marketing-stack/",
+   "section": "Blog",
+   "lastmod": "2026-08-11",
+   "keyphrase": "dirty customer data silver layer marketing stack",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/display-advertising-cut-cpc-2026/",
+   "path": "/blog/display-advertising-cut-cpc-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-18",
+   "keyphrase": "display advertising cut cpc 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/display-advertising-retargeting-audience-segments/",
+   "path": "/blog/display-advertising-retargeting-audience-segments/",
+   "section": "Blog",
+   "lastmod": "2026-07-15",
+   "keyphrase": "display advertising retargeting audience segments",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ecommerce-marketing-strategies-boost-sales-2026/",
+   "path": "/blog/ecommerce-marketing-strategies-boost-sales-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-13",
+   "keyphrase": "ecommerce marketing strategies boost sales 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/email-marketing-automation-flows/",
+   "path": "/blog/email-marketing-automation-flows/",
+   "section": "Blog",
+   "lastmod": "2026-06-09",
+   "keyphrase": "email marketing automation flows",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/eu-vs-meta-addictive-apps-ruling-ad-strategy/",
+   "path": "/blog/eu-vs-meta-addictive-apps-ruling-ad-strategy/",
+   "section": "Blog",
+   "lastmod": "2026-07-24",
+   "keyphrase": "eu vs meta addictive apps ruling ad strategy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/evergreen-content-dying-expert-voices-trust-rankings/",
+   "path": "/blog/evergreen-content-dying-expert-voices-trust-rankings/",
+   "section": "Blog",
+   "lastmod": "2026-07-27",
+   "keyphrase": "evergreen content dying expert voices trust rankings",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/facebook-ads-manager-2026-targeting-changes/",
+   "path": "/blog/facebook-ads-manager-2026-targeting-changes/",
+   "section": "Blog",
+   "lastmod": "2026-07-08",
+   "keyphrase": "facebook ads manager 2026 targeting changes",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/facebook-ads-real-estate-india-qualified-site-visits/",
+   "path": "/blog/facebook-ads-real-estate-india-qualified-site-visits/",
+   "section": "Blog",
+   "lastmod": "2026-07-08",
+   "keyphrase": "facebook ads real estate india qualified site visits",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/fake-dmca-claims-protect-google-rankings/",
+   "path": "/blog/fake-dmca-claims-protect-google-rankings/",
+   "section": "Blog",
+   "lastmod": "2026-07-22",
+   "keyphrase": "fake dmca claims protect google rankings",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/festive-season-ad-budgets-google-meta-amazon/",
+   "path": "/blog/festive-season-ad-budgets-google-meta-amazon/",
+   "section": "Blog",
+   "lastmod": "2026-07-17",
+   "keyphrase": "festive season ad budgets google meta amazon",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/generative-engine-optimization-tactics/",
+   "path": "/blog/generative-engine-optimization-tactics/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "generative engine optimization tactics",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-brand-consistency-pmax-search-alignment/",
+   "path": "/blog/google-ads-brand-consistency-pmax-search-alignment/",
+   "section": "Blog",
+   "lastmod": "2026-07-20",
+   "keyphrase": "google ads brand consistency pmax search alignment",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-budget-calculator-formulas/",
+   "path": "/blog/google-ads-budget-calculator-formulas/",
+   "section": "Blog",
+   "lastmod": "2026-06-03",
+   "keyphrase": "google ads budget calculator formulas",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-budget-cap-removal-august-2026/",
+   "path": "/blog/google-ads-budget-cap-removal-august-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-20",
+   "keyphrase": "google ads budget cap removal august 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-budget-caps-2026-pacing-update/",
+   "path": "/blog/google-ads-budget-caps-2026-pacing-update/",
+   "section": "Blog",
+   "lastmod": "2026-07-07",
+   "keyphrase": "google ads budget caps 2026 pacing update",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-clicks-no-conversions-7-fixes/",
+   "path": "/blog/google-ads-clicks-no-conversions-7-fixes/",
+   "section": "Blog",
+   "lastmod": "2026-05-26",
+   "keyphrase": "google ads clicks no conversions 7 fixes",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-network-controls-search-display-partners/",
+   "path": "/blog/google-ads-network-controls-search-display-partners/",
+   "section": "Blog",
+   "lastmod": "2026-07-31",
+   "keyphrase": "google ads network controls search display partners",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-performance-max-settings-killing-roas-2026/",
+   "path": "/blog/google-ads-performance-max-settings-killing-roas-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-06",
+   "keyphrase": "google ads performance max settings killing roas 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-vs-facebook-ads-leads-2026/",
+   "path": "/blog/google-ads-vs-facebook-ads-leads-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-11",
+   "keyphrase": "google ads vs facebook ads leads 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ads-vs-meta-ads-real-estate-india/",
+   "path": "/blog/google-ads-vs-meta-ads-real-estate-india/",
+   "section": "Blog",
+   "lastmod": "2026-07-17",
+   "keyphrase": "google ads vs meta ads real estate india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-ai-overviews-zero-click-content-strategy/",
+   "path": "/blog/google-ai-overviews-zero-click-content-strategy/",
+   "section": "Blog",
+   "lastmod": "2026-07-20",
+   "keyphrase": "google ai overviews zero click content strategy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-algorithm-shake-up-july-2026-protect-rankings/",
+   "path": "/blog/google-algorithm-shake-up-july-2026-protect-rankings/",
+   "section": "Blog",
+   "lastmod": "2026-08-17",
+   "keyphrase": "google algorithm shake up july 2026 protect rankings",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-analytics-4-reports-setup-guide/",
+   "path": "/blog/google-analytics-4-reports-setup-guide/",
+   "section": "Blog",
+   "lastmod": "2026-06-06",
+   "keyphrase": "google analytics 4 reports setup guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-business-profile-homepage-ai-local-search/",
+   "path": "/blog/google-business-profile-homepage-ai-local-search/",
+   "section": "Blog",
+   "lastmod": "2026-07-30",
+   "keyphrase": "google business profile homepage ai local search",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-click-tracking-redirect-ga4-attribution-utm/",
+   "path": "/blog/google-click-tracking-redirect-ga4-attribution-utm/",
+   "section": "Blog",
+   "lastmod": "2026-07-22",
+   "keyphrase": "google click tracking redirect ga4 attribution utm",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-demand-gen-replacing-display-ads-january-2027/",
+   "path": "/blog/google-demand-gen-replacing-display-ads-january-2027/",
+   "section": "Blog",
+   "lastmod": "2026-08-18",
+   "keyphrase": "google demand gen replacing display ads january 2027",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-enhanced-brand-lift-cost-worth-it/",
+   "path": "/blog/google-enhanced-brand-lift-cost-worth-it/",
+   "section": "Blog",
+   "lastmod": "2026-08-06",
+   "keyphrase": "google enhanced brand lift cost worth it",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-io-2026-what-every-marketer-needs-to-act-on-now/",
+   "path": "/blog/google-io-2026-what-every-marketer-needs-to-act-on-now/",
+   "section": "Blog",
+   "lastmod": "2026-05-21",
+   "keyphrase": "google io 2026 what every marketer needs to act on now",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-link-priority-hidden-nofollow-links-seo/",
+   "path": "/blog/google-link-priority-hidden-nofollow-links-seo/",
+   "section": "Blog",
+   "lastmod": "2026-07-30",
+   "keyphrase": "google link priority hidden nofollow links seo",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-local-service-ads-performance-max-migration/",
+   "path": "/blog/google-local-service-ads-performance-max-migration/",
+   "section": "Blog",
+   "lastmod": "2026-08-08",
+   "keyphrase": "google local service ads performance max migration",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-no-ai-seo-hack-expertise-speed-reputation/",
+   "path": "/blog/google-no-ai-seo-hack-expertise-speed-reputation/",
+   "section": "Blog",
+   "lastmod": "2026-07-27",
+   "keyphrase": "google no ai seo hack expertise speed reputation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-not-showing-website-pages-fix/",
+   "path": "/blog/google-not-showing-website-pages-fix/",
+   "section": "Blog",
+   "lastmod": "2026-08-06",
+   "keyphrase": "google not showing website pages fix",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-search-ads-quality-score-fixes-cut-cpc-india/",
+   "path": "/blog/google-search-ads-quality-score-fixes-cut-cpc-india/",
+   "section": "Blog",
+   "lastmod": "2026-07-07",
+   "keyphrase": "google search ads quality score fixes cut cpc india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/google-search-agents-ai-brain-seo/",
+   "path": "/blog/google-search-agents-ai-brain-seo/",
+   "section": "Blog",
+   "lastmod": "2026-08-07",
+   "keyphrase": "google search agents ai brain seo",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/gpt-5-6-chatgpt-work-guide-indian-marketers/",
+   "path": "/blog/gpt-5-6-chatgpt-work-guide-indian-marketers/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "gpt 5 6 chatgpt work guide indian marketers",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/gsc-social-insights-track-instagram-tiktok-youtube/",
+   "path": "/blog/gsc-social-insights-track-instagram-tiktok-youtube/",
+   "section": "Blog",
+   "lastmod": "2026-07-22",
+   "keyphrase": "gsc social insights track instagram tiktok youtube",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/hidden-cost-ai-marketing-strategic-thinkers/",
+   "path": "/blog/hidden-cost-ai-marketing-strategic-thinkers/",
+   "section": "Blog",
+   "lastmod": "2026-07-31",
+   "keyphrase": "hidden cost ai marketing strategic thinkers",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/high-converting-landing-page-lead-generation-2026/",
+   "path": "/blog/high-converting-landing-page-lead-generation-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-12",
+   "keyphrase": "high converting landing page lead generation 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-ai-is-transforming-digital-marketing-2026/",
+   "path": "/blog/how-ai-is-transforming-digital-marketing-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-25",
+   "keyphrase": "how ai is transforming digital marketing 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-digiveritaz-delivers-4x-10x-roas-for-clients/",
+   "path": "/blog/how-digiveritaz-delivers-4x-10x-roas-for-clients/",
+   "section": "Blog",
+   "lastmod": "2026-06-29",
+   "keyphrase": "how digiveritaz delivers 4x 10x roas for clients",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-performance-marketing-agencies-deliver-measurable-roi/",
+   "path": "/blog/how-performance-marketing-agencies-deliver-measurable-roi/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "how performance marketing agencies deliver measurable roi",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-boost-ecommerce-sales-performance-marketing/",
+   "path": "/blog/how-to-boost-ecommerce-sales-performance-marketing/",
+   "section": "Blog",
+   "lastmod": "2026-07-03",
+   "keyphrase": "how to boost ecommerce sales performance marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-build-a-strong-digital-presence-for-your-brand/",
+   "path": "/blog/how-to-build-a-strong-digital-presence-for-your-brand/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "how to build a strong digital presence for your brand",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-choose-best-digital-marketing-agency-india/",
+   "path": "/blog/how-to-choose-best-digital-marketing-agency-india/",
+   "section": "Blog",
+   "lastmod": "2026-06-24",
+   "keyphrase": "how to choose best digital marketing agency india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-integrate-chatgpt-with-your-paid-campaigns-for-better-ux/",
+   "path": "/blog/how-to-integrate-chatgpt-with-your-paid-campaigns-for-better-ux/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "how to integrate chatgpt with your paid campaigns for better ux",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-market-your-business-online-complete-guide/",
+   "path": "/blog/how-to-market-your-business-online-complete-guide/",
+   "section": "Blog",
+   "lastmod": "2026-07-01",
+   "keyphrase": "how to market your business online complete guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-run-facebook-ads-without-website-2026/",
+   "path": "/blog/how-to-run-facebook-ads-without-website-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-27",
+   "keyphrase": "how to run facebook ads without website 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/how-to-upload-youtube-video-seo-guide/",
+   "path": "/blog/how-to-upload-youtube-video-seo-guide/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "how to upload youtube video seo guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/influencer-marketing-india-roi-guide-2026/",
+   "path": "/blog/influencer-marketing-india-roi-guide-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-16",
+   "keyphrase": "influencer marketing india roi guide 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/instagram-reels-ads-lower-cost-per-view-2026/",
+   "path": "/blog/instagram-reels-ads-lower-cost-per-view-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-08",
+   "keyphrase": "instagram reels ads lower cost per view 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/intent-based-advertising-2026-beyond-keyword-only/",
+   "path": "/blog/intent-based-advertising-2026-beyond-keyword-only/",
+   "section": "Blog",
+   "lastmod": "2026-07-27",
+   "keyphrase": "intent based advertising 2026 beyond keyword only",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ios-27-smarter-siri-voice-search-indian-brands/",
+   "path": "/blog/ios-27-smarter-siri-voice-search-indian-brands/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "ios 27 smarter siri voice search indian brands",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/keyword-strategy-google-ads-high-converting-keywords-2026/",
+   "path": "/blog/keyword-strategy-google-ads-high-converting-keywords-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-27",
+   "keyphrase": "keyword strategy google ads high converting keywords 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/kimi-k3-ai-website-builders-web-development/",
+   "path": "/blog/kimi-k3-ai-website-builders-web-development/",
+   "section": "Blog",
+   "lastmod": "2026-08-05",
+   "keyphrase": "kimi k3 ai website builders web development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/lead-generation-strategies-cut-cpl/",
+   "path": "/blog/lead-generation-strategies-cut-cpl/",
+   "section": "Blog",
+   "lastmod": "2026-06-02",
+   "keyphrase": "lead generation strategies cut cpl",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/linkedin-ads-b2b-india-lower-cost-per-lead/",
+   "path": "/blog/linkedin-ads-b2b-india-lower-cost-per-lead/",
+   "section": "Blog",
+   "lastmod": "2026-07-16",
+   "keyphrase": "linkedin ads b2b india lower cost per lead",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/linkedin-ads-b2b-lead-generation-2026/",
+   "path": "/blog/linkedin-ads-b2b-lead-generation-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-13",
+   "keyphrase": "linkedin ads b2b lead generation 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/linkedin-ads-b2b-lead-generation-strategies/",
+   "path": "/blog/linkedin-ads-b2b-lead-generation-strategies/",
+   "section": "Blog",
+   "lastmod": "2026-06-05",
+   "keyphrase": "linkedin ads b2b lead generation strategies",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/linkedin-posts-ai-written-human-content/",
+   "path": "/blog/linkedin-posts-ai-written-human-content/",
+   "section": "Blog",
+   "lastmod": "2026-08-07",
+   "keyphrase": "linkedin posts ai written human content",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/local-seo-checklist-for-2026/",
+   "path": "/blog/local-seo-checklist-for-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "local seo checklist for 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/local-seo-competitor-research-win-google-map-pack-in-2026/",
+   "path": "/blog/local-seo-competitor-research-win-google-map-pack-in-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "local seo competitor research win google map pack in 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/local-seo-india-google-business-profile-hacks/",
+   "path": "/blog/local-seo-india-google-business-profile-hacks/",
+   "section": "Blog",
+   "lastmod": "2026-06-04",
+   "keyphrase": "local seo india google business profile hacks",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/local-seo-mistakes-killing-google-rankings/",
+   "path": "/blog/local-seo-mistakes-killing-google-rankings/",
+   "section": "Blog",
+   "lastmod": "2026-06-10",
+   "keyphrase": "local seo mistakes killing google rankings",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/local-service-ads-india-google-guaranteed/",
+   "path": "/blog/local-service-ads-india-google-guaranteed/",
+   "section": "Blog",
+   "lastmod": "2026-07-08",
+   "keyphrase": "local service ads india google guaranteed",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/marketing-email-types-2026-compliance-conversion-guide/",
+   "path": "/blog/marketing-email-types-2026-compliance-conversion-guide/",
+   "section": "Blog",
+   "lastmod": "2026-07-27",
+   "keyphrase": "marketing email types 2026 compliance conversion guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/meta-ads-not-converting-fix/",
+   "path": "/blog/meta-ads-not-converting-fix/",
+   "section": "Blog",
+   "lastmod": "2026-06-01",
+   "keyphrase": "meta ads not converting fix",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/meta-advantage-plus-vs-manual-campaigns-india/",
+   "path": "/blog/meta-advantage-plus-vs-manual-campaigns-india/",
+   "section": "Blog",
+   "lastmod": "2026-07-09",
+   "keyphrase": "meta advantage plus vs manual campaigns india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/meta-pocket-app-ai-interactive-posts-quizzes-polls/",
+   "path": "/blog/meta-pocket-app-ai-interactive-posts-quizzes-polls/",
+   "section": "Blog",
+   "lastmod": "2026-07-22",
+   "keyphrase": "meta pocket app ai interactive posts quizzes polls",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/meta-shopping-ads-instagram-catalogue-sales-channel/",
+   "path": "/blog/meta-shopping-ads-instagram-catalogue-sales-channel/",
+   "section": "Blog",
+   "lastmod": "2026-07-14",
+   "keyphrase": "meta shopping ads instagram catalogue sales channel",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/native-advertising-brand-trust-banner-ads/",
+   "path": "/blog/native-advertising-brand-trust-banner-ads/",
+   "section": "Blog",
+   "lastmod": "2026-07-15",
+   "keyphrase": "native advertising brand trust banner ads",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/native-advertising-formats-that-convert-2026/",
+   "path": "/blog/native-advertising-formats-that-convert-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "native advertising formats that convert 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/native-advertising-vs-display-ads-roi-2026/",
+   "path": "/blog/native-advertising-vs-display-ads-roi-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-15",
+   "keyphrase": "native advertising vs display ads roi 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/on-device-ai-iphone-mobile-marketing-privacy-2026/",
+   "path": "/blog/on-device-ai-iphone-mobile-marketing-privacy-2026/",
+   "section": "Blog",
+   "lastmod": "2026-08-04",
+   "keyphrase": "on device ai iphone mobile marketing privacy 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/online-reputation-management-steps-2026/",
+   "path": "/blog/online-reputation-management-steps-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-17",
+   "keyphrase": "online reputation management steps 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/optimize-for-ai-geo-strategies-for-modern-brands/",
+   "path": "/blog/optimize-for-ai-geo-strategies-for-modern-brands/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "optimize for ai geo strategies for modern brands",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/our-formula-for-foolproof-performance-marketing-wins/",
+   "path": "/blog/our-formula-for-foolproof-performance-marketing-wins/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "our formula for foolproof performance marketing wins",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/performance-marketing-generate-leads-increase-roi/",
+   "path": "/blog/performance-marketing-generate-leads-increase-roi/",
+   "section": "Blog",
+   "lastmod": "2026-05-25",
+   "keyphrase": "performance marketing generate leads increase roi",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/performance-marketing-strategies-d2c/",
+   "path": "/blog/performance-marketing-strategies-d2c/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "performance marketing strategies d2c",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/performance-marketing-strategies-reduce-cac-2026/",
+   "path": "/blog/performance-marketing-strategies-reduce-cac-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-11",
+   "keyphrase": "performance marketing strategies reduce cac 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/performance-max-vs-standard-shopping-ads-india/",
+   "path": "/blog/performance-max-vs-standard-shopping-ads-india/",
+   "section": "Blog",
+   "lastmod": "2026-07-09",
+   "keyphrase": "performance max vs standard shopping ads india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/personal-branding-founders-guide/",
+   "path": "/blog/personal-branding-founders-guide/",
+   "section": "Blog",
+   "lastmod": "2026-06-08",
+   "keyphrase": "personal branding founders guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/problem-first-advertising-ai-search-product-listings/",
+   "path": "/blog/problem-first-advertising-ai-search-product-listings/",
+   "section": "Blog",
+   "lastmod": "2026-07-31",
+   "keyphrase": "problem first advertising ai search product listings",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/programmatic-advertising-india-dsps-rtb/",
+   "path": "/blog/programmatic-advertising-india-dsps-rtb/",
+   "section": "Blog",
+   "lastmod": "2026-07-15",
+   "keyphrase": "programmatic advertising india dsps rtb",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/rank-number-1-amazon-india/",
+   "path": "/blog/rank-number-1-amazon-india/",
+   "section": "Blog",
+   "lastmod": "2026-06-02",
+   "keyphrase": "rank number 1 amazon india",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/retargeting-unified-funnel-google-meta-linkedin/",
+   "path": "/blog/retargeting-unified-funnel-google-meta-linkedin/",
+   "section": "Blog",
+   "lastmod": "2026-07-17",
+   "keyphrase": "retargeting unified funnel google meta linkedin",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/robots-txt-vs-noindex-configuration-mistake/",
+   "path": "/blog/robots-txt-vs-noindex-configuration-mistake/",
+   "section": "Blog",
+   "lastmod": "2026-08-18",
+   "keyphrase": "robots txt vs noindex configuration mistake",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/scrunch-ahrefs-brand-radar-track-ai-search-visibility/",
+   "path": "/blog/scrunch-ahrefs-brand-radar-track-ai-search-visibility/",
+   "section": "Blog",
+   "lastmod": "2026-08-14",
+   "keyphrase": "scrunch ahrefs brand radar track ai search visibility",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/seo-for-small-businesses-2026-step-by-step-guide/",
+   "path": "/blog/seo-for-small-businesses-2026-step-by-step-guide/",
+   "section": "Blog",
+   "lastmod": "2026-05-21",
+   "keyphrase": "seo for small businesses 2026 step by step guide",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/seo-vs-geo-differences/",
+   "path": "/blog/seo-vs-geo-differences/",
+   "section": "Blog",
+   "lastmod": "2026-06-01",
+   "keyphrase": "seo vs geo differences",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/seo-vs-ppc-which-is-right-for-your-business-2026/",
+   "path": "/blog/seo-vs-ppc-which-is-right-for-your-business-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-24",
+   "keyphrase": "seo vs ppc which is right for your business 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/sharkninja-comedy-creators-influencer-partnerships/",
+   "path": "/blog/sharkninja-comedy-creators-influencer-partnerships/",
+   "section": "Blog",
+   "lastmod": "2026-07-30",
+   "keyphrase": "sharkninja comedy creators influencer partnerships",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/shopping-ads-india-maximise-roas-2026/",
+   "path": "/blog/shopping-ads-india-maximise-roas-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-20",
+   "keyphrase": "shopping ads india maximise roas 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/social-media-management-roi-2026/",
+   "path": "/blog/social-media-management-roi-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-16",
+   "keyphrase": "social media management roi 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/social-media-strategy-india-2026/",
+   "path": "/blog/social-media-strategy-india-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-06",
+   "keyphrase": "social media strategy india 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/the-future-of-seo-competition-predictions-what-to-prepare-for/",
+   "path": "/blog/the-future-of-seo-competition-predictions-what-to-prepare-for/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "the future of seo competition predictions what to prepare for",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/tiktok-ai-ad-study-relevance-beats-volume/",
+   "path": "/blog/tiktok-ai-ad-study-relevance-beats-volume/",
+   "section": "Blog",
+   "lastmod": "2026-08-05",
+   "keyphrase": "tiktok ai ad study relevance beats volume",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/tiktok-shop-sales-channel-pepsico-mars/",
+   "path": "/blog/tiktok-shop-sales-channel-pepsico-mars/",
+   "section": "Blog",
+   "lastmod": "2026-08-05",
+   "keyphrase": "tiktok shop sales channel pepsico mars",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/top-12-advantages-of-search-engine-marketing/",
+   "path": "/blog/top-12-advantages-of-search-engine-marketing/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "top 12 advantages of search engine marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/top-5-benefits-of-a-multi-channel-marketing-campaign/",
+   "path": "/blog/top-5-benefits-of-a-multi-channel-marketing-campaign/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "top 5 benefits of a multi channel marketing campaign",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/top-importance-of-a-website-for-your-business/",
+   "path": "/blog/top-importance-of-a-website-for-your-business/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "top importance of a website for your business",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/trust-gap-marketing-why-ad-spend-not-closing-deals/",
+   "path": "/blog/trust-gap-marketing-why-ad-spend-not-closing-deals/",
+   "section": "Blog",
+   "lastmod": "2026-07-20",
+   "keyphrase": "trust gap marketing why ad spend not closing deals",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/turn-social-media-followers-into-leads-2026/",
+   "path": "/blog/turn-social-media-followers-into-leads-2026/",
+   "section": "Blog",
+   "lastmod": "2026-05-27",
+   "keyphrase": "turn social media followers into leads 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/ui-ux-design-principles-boost-conversions-2026/",
+   "path": "/blog/ui-ux-design-principles-boost-conversions-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "ui ux design principles boost conversions 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/vernacular-seo-india-regional-language-strategy/",
+   "path": "/blog/vernacular-seo-india-regional-language-strategy/",
+   "section": "Blog",
+   "lastmod": "2026-06-09",
+   "keyphrase": "vernacular seo india regional language strategy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/vertical-video-default-brand-first-short-form-strategy/",
+   "path": "/blog/vertical-video-default-brand-first-short-form-strategy/",
+   "section": "Blog",
+   "lastmod": "2026-08-17",
+   "keyphrase": "vertical video default brand first short form strategy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/wasting-money-on-ai-7-stage-maturity-audit/",
+   "path": "/blog/wasting-money-on-ai-7-stage-maturity-audit/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "wasting money on ai 7 stage maturity audit",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/what-is-cro-why-conversion-rate-optimisation-growth-secret/",
+   "path": "/blog/what-is-cro-why-conversion-rate-optimisation-growth-secret/",
+   "section": "Blog",
+   "lastmod": "2026-06-30",
+   "keyphrase": "what is cro why conversion rate optimisation growth secret",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/what-is-generative-ai-seo/",
+   "path": "/blog/what-is-generative-ai-seo/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "what is generative ai seo",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/what-is-generative-search-optimisation-gso-2026/",
+   "path": "/blog/what-is-generative-search-optimisation-gso-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-10",
+   "keyphrase": "what is generative search optimisation gso 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/what-is-performance-marketing-how-does-it-work/",
+   "path": "/blog/what-is-performance-marketing-how-does-it-work/",
+   "section": "Blog",
+   "lastmod": "2026-06-26",
+   "keyphrase": "what is performance marketing how does it work",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/whatsapp-marketing-business-strategy-2026/",
+   "path": "/blog/whatsapp-marketing-business-strategy-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-12",
+   "keyphrase": "whatsapp marketing business strategy 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/whatsapp-marketing-india-templates/",
+   "path": "/blog/whatsapp-marketing-india-templates/",
+   "section": "Blog",
+   "lastmod": "2026-06-22",
+   "keyphrase": "whatsapp marketing india templates",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/why-every-business-needs-performance-marketing-in-2026/",
+   "path": "/blog/why-every-business-needs-performance-marketing-in-2026/",
+   "section": "Blog",
+   "lastmod": "2026-06-24",
+   "keyphrase": "why every business needs performance marketing in 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/why-local-seo-matters-more-than-ever-in-2025/",
+   "path": "/blog/why-local-seo-matters-more-than-ever-in-2025/",
+   "section": "Blog",
+   "lastmod": "2026-05-20",
+   "keyphrase": "why local seo matters more than ever in 2025",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/why-website-not-generating-leads-10-fixes/",
+   "path": "/blog/why-website-not-generating-leads-10-fixes/",
+   "section": "Blog",
+   "lastmod": "2026-05-21",
+   "keyphrase": "why website not generating leads 10 fixes",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/world-cup-creators-beat-celebrities-brand-impact/",
+   "path": "/blog/world-cup-creators-beat-celebrities-brand-impact/",
+   "section": "Blog",
+   "lastmod": "2026-08-13",
+   "keyphrase": "world cup creators beat celebrities brand impact",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/x-twitter-video-editor-green-screen-captions-brands/",
+   "path": "/blog/x-twitter-video-editor-green-screen-captions-brands/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "x twitter video editor green screen captions brands",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/youtube-ads-india-cut-cost-per-view/",
+   "path": "/blog/youtube-ads-india-cut-cost-per-view/",
+   "section": "Blog",
+   "lastmod": "2026-07-16",
+   "keyphrase": "youtube ads india cut cost per view",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/youtube-ai-search-optimize-video-discovery-2026/",
+   "path": "/blog/youtube-ai-search-optimize-video-discovery-2026/",
+   "section": "Blog",
+   "lastmod": "2026-07-23",
+   "keyphrase": "youtube ai search optimize video discovery 2026",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/youtube-marketing-business-lead-generation/",
+   "path": "/blog/youtube-marketing-business-lead-generation/",
+   "section": "Blog",
+   "lastmod": "2026-06-08",
+   "keyphrase": "youtube marketing business lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/youtube-shorts-to-subscribers-channel-growth-playbook/",
+   "path": "/blog/youtube-shorts-to-subscribers-channel-growth-playbook/",
+   "section": "Blog",
+   "lastmod": "2026-07-28",
+   "keyphrase": "youtube shorts to subscribers channel growth playbook",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/",
+   "path": "/case-study/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "case study",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/case-study-gy3-fashion-sales-branding/",
+   "path": "/case-study/case-study-gy3-fashion-sales-branding/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "case study gy3 fashion sales branding",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/ebco-forging-digital-success-with-integrated-campaigns/",
+   "path": "/case-study/ebco-forging-digital-success-with-integrated-campaigns/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "ebco forging digital success with integrated campaigns",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/figure-slim-aesthetic-clinic-lead-generation/",
+   "path": "/case-study/figure-slim-aesthetic-clinic-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "figure slim aesthetic clinic lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/hyundai-elite-i20-lead-generation-campaign/",
+   "path": "/case-study/hyundai-elite-i20-lead-generation-campaign/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "hyundai elite i20 lead generation campaign",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/hyundai-pledge-to-be-safe/",
+   "path": "/case-study/hyundai-pledge-to-be-safe/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "hyundai pledge to be safe",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/individual-design-handbags-meta-ads/",
+   "path": "/case-study/individual-design-handbags-meta-ads/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "individual design handbags meta ads",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/jk-shah-classes-quality-leads/",
+   "path": "/case-study/jk-shah-classes-quality-leads/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "jk shah classes quality leads",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/khyber-cement-cementing-regional-awareness-through-digital-visibility/",
+   "path": "/case-study/khyber-cement-cementing-regional-awareness-through-digital-visibility/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "khyber cement cementing regional awareness through digital visibility",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/legal-junction-building-a-long-term-lead-engine-for-rent-agreement-services/",
+   "path": "/case-study/legal-junction-building-a-long-term-lead-engine-for-rent-agreement-services/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "legal junction building a long term lead engine for rent agreement services",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/mai-wellbeing-womens-health-social-media/",
+   "path": "/case-study/mai-wellbeing-womens-health-social-media/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "mai wellbeing womens health social media",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/my-bid-app-multi-platform-growth/",
+   "path": "/case-study/my-bid-app-multi-platform-growth/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "my bid app multi platform growth",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/ppc-case-study-tulsi-realty-9-meraki-panvel-lead-generation/",
+   "path": "/case-study/ppc-case-study-tulsi-realty-9-meraki-panvel-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "ppc case study tulsi realty 9 meraki panvel lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/rawood-sheed-timber-lead-generation/",
+   "path": "/case-study/rawood-sheed-timber-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "rawood sheed timber lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/sarvah-integrative-health-nutrition-lead-generation/",
+   "path": "/case-study/sarvah-integrative-health-nutrition-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "sarvah integrative health nutrition lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/seo-case-study-mayapuri-com/",
+   "path": "/case-study/seo-case-study-mayapuri-com/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "seo case study mayapuri com",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/seo-case-study-themauve-co/",
+   "path": "/case-study/seo-case-study-themauve-co/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "seo case study themauve co",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/shape-u-clinic-aesthetic-lead-generation/",
+   "path": "/case-study/shape-u-clinic-aesthetic-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "shape u clinic aesthetic lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/shiamak-one-year-program-stepping-up-digital-engagement-for-aspiring-dancers/",
+   "path": "/case-study/shiamak-one-year-program-stepping-up-digital-engagement-for-aspiring-dancers/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "shiamak one year program stepping up digital engagement for aspiring dancers",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/siws-school-admissions-ppc/",
+   "path": "/case-study/siws-school-admissions-ppc/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "siws school admissions ppc",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/startupbase-startup-consulting-lead-generation/",
+   "path": "/case-study/startupbase-startup-consulting-lead-generation/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "startupbase startup consulting lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/stem-rx-regenerative-hospital-marketing/",
+   "path": "/case-study/stem-rx-regenerative-hospital-marketing/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "stem rx regenerative hospital marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/target-wellness-aesthetic-clinic-campaigns/",
+   "path": "/case-study/target-wellness-aesthetic-clinic-campaigns/",
+   "section": "Case studies",
+   "lastmod": "2026-08-04",
+   "keyphrase": "target wellness aesthetic clinic campaigns",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/transcon-triumph-building-leads-visibility-through-multi-platform-campaigns/",
+   "path": "/case-study/transcon-triumph-building-leads-visibility-through-multi-platform-campaigns/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "transcon triumph building leads visibility through multi platform campaigns",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/case-study/zedex-mobility-car-booking-campaigns/",
+   "path": "/case-study/zedex-mobility-car-booking-campaigns/",
+   "section": "Case studies",
+   "lastmod": "2026-05-20",
+   "keyphrase": "zedex mobility car booking campaigns",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/about-us/",
+   "path": "/about-us/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "about us",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/ai-news/",
+   "path": "/ai-news/",
+   "section": "Core",
+   "lastmod": "2026-07-22",
+   "keyphrase": "ai news",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/blog/",
+   "path": "/blog/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "blog",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/careers/",
+   "path": "/careers/",
+   "section": "Core",
+   "lastmod": "2026-08-20",
+   "keyphrase": "careers",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/contact-us/",
+   "path": "/contact-us/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "contact us",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/faq/",
+   "path": "/faq/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "faq",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/privacy-policy/",
+   "path": "/privacy-policy/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "privacy policy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/",
+   "path": "/services/",
+   "section": "Core",
+   "lastmod": "2026-08-24",
+   "keyphrase": "services",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/terms-and-conditions/",
+   "path": "/terms-and-conditions/",
+   "section": "Core",
+   "lastmod": "2026-05-20",
+   "keyphrase": "terms and conditions",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/",
+   "path": "/uk/",
+   "section": "Core",
+   "lastmod": "2026-08-24",
+   "keyphrase": "uk",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-ahmedabad/",
+   "path": "/digital-marketing-agency-in-ahmedabad/",
+   "section": "Location pages",
+   "lastmod": "2026-07-13",
+   "keyphrase": "digital marketing agency in ahmedabad",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-bangalore/",
+   "path": "/digital-marketing-agency-in-bangalore/",
+   "section": "Location pages",
+   "lastmod": "2026-07-13",
+   "keyphrase": "digital marketing agency in bangalore",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-chennai/",
+   "path": "/digital-marketing-agency-in-chennai/",
+   "section": "Location pages",
+   "lastmod": "2026-07-13",
+   "keyphrase": "digital marketing agency in chennai",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-delhi/",
+   "path": "/digital-marketing-agency-in-delhi/",
+   "section": "Location pages",
+   "lastmod": "2026-07-13",
+   "keyphrase": "digital marketing agency in delhi",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-hyderabad/",
+   "path": "/digital-marketing-agency-in-hyderabad/",
+   "section": "Location pages",
+   "lastmod": "2026-07-13",
+   "keyphrase": "digital marketing agency in hyderabad",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-kolkata/",
+   "path": "/digital-marketing-agency-in-kolkata/",
+   "section": "Location pages",
+   "lastmod": "2026-07-14",
+   "keyphrase": "digital marketing agency in kolkata",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-mumbai/",
+   "path": "/digital-marketing-agency-in-mumbai/",
+   "section": "Location pages",
+   "lastmod": "2026-07-10",
+   "keyphrase": "digital marketing agency in mumbai",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-navi-mumbai/",
+   "path": "/digital-marketing-agency-in-navi-mumbai/",
+   "section": "Location pages",
+   "lastmod": "2026-07-10",
+   "keyphrase": "digital marketing agency in navi mumbai",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-pune/",
+   "path": "/digital-marketing-agency-in-pune/",
+   "section": "Location pages",
+   "lastmod": "2026-07-11",
+   "keyphrase": "digital marketing agency in pune",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/digital-marketing-agency-in-thane/",
+   "path": "/digital-marketing-agency-in-thane/",
+   "section": "Location pages",
+   "lastmod": "2026-07-10",
+   "keyphrase": "digital marketing agency in thane",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/amazon-marketing/",
+   "path": "/services/amazon-marketing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "amazon marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/analytics-configuration/",
+   "path": "/services/analytics-configuration/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "analytics configuration",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/branding-and-design/",
+   "path": "/services/branding-and-design/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "brand identity",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Branding",
+   "cluster_volume": 57270
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/business-email/",
+   "path": "/services/business-email/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "business email",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/cmo-consultancy/",
+   "path": "/services/cmo-consultancy/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "cmo consultancy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/communication-design/",
+   "path": "/services/communication-design/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "communication design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/content-copy-writing/",
+   "path": "/services/content-copy-writing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "content copy writing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/conversion-rate-optimisation/",
+   "path": "/services/conversion-rate-optimisation/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "conversion rate optimisation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/crm-services/",
+   "path": "/services/crm-services/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "crm software for customer service",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "CRM",
+   "cluster_volume": 300
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/custom-software-development/",
+   "path": "/services/custom-software-development/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "custom software development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/data-strategy-consulting-services/",
+   "path": "/services/data-strategy-consulting-services/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "data consulting",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Data stratergy",
+   "cluster_volume": 2850
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/digital-pr/",
+   "path": "/services/digital-pr/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "digital pr",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/display-advertising/",
+   "path": "/services/display-advertising/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "display advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/ecommerce-development/",
+   "path": "/services/ecommerce-development/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ecommerce development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/ecommerce-marketing/",
+   "path": "/services/ecommerce-marketing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ecommerce marketing",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "E-Commerce",
+   "cluster_volume": 6400
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/facebook-instagram-advertising/",
+   "path": "/services/facebook-instagram-advertising/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "facebook instagram advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/generative-search-optimisation/",
+   "path": "/services/generative-search-optimisation/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "Google My Business optimization services",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "GEO",
+   "cluster_volume": 1600
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/google-tag-manager/",
+   "path": "/services/google-tag-manager/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "google tag manager",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/influencer-marketing/",
+   "path": "/services/influencer-marketing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "influencer marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/landing-page-design/",
+   "path": "/services/landing-page-design/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "landing page design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/lead-generation/",
+   "path": "/services/lead-generation/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/linux-hosting/",
+   "path": "/services/linux-hosting/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "linux hosting",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/mobile-app-development/",
+   "path": "/services/mobile-app-development/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "mobile app development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/native-advertising/",
+   "path": "/services/native-advertising/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "native ads",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Native",
+   "cluster_volume": 7170
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/online-reputation-management/",
+   "path": "/services/online-reputation-management/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "online reputation management",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/organic-marketing/",
+   "path": "/services/organic-marketing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "organic marketing examples",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Organic Marketing Services",
+   "cluster_volume": 130
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/paid-social-media-advertising/",
+   "path": "/services/paid-social-media-advertising/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "social media ads",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Paid Social Media Advertising",
+   "cluster_volume": 25460
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/pay-per-click/",
+   "path": "/services/pay-per-click/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "pay per click",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Pay-Per-Click",
+   "cluster_volume": 25920
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/performance-marketing-agency/",
+   "path": "/services/performance-marketing-agency/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "performance marketing agency",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Performance Marketing Services",
+   "cluster_volume": 8980
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/product-design/",
+   "path": "/services/product-design/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "product design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/real-estate-lead-generation/",
+   "path": "/services/real-estate-lead-generation/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "real estate lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/research-and-insights/",
+   "path": "/services/research-and-insights/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "research and insights",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/revenue-generation/",
+   "path": "/services/revenue-generation/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "revenue generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/seo/",
+   "path": "/services/seo/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "seo services",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "SEO",
+   "cluster_volume": 102710
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/shopping-ads/",
+   "path": "/services/shopping-ads/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "shopping ads",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/social-media-management/",
+   "path": "/services/social-media-management/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "social media management",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/strategy-and-planning/",
+   "path": "/services/strategy-and-planning/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "strategy and planning",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/ui-ux-design/",
+   "path": "/services/ui-ux-design/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ui ux design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/website-development/",
+   "path": "/services/website-development/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "web development services",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Web development services",
+   "cluster_volume": 15940
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/whatsapp-marketing/",
+   "path": "/services/whatsapp-marketing/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "whatsapp business api",
+   "keyphrase_source": "sheet",
+   "cluster_sheet": "Whatsapp",
+   "cluster_volume": 67600
+  },
+  {
+   "url": "https://www.digiveritaz.com/services/wordpress-development/",
+   "path": "/services/wordpress-development/",
+   "section": "Services",
+   "lastmod": "2026-08-24",
+   "keyphrase": "wordpress development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/about-us/",
+   "path": "/uk/about-us/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "about us",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/contact-us/",
+   "path": "/uk/contact-us/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "contact us",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/",
+   "path": "/uk/services/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "services",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/amazon-marketing/",
+   "path": "/uk/services/amazon-marketing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "amazon marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/analytics-configuration/",
+   "path": "/uk/services/analytics-configuration/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "analytics configuration",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/branding-and-design/",
+   "path": "/uk/services/branding-and-design/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "branding and design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/business-email/",
+   "path": "/uk/services/business-email/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "business email",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/cmo-consultancy/",
+   "path": "/uk/services/cmo-consultancy/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "cmo consultancy",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/communication-design/",
+   "path": "/uk/services/communication-design/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "communication design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/content-copy-writing/",
+   "path": "/uk/services/content-copy-writing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "content copy writing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/conversion-rate-optimisation/",
+   "path": "/uk/services/conversion-rate-optimisation/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "conversion rate optimisation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/crm-services/",
+   "path": "/uk/services/crm-services/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "crm services",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/custom-software-development/",
+   "path": "/uk/services/custom-software-development/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "custom software development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/data-strategy-consulting-services/",
+   "path": "/uk/services/data-strategy-consulting-services/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "data strategy consulting services",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/digital-pr/",
+   "path": "/uk/services/digital-pr/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "digital pr",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/display-advertising/",
+   "path": "/uk/services/display-advertising/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "display advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/ecommerce-development/",
+   "path": "/uk/services/ecommerce-development/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ecommerce development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/ecommerce-marketing/",
+   "path": "/uk/services/ecommerce-marketing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ecommerce marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/facebook-instagram-advertising/",
+   "path": "/uk/services/facebook-instagram-advertising/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "facebook instagram advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/generative-search-optimisation/",
+   "path": "/uk/services/generative-search-optimisation/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "generative search optimisation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/google-tag-manager/",
+   "path": "/uk/services/google-tag-manager/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "google tag manager",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/influencer-marketing/",
+   "path": "/uk/services/influencer-marketing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "influencer marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/landing-page-design/",
+   "path": "/uk/services/landing-page-design/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "landing page design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/lead-generation/",
+   "path": "/uk/services/lead-generation/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/linux-hosting/",
+   "path": "/uk/services/linux-hosting/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "linux hosting",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/mobile-app-development/",
+   "path": "/uk/services/mobile-app-development/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "mobile app development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/native-advertising/",
+   "path": "/uk/services/native-advertising/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "native advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/online-reputation-management/",
+   "path": "/uk/services/online-reputation-management/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "online reputation management",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/organic-marketing/",
+   "path": "/uk/services/organic-marketing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "organic marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/paid-social-media-advertising/",
+   "path": "/uk/services/paid-social-media-advertising/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "paid social media advertising",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/pay-per-click/",
+   "path": "/uk/services/pay-per-click/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "pay per click",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/performance-marketing-agency/",
+   "path": "/uk/services/performance-marketing-agency/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "performance marketing agency",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/product-design/",
+   "path": "/uk/services/product-design/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "product design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/real-estate-lead-generation/",
+   "path": "/uk/services/real-estate-lead-generation/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "real estate lead generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/research-and-insights/",
+   "path": "/uk/services/research-and-insights/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "research and insights",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/revenue-generation/",
+   "path": "/uk/services/revenue-generation/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "revenue generation",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/seo/",
+   "path": "/uk/services/seo/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "seo",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/shopping-ads/",
+   "path": "/uk/services/shopping-ads/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "shopping ads",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/social-media-management/",
+   "path": "/uk/services/social-media-management/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "social media management",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/strategy-and-planning/",
+   "path": "/uk/services/strategy-and-planning/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "strategy and planning",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/ui-ux-design/",
+   "path": "/uk/services/ui-ux-design/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "ui ux design",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/website-development/",
+   "path": "/uk/services/website-development/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "website development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/whatsapp-marketing/",
+   "path": "/uk/services/whatsapp-marketing/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "whatsapp marketing",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  },
+  {
+   "url": "https://www.digiveritaz.com/uk/services/wordpress-development/",
+   "path": "/uk/services/wordpress-development/",
+   "section": "UK",
+   "lastmod": "2026-08-24",
+   "keyphrase": "wordpress development",
+   "keyphrase_source": "derived",
+   "cluster_sheet": null,
+   "cluster_volume": null
+  }
+ ]
+}

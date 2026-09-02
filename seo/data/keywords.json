@@ -1,0 +1,2067 @@
+{
+ "source": "DV Keywords.xlsx",
+ "clusters": {
+  "/": {
+   "sheet": "Home Page",
+   "focus": "digital marketing agency",
+   "keywords": [
+    {
+     "keyword": "digital marketing agency",
+     "intent": "Commercial",
+     "volume": 18100,
+     "difficulty": 59
+    },
+    {
+     "keyword": "digital marketing agency in india",
+     "intent": "Commercial",
+     "volume": 9900,
+     "difficulty": 54
+    },
+    {
+     "keyword": "digital marketing company in india",
+     "intent": "Commercial",
+     "volume": 9900,
+     "difficulty": 51
+    },
+    {
+     "keyword": "digital marketing company in india",
+     "intent": "Commercial",
+     "volume": 9900,
+     "difficulty": 58
+    },
+    {
+     "keyword": "digital marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 8100,
+     "difficulty": 57
+    },
+    {
+     "keyword": "digital marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 8100,
+     "difficulty": 57
+    },
+    {
+     "keyword": "best digital marketing agency in india",
+     "intent": "Commercial",
+     "volume": 5400,
+     "difficulty": 62
+    },
+    {
+     "keyword": "best digital marketing agency",
+     "intent": "Commercial",
+     "volume": 5400,
+     "difficulty": 62
+    },
+    {
+     "keyword": "web design company india",
+     "intent": "Commercial",
+     "volume": 2900,
+     "difficulty": null
+    },
+    {
+     "keyword": "website development company in india",
+     "intent": "Commercial",
+     "volume": 2900,
+     "difficulty": 53
+    },
+    {
+     "keyword": "best digital marketing agency in india",
+     "intent": "Commercial",
+     "volume": 2900,
+     "difficulty": 66
+    },
+    {
+     "keyword": "marketing agencies in mumbai",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 54
+    },
+    {
+     "keyword": "digital marketing agency in navi mumbai",
+     "intent": "Commercial",
+     "volume": 1900,
+     "difficulty": 36
+    },
+    {
+     "keyword": "b2b digital marketing services",
+     "intent": "Informational",
+     "volume": 1900,
+     "difficulty": 22
+    },
+    {
+     "keyword": "best digital marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 23
+    },
+    {
+     "keyword": "digital marketing company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 48
+    },
+    {
+     "keyword": "best digital marketing company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 31
+    },
+    {
+     "keyword": "best digital marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 23
+    },
+    {
+     "keyword": "digital marketing company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 48
+    },
+    {
+     "keyword": "best digital marketing company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 31
+    },
+    {
+     "keyword": "digital marketing consultant in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 17
+    },
+    {
+     "keyword": "digital marketing company in maharashtra",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 17
+    },
+    {
+     "keyword": "digital marketing in india",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 49
+    },
+    {
+     "keyword": "best digital marketing services",
+     "intent": "Commercial",
+     "volume": 720,
+     "difficulty": 48
+    },
+    {
+     "keyword": "digital marketing agency in andheri",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 23
+    },
+    {
+     "keyword": "top digital marketing companies in mumbai",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 28
+    },
+    {
+     "keyword": "top digital marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 34
+    },
+    {
+     "keyword": "digital agency mumbai",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 57
+    },
+    {
+     "keyword": "top marketing agencies in mumbai",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 43
+    },
+    {
+     "keyword": "top marketing agencies in mumbai",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 43
+    },
+    {
+     "keyword": "advertising agencies in navi mumbai",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 8
+    },
+    {
+     "keyword": "ad agency in navi mumbai",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 30
+    },
+    {
+     "keyword": "top digital marketing agencies",
+     "intent": "Commercial",
+     "volume": 320,
+     "difficulty": 43
+    },
+    {
+     "keyword": "ai digital marketing agency",
+     "intent": "Commercial",
+     "volume": 210,
+     "difficulty": 23
+    },
+    {
+     "keyword": "digital advertising agencies near me",
+     "intent": "Transactional",
+     "volume": 140,
+     "difficulty": 27
+    },
+    {
+     "keyword": "agency mumbai",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 52
+    },
+    {
+     "keyword": "digital agency services",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 63
+    },
+    {
+     "keyword": "best marketing companies in mumbai",
+     "intent": "Commercial",
+     "volume": 30,
+     "difficulty": 11
+    },
+    {
+     "keyword": "digital marketing service in navi mumbai",
+     "intent": "Commercial",
+     "volume": 10,
+     "difficulty": 10
+    }
+   ],
+   "total_volume": 109560
+  },
+  "/services/organic-marketing/": {
+   "sheet": "Organic Marketing Services",
+   "focus": "organic marketing examples",
+   "keywords": [
+    {
+     "keyword": "organic marketing examples",
+     "intent": "Informational",
+     "volume": 40,
+     "difficulty": 25
+    },
+    {
+     "keyword": "how to do organic marketing",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 26
+    },
+    {
+     "keyword": "organic digital marketing agency",
+     "intent": "Informational, Commercial",
+     "volume": 20,
+     "difficulty": 15
+    },
+    {
+     "keyword": "organic marketing agency",
+     "intent": "Commercial",
+     "volume": 20,
+     "difficulty": 23
+    },
+    {
+     "keyword": "organic marketing plan",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 18
+    },
+    {
+     "keyword": "organic marketing services",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 20
+    },
+    {
+     "keyword": "what is organic digital marketing",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 17
+    }
+   ],
+   "total_volume": 130
+  },
+  "/services/pay-per-click/": {
+   "sheet": "Pay-Per-Click",
+   "focus": "pay per click",
+   "keywords": [
+    {
+     "keyword": "pay per click",
+     "intent": "Informational",
+     "volume": 3600,
+     "difficulty": 74
+    },
+    {
+     "keyword": "what is ppc",
+     "intent": "Informational",
+     "volume": 3600,
+     "difficulty": 57
+    },
+    {
+     "keyword": "cpc formula",
+     "intent": "Informational",
+     "volume": 1900,
+     "difficulty": 30
+    },
+    {
+     "keyword": "ppc in digital marketing",
+     "intent": "Informational",
+     "volume": 1900,
+     "difficulty": 56
+    },
+    {
+     "keyword": "ppc ads",
+     "intent": "Informational",
+     "volume": 1600,
+     "difficulty": 73
+    },
+    {
+     "keyword": "ppc advertising",
+     "intent": "Informational",
+     "volume": 1600,
+     "difficulty": 72
+    },
+    {
+     "keyword": "pay per click ads",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": 71
+    },
+    {
+     "keyword": "pay per click advertising",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": 79
+    },
+    {
+     "keyword": "pay per click advertising",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": null
+    },
+    {
+     "keyword": "what is ppc in digital marketing",
+     "intent": "Informational",
+     "volume": 1000,
+     "difficulty": 54
+    },
+    {
+     "keyword": "cost per click",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 62
+    },
+    {
+     "keyword": "pay per click advertising company",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 40
+    },
+    {
+     "keyword": "ppc campaign",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 48
+    },
+    {
+     "keyword": "ppc services",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 53
+    },
+    {
+     "keyword": "pay per click services",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 33
+    },
+    {
+     "keyword": "pay per click marketing",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": null
+    },
+    {
+     "keyword": "pay per click services",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": null
+    },
+    {
+     "keyword": "ppc company in mumbai",
+     "intent": "Informational",
+     "volume": 320,
+     "difficulty": 15
+    },
+    {
+     "keyword": "paid search",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 34
+    },
+    {
+     "keyword": "ppc agency mumbai",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 9
+    },
+    {
+     "keyword": "ppc marketing agency in mumbai",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 23
+    },
+    {
+     "keyword": "ppc service in mumbai",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 19
+    },
+    {
+     "keyword": "ppc services in mumbai",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 13
+    },
+    {
+     "keyword": "paid campaigns",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 50
+    },
+    {
+     "keyword": "paid search advertising",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 30
+    },
+    {
+     "keyword": "ppc campaign management",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 37
+    },
+    {
+     "keyword": "ppc marketing agencies",
+     "intent": "Commercial",
+     "volume": 170,
+     "difficulty": 32
+    },
+    {
+     "keyword": "pay per click meaning",
+     "intent": "Informational",
+     "volume": 140,
+     "difficulty": null
+    },
+    {
+     "keyword": "pay per click sites",
+     "intent": "Informational, Commercial",
+     "volume": 140,
+     "difficulty": null
+    },
+    {
+     "keyword": "ppc services packages",
+     "intent": "Informational, Transactional",
+     "volume": 30,
+     "difficulty": 15
+    },
+    {
+     "keyword": "what is paid media in digital marketing",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "pay per click agency",
+     "intent": "Commercial",
+     "volume": 20,
+     "difficulty": 43
+    },
+    {
+     "keyword": "pay per click service in india",
+     "intent": "Commercial",
+     "volume": null,
+     "difficulty": 31
+    }
+   ],
+   "total_volume": 25920
+  },
+  "/services/paid-social-media-advertising/": {
+   "sheet": "Paid Social Media Advertising",
+   "focus": "social media ads",
+   "keywords": [
+    {
+     "keyword": "social media ads",
+     "intent": "Informational",
+     "volume": 4400,
+     "difficulty": 57
+    },
+    {
+     "keyword": "social media advertising",
+     "intent": "Informational",
+     "volume": 4400,
+     "difficulty": 58
+    },
+    {
+     "keyword": "social media agency",
+     "intent": "Commercial",
+     "volume": 3600,
+     "difficulty": 40
+    },
+    {
+     "keyword": "social media marketing service",
+     "intent": null,
+     "volume": 2400,
+     "difficulty": null
+    },
+    {
+     "keyword": "social media marketing agency in India",
+     "intent": "Commercial",
+     "volume": 1300,
+     "difficulty": 29
+    },
+    {
+     "keyword": "social media marketing agency in mumbai",
+     "intent": "Commercial",
+     "volume": 1300,
+     "difficulty": 13
+    },
+    {
+     "keyword": "social media marketing mumbai",
+     "intent": "Commercial",
+     "volume": 1300,
+     "difficulty": 15
+    },
+    {
+     "keyword": "social media agency in mumbai",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 17
+    },
+    {
+     "keyword": "social media marketing company",
+     "intent": "Commercial",
+     "volume": 720,
+     "difficulty": 33
+    },
+    {
+     "keyword": "advertising social media marketing",
+     "intent": "Informational",
+     "volume": 590,
+     "difficulty": 78
+    },
+    {
+     "keyword": "content marketing agency",
+     "intent": null,
+     "volume": 590,
+     "difficulty": 40
+    },
+    {
+     "keyword": "social media packages",
+     "intent": "Informational",
+     "volume": 480,
+     "difficulty": 17
+    },
+    {
+     "keyword": "facebook & instagram advertising",
+     "intent": null,
+     "volume": 480,
+     "difficulty": 40
+    },
+    {
+     "keyword": "social media agency india",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 42
+    },
+    {
+     "keyword": "social media marketing companies in mumbai",
+     "intent": null,
+     "volume": 390,
+     "difficulty": null
+    },
+    {
+     "keyword": "social media marketing company in mumbai",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 26
+    },
+    {
+     "keyword": "facebook ads agency india",
+     "intent": null,
+     "volume": 210,
+     "difficulty": 30
+    },
+    {
+     "keyword": "what is social media advertising",
+     "intent": "Informational",
+     "volume": 170,
+     "difficulty": 44
+    },
+    {
+     "keyword": "social media marketing services mumbai",
+     "intent": "Commercial",
+     "volume": 170,
+     "difficulty": 19
+    },
+    {
+     "keyword": "best social media advertising campaigns",
+     "intent": "Commercial",
+     "volume": 140,
+     "difficulty": null
+    },
+    {
+     "keyword": "paid social media advertising",
+     "intent": "Informational",
+     "volume": 140,
+     "difficulty": null
+    },
+    {
+     "keyword": "best social media agencies in mumbai",
+     "intent": "Commercial",
+     "volume": 140,
+     "difficulty": 25
+    },
+    {
+     "keyword": "social media marketing agency in navi mumbai",
+     "intent": "Commercial",
+     "volume": 140,
+     "difficulty": 12
+    },
+    {
+     "keyword": "advantages of social media advertising",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 10
+    },
+    {
+     "keyword": "benefits of social media ads",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 12
+    },
+    {
+     "keyword": "benefits of social media advertising",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 26
+    },
+    {
+     "keyword": "social media advertising platforms",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 46
+    },
+    {
+     "keyword": "instagram ads services",
+     "intent": null,
+     "volume": 110,
+     "difficulty": 30
+    },
+    {
+     "keyword": "social media advertising agencies",
+     "intent": null,
+     "volume": 50,
+     "difficulty": null
+    },
+    {
+     "keyword": "social media packages india",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "paid social media advertising campaigns",
+     "intent": null,
+     "volume": 0,
+     "difficulty": null
+    },
+    {
+     "keyword": "paid social media advertising expertise",
+     "intent": null,
+     "volume": 0,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 25460
+  },
+  "/services/performance-marketing-agency/": {
+   "sheet": "Performance Marketing Services",
+   "focus": "performance marketing agency",
+   "keywords": [
+    {
+     "keyword": "performance marketing agency",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 20
+    },
+    {
+     "keyword": "performance marketing companies",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 16
+    },
+    {
+     "keyword": "performance marketing services",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 13
+    },
+    {
+     "keyword": "top marketing agencies in india",
+     "intent": "Informational, Commercial",
+     "volume": 590,
+     "difficulty": 35
+    },
+    {
+     "keyword": "best marketing agencies in india",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 28
+    },
+    {
+     "keyword": "performance marketing agencies in india",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 32
+    },
+    {
+     "keyword": "performance marketing agency in india",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 30
+    },
+    {
+     "keyword": "performance marketing agencies in mumbai",
+     "intent": "Commercial",
+     "volume": 320,
+     "difficulty": 14
+    },
+    {
+     "keyword": "performance marketing agency pune",
+     "intent": "Commercial",
+     "volume": 320,
+     "difficulty": 10
+    },
+    {
+     "keyword": "best performance marketing agencies",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 13
+    },
+    {
+     "keyword": "performance marketing agency india",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 23
+    },
+    {
+     "keyword": "performance marketing companies in india",
+     "intent": "Informational, Commercial",
+     "volume": 260,
+     "difficulty": 17
+    },
+    {
+     "keyword": "performance based marketing company",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 18
+    },
+    {
+     "keyword": "performance marketing expert",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 22
+    },
+    {
+     "keyword": "performance marketing solution",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 10
+    },
+    {
+     "keyword": "b2b performance marketing agency",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "top performance marketing agencies india",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "top performance marketing agencies",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 8980
+  },
+  "/services/generative-search-optimisation/": {
+   "sheet": "GEO",
+   "focus": "Google My Business optimization services",
+   "keywords": [
+    {
+     "keyword": "Google My Business optimization services",
+     "intent": "Transactional",
+     "volume": 1600,
+     "difficulty": "Medium"
+    },
+    {
+     "keyword": "Generative engine optimization agency",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    },
+    {
+     "keyword": "Generative engine optimization services",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    },
+    {
+     "keyword": "GEO Optimization",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    },
+    {
+     "keyword": "Generative engine optimization tools",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    },
+    {
+     "keyword": "what is Generative engine optimization",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    },
+    {
+     "keyword": "Generative engine optimization",
+     "intent": null,
+     "volume": null,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 1600
+  },
+  "/services/whatsapp-marketing/": {
+   "sheet": "Whatsapp",
+   "focus": "whatsapp business api",
+   "keywords": [
+    {
+     "keyword": "whatsapp business api",
+     "intent": "Informational",
+     "volume": 14800,
+     "difficulty": 58
+    },
+    {
+     "keyword": "whatsapp business account",
+     "intent": "Informational",
+     "volume": 8100,
+     "difficulty": 73
+    },
+    {
+     "keyword": "whatsapp advertising",
+     "intent": "Informational",
+     "volume": 6600,
+     "difficulty": 60
+    },
+    {
+     "keyword": "whatsapp marketing",
+     "intent": "Informational",
+     "volume": 6600,
+     "difficulty": 52
+    },
+    {
+     "keyword": "whatsapp marketing",
+     "intent": "Informational",
+     "volume": 6600,
+     "difficulty": 52
+    },
+    {
+     "keyword": "whatsapp messenger business",
+     "intent": "Informational, Commercial",
+     "volume": 4400,
+     "difficulty": 80
+    },
+    {
+     "keyword": "whatsapp automation",
+     "intent": "Informational",
+     "volume": 2900,
+     "difficulty": 43
+    },
+    {
+     "keyword": "whatsapp business support",
+     "intent": "Navigational, Transactional",
+     "volume": 2900,
+     "difficulty": 73
+    },
+    {
+     "keyword": "whatsapp message marketing",
+     "intent": "Informational",
+     "volume": 2400,
+     "difficulty": 47
+    },
+    {
+     "keyword": "business automation",
+     "intent": "Informational",
+     "volume": 2400,
+     "difficulty": 54
+    },
+    {
+     "keyword": "whatsapp marketing messages",
+     "intent": "Informational",
+     "volume": 2400,
+     "difficulty": 48
+    },
+    {
+     "keyword": "whatsapp marketing software",
+     "intent": "Commercial",
+     "volume": 1900,
+     "difficulty": 25
+    },
+    {
+     "keyword": "whatsapp marketing tool",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": 44
+    },
+    {
+     "keyword": "whatsapp api for business",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": 83
+    },
+    {
+     "keyword": "whatsapp marketing services",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 44
+    },
+    {
+     "keyword": "whatsapp marketing services",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 44
+    },
+    {
+     "keyword": "whatsapp marketing agency",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 14
+    },
+    {
+     "keyword": "how to do whatsapp marketing",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 48
+    },
+    {
+     "keyword": "what is whatsapp marketing",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 47
+    },
+    {
+     "keyword": "whatsapp marketing campaign",
+     "intent": "Informational",
+     "volume": 170,
+     "difficulty": 42
+    },
+    {
+     "keyword": "bulk whatsapp marketing service",
+     "intent": "Navigational",
+     "volume": 110,
+     "difficulty": 29
+    },
+    {
+     "keyword": "whatsapp marketing company",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 37
+    },
+    {
+     "keyword": "whatsapp marketing india",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 45
+    },
+    {
+     "keyword": "whatsapp marketing platform",
+     "intent": "Informational, Commercial",
+     "volume": 110,
+     "difficulty": 44
+    },
+    {
+     "keyword": "whatsapp marketing price",
+     "intent": "Navigational",
+     "volume": 110,
+     "difficulty": 35
+    },
+    {
+     "keyword": "bulk whatsapp marketing service",
+     "intent": "Navigational",
+     "volume": 110,
+     "difficulty": 29
+    },
+    {
+     "keyword": "whatsapp marketing service provider",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 23
+    },
+    {
+     "keyword": "whatsapp marketing agency in india",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "whatsapp marketing service provider in mumbai",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "whatsapp marketing services in india",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "whatsapp marketing agency in mumbai",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 67600
+  },
+  "/services/seo/": {
+   "sheet": "SEO",
+   "focus": "seo services",
+   "keywords": [
+    {
+     "keyword": "seo services",
+     "intent": "Informational",
+     "volume": 12100,
+     "difficulty": 55
+    },
+    {
+     "keyword": "seo agency in mumbai",
+     "intent": "Commercial",
+     "volume": 9900,
+     "difficulty": 31
+    },
+    {
+     "keyword": "seo company in mumbai",
+     "intent": "Commercial",
+     "volume": 9900,
+     "difficulty": 30
+    },
+    {
+     "keyword": "seo agency india",
+     "intent": "Commercial",
+     "volume": 8100,
+     "difficulty": 63
+    },
+    {
+     "keyword": "seo company in india",
+     "intent": "Commercial",
+     "volume": 8100,
+     "difficulty": 70
+    },
+    {
+     "keyword": "seo digital marketing",
+     "intent": "Informational",
+     "volume": 8100,
+     "difficulty": 77
+    },
+    {
+     "keyword": "best seo company in india",
+     "intent": "Commercial",
+     "volume": 4400,
+     "difficulty": 43
+    },
+    {
+     "keyword": "seo agency",
+     "intent": "Commercial",
+     "volume": 4400,
+     "difficulty": 58
+    },
+    {
+     "keyword": "seo company",
+     "intent": "Commercial",
+     "volume": 4400,
+     "difficulty": 82
+    },
+    {
+     "keyword": "seo services india",
+     "intent": "Commercial",
+     "volume": 3600,
+     "difficulty": 62
+    },
+    {
+     "keyword": "professional seo services in mumbai",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 21
+    },
+    {
+     "keyword": "best search engine optimization agency",
+     "intent": "Commercial",
+     "volume": 1900,
+     "difficulty": 43
+    },
+    {
+     "keyword": "best seo agency",
+     "intent": "Commercial",
+     "volume": 1900,
+     "difficulty": 61
+    },
+    {
+     "keyword": "best seo company",
+     "intent": "Commercial",
+     "volume": 1900,
+     "difficulty": 58
+    },
+    {
+     "keyword": "top seo company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 22
+    },
+    {
+     "keyword": "best seo company in mumbai",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 36
+    },
+    {
+     "keyword": "SEO pricing india",
+     "intent": null,
+     "volume": 1300,
+     "difficulty": null
+    },
+    {
+     "keyword": "seo consultant india",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 41
+    },
+    {
+     "keyword": "seo services in mumbai",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 30
+    },
+    {
+     "keyword": "SEO packages india",
+     "intent": "Informational, Commercial",
+     "volume": 1000,
+     "difficulty": 10
+    },
+    {
+     "keyword": "local seo in mumbai",
+     "intent": "Transactional",
+     "volume": 1000,
+     "difficulty": 16
+    },
+    {
+     "keyword": "seo company in navi mumbai",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 10
+    },
+    {
+     "keyword": "seo agency in navi mumbai",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 9
+    },
+    {
+     "keyword": "seo companies near me",
+     "intent": "Transactional",
+     "volume": 720,
+     "difficulty": 37
+    },
+    {
+     "keyword": "seo expert in mumbai",
+     "intent": "Commercial",
+     "volume": 720,
+     "difficulty": 16
+    },
+    {
+     "keyword": "best seo agency in mumbai",
+     "intent": "Commercial",
+     "volume": 720,
+     "difficulty": 30
+    },
+    {
+     "keyword": "best ecommerce seo services in india",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 45
+    },
+    {
+     "keyword": "best seo services in india",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 55
+    },
+    {
+     "keyword": "search engine optimization services",
+     "intent": "Informational",
+     "volume": 590,
+     "difficulty": 63
+    },
+    {
+     "keyword": "seo marketing agency",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 72
+    },
+    {
+     "keyword": "seo mumbai",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 31
+    },
+    {
+     "keyword": "seo service provider",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 47
+    },
+    {
+     "keyword": "seo services company",
+     "intent": "Commercial",
+     "volume": 590,
+     "difficulty": 70
+    },
+    {
+     "keyword": "best local seo company mumbai",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 17
+    },
+    {
+     "keyword": "best seo agency in india",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 43
+    },
+    {
+     "keyword": "best seo services",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 50
+    },
+    {
+     "keyword": "professional seo services",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 60
+    },
+    {
+     "keyword": "seo company in andheri",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 10
+    },
+    {
+     "keyword": "local seo services india",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 28
+    },
+    {
+     "keyword": "seo expert near me",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 33
+    },
+    {
+     "keyword": "seo services india company",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 61
+    },
+    {
+     "keyword": "seo experts company india",
+     "intent": "Informational, Transactional",
+     "volume": 320,
+     "difficulty": 47
+    },
+    {
+     "keyword": "search engine optimization services company in mumbai",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 29
+    },
+    {
+     "keyword": "best seo services mumbai",
+     "intent": "Commercial",
+     "volume": 210,
+     "difficulty": 32
+    },
+    {
+     "keyword": "seo service provider in mumbai",
+     "intent": "Commercial",
+     "volume": 140,
+     "difficulty": 33
+    },
+    {
+     "keyword": "lead generation services india",
+     "intent": "Commercial",
+     "volume": 140,
+     "difficulty": 34
+    },
+    {
+     "keyword": "best seo in mumbai",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 33
+    },
+    {
+     "keyword": "list of top seo companies in mumbai",
+     "intent": "Informational, Commercial",
+     "volume": 110,
+     "difficulty": 27
+    },
+    {
+     "keyword": "seo consulting company",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 36
+    },
+    {
+     "keyword": "search engine optimization seo services india",
+     "intent": "Informational",
+     "volume": null,
+     "difficulty": 48
+    }
+   ],
+   "total_volume": 102710
+  },
+  "/services/branding-and-design/": {
+   "sheet": "Branding",
+   "focus": "brand identity",
+   "keywords": [
+    {
+     "keyword": "brand identity",
+     "intent": "Informational",
+     "volume": 14800,
+     "difficulty": 51
+    },
+    {
+     "keyword": "what is branding",
+     "intent": "Informational",
+     "volume": 8100,
+     "difficulty": 53
+    },
+    {
+     "keyword": "creative design",
+     "intent": "Informational",
+     "volume": 6600,
+     "difficulty": 49
+    },
+    {
+     "keyword": "brand guidelines",
+     "intent": "Informational",
+     "volume": 4400,
+     "difficulty": 74
+    },
+    {
+     "keyword": "brand design",
+     "intent": "Informational",
+     "volume": 3600,
+     "difficulty": 71
+    },
+    {
+     "keyword": "brand in design",
+     "intent": "Informational",
+     "volume": 3600,
+     "difficulty": 46
+    },
+    {
+     "keyword": "brand logo maker",
+     "intent": "Informational",
+     "volume": 3600,
+     "difficulty": 92
+    },
+    {
+     "keyword": "design world",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 37
+    },
+    {
+     "keyword": "brand identity design",
+     "intent": "Informational",
+     "volume": 1600,
+     "difficulty": 50
+    },
+    {
+     "keyword": "brand guidelines template",
+     "intent": "Informational",
+     "volume": 1300,
+     "difficulty": 31
+    },
+    {
+     "keyword": "branding agency in india",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 50
+    },
+    {
+     "keyword": "branding agency in mumbai",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 37
+    },
+    {
+     "keyword": "branding services",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 48
+    },
+    {
+     "keyword": "brand identity design agency",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 31
+    },
+    {
+     "keyword": "company branding",
+     "intent": "Informational",
+     "volume": 720,
+     "difficulty": 41
+    },
+    {
+     "keyword": "best branding companies",
+     "intent": "Commercial",
+     "volume": 480,
+     "difficulty": 43
+    },
+    {
+     "keyword": "top branding agency in india",
+     "intent": null,
+     "volume": 390,
+     "difficulty": null
+    },
+    {
+     "keyword": "brand background",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 26
+    },
+    {
+     "keyword": "graphic design branding",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 35
+    },
+    {
+     "keyword": "brand identity agency",
+     "intent": "Commercial",
+     "volume": 320,
+     "difficulty": 19
+    },
+    {
+     "keyword": "brand design company",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 61
+    },
+    {
+     "keyword": "creatives design agency",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 59
+    },
+    {
+     "keyword": "brand design services",
+     "intent": "Informational",
+     "volume": 170,
+     "difficulty": 45
+    },
+    {
+     "keyword": "branding and identity design services",
+     "intent": "Informational",
+     "volume": 170,
+     "difficulty": 17
+    },
+    {
+     "keyword": "branding and design agency",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "branding and design services",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "branding and web design agency",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "logo design and branding services",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "logo and brand design services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "web design and branding services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 57270
+  },
+  "/services/native-advertising/": {
+   "sheet": "Native",
+   "focus": "native ads",
+   "keywords": [
+    {
+     "keyword": "native ads",
+     "intent": "Informational",
+     "volume": 2400,
+     "difficulty": 53
+    },
+    {
+     "keyword": "native advertising",
+     "intent": "Informational",
+     "volume": 2400,
+     "difficulty": 57
+    },
+    {
+     "keyword": "what are native ads",
+     "intent": "Informational",
+     "volume": 480,
+     "difficulty": 32
+    },
+    {
+     "keyword": "what is native advertising",
+     "intent": "Informational",
+     "volume": 480,
+     "difficulty": 43
+    },
+    {
+     "keyword": "native advertising examples",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 24
+    },
+    {
+     "keyword": "native ads meaning",
+     "intent": "Informational",
+     "volume": 170,
+     "difficulty": 45
+    },
+    {
+     "keyword": "native ads platforms",
+     "intent": "Informational, Commercial",
+     "volume": 170,
+     "difficulty": 29
+    },
+    {
+     "keyword": "native banner",
+     "intent": "Informational",
+     "volume": 140,
+     "difficulty": 37
+    },
+    {
+     "keyword": "native banner ads",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 48
+    },
+    {
+     "keyword": "native marketing",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 50
+    },
+    {
+     "keyword": "google native advertising",
+     "intent": null,
+     "volume": 70,
+     "difficulty": null
+    },
+    {
+     "keyword": "advantages of native advertising",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "benefits of native advertising",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "best native advertising",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising companies",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising in digital marketing",
+     "intent": null,
+     "volume": 30,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising definition",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising vs sponsored content",
+     "intent": null,
+     "volume": 20,
+     "difficulty": null
+    },
+    {
+     "keyword": "b2b native advertising",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising channels",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising marketing",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising solutions",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "native advertising tips",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 7170
+  },
+  "/services/ecommerce-marketing/": {
+   "sheet": "E-Commerce",
+   "focus": "ecommerce marketing",
+   "keywords": [
+    {
+     "keyword": "ecommerce marketing",
+     "intent": "Informational",
+     "volume": 1600,
+     "difficulty": 47
+    },
+    {
+     "keyword": "ecommerce agency",
+     "intent": "Commercial",
+     "volume": 1000,
+     "difficulty": 32
+    },
+    {
+     "keyword": "ecommerce development services",
+     "intent": null,
+     "volume": 720,
+     "difficulty": 25
+    },
+    {
+     "keyword": "ecommerce digital marketing company",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 29
+    },
+    {
+     "keyword": "ecommerce marketing agency",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 21
+    },
+    {
+     "keyword": "ecommerce social media marketing agency",
+     "intent": "Commercial",
+     "volume": 390,
+     "difficulty": 23
+    },
+    {
+     "keyword": "ecommerce marketing company",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 21
+    },
+    {
+     "keyword": "ecommerce marketing firm",
+     "intent": "Commercial",
+     "volume": 260,
+     "difficulty": 20
+    },
+    {
+     "keyword": "ecommerce marketing services",
+     "intent": "Informational",
+     "volume": 260,
+     "difficulty": 25
+    },
+    {
+     "keyword": "ecommerce digital marketing agency",
+     "intent": null,
+     "volume": 260,
+     "difficulty": 31
+    },
+    {
+     "keyword": "ecommerce digital marketing",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 16
+    },
+    {
+     "keyword": "ecommerce performance marketing agency",
+     "intent": "Commercial",
+     "volume": 210,
+     "difficulty": 9
+    },
+    {
+     "keyword": "ecommerce marketing agency india",
+     "intent": "Commercial",
+     "volume": 170,
+     "difficulty": 21
+    },
+    {
+     "keyword": "ecommerce digital marketing services",
+     "intent": "Informational",
+     "volume": 140,
+     "difficulty": 27
+    },
+    {
+     "keyword": "ecommerce digital marketing strategy",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 39
+    },
+    {
+     "keyword": "best ecommerce marketing services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "ecommerce online marketing services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    },
+    {
+     "keyword": "ecommerce seo marketing services",
+     "intent": null,
+     "volume": 10,
+     "difficulty": null
+    }
+   ],
+   "total_volume": 6400
+  },
+  "/services/data-strategy-consulting-services/": {
+   "sheet": "Data stratergy",
+   "focus": "data consulting",
+   "keywords": [
+    {
+     "keyword": "data consulting",
+     "intent": "Informational",
+     "volume": 480,
+     "difficulty": 37
+    },
+    {
+     "keyword": "data analytics consulting",
+     "intent": "Informational",
+     "volume": 320,
+     "difficulty": 27
+    },
+    {
+     "keyword": "data analytics consultant",
+     "intent": null,
+     "volume": 320,
+     "difficulty": null
+    },
+    {
+     "keyword": "data analytics consulting",
+     "intent": "Informational",
+     "volume": 320,
+     "difficulty": 27
+    },
+    {
+     "keyword": "data strategy consultant",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 25
+    },
+    {
+     "keyword": "data analytics consulting services",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 36
+    },
+    {
+     "keyword": "data strategy consultant",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 25
+    },
+    {
+     "keyword": "data strategy consulting",
+     "intent": "Informational",
+     "volume": 210,
+     "difficulty": 22
+    },
+    {
+     "keyword": "data analytics consulting companies",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 30
+    },
+    {
+     "keyword": "data analytics consulting company",
+     "intent": "Commercial",
+     "volume": 110,
+     "difficulty": 43
+    },
+    {
+     "keyword": "data analytics consulting firm",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 26
+    },
+    {
+     "keyword": "data analytics consulting firms",
+     "intent": "Informational",
+     "volume": 110,
+     "difficulty": 26
+    },
+    {
+     "keyword": "data consulting companies",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 54
+    },
+    {
+     "keyword": "what is data strategy",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 36
+    },
+    {
+     "keyword": "data & analytics consulting",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 34
+    },
+    {
+     "keyword": "data and analytics consulting",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 27
+    },
+    {
+     "keyword": "data consulting firms",
+     "intent": "Informational, Commercial",
+     "volume": 20,
+     "difficulty": 57
+    },
+    {
+     "keyword": "corporate data strategy",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 41
+    },
+    {
+     "keyword": "data strategy example",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 21
+    },
+    {
+     "keyword": "what's your data strategy",
+     "intent": "Informational",
+     "volume": 10,
+     "difficulty": 33
+    }
+   ],
+   "total_volume": 2850
+  },
+  "/services/crm-services/": {
+   "sheet": "CRM",
+   "focus": "crm software for customer service",
+   "keywords": [
+    {
+     "keyword": "crm software for customer service",
+     "intent": "Informational, Commercial",
+     "volume": 110,
+     "difficulty": 72
+    },
+    {
+     "keyword": "crm software development services",
+     "intent": null,
+     "volume": 90,
+     "difficulty": null
+    },
+    {
+     "keyword": "crm software services",
+     "intent": "Informational, Commercial",
+     "volume": 30,
+     "difficulty": 72
+    },
+    {
+     "keyword": "what is crm software and how does it work",
+     "intent": "Informational",
+     "volume": 30,
+     "difficulty": 49
+    },
+    {
+     "keyword": "custom crm software development services",
+     "intent": "Informational, Commercial",
+     "volume": 20,
+     "difficulty": 21
+    },
+    {
+     "keyword": "what does crm software stand for",
+     "intent": "Informational",
+     "volume": 20,
+     "difficulty": 52
+    }
+   ],
+   "total_volume": 300
+  },
+  "/services/website-development/": {
+   "sheet": "Web development services",
+   "focus": "web development services",
+   "keywords": [
+    {
+     "keyword": "web development services",
+     "intent": "Informational",
+     "volume": 4400,
+     "difficulty": 51
+    },
+    {
+     "keyword": "web development agency",
+     "intent": "Commercial",
+     "volume": 2400,
+     "difficulty": 57
+    },
+    {
+     "keyword": "website development agency",
+     "intent": null,
+     "volume": 2400,
+     "difficulty": 55
+    },
+    {
+     "keyword": "website design services",
+     "intent": "Commercial",
+     "volume": 1600,
+     "difficulty": 55
+    },
+    {
+     "keyword": "web application development services",
+     "intent": "Informational",
+     "volume": 1000,
+     "difficulty": 36
+    },
+    {
+     "keyword": "website development services",
+     "intent": "Informational",
+     "volume": 1000,
+     "difficulty": 50
+    },
+    {
+     "keyword": "web design & development services",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 63
+    },
+    {
+     "keyword": "web design development services",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 56
+    },
+    {
+     "keyword": "website design and development services",
+     "intent": "Commercial",
+     "volume": 880,
+     "difficulty": 50
+    },
+    {
+     "keyword": "ecommerce web development services",
+     "intent": "Informational",
+     "volume": 390,
+     "difficulty": 39
+    },
+    {
+     "keyword": "website development agency in mumbai",
+     "intent": null,
+     "volume": 110,
+     "difficulty": 19
+    }
+   ],
+   "total_volume": 15940
+  }
+ },
+ "unmapped": [
+  {
+   "sheet": "AI Services",
+   "keywords": 25,
+   "top": "ai tools",
+   "volume": 218280
+  }
+ ]
+}
