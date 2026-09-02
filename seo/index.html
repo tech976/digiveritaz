@@ -14,109 +14,114 @@
     <div class="brand">
       <span class="dot"></span>
       <div>DigiVeritaz SEO
-        <small>on-page audit &amp; keyword coverage</small>
+        <small>how your pages are performing in search</small>
       </div>
     </div>
-    <span class="origin" id="origin"></span>
     <span class="spacer"></span>
-    <button class="btn btn-ghost" id="theme" title="Toggle theme">◐</button>
-    <button class="btn btn-ghost" id="export" disabled>Export CSV</button>
+    <div class="modeswitch" id="mode" role="group" aria-label="Detail level">
+      <button data-mode="plain" class="on">Plain English</button>
+      <button data-mode="expert">Expert</button>
+    </div>
+    <button class="btn btn-ghost icon" id="theme" title="Switch light / dark">◐</button>
+    <button class="btn btn-ghost" id="export" disabled>Download</button>
     <button class="btn btn-ghost" id="stop" hidden>Stop</button>
-    <button class="btn btn-primary" id="run">Run audit</button>
-  </div>
-  <div class="progress">
-    <div class="bar"><span id="barfill"></span></div>
-    <div class="progress-note" id="note">Loading page inventory…</div>
+    <button class="btn btn-primary" id="run">Check my site</button>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="grid-cards">
-    <div class="card">
-      <h3>Overall health</h3>
-      <div class="ring-wrap">
-        <div class="ring" id="ring"><i id="ringval">—</i></div>
-        <div>
-          <div class="sub" id="ringsub">Not audited yet</div>
-        </div>
-      </div>
+
+  <!-- ---------------------------------------------------------- hero -->
+  <section class="hero card">
+    <div class="hero-score">
+      <div class="ring" id="ring"><i id="ringval">—</i></div>
+      <div class="hero-word" id="hero-word">Not checked yet</div>
     </div>
-    <div class="card">
-      <h3>Pages</h3>
-      <div class="big" id="c-pages">0</div>
-      <div class="sub" id="c-pages-sub">in sitemap</div>
-    </div>
-    <div class="card">
-      <h3>Page grades</h3>
-      <div class="sev" id="c-grades"><span class="sub">Run the audit to populate.</span></div>
-    </div>
-    <div class="card">
-      <h3>Checks failing</h3>
-      <div class="big" id="c-bad">0</div>
-      <div class="sub" id="c-bad-sub">across audited pages</div>
-    </div>
-    <div class="card">
-      <h3>Keyword coverage</h3>
-      <div class="big" id="c-kw">0</div>
-      <div class="sub" id="c-kw-sub">pages with a keyphrase from the sheet</div>
+    <div class="hero-copy">
+      <h1 id="hero-line">Press “Check my site” to see how your pages are doing.</h1>
+      <p class="hero-sub" id="hero-sub">Loading your pages…</p>
+      <div class="bar" id="bar" hidden><span id="barfill"></span></div>
+      <div class="hero-stats" id="hero-stats" hidden></div>
     </div>
   </section>
 
-  <section class="card" id="topissues-card" hidden style="margin-bottom:18px">
-    <h3>Most common problems</h3>
-    <div id="topissues"></div>
+  <!-- ------------------------------------------------ what to fix first -->
+  <section id="fix-section" hidden>
+    <div class="sechead">
+      <h2>Fix these first</h2>
+      <p>Ordered by how much difference each one will make. Click any row to see what it means and which pages it affects.</p>
+    </div>
+    <div class="fixlist" id="fixlist"></div>
   </section>
 
-  <div class="toolbar">
-    <input type="search" id="q" placeholder="Filter by path, keyphrase or title…">
-    <label>Section
-      <select id="f-section"><option value="">All</option></select>
-    </label>
-    <label>Grade
-      <select id="f-grade">
-        <option value="">All</option>
-        <option value="bad">Poor</option>
-        <option value="ok">Needs work</option>
-        <option value="good">Good</option>
-        <option value="unknown">Not audited</option>
-      </select>
-    </label>
-    <label>Failing check
-      <select id="f-check"><option value="">Any</option></select>
-    </label>
-    <span class="sub" id="shown"></span>
-  </div>
+  <!-- ------------------------------------------------------ good news -->
+  <section id="wins-section" hidden>
+    <div class="sechead"><h2>Already working well</h2>
+      <p>These are fine across your site — no action needed.</p></div>
+    <div class="wins" id="wins"></div>
+  </section>
 
-  <div class="table-wrap">
-    <table>
-      <thead><tr>
-        <th data-sort="path">Page <span class="arrow">▲</span></th>
-        <th data-sort="section" class="hide-sm">Section</th>
-        <th data-sort="keyphrase" class="hide-sm">Focus keyphrase</th>
-        <th data-sort="seo" class="num">SEO</th>
-        <th data-sort="readability" class="num">Read</th>
-        <th data-sort="overall" class="num">Overall</th>
-        <th data-sort="bad" class="num hide-sm">Issues</th>
-        <th data-sort="words" class="num hide-sm">Words</th>
-      </tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-    <div class="empty" id="empty" hidden>No pages match these filters.</div>
-  </div>
+  <!-- ----------------------------------------------------- page table -->
+  <section>
+    <div class="sechead">
+      <h2>Your pages</h2>
+      <p id="table-help">Every page on your site, worst first. Click one to see its full report.</p>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search for a page…">
+      <label>Part of site
+        <select id="f-section"><option value="">All</option></select>
+      </label>
+      <label>Show
+        <select id="f-grade">
+          <option value="">Everything</option>
+          <option value="bad">Only problem pages</option>
+          <option value="ok">Only pages needing work</option>
+          <option value="good">Only healthy pages</option>
+          <option value="unknown">Not checked yet</option>
+        </select>
+      </label>
+      <label>With this problem
+        <select id="f-check"><option value="">Any</option></select>
+      </label>
+      <span class="sub" id="shown"></span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th data-sort="path">Page</th>
+          <th data-sort="section" class="hide-sm">Part of site</th>
+          <th data-sort="keyphrase" class="hide-md">Trying to rank for</th>
+          <th data-sort="overall" class="num">Score</th>
+          <th data-sort="overall" class="verdict-col">Verdict</th>
+          <th data-sort="bad" class="problem-col">Biggest problem</th>
+          <th data-sort="seo" class="num expert-only">SEO</th>
+          <th data-sort="readability" class="num expert-only">Read</th>
+          <th data-sort="words" class="num expert-only">Words</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>No pages match what you searched for.</div>
+    </div>
+  </section>
 </main>
 
 <div class="backdrop" id="backdrop"></div>
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-head">
     <div style="min-width:0">
+      <div class="sub" id="d-section"></div>
       <h2 id="d-title">—</h2>
-      <a class="sub" id="d-url" target="_blank" rel="noopener"></a>
+      <a class="sub link" id="d-url" target="_blank" rel="noopener"></a>
     </div>
     <button class="close" id="d-close" aria-label="Close">×</button>
   </div>
   <div class="drawer-body" id="d-body"></div>
 </aside>
 
+<script src="/js/guide.js"></script>
 <script src="/js/dashboard.js"></script>
 </body>
 </html>
