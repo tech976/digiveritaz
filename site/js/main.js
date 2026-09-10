@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
-  var MSG91 = { widgetId: '36696a6d596f323238373538', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var DVM_LOAD = Date.now();
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789300000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789400000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */

@@ -41,7 +41,7 @@
   })();
 
   /* ---- OTP via the MSG91 widget — same widget/token as the popup and contact page ---- */
-  var MSG91 = { widgetId: '36696a6d596f323238373538', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var msg91Ready = false, verified = false, otpSent = false, partialSaved = false;
 
   /* The widget attaches window.sendOtp/verifyOtp ASYNCHRONOUSLY, a moment after
