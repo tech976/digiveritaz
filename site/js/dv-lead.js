@@ -165,7 +165,7 @@
     +   '<button class="dvl-btn" type="button" id="dvl-proceed">Proceed</button>'
     + '</div>'
     + '<div class="dvl-step" data-step="otp">'
-    +   '<p class="dvl-otpinfo">Enter the 6-digit code we sent to <strong id="dvl-otpnum"></strong></p>'
+    +   '<p class="dvl-otpinfo">Enter the code we sent to <strong id="dvl-otpnum"></strong></p>'
     +   '<div class="dvl-f"><input type="text" id="dvl-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="······"></div>'
     +   '<div class="dvl-actions"><button class="dvl-back" type="button" data-goto="1">Change number</button><button class="dvl-btn" type="button" id="dvl-verify">Verify &amp; Continue</button></div>'
     +   '<div class="dvl-resendrow">Didn’t get it? <a href="#" id="dvl-resend">Resend code</a></div>'
@@ -267,7 +267,7 @@
   }
 
   /* ---- OTP via MSG91 OTP Widget (exposeMethods -> our own UI) ---- */
-  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '36696a6d596f323238373538', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var DEV = false; /* always send a REAL OTP via MSG91 — no dev skip */
   var msg91Ready = false, msg91Tried = false;
   function otpDigits(){ return ($('#dvl-phone').value||'').replace(/[^0-9]/g,'').slice(-10); }
@@ -308,7 +308,7 @@
   function otpAvailable(){
     otpSendFailed = false;
     var info = $('.dvl-otpinfo'), fld = $('#dvl-otp'), btn = $('#dvl-verify');
-    if (info) info.innerHTML = 'Enter the 6-digit code we sent to <strong id="dvl-otpnum">+91 ' + otpDigits() + '</strong>';
+    if (info) info.innerHTML = 'Enter the code we sent to <strong id="dvl-otpnum">+91 ' + otpDigits() + '</strong>';
     if (fld && fld.parentNode) fld.parentNode.style.display = '';
     if (btn) btn.textContent = 'Verify & Continue';
   }

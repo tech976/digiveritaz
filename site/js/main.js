@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ;(function(){
   if (window.__dvmInit) return; window.__dvmInit = true;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
-  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '36696a6d596f323238373538', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var DVM_LOAD = Date.now();
   var SERVICES = [
     ['Organic Marketing','Organic Marketing'],
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
       +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
-      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"><button type="button" id="dvm-getotp" style="'+OTPBTN+'">Get OTP</button></div><div id="dvm-otp-row" style="display:none;gap:8px;align-items:stretch;margin-top:8px"><input type="text" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="6-digit OTP" style="'+OTPINP+'"><button type="button" id="dvm-verify" style="'+OTPBTN+';background:#0f2a5a">Verify</button></div><div id="dvm-otp-msg" style="font-size:.82rem;margin-top:6px;min-height:1em"></div></div>'
+      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"><button type="button" id="dvm-getotp" style="'+OTPBTN+'">Get OTP</button></div><div id="dvm-otp-row" style="display:none;gap:8px;align-items:stretch;margin-top:8px"><input type="text" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter OTP" style="'+OTPINP+'"><button type="button" id="dvm-verify" style="'+OTPBTN+';background:#0f2a5a">Verify</button></div><div id="dvm-otp-msg" style="font-size:.82rem;margin-top:6px;min-height:1em"></div></div>'
       +'</div>'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>'
@@ -735,14 +735,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789100000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789200000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1786000000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1789200000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }

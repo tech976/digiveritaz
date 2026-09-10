@@ -41,7 +41,7 @@
   })();
 
   /* ---- OTP via the MSG91 widget — same widget/token as the popup and contact page ---- */
-  var MSG91 = { widgetId: '3666766e6633313737383230', tokenAuth: '520932TU9OQwuB86a3942beP1' };
+  var MSG91 = { widgetId: '36696a6d596f323238373538', tokenAuth: '520932TU9OQwuB86a3942beP1' };
   var msg91Ready = false, verified = false, otpSent = false, partialSaved = false;
 
   /* The widget attaches window.sendOtp/verifyOtp ASYNCHRONOUSLY, a moment after
@@ -176,7 +176,7 @@
         '<div class="dvb-f"><input type="text" name="fullname" placeholder="Name*" autocomplete="name"></div>' +
         '<div class="dvb-f"><input type="email" name="email" placeholder="Email address*" autocomplete="email"></div>' +
         '<div class="dvb-f dvb-phone"><input type="tel" name="phone" placeholder="Phone number*" inputmode="numeric" maxlength="10" autocomplete="tel"><button type="button" class="dvb-otp-btn">Get OTP</button></div>' +
-        '<div class="dvb-f dvb-otp-row" hidden><input type="text" name="otp" placeholder="6-digit OTP" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button type="button" class="dvb-verify-btn">Verify</button></div>' +
+        '<div class="dvb-f dvb-otp-row" hidden><input type="text" name="otp" placeholder="Enter OTP" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button type="button" class="dvb-verify-btn">Verify</button></div>' +
         '<div class="dvb-otp-msg"></div>' +
         '<div class="dvb-f"><select name="service"><option value="">Interested Service</option>' + opts + '</select></div>' +
         '<div class="dvb-f"><textarea name="message" placeholder="Briefly describe your needs, i.e. brief your tentative start date, references, budgets, etc."></textarea></div>' +
