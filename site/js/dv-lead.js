@@ -261,7 +261,7 @@
     state.phone = '+91' + $('#dvl-phone').value.replace(/[^0-9]/g,'');
     state.consent = 'Yes';
     save(false);                 /* number trapped immediately, BEFORE any OTP */
-    var num = $('#dvl-otpnum'); if (num) num.textContent = '+91 ' + $('#dvl-phone').value.replace(/[^0-9]/g,'');
+    otpAvailable();              /* reset the OTP screen for this number */
     go('otp');
     otpSend();
   }
@@ -290,25 +290,53 @@
   }
   function warmMsg91(){ if (!msg91Tried && !DEV){ msg91Tried = true; loadMsg91(function(){}); } }
 
+  /* When MSG91 refuses to SEND (expired widget subscription, no balance, outage) the
+     SDK is still loaded, so verifyOtp exists and rejects everything the visitor types —
+     they get stuck at the OTP screen with no code and no way forward, and the rest of
+     the form is never filled in. This flag opens an escape hatch for that case only:
+     it is set solely by a send/resend failure and cleared by any successful send, so a
+     working OTP is still mandatory. */
+  var otpSendFailed = false;
+  function otpUnavailable(msg){
+    otpSendFailed = true;
+    var info = $('.dvl-otpinfo'), fld = $('#dvl-otp'), btn = $('#dvl-verify');
+    if (info) info.innerHTML = 'We couldn’t text a code to <strong>+91 ' + otpDigits() + '</strong> just now.';
+    if (fld && fld.parentNode) fld.parentNode.style.display = 'none';   /* nothing to type */
+    if (btn) btn.textContent = 'Continue';
+    err(msg || 'No code needed — tap Continue. We’ll confirm your number when we call.');
+  }
+  function otpAvailable(){
+    otpSendFailed = false;
+    var info = $('.dvl-otpinfo'), fld = $('#dvl-otp'), btn = $('#dvl-verify');
+    if (info) info.innerHTML = 'Enter the 6-digit code we sent to <strong id="dvl-otpnum">+91 ' + otpDigits() + '</strong>';
+    if (fld && fld.parentNode) fld.parentNode.style.display = '';
+    if (btn) btn.textContent = 'Verify & Continue';
+  }
+
   function otpSend(){
     if (DEV) { err('Dev/preview: OTP is skipped — any code continues.'); return; }
     err('Sending code…');
     loadMsg91(function(ok){
-      if (!ok || typeof window.sendOtp !== 'function') { err('Couldn’t reach verification — tap Verify to continue.'); return; }
-      window.sendOtp('91' + otpDigits(), function(){ err(''); }, function(e){ try{console.error('MSG91 sendOtp FAILED:',e);}catch(_){} err('Couldn’t send the code. Tap “Resend code”.'); });
+      if (!ok || typeof window.sendOtp !== 'function') { otpUnavailable('Couldn’t reach verification just now — tap Continue to carry on.'); return; }
+      window.sendOtp('91' + otpDigits(), function(){ otpAvailable(); err(''); }, function(e){ try{console.error('MSG91 sendOtp FAILED:',e);}catch(_){} otpUnavailable(); });
     });
   }
   function otpResend(e){ if(e&&e.preventDefault)e.preventDefault();
     if (DEV) { err('Dev/preview: OTP is skipped.'); return; }
     err('Sending a new code…');
-    if (typeof window.retryOtp === 'function') { window.retryOtp(null, function(){ err('A new code has been sent.'); }, function(e){ try{console.error('MSG91 retryOtp FAILED:',e);}catch(_){} err('Could not resend — try again.'); }); }
+    if (typeof window.retryOtp === 'function') { window.retryOtp(null, function(){ otpAvailable(); err('A new code has been sent.'); }, function(e){ try{console.error('MSG91 retryOtp FAILED:',e);}catch(_){} otpUnavailable(); }); }
     else { otpSend(); }
   }
   function onVerify(){
+    var btn=$('#dvl-verify');
+    function cont(tag){ state.otp_verified=(/^yes/i.test(tag)?'yes':'no'); save(false); err(''); if(btn) btn.disabled=false; go(2); }
+    /* No code was ever delivered, so there is nothing to type and verifyOtp would
+       reject whatever they guess. Let them finish the form; the lead is written with
+       otp_verified = no, which is the same value the sdk-offline path already used. */
+    if (otpSendFailed) { cont('Unverified (send failed)'); return; }
     var code=($('#dvl-otp').value||'').replace(/[^0-9]/g,'');
     if(code.length<4){ err('Enter the code from the SMS.'); return; }
-    var btn=$('#dvl-verify'); if(btn) btn.disabled=true; err('Verifying…');
-    function cont(tag){ state.otp_verified=(/^yes/i.test(tag)?'yes':'no'); save(false); err(''); if(btn) btn.disabled=false; go(2); }
+    if(btn) btn.disabled=true; err('Verifying…');
     if (DEV) { cont('Yes (dev)'); return; }
     if (typeof window.verifyOtp !== 'function') { cont('Unverified (sdk offline)'); return; }
     window.verifyOtp(code, function(){ cont('Yes'); }, function(){ if(btn) btn.disabled=false; err('Incorrect or expired code. Resend and try again.'); });
