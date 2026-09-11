@@ -309,8 +309,9 @@ function detectAttrHeaders_() {
     var lastCol = sheet.getLastColumn();
     if (lastCol < 1) return {};
     var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-    var known = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','keyword',
-                 'click_id','gclid','gbraid','gad_campaignid','gad_source','device',
+    var known = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','keyword',
+                 'click_id','gclid','gbraid','wbraid','gad_campaignid','gad_source','device',
+                 'fbclid','campaign_id','adset_id','ad_id',
                  'landing_page','referrer','campaign'];
     var found = {};
     for (var i = 0; i < headers.length; i++) {
@@ -353,6 +354,11 @@ function writeAttr_(sheet, rowIndex, p) {
       utm_campaign:   camp,
       utm_term:       p.utm_term || '',
       utm_content:    p.utm_content || '',
+      utm_id:         p.utm_id || '',
+      fbclid:         p.fbclid || '',
+      campaign_id:    p.campaign_id || p.gad_campaignid || '',
+      adset_id:       p.adset_id || '',
+      ad_id:          p.ad_id || '',
       keyword:        p.utm_term || p.utm_content || '',      // alias, whichever the ads carry
       click_id:       p.gclid || p.gbraid || p.wbraid || '',  // gclid, or gbraid/wbraid on iOS
       gclid:          p.gclid || '',
@@ -407,7 +413,15 @@ function postLeadToCRM_(p, services) {
       utm_campaign: p.utm_campaign || '',
       utm_term:     p.utm_term || '',
       utm_content:  p.utm_content || '',
+      utm_id:       p.utm_id || '',
       gclid:        p.gclid || p.gbraid || p.wbraid || '',
+      gbraid:       p.gbraid || '',
+      wbraid:       p.wbraid || '',
+      gad_source:   p.gad_source || '',
+      fbclid:       p.fbclid || '',
+      campaign_id:  p.campaign_id || p.gad_campaignid || '',
+      adset_id:     p.adset_id || '',
+      ad_id:        p.ad_id || '',
       gad_campaignid: p.gad_campaignid || '',
       device:       p.device || '',
       landing_page: p.landing_page || '',

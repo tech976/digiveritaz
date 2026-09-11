@@ -14,8 +14,11 @@
   var KEY = 'dv-attr', MAX_AGE_DAYS = 90;
   /* gad_campaignid / gad_source / device come from Google Ads auto-tagging and are the
      reliable fallback when a ValueTrack placeholder like {campaignid} fails to resolve. */
-  var FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
-                'gclid','gbraid','wbraid','gad_campaignid','gad_source','device'];
+  var FIELDS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id',
+                'gclid','gbraid','wbraid','gad_campaignid','gad_source','device',
+                /* Meta click id, plus the explicit ids Google/Meta URL tagging can pass so
+                   the CRM gets campaign/adset/ad without parsing utm_campaign. */
+                'fbclid','campaign_id','adset_id','ad_id'];
 
   function read() {
     try {
@@ -38,6 +41,10 @@
       if (any) {
         if (!found.utm_source && (found.gclid || found.gbraid || found.wbraid || found.gad_campaignid)) {
           found.utm_source = 'google'; found.utm_medium = found.utm_medium || 'cpc';
+        }
+        /* a bare fbclid (Meta auto-tagging, no utm_*) still means Meta Ads */
+        if (!found.utm_source && found.fbclid) {
+          found.utm_source = 'facebook'; found.utm_medium = found.utm_medium || 'paid_social';
         }
         /* An unresolved ValueTrack placeholder ('{campaignid}', '{keyword}' …) would otherwise
            be recorded verbatim on every lead. Substitute the real auto-tagged campaign id
@@ -76,8 +83,9 @@
      NOTE: this is applied to all internal PAGE links (blog, services, conversion
      pages) because every page carries a CTA or a lead form. It is deliberately NOT
      applied to external hosts, mailto/tel, in-page anchors, or direct file links. */
-  var CARRY = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
-               'gclid','gbraid','wbraid','gad_campaignid','device'];
+  var CARRY = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id',
+               'gclid','gbraid','wbraid','gad_campaignid','device',
+               'fbclid','campaign_id','adset_id','ad_id'];
   function decorate(link) {
     try {
       var o = current || read(); if (!o) return;
