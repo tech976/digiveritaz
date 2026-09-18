@@ -118,7 +118,7 @@ def build_nav(current):
     </ul>"""
 
 SITE_URL = "https://digiveritaz.com"
-DEFAULT_OG_IMAGE = "assets/logo.jpg"
+DEFAULT_OG_IMAGE = "assets/digiveritaz-logo.jpg"
 
 ORG_SCHEMA = {
     "@context": "https://schema.org",
@@ -198,7 +198,7 @@ HEAD_TPL = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="https://digiveritaz.com/{canonical}">
-<meta property="og:image" content="https://digiveritaz.com/assets/logo.jpg">
+<meta property="og:image" content="https://digiveritaz.com/assets/digiveritaz-logo.jpg">
 <meta property="og:image:alt" content="DigiVeritaz — Digital Marketing Agency">
 <meta property="og:locale" content="en_IN">
 
@@ -208,7 +208,7 @@ HEAD_TPL = """<!doctype html>
 <meta name="twitter:creator" content="@digiveritaz">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="https://digiveritaz.com/assets/logo.jpg">
+<meta name="twitter:image" content="https://digiveritaz.com/assets/digiveritaz-logo.jpg">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/assets/favicondv.png">
@@ -233,7 +233,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="/">
-      <img src="/assets/logo.jpg" alt="DigiVeritaz">
+      <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -252,7 +252,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 
         <div>
           <a class="foot-brand" href="/">
-            <img src="/assets/logo.jpg" alt="DigiVeritaz">
+            <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
           <p class="foot-tag">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.</p>

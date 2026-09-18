@@ -306,6 +306,21 @@
       "source": "/sitemap-uk.xml",
       "destination": "/uk/sitemap.xml",
       "permanent": true
+    },
+    {
+      "source": "/assets/logo.webp",
+      "destination": "/assets/digiveritaz-logo.webp",
+      "permanent": true
+    },
+    {
+      "source": "/assets/logo.png",
+      "destination": "/assets/digiveritaz-logo.png",
+      "permanent": true
+    },
+    {
+      "source": "/assets/logo.jpg",
+      "destination": "/assets/digiveritaz-logo.jpg",
+      "permanent": true
     }
   ],
   "functions": {

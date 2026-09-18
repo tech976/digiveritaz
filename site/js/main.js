@@ -913,7 +913,7 @@ document.addEventListener('DOMContentLoaded', function () {
     panel = document.createElement("div");
     panel.className = "dvc-panel"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "DigiVeritaz chat");
     panel.innerHTML =
-      '<div class="dvc-head"><img src="/assets/logo.webp" alt="DigiVeritaz">' +
+      '<div class="dvc-head"><img src="/assets/digiveritaz-logo.webp" alt="DigiVeritaz">' +
         '<div class="ht"><span class="t">DigiVeritaz</span><span class="s"><span class="dot"></span>Usually replies instantly</span></div>' +
         '<button class="dvc-x" aria-label="Close">&times;</button></div>' +
       '<div class="dvc-body" id="dvc-body"></div>' +

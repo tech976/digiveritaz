@@ -78,7 +78,7 @@
   function $(s,c){ return (c||document).querySelector(s); }
 
   var WA_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10z"/></svg>';
-  var BRAND = '<a class="dvl-brand" href="/" aria-label="DigiVeritaz home"><img src="/assets/logo.webp?v=3" alt="DigiVeritaz" width="34" height="34" decoding="async"><span>DigiVeritaz</span></a>';
+  var BRAND = '<a class="dvl-brand" href="/" aria-label="DigiVeritaz home"><img src="/assets/digiveritaz-logo.webp?v=3" alt="DigiVeritaz" width="34" height="34" decoding="async"><span>DigiVeritaz</span></a>';
 
   /* ---------- styles (self-contained) ---------- */
   function injectCSS(){
