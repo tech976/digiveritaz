@@ -767,10 +767,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.readyState !== 'loading') dvReady();
   else document.addEventListener('DOMContentLoaded', dvReady);
 })();
-/* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (WhatsApp / Phone / Email) */
+/* DV-TOPBAR v1 (abhishek-edits): inject sticky top contact bar (Phone / Email) */
 ;(function(){
   if (window.__dvTopbar) return; window.__dvTopbar = true;
-  var WA = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>';
   var PH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1l-2.2 2.2z"/></svg>';
   var EM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
 
@@ -778,9 +777,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.dv-topbar')) return;
     var bar = document.createElement('div');
     bar.className = 'dv-topbar';
+    /* The lead has already converted on the thank-you page — no number there. */
+    var noPhone = /^\/thank-you(\.html)?\/?$/.test(location.pathname);
     bar.innerHTML = '<div class="dv-tb-inner">'
-      + '<a class="dv-tb-item dv-tb-wa" href="https://wa.me/917045337060" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">' + WA + '+91 70453 37060</a>'
-      + '<a class="dv-tb-item dv-tb-ph" href="tel:+917045337060" aria-label="Call us">' + PH + '+91 70453 37060</a>'
+      + (noPhone ? '' : '<a class="dv-tb-item dv-tb-ph" href="tel:+917045337060" aria-label="Call us">' + PH + '+91 70453 37060</a>')
       + '<a class="dv-tb-item dv-tb-em" href="mailto:info@digiveritaz.com" aria-label="Email us">' + EM + 'info@digiveritaz.com</a>'
       + '</div>';
     var header = document.querySelector('header.site-header');
@@ -790,10 +790,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.readyState !== 'loading') build();
   else document.addEventListener('DOMContentLoaded', build);
 })();
-/* DV-MOBILE v1 (abhishek-edits): mobile sticky Book-a-Call + Live Chat bar + WhatsApp float */
+/* DV-MOBILE v1 (abhishek-edits): mobile sticky Book-a-Call + Live Chat bar */
 ;(function(){
   if (window.__dvMobile) return; window.__dvMobile = true;
-  var WA = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>';
   var CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
 
   function toast(msg){
@@ -811,14 +810,6 @@ document.addEventListener('DOMContentLoaded', function () {
       + '<button type="button" class="dv-m-chat">' + CHAT + 'Live Chat</button>';
     document.body.appendChild(bar);
 
-    var wa = document.createElement('a');
-    wa.className = 'dv-wafloat';
-    wa.href = 'https://wa.me/917045337060';
-    wa.target = '_blank'; wa.rel = 'noopener';
-    wa.setAttribute('aria-label', 'Chat on WhatsApp');
-    wa.innerHTML = WA;
-    document.body.appendChild(wa);
-
     bar.querySelector('.dv-m-call').addEventListener('click', function(){
       if (typeof window.dvOpenModal === 'function') window.dvOpenModal();
       else window.location.href = '/contact-us/';
@@ -835,12 +826,10 @@ document.addEventListener('DOMContentLoaded', function () {
 /* DV-CHATBOT v1 — lead-qualification chat widget (talks to /api/chat) */
 ;(function(){
   if (window.__dvChat) return; window.__dvChat = true;
-  var WA = "https://wa.me/917045337060";
   var BOOK = "/contact-us/";
   var GREETING = "Hi! 👋 I'm Veri from DigiVeritaz. What are you trying to achieve — more leads, better ROAS, or something else? I can point you to the right service and set up a quick call.";
   var I_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
   var I_SEND = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4l17.5-7.5a1 1 0 0 0 0-1.8L3.4 3.6a1 1 0 0 0-1.4 1l2 6.9 9 1.5-9 1.5-2 6.9a1 1 0 0 0 1.4 1z"/></svg>';
-  var I_WA = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.4 11.4 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.4C2.2 6.4 6.6 2 12 2s9.8 4.4 9.8 9.8-4.4 10-9.8 10z"/></svg>';
   var I_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
 
   var msgs = [];
@@ -900,7 +889,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }).catch(function(){
       typing(false);
-      addMsg("assistant", "I'm having a connection issue — please WhatsApp us at +91 70453 37060 and the team will help right away.");
+      addMsg("assistant", "I'm having a connection issue — please leave your details at /contact-us/ and the team will call you back within one business day.");
     });
   }
 
@@ -918,7 +907,6 @@ document.addEventListener('DOMContentLoaded', function () {
         '<button class="dvc-x" aria-label="Close">&times;</button></div>' +
       '<div class="dvc-body" id="dvc-body"></div>' +
       '<div class="dvc-chips">' +
-        '<a class="dvc-chip" href="' + WA + '" target="_blank" rel="noopener">' + I_WA + 'WhatsApp</a>' +
         '<a class="dvc-chip dvc-book" href="' + BOOK + '">' + I_CAL + 'Book a call</a>' +
       '</div>' +
       '<div class="dvc-foot"><textarea id="dvc-ta" rows="1" placeholder="Type your message…"></textarea>' +

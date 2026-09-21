@@ -970,9 +970,9 @@ body.home-themed .c-form-card .submit-row .hint svg{width:11px !important;height
 /* DV-CONTACT-CAREERS v1 — fourth "Careers" box in the contact strip, linking to /careers/.
    These need body.home-themed + !important to outrank contact.css's own
    `repeat(3,minmax(0,1fr))!important` rule, which sits later in the same file. */
-/* Uneven tracks: the two long addresses need more room than Phone/Careers, otherwise
-   durvamukherjee@digiveritaz.com breaks mid-word at four equal columns. */
-body.home-themed .contact-strip .strip-row{grid-template-columns:.8fr 1.25fr 1.1fr .85fr!important}
+/* Uneven tracks (Email / Office / Careers): the two long addresses need more room than
+   Careers, otherwise durvamukherjee@digiveritaz.com breaks mid-word at equal columns. */
+body.home-themed .contact-strip .strip-row{grid-template-columns:1.25fr 1.1fr .85fr!important}
 .contact-strip .strip-careers{justify-content:flex-start}
 .contact-strip .strip-btn{
   display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
@@ -988,7 +988,7 @@ body.home-themed .contact-strip .strip-row{grid-template-columns:.8fr 1.25fr 1.1
 }
 .contact-strip .strip-btn svg{width:15px;height:15px;flex:0 0 auto}
 
-/* Four across gets cramped well before the phone breakpoint — go 2x2 in between. */
+/* Three across gets cramped well before the phone breakpoint — go 2-up in between. */
 @media (max-width:1180px) and (min-width:821px){
   body.home-themed .contact-strip .strip-row{
     grid-template-columns:repeat(2,minmax(0,1fr))!important;row-gap:28px!important;

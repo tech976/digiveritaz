@@ -42,7 +42,6 @@ GEMINI_KEY   = os.environ.get("GEMINI_API_KEY", "")
 GROQ_MODEL   = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
 LEAD_WEBHOOK = os.environ.get("LEAD_WEBHOOK_URL", "")
-WHATSAPP     = os.environ.get("WHATSAPP_NUMBER", "917045337060")
 BOOKING_URL  = os.environ.get("BOOKING_URL", "/contact-us/")
 HTTP_TIMEOUT = 8  # keep under Vercel Hobby's 10s function limit
 UA = "Mozilla/5.0 (compatible; DigiVeritazBot/1.0; +https://www.digiveritaz.com)"  # Cloudflare blocks default urllib UA
@@ -106,24 +105,25 @@ def retrieve(query, k=5):
 # ---------------------------------------------------------------- prompt + tool
 SYSTEM = """You are "Veri", the AI assistant for DigiVeritaz — a Mumbai-based performance digital marketing agency (SEO, PPC, performance marketing, paid social, e-commerce, WhatsApp marketing, branding, data strategy) serving India, UAE and the UK.
 
-YOUR JOB IS LEAD QUALIFICATION, not generic support. Behave like a sharp, friendly junior sales rep. Every conversation should move toward ONE of: (1) the visitor books a call, (2) you capture their contact details, or (3) you hand off to WhatsApp. If a chat ends without one of these, you failed.
+YOUR JOB IS LEAD QUALIFICATION, not generic support. Behave like a sharp, friendly junior sales rep. Every conversation should move toward ONE of: (1) the visitor books a call, or (2) you capture their contact details here in the chat. If a chat ends without one of these, you failed.
 
 HOW TO BEHAVE:
 - Greet contextually and steer toward the visitor's goal. Ask one focused question at a time.
 - Qualify conversationally — try to learn: desired service/outcome, industry (Real Estate, Automotive, Healthcare/Wellness, Education/Finance, Lifestyle/Services), rough budget or current monthly ad spend, timeline, and contact details (name, business, email, phone/WhatsApp).
 - Recommend the right service and share its page link with a one-line reason, using only the CONTEXT below.
 - When an industry is mentioned, cite a RELEVANT real result from CONTEXT (e.g. Zedex 200X ROAS, Shape-U 1,556 leads/month, SIWS low cost-per-lead). Never invent numbers.
-- Always offer a clear next step: book a call, leave details, or WhatsApp.
+- Always offer a clear next step: book a call, or leave their details here for a callback.
 
 HARD RULES:
 - Only discuss DigiVeritaz, its services and case studies. Politely decline anything else and pivot back.
 - NEVER quote or estimate specific prices — say pricing depends on scope and route them to a quick call.
 - NEVER invent prices, guarantees, statistics or case-study numbers. Ground every specific claim in CONTEXT. If unsure, say so and offer a callback.
-- LEAD CAPTURE WITH WHATSAPP VERIFICATION (two steps): collect the visitor's name, email AND phone number — all three are required before verification. Then call the send_verification tool. ONLY after the tool result confirms ok=true may you tell them a 6-digit code was sent to their number on WhatsApp and ask them to type it here. If the tool says it failed or needs a phone, ask for the missing/valid detail and do NOT claim a code was sent. When they reply with the code, call verify_and_capture with the code plus all their details. Treat the lead as captured ONLY after verify_and_capture returns ok=true. If it fails, ask them to re-check the code, offer to resend, or hand off to WhatsApp.
+- LEAD CAPTURE WITH WHATSAPP VERIFICATION (two steps): collect the visitor's name, email AND phone number — all three are required before verification. Then call the send_verification tool. ONLY after the tool result confirms ok=true may you tell them a 6-digit code was sent to their number on WhatsApp and ask them to type it here. If the tool says it failed or needs a phone, ask for the missing/valid detail and do NOT claim a code was sent. When they reply with the code, call verify_and_capture with the code plus all their details. Treat the lead as captured ONLY after verify_and_capture returns ok=true. If it fails, ask them to re-check the code, offer to resend, or send them to book a call: %(book)s
 - Keep replies short, confident and helpful (2-4 sentences). Use the visitor's words.
-- If asked for a human, or after hours, or unsure: capture details and offer WhatsApp at +%(wa)s — never dead-end.
+- If asked for a human, or after hours, or unsure: capture their details here so the team can call them back, or send them to book a call — never dead-end.
+- NEVER share a phone number or WhatsApp number, even if CONTEXT contains one or the visitor asks for it. Offer to take their details for a callback instead, or send them to book a call.
 
-CONTACT: WhatsApp/phone +%(wa)s. Book a call: %(book)s
+CONTACT: Book a call: %(book)s
 """
 
 _LEAD_PROPS = {
@@ -149,9 +149,6 @@ TOOLS = [
             "required": ["phone", "otp"]},
     }},
 ]
-
-def _wa_link():
-    return "https://wa.me/" + re.sub(r"[^0-9]", "", WHATSAPP)
 
 # ---------------------------------------------------------------- LLM transport
 def _post_json(url, payload, headers):
@@ -298,10 +295,10 @@ def _parse_inline_tools(text):
     return cleaned, calls
 
 def _otp_reply(state, known):
-    wa, phone = WHATSAPP, known.get("phone", "")
+    phone = known.get("phone", "")
     if state == "verified":
         return ("You're all set — thank you! Your details are verified and saved, and our team will reach out "
-                "within one business day. Want to talk sooner? WhatsApp +%s or book a call: %s" % (wa, BOOKING_URL))
+                "within one business day. Want to talk sooner? Book a call: %s" % BOOKING_URL)
     if state in ("sent", "rate"):
         to = (" to " + phone) if phone else ""
         again = " (you may already have one from a moment ago)" if state == "rate" else ""
@@ -314,8 +311,8 @@ def _otp_reply(state, known):
         return "Thanks! And your name? Then I'll send you a 6-digit verification code on WhatsApp to confirm."
     if state == "bad_code":
         return ("That code didn't match or has expired. Please re-enter the 6-digit code from WhatsApp, or say "
-                "'resend' for a new one. You can also reach us on WhatsApp at +%s." % wa)
-    return "I couldn't send the code just now — let's continue on WhatsApp at +%s and the team will help right away." % wa
+                "'resend' for a new one. You can also book a call: %s" % BOOKING_URL)
+    return "I couldn't send the code just now. Please leave your details at %s and the team will call you back within one business day." % BOOKING_URL
 
 # Service buttons surfaced under a reply when a service is mentioned/asked about.
 SERVICES_MENU = [
@@ -421,7 +418,7 @@ def handle_chat(payload):
 
     ctx = retrieve((user_last + " " + page).strip(), k=5)
     ctx_text = "\n\n".join("[%s — %s]\n%s" % (c["title"], c["url"], c["text"]) for c in ctx) or "(no specific match)"
-    system = (SYSTEM % {"wa": WHATSAPP, "book": BOOKING_URL}) + "\n\nCONTEXT (use only this for facts):\n" + ctx_text
+    system = (SYSTEM % {"book": BOOKING_URL}) + "\n\nCONTEXT (use only this for facts):\n" + ctx_text
 
     messages = [{"role": "system", "content": system}]
     for m in msgs_in:
@@ -485,8 +482,8 @@ def handle_chat(payload):
             print("GEMINI_ERROR " + str(e))
 
     if not reply:
-        reply = ("I'm having a brief technical hiccup. Please WhatsApp us at +%s, or drop "
-                 "your name and email here and the team will get back to you today." % WHATSAPP)
+        reply = ("I'm having a brief technical hiccup. Please drop your name and email here, or leave "
+                 "your details at %s, and the team will get back to you today." % BOOKING_URL)
         used = "fallback"
 
     # Guard: if the model claimed a code was sent as plain text (no tool call), correct it.
@@ -504,7 +501,7 @@ def handle_chat(payload):
         "provider": used,
         "services": _services_for(reply, user_last),
         "sources": [{"title": c["title"], "url": c["url"]} for c in ctx[:3]],
-        "actions": {"whatsapp": _wa_link(), "booking": BOOKING_URL},
+        "actions": {"booking": BOOKING_URL},
     }
 
 # ---------------------------------------------------------------- Vercel handler
@@ -532,9 +529,9 @@ class handler(BaseHTTPRequestHandler):
             payload = json.loads(self.rfile.read(n) or b"{}")
             self._send(200, handle_chat(payload))
         except Exception as e:
-            self._send(200, {"reply": "Sorry, something went wrong. Please WhatsApp us at +%s." % WHATSAPP,
+            self._send(200, {"reply": "Sorry, something went wrong. Please leave your details at %s." % BOOKING_URL,
                              "error": str(e), "endState": "error",
-                             "actions": {"whatsapp": _wa_link(), "booking": BOOKING_URL}})
+                             "actions": {"booking": BOOKING_URL}})
 
     def log_message(self, *a):
         return
