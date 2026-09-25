@@ -290,6 +290,15 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/17-marketing-tasks-to-automate-2026/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/17-marketing-tasks-to-automate-2026.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/ad-spend-transparency-audit-your-budget/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
