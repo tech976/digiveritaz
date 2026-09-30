@@ -323,7 +323,7 @@
       "permanent": true
     },
     {
-      "source": "/get-proposal",
+      "source": "/get-proposal/",
       "destination": "/enquiry/",
       "permanent": true
     }
