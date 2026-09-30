@@ -193,7 +193,7 @@
       '<div class="dvb-mid">' +
         '<h3>Want this working for your brand?</h3>' +
         '<p>Get a free, tailored proposal — no obligation, delivered within one business day.</p>' +
-        '<a href="/get-proposal/">Get My Free Proposal →</a>' +
+        '<a href="/enquiry/">Get My Free Proposal →</a>' +
       '</div>';
   }
 

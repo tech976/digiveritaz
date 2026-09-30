@@ -772,7 +772,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1789200000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1790830000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
