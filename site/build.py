@@ -303,7 +303,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
           <h4>Get In Touch</h4>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div><strong>Mumbai HQ</strong><a href="https://maps.google.com/?cid=17767931209708554812" target="_blank" rel="noopener">1st Floor, Ujagar Chambers, Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088</a></div>
+            <div><strong>Mumbai HQ</strong><a href="https://maps.app.goo.gl/CpMhM2oEjRGwoBJa6" target="_blank" rel="noopener">1st Floor, Ujagar Chambers, Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088</a></div>
           </div>
           <div class="foot-contact-row">
             <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
@@ -671,8 +671,8 @@ contact_body = """
 
       <div class="strip-item">
         <span class="sl">Office</span>
-        <a class="sv" href="https://maps.google.com/?cid=17767931209708554812" target="_blank" rel="noopener">1st Floor, Ujagar Chambers</a>
-        <span class="sv-sub">Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088<br>Mon&ndash;Sat &middot; 10:00 AM &ndash; 7:00 PM</span>
+        <a class="sv sv-brand" href="https://maps.app.goo.gl/CpMhM2oEjRGwoBJa6" target="_blank" rel="noopener">DigiVeritaz</a>
+        <span class="sv-sub">1st Floor, Ujagar Chambers<br>Bus Depot, Sion&ndash;Trombay Rd, opp. Deonar, Chembur, Mumbai, Maharashtra 400088<br>Mon&ndash;Sat &middot; 10:00 AM &ndash; 7:00 PM</span>
       </div>
 
     </div>
@@ -769,7 +769,7 @@ contact_body = """
 <section class="c-map">
   <div class="container">
     <div class="map-wrap">
-      <iframe src="https://www.google.com/maps?q=Ujagar+Chambers,+Deonar,+Chembur,+Mumbai+400088&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="DigiVeritaz Mumbai Office Location"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4724.041437602517!2d72.90929167607587!3d19.0471939821515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x482d361c3fdcc5b5%3A0xf6945f4bf4414a3c!2sDigiVeritaz%20-%20Digital%20Marketing%20Agency!5e1!3m2!1sen!2sin!4v1790762880466!5m2!1sen!2sin" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="DigiVeritaz Mumbai Office Location"></iframe>
     </div>
   </div>
 </section>

@@ -1147,3 +1147,6 @@ body.home-themed .contact-main .c-form-card > form{margin-top:0}
   body.home-themed .contact-main .c-intro-points li{max-width:none}
   body.home-themed .contact-main .c-intro-talk{order:7}
 }
+/* Office box leads with the business name, shown in caps; the markup keeps "DigiVeritaz"
+   so the real spelling is what gets copied and read by search engines. */
+.contact-strip .strip-item .sv-brand{text-transform:uppercase;letter-spacing:.02em}
