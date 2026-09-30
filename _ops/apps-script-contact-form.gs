@@ -312,7 +312,8 @@ function detectAttrHeaders_() {
     var known = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','keyword',
                  'click_id','gclid','gbraid','wbraid','gad_campaignid','gad_source','device',
                  'fbclid','campaign_id','adset_id','ad_id',
-                 'landing_page','referrer','campaign'];
+                 'landing_page','referrer','campaign',
+                 'location','lead_city','lead_state','lead_country'];
     var found = {};
     for (var i = 0; i < headers.length; i++) {
       var h = String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_');
@@ -335,6 +336,8 @@ function colLetter_(n) {
 //     click_id | gclid | gbraid | gad_campaignid | gad_source | device
 //     landing_page | referrer
 // Or use ONE combined column headed:  campaign     -> "google / cpc / brand-search"
+// Approximate lead location (from the visitor's IP, via the site's /api/geo):
+//     Location  -> "Pune, Maharashtra, India"   or split:  Lead City | Lead State | Lead Country
 // Headers you leave out are skipped; nothing else on the row moves.
 // ============================================================
 function writeAttr_(sheet, rowIndex, p) {
@@ -368,7 +371,11 @@ function writeAttr_(sheet, rowIndex, p) {
       device:         p.device || '',
       landing_page:   p.landing_page || '',
       referrer:       p.referrer || '',
-      campaign:       [src, med, camp].filter(String).join(' / ')   // single-column summary
+      campaign:       [src, med, camp].filter(String).join(' / '),  // single-column summary
+      location:       location_(p),
+      lead_city:      p.geo_city || '',
+      lead_state:     p.geo_region || '',
+      lead_country:   p.geo_country || ''
     };
     for (var key in vals) {
       if (!Object.prototype.hasOwnProperty.call(vals, key)) continue;
@@ -378,6 +385,12 @@ function writeAttr_(sheet, rowIndex, p) {
   } catch (err) {
     console.error('writeAttr_ failed: ' + err);   // never block the lead save
   }
+}
+
+// "Pune, Maharashtra, India" — approximate, from the visitor's IP address (see /api/geo).
+function location_(p) {
+  return [p.geo_city, p.geo_region, p.geo_country]
+    .map(function (v) { return String(v || '').trim(); }).filter(String).join(', ');
 }
 
 function findRowByLeadId_(sheet, leadId) {
@@ -425,7 +438,11 @@ function postLeadToCRM_(p, services) {
       gad_campaignid: p.gad_campaignid || '',
       device:       p.device || '',
       landing_page: p.landing_page || '',
-      referrer:     p.referrer || ''
+      referrer:     p.referrer || '',
+      geo_city:     p.geo_city || '',
+      geo_state:    p.geo_region || '',
+      geo_country:  p.geo_country || '',
+      location:     location_(p)
     };
     UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
       method: 'post',
@@ -504,6 +521,7 @@ function sendNotification_(p, services) {
     '-----------------------------------------\n' +
     'Page:     ' + (p._page   || '') + '\n' +
     'Source:   ' + (p._source || 'website') + '\n' +
+    'Location: ' + (location_(p) ? location_(p) + ' (approx., from IP)' : 'unknown') + '\n' +
     'Campaign: ' + [(p.utm_source||''), (p.utm_medium||''), (p.utm_campaign||'')].filter(String).join(' / ') +
                    (p.gclid ? '  (gclid ' + p.gclid + ')' : '') + '\n' +
     'Time:     ' + new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST\n';

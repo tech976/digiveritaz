@@ -67,11 +67,33 @@
 
   var current = capture();
 
-  /* Returns the stored campaign data (flat object) — {} when the visit is organic/direct. */
+  /* DV-GEO: approximate lead location (city / state / country) from the CDN's IP lookup
+     via /api/geo. Fetched at most once per session, and only once the visitor starts
+     filling a field, so plain page views never call it. No browser location prompt and
+     no GPS; the IP address itself is never stored. Disclosed in the privacy policy. */
+  var GEO_KEY = 'dv-geo', geo = null, geoTried = false;
+  try { geo = JSON.parse(sessionStorage.getItem(GEO_KEY) || 'null'); } catch (e) { geo = null; }
+  function loadGeo() {
+    if (geo || geoTried || !window.fetch) return;
+    geoTried = true;
+    fetch('/api/geo/', { credentials: 'omit' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.ok) return;
+      geo = { geo_city: d.city || '', geo_region: d.region || '', geo_country: d.country || '' };
+      try { sessionStorage.setItem(GEO_KEY, JSON.stringify(geo)); } catch (e) {}
+    }).catch(function () {});
+  }
+  document.addEventListener('focusin', function (e) {
+    var t = e.target;
+    if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) && t.type !== 'search') loadGeo();
+  }, true);
+
+  /* Returns the stored campaign data (flat object) — {} when the visit is organic/direct —
+     plus the visitor's approximate location when it has been looked up. */
   window.dvAttr = function () {
     var o = current || read() || {};
     var out = {};
     FIELDS.concat(['landing_page','referrer']).forEach(function (f) { if (o[f]) out[f] = o[f]; });
+    if (geo) for (var g in geo) { if (geo[g]) out[g] = geo[g]; }
     return out;
   };
 
@@ -743,7 +765,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789400000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789700000'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */

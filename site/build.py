@@ -2060,11 +2060,11 @@ write("faq.html",
 # ---------- PRIVACY ----------
 privacy_body = page_hero("Privacy <span class=\"green_text\">Policy</span>", "Home / Privacy Policy", "") + """
 <section><div class="container prose" style="max-width:820px">
-<p><em>Last updated: April 2026</em></p>
+<p><em>Last updated: September 2026</em></p>
 <h2>1. Introduction</h2><p>DigiVeritaz ("we", "our", "us") respects your privacy. This policy explains how we collect, use and protect information you share with us.</p>
 <h2>2. Consent</h2><p>By using our website or services, you consent to the collection and use of information in accordance with this policy.</p>
-<h2>3. Information We Collect</h2><p>We may collect your name, email, phone number, company, budget, and project details when you fill out a form or contact us directly.</p>
-<h2>4. How We Use Information</h2><p>Information is used only to respond to your inquiry, deliver services, send updates you've opted into, and improve our offerings.</p>
+<h2>3. Information We Collect</h2><p>We may collect your name, email, phone number, company, budget, and project details when you fill out a form or contact us directly.</p><p>When you submit an enquiry through a form or our chat assistant, we also record your approximate location (city, state and country). This is estimated from your IP address by our content delivery network. We do not access your device&rsquo;s GPS or precise location, and we do not store your IP address with your enquiry.</p><p>We also record how you reached our website, such as the advertising campaign, search engine or referring page, so we can tell which of our marketing channels are working.</p>
+<h2>4. How We Use Information</h2><p>Information is used only to respond to your inquiry, route it to the right team, deliver services, send updates you've opted into, understand which regions and marketing channels our enquiries come from, and improve our offerings.</p>
 <h2>5. Data Retention</h2><p>We retain your data only as long as necessary for the purposes outlined in this policy, or as required by law.</p>
 <h2>6. Your Rights</h2><p>You may request access to, correction of, or deletion of your personal data at any time by emailing durvamukherjee@digiveritaz.com.</p>
 <h2>7. Data Sharing</h2><p>We do not sell your data. We share it only with trusted service providers who help us operate our business, under strict confidentiality.</p>

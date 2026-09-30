@@ -62,6 +62,22 @@
     } catch(e){ return null; }
   }
   var ATTR_NOW = attrCapture();
+
+  /* Approximate lead location — see DV-GEO in main.js. /get-proposal/ has no main.js, so
+     look it up here too; when main.js is present it owns the lookup (same session key). */
+  var geoTried = false;
+  function geoRead(){ try { return JSON.parse(sessionStorage.getItem('dv-geo') || 'null'); } catch(e){ return null; } }
+  document.addEventListener('focusin', function(e){
+    var t = e.target;
+    if (!t || !/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.type === 'search') return;
+    if (typeof window.dvAttr === 'function' || geoTried || geoRead() || !window.fetch) return;
+    geoTried = true;
+    fetch('/api/geo/', { credentials: 'omit' }).then(function(r){ return r.json(); }).then(function(d){
+      if (!d || !d.ok) return;
+      try { sessionStorage.setItem('dv-geo', JSON.stringify({ geo_city: d.city || '', geo_region: d.region || '', geo_country: d.country || '' })); } catch(e){}
+    }).catch(function(){});
+  }, true);
+
   function getAttr(){
     try {
       if (typeof window.dvAttr === 'function') {
@@ -69,8 +85,9 @@
         if (a) { for (var k in a) { if (a[k]) return a; } }   // use main.js's copy when it has data
       }
     } catch(e){}
-    var o = ATTR_NOW || attrRead() || {}, out = {};
+    var o = ATTR_NOW || attrRead() || {}, out = {}, g = geoRead();
     ATTR_FIELDS.concat(['landing_page','referrer']).forEach(function(f){ if (o[f]) out[f] = o[f]; });
+    if (g) for (var gk in g) { if (g[gk]) out[gk] = g[gk]; }
     return out;
   }
 

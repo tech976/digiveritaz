@@ -376,6 +376,33 @@ def send_verification(args):
     print("OTP_SEND " + json.dumps({"phone": phone, "ok": ok, "err": None if ok else res.get("message")}, ensure_ascii=False))
     return {"ok": ok, "error": None if ok else (res.get("message") or "send_failed")}
 
+# Approximate visitor location for the lead (city / state / country), from the CDN's IP
+# lookup — same rules as api/geo.js. Cloudflare fronts Vercel, so x-vercel-ip-* would
+# describe Cloudflare's server; it is used only when the request bypassed Cloudflare.
+# The IP address itself is never stored. Disclosed in the privacy policy.
+_COUNTRY = {"IN": "India", "GB": "United Kingdom", "AE": "United Arab Emirates", "US": "United States",
+            "CA": "Canada", "AU": "Australia", "SG": "Singapore", "SA": "Saudi Arabia", "QA": "Qatar",
+            "OM": "Oman", "KW": "Kuwait", "BH": "Bahrain", "NP": "Nepal", "BD": "Bangladesh", "LK": "Sri Lanka"}
+
+def _geo(headers):
+    def h(name, enc=None):
+        v = str(headers.get(name) or "").strip()
+        if enc == "utf8":
+            try: v = v.encode("latin-1").decode("utf-8")
+            except Exception: pass
+        elif enc == "uri":
+            v = urllib.parse.unquote(v)
+        return v[:80]
+    if headers.get("cf-ray"):
+        city, region, code = h("cf-ipcity", "utf8"), h("cf-region", "utf8"), h("cf-ipcountry").upper()
+    elif headers.get("x-vercel-ip-country"):
+        city, region, code = h("x-vercel-ip-city", "uri"), h("x-vercel-ip-country-region", "uri"), h("x-vercel-ip-country", "uri").upper()
+    else:
+        return {}
+    if not re.fullmatch(r"[A-Z]{2}", code) or code in ("XX", "T1"):
+        code = ""
+    return {"geo_city": city, "geo_region": region, "geo_country": _COUNTRY.get(code, code)}
+
 def verify_and_capture(args):
     """Step 2 — verify the WhatsApp OTP via MSG91, then save the lead (Apps Script lead_save)."""
     print("LEAD " + json.dumps(dict({k: v for k, v in args.items() if v and k != "otp"}, source="website-chatbot"), ensure_ascii=False))
@@ -403,6 +430,7 @@ def verify_and_capture(args):
                       "budget": args.get("budget", ""),
                       "message": ("[chatbot lead] " + extra).strip(),
                       "source": "website-chatbot", "_jsok": _jsok(),
+                      **(args.get("geo") or {}),
                       "_ts": str(int(time.time() * 1000) - 9000)})
     print("LEAD_VERIFY " + json.dumps({"phone": phone, "ok": True, "saved": bool(res.get("ok"))}, ensure_ascii=False))
     return {"ok": True, "error": None}  # phone verified; lead logged + saved (best-effort)
@@ -461,7 +489,8 @@ def handle_chat(payload):
                                                  "phone": phone, "business": args.get("business", ""),
                                                  "budget": args.get("budget", ""), "service": args.get("service", ""),
                                                  "industry": args.get("industry", ""), "timeline": args.get("timeline", ""),
-                                                 "notes": args.get("notes", ""), "otp": otp})
+                                                 "notes": args.get("notes", ""), "otp": otp,
+                                                 "geo": payload.get("_geo") or {}})
                         captured = captured or bool(vr.get("ok"))
                         otp_state = "verified" if vr.get("ok") else "bad_code"
                     else:
@@ -527,6 +556,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             n = int(self.headers.get("Content-Length") or 0)
             payload = json.loads(self.rfile.read(n) or b"{}")
+            payload["_geo"] = _geo(self.headers)  # server-side only; never taken from the client
             self._send(200, handle_chat(payload))
         except Exception as e:
             self._send(200, {"reply": "Sorry, something went wrong. Please leave your details at %s." % BOOKING_URL,
