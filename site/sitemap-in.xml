@@ -1688,4 +1688,10 @@
     <priority>0.3</priority>
     <image:image><image:loc>https://www.digiveritaz.com/assets/digiveritaz-logo.webp</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://www.digiveritaz.com/enquiry/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

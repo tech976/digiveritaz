@@ -321,6 +321,11 @@
       "source": "/assets/logo.jpg",
       "destination": "/assets/digiveritaz-logo.jpg",
       "permanent": true
+    },
+    {
+      "source": "/get-proposal",
+      "destination": "/enquiry/",
+      "permanent": true
     }
   ],
   "functions": {

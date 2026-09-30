@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
       +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
-      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"><button type="button" id="dvm-getotp" style="'+OTPBTN+'">Get OTP</button></div><div id="dvm-otp-row" style="display:none;gap:8px;align-items:stretch;margin-top:8px"><input type="text" id="dvm-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter OTP" style="'+OTPINP+'"><button type="button" id="dvm-verify" style="'+OTPBTN+';background:#0f2a5a">Verify</button></div><div id="dvm-otp-msg" style="font-size:.82rem;margin-top:6px;min-height:1em"></div></div>'
+      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"></div></div>'
       +'</div>'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>'
@@ -658,7 +658,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-seclabel">Select the Services You Need</div>'
       +'<div class="dvm-checks">'+checks+'</div>'
       +'<div class="dvm-field full" style="margin-bottom:14px"><label>Project Brief</label><textarea name="message" rows="2" placeholder="Tentative start date, goals, platforms of interest&hellip;"></textarea></div>'
-      +'<button class="dvm-send" type="submit" id="dvm-submit" disabled style="opacity:.5">Submit</button>'
+      +'<button class="dvm-send" type="submit" id="dvm-submit">Submit</button>'
       +'<div class="dvm-msg" id="dvm-msg" style="text-align:center;margin-top:10px"></div>'
       +'</form>'
       +'</div>';
@@ -677,11 +677,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function digits(){ var p=$('dvm-phone'); return ((p&&p.value)||'').replace(/[^0-9]/g,'').slice(-10); }
   function phoneOk(){ return /^[6-9][0-9]{9}$/.test(digits()); }
   function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim()); }
-  function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=!verified; b.style.opacity=verified?'1':'.5'; } }
+  function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=false; b.style.opacity='1'; } }
 
   function initMsg91(){ if(ready) return true; if(typeof window.sendOtp==='function'){ ready=true; return true; } if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
   function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } if(loadMsg91._loading){ loadMsg91._q.push(cb); return; } loadMsg91._loading=true; loadMsg91._q=[cb]; var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; function done(ok){ loadMsg91._loading=false; var q=loadMsg91._q; loadMsg91._q=[]; q.forEach(function(fn){ try{ fn(ok); }catch(e){} }); } (function go(){ if(typeof window.initSendOTP==='function'){ done(initMsg91()); return; } var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ done(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else done(false); }; document.head.appendChild(s); })(); }
-  function warmMsg91(){ if(warmed) return; warmed=true; try{ loadMsg91(function(){}); }catch(e){} }
+  function warmMsg91(){ /* OTP removed from the form — nothing to preload */ }
 
   function doSend(isResend){
     if(!phoneOk()){ omsg('Enter a valid 10-digit mobile number.','#dc2626'); return; }
@@ -777,11 +777,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
   function dvReady(){
-    loadDvLead();
     loadBlogCta();
     /* the WIDE popup only auto-opens once (3s, desktop, not on contact/proposal pages) */
     try {
-      if (isDesktop() && !/\/(contact-us|get-proposal|careers)(\/|\.html|$)/.test(location.pathname) && !sessionStorage.getItem('dvmSeen')) {
+      if (isDesktop() && !/\/(contact-us|get-proposal|careers|enquiry)(\/|\.html|$)/.test(location.pathname) && !sessionStorage.getItem('dvmSeen')) {
         setTimeout(function(){ try{ sessionStorage.setItem('dvmSeen','1'); }catch(e){} openModal(); }, 3000);
       }
     } catch(e){}
@@ -833,8 +832,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(bar);
 
     bar.querySelector('.dv-m-call').addEventListener('click', function(){
-      if (typeof window.dvOpenModal === 'function') window.dvOpenModal();
-      else window.location.href = '/contact-us/';
+      window.location.href = '/enquiry/';
     });
     bar.querySelector('.dv-m-chat').addEventListener('click', function(){
       if (typeof window.dvOpenChat === 'function') window.dvOpenChat();
@@ -848,7 +846,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* DV-CHATBOT v1 — lead-qualification chat widget (talks to /api/chat) */
 ;(function(){
   if (window.__dvChat) return; window.__dvChat = true;
-  var BOOK = "/contact-us/";
+  var BOOK = "/enquiry/";
   var GREETING = "Hi! 👋 I'm Veri from DigiVeritaz. What are you trying to achieve — more leads, better ROAS, or something else? I can point you to the right service and set up a quick call.";
   var I_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.3-.6L3 21l1.3-4a8.2 8.2 0 0 1-1-4 8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.7 7.4z"/></svg>';
   var I_SEND = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4l17.5-7.5a1 1 0 0 0 0-1.8L3.4 3.6a1 1 0 0 0-1.4 1l2 6.9 9 1.5-9 1.5-2 6.9a1 1 0 0 0 1.4 1z"/></svg>';
@@ -942,7 +940,7 @@ document.addEventListener('DOMContentLoaded', function () {
     panel.querySelector(".dvc-x").addEventListener("click", close);
     panel.querySelector("#dvc-send").addEventListener("click", send);
     var _bk = panel.querySelector(".dvc-book");
-    if (_bk) _bk.addEventListener("click", function(e){ if (typeof window.dvOpenModal === "function"){ e.preventDefault(); close(); window.dvOpenModal(); } });
+    if (_bk) _bk.addEventListener("click", function(){ close(); });
     ta.addEventListener("keydown", function(e){ if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); send(); } });
     ta.addEventListener("input", function(){ ta.style.height = "42px"; ta.style.height = Math.min(96, ta.scrollHeight) + "px"; });
   }

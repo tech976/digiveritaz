@@ -114,7 +114,7 @@ def build_nav(current):
     lis = "\n      ".join(lis_parts)
     return f"""    <ul>
       {lis}
-{THEME_TOGGLE}      <li class="cta"><a class="btn" href="/contact-us/" data-i18n="nav.cta">Book A Call</a></li>
+{THEME_TOGGLE}      <li class="cta"><a class="btn" href="/enquiry/" data-i18n="nav.cta">Book A Call</a></li>
     </ul>"""
 
 SITE_URL = "https://digiveritaz.com"
@@ -1005,7 +1005,7 @@ svc_body = f"""
   <div class="container">
     <h2 class="play">Not sure where to start?</h2>
     <p>Tell us your target, budget and current stack. We will shape the right service mix before you spend.</p>
-    <a class="btn" href="/contact-us/">Book A Call</a>
+    <a class="btn" href="/enquiry/">Book A Call</a>
   </div>
 </section>
 {_svc_tabs_script}
@@ -1819,7 +1819,7 @@ cs_body = page_hero("Case <span class=\"green_text\">Studies</span>", "Home / Ca
   <div class="container">
     <h2 class="play">Want to be our next <span class="green_text">success story?</span></h2>
     <p class="lead">Tell us about your goals &mdash; we'll build a plan with clear KPIs, timelines and accountability.</p>
-    <a class="btn" href="/contact-us/">Book A Call</a>
+    <a class="btn" href="/enquiry/">Book A Call</a>
   </div>
 </section>
 """
@@ -1963,7 +1963,7 @@ def blog_post_body(post, related):
   <div class="container">
     <h2 class="play">Want results like <span class="green_text">these?</span></h2>
     <p class="lead">Let's turn insights into measurable growth. Book a free strategy call with the DigiVeritaz team.</p>
-    <a class="btn" href="/contact-us/">Book A Call</a>
+    <a class="btn" href="/enquiry/">Book A Call</a>
   </div>
 </section>
 """
