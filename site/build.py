@@ -233,7 +233,7 @@ HEAD_TPL = """<!doctype html>
 <header class="site-header" role="banner">
   <div class="container nav">
     <a class="brand" href="/">
-      <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz">
+      <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz logo">
       <span class="wordmark"><b>Digi</b>Veritaz</span>
     </a>
     <button class="hamb" aria-label="Menu">&#9776;</button>
@@ -252,7 +252,7 @@ FOOT = """<footer class="site-footer" role="contentinfo">
 
         <div>
           <a class="foot-brand" href="/">
-            <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz">
+            <img src="/assets/digiveritaz-logo.jpg" alt="DigiVeritaz logo">
             <span class="wordmark"><b>Digi</b>Veritaz</span>
           </a>
           <p class="foot-tag">DigiVeritaz is a Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, Paid Media, Performance Marketing <strong>and MORE</strong>.</p>
