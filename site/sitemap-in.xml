@@ -290,6 +290,15 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/stackadapt-ivy-studio-ai-ad-campaigns/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/stackadapt-ivy-studio-ai-ad-campaigns.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/17-marketing-tasks-to-automate-2026/</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
