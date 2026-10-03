@@ -97,43 +97,14 @@
     return out;
   };
 
-  /* Carry the campaign THROUGH internal navigation instead of relying on storage alone.
-     Clicking a link used to land on a bare URL with the params gone — they still
-     resolved from localStorage, but that is invisible when debugging and is lost
-     outright if storage is blocked (Safari private mode / ITP).
-
-     NOTE: this is applied to all internal PAGE links (blog, services, conversion
-     pages) because every page carries a CTA or a lead form. It is deliberately NOT
-     applied to external hosts, mailto/tel, in-page anchors, or direct file links. */
-  var CARRY = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id',
-               'gclid','gbraid','wbraid','gad_campaignid','device',
-               'fbclid','campaign_id','adset_id','ad_id'];
-  function decorate(link) {
-    try {
-      var o = current || read(); if (!o) return;
-      var href = link.getAttribute('href');
-      if (!href || href.charAt(0) === '#') return;
-      if (/^(mailto:|tel:|javascript:|sms:|whatsapp:)/i.test(href)) return;
-      var u = new URL(link.href, location.origin);
-      if (u.host !== location.host) return;                       // never leak to third parties
-      if (/\.[a-z0-9]{2,5}$/i.test(u.pathname) && !/\.html?$/i.test(u.pathname)) return;  // asset/file link
-      var touched = false;
-      CARRY.forEach(function (k) {
-        if (o[k] && !u.searchParams.has(k)) { u.searchParams.set(k, o[k]); touched = true; }
-      });
-      if (touched) link.setAttribute('href', u.pathname + u.search + u.hash);
-    } catch (e) {}
-  }
-  function decorateAll() {
-    try { Array.prototype.forEach.call(document.querySelectorAll('a[href]'), decorate); } catch (e) {}
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', decorateAll);
-  else decorateAll();
-  /* catch links added later (popups, injected CTAs) at click time */
-  document.addEventListener('click', function (e) {
-    var l = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (l) decorate(l);
-  }, true);
+  /* Campaign params are deliberately NOT appended to internal links.
+     An earlier version carried utm_* / gclid / fbclid onto every internal href so the
+     campaign stayed visible in the URL. That stamped a stored campaign onto every page
+     a visitor opened for the whole 90-day window — e.g. a single Meta click left
+     ?utm_source=facebook&utm_medium=paid_social on every URL they browsed, which
+     polluted GA4 landing-page reports and leaked into URLs people copied and shared.
+     Attribution does not need it: the campaign is read from storage by window.dvAttr()
+     at submit time, wherever the form happens to be. */
 })();
 
 document.addEventListener('DOMContentLoaded', function () {
