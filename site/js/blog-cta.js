@@ -175,14 +175,11 @@
         '<p class="dvb-sub">Tell us what you need. A strategist replies within one business day.</p>' +
         '<div class="dvb-f"><input type="text" name="fullname" placeholder="Name*" autocomplete="name"></div>' +
         '<div class="dvb-f"><input type="email" name="email" placeholder="Email address*" autocomplete="email"></div>' +
-        '<div class="dvb-f dvb-phone"><input type="tel" name="phone" placeholder="Phone number*" inputmode="numeric" maxlength="10" autocomplete="tel"><button type="button" class="dvb-otp-btn">Get OTP</button></div>' +
-        '<div class="dvb-f dvb-otp-row" hidden><input type="text" name="otp" placeholder="Enter OTP" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button type="button" class="dvb-verify-btn">Verify</button></div>' +
-        '<div class="dvb-otp-msg"></div>' +
+        '<div class="dvb-f dvb-phone"><input type="tel" name="phone" placeholder="Phone number*" inputmode="numeric" maxlength="10" autocomplete="tel"></div>' +
         '<div class="dvb-f"><select name="service"><option value="">Interested Service</option>' + opts + '</select></div>' +
         '<div class="dvb-f"><textarea name="message" placeholder="Briefly describe your needs, i.e. brief your tentative start date, references, budgets, etc."></textarea></div>' +
         '<label class="dvb-consent"><input type="checkbox" checked><span>I agree to DigiVeritaz’s <a href="/terms-and-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>. This consent overrides any DNC/NDNC registration.</span></label>' +
         '<button class="dvb-btn" type="submit">Send</button>' +
-        '<div class="dvb-hint">Verify your mobile number above to submit.</div>' +
         '<div class="dvb-err"></div>' +
         '<p class="dvb-trust">60+ brands · 1.15L+ leads delivered · 4–10× ROAS</p>' +
       '</form>';
@@ -243,19 +240,19 @@
     var err = form.querySelector('.dvb-err');
     var btn = form.querySelector('.dvb-btn');
     var phone = form.querySelector('input[name=phone]');
-    var otpRow = form.querySelector('.dvb-otp-row');
-    var otpInput = form.querySelector('input[name=otp]');
-    var getBtn = form.querySelector('.dvb-otp-btn');
-    var verBtn = form.querySelector('.dvb-verify-btn');
-    var otpMsg = form.querySelector('.dvb-otp-msg');
-    var hint = form.querySelector('.dvb-hint');
+    var otpRow = document.createElement('div');
+    var otpInput = document.createElement('input');
+    var getBtn = document.createElement('button');
+    var verBtn = document.createElement('button');
+    var otpMsg = document.createElement('div');
+    var hint = document.createElement('div');
 
     function msg(t, c) { otpMsg.textContent = t || ''; otpMsg.style.color = c || '#64748b'; }
 
     /* start fetching/initialising the OTP widget as soon as the reader touches the form,
        so it is ready by the time they press "Get OTP" */
     ['focusin', 'input'].forEach(function (evt) {
-      form.addEventListener(evt, function once() { warmMsg91(); form.removeEventListener(evt, once); }, { once: true });
+      /* OTP removed — widget no longer pre-warmed */
     });
     function digits() { return (phone.value || '').replace(/[^0-9]/g, '').slice(-10); }
     function phoneOk() { return /^[6-9][0-9]{9}$/.test(digits()); }
@@ -340,7 +337,6 @@
       if (!name) { err.textContent = 'Please enter your name.'; return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Please enter a valid email.'; return; }
       if (!phoneOk()) { err.textContent = 'Please enter a valid 10-digit mobile number.'; return; }
-      if (!verified) { err.textContent = 'Please verify your mobile number with the OTP first.'; return; }
       if (!consent) { err.textContent = 'Please accept the T&C to continue.'; return; }
       err.textContent = '';
       btn.disabled = true; btn.textContent = 'Sending…';
@@ -348,7 +344,7 @@
       /* save FIRST — sendBeacon survives the redirect, so the Apps Script write and the
          automated email to the form filler are unaffected by the navigation below. */
       saveLead({ fullname: name, email: email, phone: ph, service: v('service'), message: v('message'),
-                 consent: consent ? 'Yes' : '', otp_verified: 'yes' }, true);
+                 consent: consent ? 'Yes' : '', otp_verified: '' }, true);
       try { (window.dataLayer = window.dataLayer || []).push({ event: 'lead_submitted', form_location: 'blog', lead_id: LEAD_ID }); } catch (e) {}
       setTimeout(function () {
         try { location.href = '/thank-you/?src=blog&lid=' + encodeURIComponent(LEAD_ID); } catch (e) {}
