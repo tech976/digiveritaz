@@ -79,7 +79,7 @@ function doGet(e) {
     if (!CRM_WEBHOOK_SECRET || e.parameter.secret !== CRM_WEBHOOK_SECRET) {
       return json({ ok: false, error: 'unauthorized' });
     }
-    var who = { build: 'v13-external-request-auth' };
+    var who = { build: 'v14-crm-push-visible' };
     try { who.script_id = ScriptApp.getScriptId(); } catch (e1) { who.script_id = 'unavailable: ' + e1; }
     try { who.effective_user = Session.getEffectiveUser().getEmail(); } catch (e2) { who.effective_user = 'unavailable: ' + e2; }
     try { who.sheet_id = SpreadsheetApp.getActiveSpreadsheet().getId(); } catch (e3) { who.sheet_id = 'unavailable: ' + e3; }
@@ -125,7 +125,7 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v13-external-request-auth',
+      build: 'v14-crm-push-visible',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
@@ -295,9 +295,11 @@ function handleSubmitForm_(p, nowMs) {
     safeCell_(services), safeCell_(p.message || ''), safeCell_(p._page || ''),
     safeCell_(p._source || 'contact-us form'), 'Complete', safeCell_(p.otp_verified || 'email'), ''
   ]);
-  writeAttr_(sheet, sheet.getLastRow(), p);   // campaign cells, by header name
+  var leadRow = sheet.getLastRow();
+  writeAttr_(sheet, leadRow, p);   // campaign cells, by header name
 
-  postLeadToCRM_(p, services);  // CRM — also send this completed lead to the CRM
+  // CRM — push this completed lead, and record the outcome in its row.
+  writeCrmStatus_(leadRow, postLeadToCRM_(p, services));
 
   try { sendNotification_(p, services); } catch (notifyErr) { console.error('Notify mail failed: ' + notifyErr); }
   try { sendUserAck_(p); } catch (ackErr) { console.error('User ack failed: ' + ackErr); }  // USER-ACK
@@ -343,7 +345,9 @@ function handleLeadSave_(p, nowMs) {
 
   // Email the team only ONCE, on the Complete submission.
   if (complete) {
-    postLeadToCRM_(p, services);  // CRM — send the completed lead to the CRM
+    // CRM — push the completed lead and record the outcome in its row, so a
+    // failed delivery shows in the sheet rather than only in the log.
+    writeCrmStatus_(rowIndex, postLeadToCRM_(p, services));
     var props = PropertiesService.getScriptProperties();
     var dedupKey = 'dedup_' + hash_(String(p.email).toLowerCase() + '|' + phoneDigits);
     var lastSeen = parseInt(props.getProperty(dedupKey) || '0', 10);
@@ -389,25 +393,25 @@ function checkCrmSecret() {
   Logger.log('Leftover in code (should be empty): "' + CRM_SECRET_TO_INSTALL + '"');
 }
 
-// Grant the project permission to make outbound calls.
-// Symptom this fixes: leads save to the sheet but never reach the CRM, and
-// ?diag=crm answers {"reached": false, "error": "...do not have permission to
-// call UrlFetchApp.fetch..."}. The project needs the
-// https://www.googleapis.com/auth/script.external_request scope; replacing the
-// code or re-creating the project can leave it unauthorised.
-// Fix: Run > authorizeNow, accept Google's permission prompt (the list must
-// include "Connect to an external service"), then read the log.
-// Print who the EDITOR is running as, to compare with ?diag=who on the live URL.
-// If these disagree, the account you are fixing is not the account serving the
-// website, and no amount of re-authorising here will change the live behaviour.
-function whoAmI() {
-  Logger.log('script_id       ' + ScriptApp.getScriptId());
-  Logger.log('effective_user  ' + Session.getEffectiveUser().getEmail());
-  try { Logger.log('sheet           ' + SpreadsheetApp.getActiveSpreadsheet().getName()); } catch (err) { Logger.log('sheet           unavailable: ' + err); }
-  Logger.log('Now open  <your /exec URL>?diag=who&secret=<secret>  and compare.');
-}
-
-function authorizeNow() {
+// ===== RUN THIS ONE FIRST: Run > forceAuth =====
+// Grants this project permission to make outbound calls.
+//
+// Symptom it fixes: leads save to the sheet in full but never reach the CRM,
+// and ?diag=crm answers {"reached": false, "error": "...do not have permission
+// to call UrlFetchApp.fetch..."}. The project needs the
+// https://www.googleapis.com/auth/script.external_request scope, and replacing
+// the code or re-creating the project can leave it ungranted.
+//
+// It has to be THIS function, not checkCrmSecret. checkCrmSecret only touches
+// PropertiesService and Logger, and neither needs an OAuth scope — so Google
+// has nothing to ask permission for and runs it straight through, with no
+// prompt, no matter how unauthorised the project is. forceAuth calls
+// UrlFetchApp, so Google must either prompt or refuse.
+//
+// Accept the prompt — the list has to include "Connect to an external service"
+// — then read the log. The probe deliberately sends a WRONG secret, so the CRM
+// answers 401 and no lead is created. A 401 here is the correct, healthy result.
+function forceAuth() {
   try {
     var r = UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
       method: 'post',
@@ -417,13 +421,24 @@ function authorizeNow() {
       muteHttpExceptions: true
     });
     Logger.log('AUTHORIZED. The call left Apps Script and the CRM answered HTTP ' + r.getResponseCode() + '.');
-    Logger.log('A 401 or 403 here is the correct answer to a deliberately wrong secret — it proves the connection works.');
-    Logger.log('CRM pushes will now go through. No redeploy needed.');
+    Logger.log('A 401 or 403 is the right answer to a deliberately wrong secret — it proves the path works.');
+    Logger.log('Now: Deploy > Manage deployments > edit > Version: New version, so the live URL uses this grant.');
   } catch (err) {
     Logger.log('STILL BLOCKED: ' + err);
-    Logger.log('If no permission prompt appeared, open Project Settings, tick "Show appsscript.json manifest file",');
-    Logger.log('and add the scopes listed in _ops/appsscript.json, then run this again.');
+    Logger.log('No prompt and still blocked means this account\'s grant is stuck. Open');
+    Logger.log('https://myaccount.google.com/permissions , remove access for this script project,');
+    Logger.log('then run forceAuth again — that gives you a full, fresh consent screen.');
   }
+}
+
+// Print who the EDITOR runs as, to compare with ?diag=who on the live URL. If
+// they disagree, the account being fixed is not the account serving the website,
+// and re-authorising here will never change the live behaviour.
+function whoAmI() {
+  Logger.log('script_id       ' + ScriptApp.getScriptId());
+  Logger.log('effective_user  ' + Session.getEffectiveUser().getEmail());
+  try { Logger.log('sheet           ' + SpreadsheetApp.getActiveSpreadsheet().getName()); } catch (err) { Logger.log('sheet           unavailable: ' + err); }
+  Logger.log('Now open  <your /exec URL>?diag=who&secret=<secret>  and compare.');
 }
 
 // ============================================================
@@ -443,7 +458,8 @@ var ATTR_HEADERS = {
   visit_source: 'Visit Source', visit_medium: 'Visit Medium',
   visit_referrer: 'Visit Referrer', visit_landing_page: 'Visit Landing Page',
   utm_recalled: 'UTM Recalled', utm_age_days: 'UTM Age Days', utm_expired: 'UTM Expired',
-  location: 'Location', lead_city: 'Lead City', lead_state: 'Lead State', lead_country: 'Lead Country'
+  location: 'Location', lead_city: 'Lead City', lead_state: 'Lead State', lead_country: 'Lead Country',
+  crm_push: 'CRM Push'
 };
 
 function normHeaders_(sheet) {
@@ -620,7 +636,7 @@ function postLeadToCRM_(p, services) {
     if (!CRM_WEBHOOK_SECRET) {
       console.error('CRM push skipped: Script Property CRM_WEBHOOK_SECRET is not set. ' +
                     'Set it in Project Settings -> Script Properties to the CRM\'s WEBSITE_LEAD_SECRET.');
-      return;
+      return 'SKIPPED — CRM_WEBHOOK_SECRET not set';
     }
     var payload = {
       fullname:     p.fullname || p.name || '',
@@ -673,10 +689,42 @@ function postLeadToCRM_(p, services) {
       muteHttpExceptions: true
     });
     /* Logged either way: a silent push is impossible to debug from the CRM side. */
-    console.log('CRM push ' + resp.getResponseCode() + ' for lead ' + (p.leadId || '(no id)') +
+    var code = resp.getResponseCode();
+    console.log('CRM push ' + code + ' for lead ' + (p.leadId || '(no id)') +
                 ' -> ' + String(resp.getContentText()).slice(0, 120));
+    return (code >= 200 && code < 300)
+      ? 'OK ' + code
+      : 'FAILED ' + code + ' — ' + String(resp.getContentText()).slice(0, 120);
   } catch (err) {
     console.error('CRM push failed: ' + err);  // Sheet + email already succeeded
+    return 'FAILED — ' + String(err).slice(0, 180);
+  }
+}
+
+// Record the push outcome in the lead's own row.
+//
+// This is the gap that let a broken CRM push go unnoticed for hours: the push
+// lives in a try/catch, so when it threw, the lead still saved, the team still
+// got its email, and the only trace was a line in an execution log nobody
+// reads. Writing the result beside the lead puts "FAILED — ..." in the sheet
+// next to the name, where it cannot be missed.
+function writeCrmStatus_(rowIndex, status) {
+  var lock = LockService.getScriptLock();
+  try {
+    if (!rowIndex || rowIndex < 2 || !status) return;
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    if (!sheet) return;
+    /* Under the lock: two leads completing at once would both find "CRM Push"
+       missing and both append it, leaving two identical columns. The caller has
+       already released the lock by this point, so taking it here is safe. */
+    try { lock.waitLock(10000); } catch (lockErr) {}
+    var norm = addMissingColumns_(sheet, ['crm_push']);   // creates "CRM Push" the first time
+    var col = norm.indexOf('crm_push');
+    if (col >= 0) sheet.getRange(rowIndex, col + 1).setValue(safeCell_(status));
+  } catch (err) {
+    console.error('writeCrmStatus_ failed: ' + err);   // never block the lead save
+  } finally {
+    try { lock.releaseLock(); } catch (relErr) {}
   }
 }
 
