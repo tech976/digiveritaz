@@ -69,6 +69,24 @@ function doGet(e) {
     return json({ ok: true, rows: readAllLeadRows_() });
   }
 
+  /* Identity check. Answers "is the editor I am typing in the same project and
+     the same account as this live URL?" — the case where the editor shows no
+     authorisation prompt (that account is fully granted) while the web app still
+     cannot make outbound calls (a DIFFERENT account or project serves the URL).
+     Compare script_id against the /projects/<id>/edit in the editor's address bar,
+     and effective_user against the account in the editor's top-right avatar. */
+  if (e && e.parameter && e.parameter.diag === 'who') {
+    if (!CRM_WEBHOOK_SECRET || e.parameter.secret !== CRM_WEBHOOK_SECRET) {
+      return json({ ok: false, error: 'unauthorized' });
+    }
+    var who = { build: 'v13-external-request-auth' };
+    try { who.script_id = ScriptApp.getScriptId(); } catch (e1) { who.script_id = 'unavailable: ' + e1; }
+    try { who.effective_user = Session.getEffectiveUser().getEmail(); } catch (e2) { who.effective_user = 'unavailable: ' + e2; }
+    try { who.sheet_id = SpreadsheetApp.getActiveSpreadsheet().getId(); } catch (e3) { who.sheet_id = 'unavailable: ' + e3; }
+    try { who.sheet_name = SpreadsheetApp.getActiveSpreadsheet().getName(); } catch (e4) { who.sheet_name = 'unavailable: ' + e4; }
+    return json(who);
+  }
+
   /* Connectivity self-test for the CRM push. Protected by the same secret.
      Deliberately posts with a WRONG secret so the CRM rejects it (401) and no lead is
      created — we only want to know whether the request leaves Apps Script at all.
@@ -379,6 +397,16 @@ function checkCrmSecret() {
 // code or re-creating the project can leave it unauthorised.
 // Fix: Run > authorizeNow, accept Google's permission prompt (the list must
 // include "Connect to an external service"), then read the log.
+// Print who the EDITOR is running as, to compare with ?diag=who on the live URL.
+// If these disagree, the account you are fixing is not the account serving the
+// website, and no amount of re-authorising here will change the live behaviour.
+function whoAmI() {
+  Logger.log('script_id       ' + ScriptApp.getScriptId());
+  Logger.log('effective_user  ' + Session.getEffectiveUser().getEmail());
+  try { Logger.log('sheet           ' + SpreadsheetApp.getActiveSpreadsheet().getName()); } catch (err) { Logger.log('sheet           unavailable: ' + err); }
+  Logger.log('Now open  <your /exec URL>?diag=who&secret=<secret>  and compare.');
+}
+
 function authorizeNow() {
   try {
     var r = UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
