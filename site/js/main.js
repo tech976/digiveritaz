@@ -663,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1791180000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1791200000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
@@ -784,7 +784,10 @@ document.addEventListener('DOMContentLoaded', function () {
     typing(true);
     fetch("/api/chat/", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ page: location.pathname, messages: msgs })
+      body: JSON.stringify({ page: location.pathname, messages: msgs,
+        /* the campaign/visit data the page already holds, so a chatbot lead is
+           attributed like every other form instead of arriving blank */
+        attr: (typeof window.dvAttr === "function" ? window.dvAttr() : {}) })
     }).then(function(r){ return r.json(); }).then(function(d){
       typing(false);
       var rep = (d && d.reply) || "Sorry, please try again.";
@@ -1113,3 +1116,87 @@ document.addEventListener('DOMContentLoaded', function () {
   else document.addEventListener('DOMContentLoaded', build);
 })();
 
+/* ============================================================
+   DV-ATTR v2 — how THIS visit arrived, and how old the stored campaign is.
+   Two problems this fixes:
+   1. A tagged click used to stick for 90 days, so a visitor who clicked an ad once
+      and came back weeks later through Google was still recorded as that ad. The
+      campaign now expires for lead credit after PAID_WINDOW_DAYS, and when it is
+      recalled from storage rather than carried by this visit it is marked as such.
+   2. Organic, direct and referral visits recorded nothing at all, so most leads
+      reached the sheet with every attribution column blank. Every visit now carries
+      its own source, read from the referrer — never invented.
+   visit_* describes this visit. utm_* stays exactly what the campaign URL carried.
+   ============================================================ */
+;(function () {
+  var VKEY = 'dv-visit', PAID_WINDOW_DAYS = 30;
+  /* Matched on any label of the host, so link shims resolve correctly:
+     l.instagram.com and m.facebook.com are social, not a referral from "l". */
+  var SEARCH = /(^|\.)(google|bing|duckduckgo|yahoo|ecosia|brave|yandex|baidu|qwant|startpage)\./i;
+  var SOCIAL = /(^|\.)(facebook|instagram|linkedin|twitter|youtube|pinterest|reddit|whatsapp|threads|tiktok|snapchat|quora|medium|x)\./i;
+  var AI = /(^|\.)(chatgpt|openai|perplexity|claude|gemini|copilot|bard)\./i;
+
+  function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } }
+
+  /* Worked out once per session, on the page the visitor actually landed on —
+     internal clicks must not overwrite it with our own domain. */
+  var visit = null;
+  try { visit = JSON.parse(sessionStorage.getItem(VKEY) || 'null'); } catch (e) { visit = null; }
+  if (!visit) {
+    var ref = document.referrer || '', h = hostOf(ref), src = '', med = '';
+    var self = location.hostname.replace(/^www\./, '');
+    var hit;
+    if (!ref) { src = 'direct'; med = 'none'; }
+    else if (h === self) { src = ''; med = ''; }                    // internal — leave the session's first source alone
+    else if ((hit = h.match(SEARCH))) { src = hit[2].toLowerCase(); med = 'organic'; }
+    else if ((hit = h.match(AI))) { src = hit[2].toLowerCase(); med = 'ai_referral'; }
+    else if ((hit = h.match(SOCIAL))) { src = hit[2].toLowerCase(); med = 'social'; }
+    else { src = h; med = 'referral'; }
+    if (src) {
+      visit = {
+        visit_source: src, visit_medium: med,
+        visit_referrer: ref.slice(0, 300),
+        visit_landing_page: (location.pathname || '/') + (location.search || '')
+      };
+      try { sessionStorage.setItem(VKEY, JSON.stringify(visit)); } catch (e) {}
+    }
+  }
+
+  var CAMPAIGN = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id',
+                  'gclid','gbraid','wbraid','gad_campaignid','gad_source','device',
+                  'fbclid','campaign_id','adset_id','ad_id'];
+
+  function taggedNow() {
+    try {
+      var q = new URLSearchParams(location.search);
+      for (var i = 0; i < CAMPAIGN.length; i++) { if (q.get(CAMPAIGN[i])) return true; }
+    } catch (e) {}
+    return false;
+  }
+  function storedAgeDays() {
+    try {
+      var o = JSON.parse(localStorage.getItem('dv-attr') || 'null');
+      if (!o || !o._at) return null;
+      return Math.floor((Date.now() - o._at) / 864e5);
+    } catch (e) { return null; }
+  }
+
+  var base = window.dvAttr;
+  window.dvAttr = function () {
+    var out = (typeof base === 'function' ? base() : {}) || {};
+    var fresh = taggedNow(), age = storedAgeDays();
+
+    /* A campaign recalled from storage, older than the window, no longer takes the
+       credit — the visit's own source does. The click ids stay for platform matching. */
+    if (!fresh && age !== null && age > PAID_WINDOW_DAYS) {
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id'].forEach(function (k) { delete out[k]; });
+      out.utm_expired = String(age) + 'd';
+    }
+    if (!fresh && out.utm_source) {
+      out.utm_recalled = 'yes';                                   // not from this visit
+      if (age !== null) out.utm_age_days = String(age);
+    }
+    if (visit) { for (var k in visit) { if (visit[k] && !out[k]) out[k] = visit[k]; } }
+    return out;
+  };
+})();

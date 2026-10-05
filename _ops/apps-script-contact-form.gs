@@ -313,7 +313,9 @@ function detectAttrHeaders_() {
                  'click_id','gclid','gbraid','wbraid','gad_campaignid','gad_source','device',
                  'fbclid','campaign_id','adset_id','ad_id',
                  'landing_page','referrer','campaign',
-                 'location','lead_city','lead_state','lead_country'];
+                 'location','lead_city','lead_state','lead_country',
+                 'visit_source','visit_medium','visit_referrer','visit_landing_page',
+                 'utm_recalled','utm_age_days','utm_expired'];
     var found = {};
     for (var i = 0; i < headers.length; i++) {
       var h = String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_');
@@ -373,6 +375,13 @@ function writeAttr_(sheet, rowIndex, p) {
       referrer:       p.referrer || '',
       campaign:       [src, med, camp].filter(String).join(' / '),  // single-column summary
       location:       location_(p),
+      visit_source:   p.visit_source || '',
+      visit_medium:   p.visit_medium || '',
+      visit_referrer: p.visit_referrer || '',
+      visit_landing_page: p.visit_landing_page || '',
+      utm_recalled:   p.utm_recalled || '',    // 'yes' = the campaign came from storage, not this visit
+      utm_age_days:   p.utm_age_days || '',    // how old that stored campaign was
+      utm_expired:    p.utm_expired || '',     // set when a campaign aged out of the credit window
       lead_city:      p.geo_city || '',
       lead_state:     p.geo_region || '',
       lead_country:   p.geo_country || ''
@@ -439,6 +448,11 @@ function postLeadToCRM_(p, services) {
       device:       p.device || '',
       landing_page: p.landing_page || '',
       referrer:     p.referrer || '',
+      visit_source:   p.visit_source || '',
+      visit_medium:   p.visit_medium || '',
+      visit_referrer: p.visit_referrer || '',
+      utm_recalled:   p.utm_recalled || '',
+      utm_age_days:   p.utm_age_days || '',
       geo_city:     p.geo_city || '',
       geo_state:    p.geo_region || '',
       geo_country:  p.geo_country || '',

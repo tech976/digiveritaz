@@ -403,6 +403,24 @@ def _geo(headers):
         code = ""
     return {"geo_city": city, "geo_region": region, "geo_country": _COUNTRY.get(code, code)}
 
+# Campaign/visit data the page already holds (window.dvAttr). Whitelisted and clipped:
+# it arrives from the browser, so it is treated as untrusted input.
+_ATTR_KEYS = ("utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
+              "gclid", "gbraid", "wbraid", "gad_campaignid", "gad_source", "device",
+              "fbclid", "campaign_id", "adset_id", "ad_id", "landing_page", "referrer",
+              "visit_source", "visit_medium", "visit_referrer", "visit_landing_page",
+              "utm_recalled", "utm_age_days", "utm_expired")
+
+def _clean_attr(raw):
+    if not isinstance(raw, dict):
+        return {}
+    out = {}
+    for k in _ATTR_KEYS:
+        v = raw.get(k)
+        if isinstance(v, (str, int)) and str(v).strip():
+            out[k] = str(v)[:200]
+    return out
+
 def verify_and_capture(args):
     """Step 2 — verify the WhatsApp OTP via MSG91, then save the lead (Apps Script lead_save)."""
     print("LEAD " + json.dumps(dict({k: v for k, v in args.items() if v and k != "otp"}, source="website-chatbot"), ensure_ascii=False))
@@ -425,12 +443,15 @@ def verify_and_capture(args):
         "timeline: " + args["timeline"] if args.get("timeline") else "",
         "notes: " + args["notes"] if args.get("notes") else ""]))
     res = _apps_post({"action": "lead_save", "otp_verified": "yes",
+                      "complete": "1", "status": "Complete",
                       "fullname": args.get("name", ""), "email": args.get("email", ""),
                       "phone": args.get("phone", ""), "company": args.get("business", ""),
                       "budget": args.get("budget", ""),
                       "message": ("[chatbot lead] " + extra).strip(),
-                      "source": "website-chatbot", "_jsok": _jsok(),
+                      "_source": "website-chatbot", "source": "website-chatbot",
+                      "_page": args.get("page", ""), "_jsok": _jsok(),
                       **(args.get("geo") or {}),
+                      **(args.get("attr") or {}),
                       "_ts": str(int(time.time() * 1000) - 9000)})
     print("LEAD_VERIFY " + json.dumps({"phone": phone, "ok": True, "saved": bool(res.get("ok"))}, ensure_ascii=False))
     return {"ok": True, "error": None}  # phone verified; lead logged + saved (best-effort)
@@ -490,7 +511,9 @@ def handle_chat(payload):
                                                  "budget": args.get("budget", ""), "service": args.get("service", ""),
                                                  "industry": args.get("industry", ""), "timeline": args.get("timeline", ""),
                                                  "notes": args.get("notes", ""), "otp": otp,
-                                                 "geo": payload.get("_geo") or {}})
+                                                 "geo": payload.get("_geo") or {},
+                                                 "attr": payload.get("_attr") or {},
+                                                 "page": page})
                         captured = captured or bool(vr.get("ok"))
                         otp_state = "verified" if vr.get("ok") else "bad_code"
                     else:
@@ -557,6 +580,7 @@ class handler(BaseHTTPRequestHandler):
             n = int(self.headers.get("Content-Length") or 0)
             payload = json.loads(self.rfile.read(n) or b"{}")
             payload["_geo"] = _geo(self.headers)  # server-side only; never taken from the client
+            payload["_attr"] = _clean_attr(payload.get("attr"))
             self._send(200, handle_chat(payload))
         except Exception as e:
             self._send(200, {"reply": "Sorry, something went wrong. Please leave your details at %s." % BOOKING_URL,
