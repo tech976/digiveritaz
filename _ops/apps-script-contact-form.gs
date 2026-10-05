@@ -79,6 +79,7 @@ function doGet(e) {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
         crm_secret_set: !!CRM_WEBHOOK_SECRET,       // true once the Script Property exists (value never shown)
+        secret_left_in_code: !!CRM_SECRET_TO_INSTALL,  // true = blank CRM_SECRET_TO_INSTALL and save; it should not live in the code
         attribution_columns: detectAttrHeaders_(),  // which campaign headers this sheet will fill
         missing_columns: missingAttrColumns_()      // headers not in the sheet yet (created automatically when a lead carries one)
       }
