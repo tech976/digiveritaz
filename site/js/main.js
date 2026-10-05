@@ -42,10 +42,11 @@
         if (!found.utm_source && (found.gclid || found.gbraid || found.wbraid || found.gad_campaignid)) {
           found.utm_source = 'google'; found.utm_medium = found.utm_medium || 'cpc';
         }
-        /* a bare fbclid (Meta auto-tagging, no utm_*) still means Meta Ads */
-        if (!found.utm_source && found.fbclid) {
-          found.utm_source = 'facebook'; found.utm_medium = found.utm_medium || 'paid_social';
-        }
+        /* No source is invented from a bare fbclid. Meta appends fbclid to EVERY outbound
+           click — organic posts, stories, bio links, DMs — not just ads, so treating it as
+           paid social mislabelled organic Meta traffic as advertising. gclid above is
+           different: Google Ads is the only thing that sets it. fbclid is still captured
+           and sent with the lead; it just no longer decides the source. */
         /* An unresolved ValueTrack placeholder ('{campaignid}', '{keyword}' …) would otherwise
            be recorded verbatim on every lead. Substitute the real auto-tagged campaign id
            where we have it, and drop the placeholder where we don't. */
@@ -421,92 +422,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (q) q.addEventListener('click', function () { item.classList.toggle('open'); });
   });
 
-  // Contact form — submits to Google Apps Script (Sheet + email), with
-  // FormSubmit.co as backup and mailto as last-resort fallback.
-  var form = document.getElementById('contact-form');
-  if (form && !document.getElementById('btn-send-otp')) {
-    var CONTACT_EMAIL = 'info@digiveritaz.com';
-    var APPS_SCRIPT_URL =
-      'https://script.google.com/macros/s/AKfycby3DZjNUqSEU2Pg2rv45pnYTZT78L4405Et0SJ_NOBybsDLyd6ZWzxlSaEMx1TnKZkc/exec';
-
-    var openMailtoFallback = function () {
-      var fd = new FormData(form);
-      var lines = [];
-      fd.forEach(function (v, k) {
-        if (k.charAt(0) === '_' || k === '_honey') return;
-        if (!v) return;
-        if (k === 'services[]') { lines.push('Service: ' + v); return; }
-        var label = k.charAt(0).toUpperCase() + k.slice(1);
-        lines.push(label + ': ' + v);
-      });
-      var subject = encodeURIComponent('New lead from DigiVeritaz website');
-      var body = encodeURIComponent(lines.join('\n'));
-      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
-    };
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = (form.fullname && form.fullname.value || '').trim();
-      var email = (form.email && form.email.value || '').trim();
-      var phone = (form.phone && form.phone.value || '').trim();
-      var ok = true;
-      var errs = form.querySelectorAll('.error_frm');
-      errs.forEach(function (el) { el.textContent = ''; });
-      if (!name) { var en = form.querySelector('#error_fname'); if (en) en.textContent = 'Please enter your name'; ok = false; }
-      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        var ee = form.querySelector('#error_email'); if (ee) ee.textContent = 'Please enter a valid email'; ok = false;
-      }
-      if (!phone || phone.replace(/\D/g, '').length < 10) {
-        var ep = form.querySelector('#error_phone'); if (ep) ep.textContent = 'Please enter a valid phone number'; ok = false;
-      }
-      if (!ok) return;
-
-      var btn = form.querySelector('button[type=submit]');
-      var origHTML = btn ? btn.innerHTML : '';
-      if (btn) { btn.disabled = true; btn.innerHTML = 'Sending…'; }
-
-      // Augment payload with referrer-style fields the Apps Script logs.
-      var data = new FormData(form);
-      data.append('_page', location.pathname || '/contact-us.html');
-      data.append('_source', 'website-contact-form');
-
-      // Primary endpoint: Google Apps Script Web App (writes to "DV Lead
-      // Form" sheet + emails info@/daniel@/durvamukherjee@). We can't
-      // read the response under no-cors but the POST does go through;
-      // we'll trust it and redirect to the thank-you page.
-      var appsScriptPromise = fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        body: data,
-        mode: 'no-cors',
-        redirect: 'follow'
-      });
-
-      appsScriptPromise.then(function () {
-        // Treat any successful network call as success — no-cors hides
-        // the actual response status but the POST did reach Apps Script.
-        window.location.href = '/thank-you/';
-      }).catch(function () {
-        // Apps Script unreachable — fall back to FormSubmit.co AJAX.
-        fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
-        }).then(function (res) {
-          return res.json().then(function (j) { return { ok: res.ok, body: j }; });
-        }).then(function (result) {
-          if (result.ok && (result.body.success === 'true' || result.body.success === true)) {
-            window.location.href = '/thank-you/';
-          } else {
-            if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
-            openMailtoFallback();
-          }
-        }).catch(function () {
-          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
-          openMailtoFallback();
-        });
-      });
-    });
-  }
+  /* The old contact-form handler lived here. It guarded on an element (#btn-send-otp)
+     that no longer exists anywhere, so it kept binding a SECOND submit listener to
+     #contact-form alongside each contact page's own inline one. It POSTed without
+     action=lead_save — which the Apps Script discards as unknown_action — and still
+     redirected to /thank-you/, so a rejected number produced a thank-you page and no
+     lead. Each contact page now owns its submit path. */
 
   // Clients filter — pill tabs swap two opposite-moving marquees by category
   (function initClientFilter() {
@@ -742,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function loadBlogCta(){
     if (!/^\/blog\/[^/]+\/?$/.test(location.pathname)) return;   // posts only, not /blog/ index
     if (window.__dvBlogCta || document.getElementById('dvblogcta-js')) return;
-    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1791010000'; document.head.appendChild(s);
+    var s=document.createElement('script'); s.id='dvblogcta-js'; s.src='/js/blog-cta.min.js?v=1791180000'; document.head.appendChild(s);
   }
 
   function isDesktop(){ return window.matchMedia ? window.matchMedia('(min-width: 1024px)').matches : (window.innerWidth>=1024); }
