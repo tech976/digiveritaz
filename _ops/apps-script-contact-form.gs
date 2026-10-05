@@ -69,6 +69,39 @@ function doGet(e) {
     return json({ ok: true, rows: readAllLeadRows_() });
   }
 
+  /* Connectivity self-test for the CRM push. Protected by the same secret.
+     Deliberately posts with a WRONG secret so the CRM rejects it (401) and no lead is
+     created — we only want to know whether the request leaves Apps Script at all.
+     A 401 means the path works. An exception here is the real fault (most often
+     "Authorization is required", i.e. the script's external-request permission was
+     never re-granted after the code was replaced). */
+  if (e && e.parameter && e.parameter.diag === 'crm') {
+    if (!CRM_WEBHOOK_SECRET || e.parameter.secret !== CRM_WEBHOOK_SECRET) {
+      return json({ ok: false, error: 'unauthorized' });
+    }
+    var out = { url: CRM_WEBHOOK_URL, secret_set: !!CRM_WEBHOOK_SECRET, secret_len: CRM_WEBHOOK_SECRET.length };
+    try {
+      var r = UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
+        method: 'post',
+        contentType: 'application/json',
+        headers: { 'X-Webhook-Secret': 'connectivity-probe-expect-401' },
+        payload: JSON.stringify({ probe: true }),
+        muteHttpExceptions: true
+      });
+      out.reached = true;
+      out.http = r.getResponseCode();
+      out.body = String(r.getContentText()).slice(0, 200);
+      out.verdict = (out.http === 401 || out.http === 403)
+        ? 'OK — the request left Apps Script and the CRM answered. Real pushes will work.'
+        : 'Reached the CRM but got an unexpected status; see body.';
+    } catch (err) {
+      out.reached = false;
+      out.error = String(err);
+      out.verdict = 'THE CALL NEVER LEFT APPS SCRIPT — this is the fault. See error.';
+    }
+    return json(out);
+  }
+
   if (e && e.parameter && e.parameter.diag === '1') {
     var quota;
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
@@ -577,13 +610,16 @@ function postLeadToCRM_(p, services) {
       geo_country:  p.geo_country || '',
       location:     location_(p)
     };
-    UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
+    var resp = UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
       method: 'post',
       contentType: 'application/json',
       headers: { 'X-Webhook-Secret': CRM_WEBHOOK_SECRET },
       payload: JSON.stringify(payload),
       muteHttpExceptions: true
     });
+    /* Logged either way: a silent push is impossible to debug from the CRM side. */
+    console.log('CRM push ' + resp.getResponseCode() + ' for lead ' + (p.leadId || '(no id)') +
+                ' -> ' + String(resp.getContentText()).slice(0, 120));
   } catch (err) {
     console.error('CRM push failed: ' + err);  // Sheet + email already succeeded
   }
