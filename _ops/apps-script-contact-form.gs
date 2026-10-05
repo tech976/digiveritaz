@@ -68,11 +68,12 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v11-honeypot-autofill-fix',
+      build: 'v12-auto-columns',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
-        attribution_columns: detectAttrHeaders_()   // which campaign headers this sheet will fill
+        attribution_columns: detectAttrHeaders_(),  // which campaign headers this sheet will fill
+        missing_columns: missingAttrColumns_()      // headers not in the sheet yet (created automatically when a lead carries one)
       }
     });
   }
@@ -296,6 +297,75 @@ function handleLeadSave_(p, nowMs) {
   return json({ ok: true });
 }
 
+
+// ============================================================
+// Columns are created automatically. Every field the website sends has a
+// canonical header here; when a lead carries a value and the sheet has no
+// column for it, the header is appended to the right of row 1 and used from
+// then on. Existing columns are never moved, renamed or overwritten.
+// To create the whole set at once, open the editor and Run > setupSheet.
+// ============================================================
+var ATTR_HEADERS = {
+  utm_source: 'UTM Source', utm_medium: 'UTM Medium', utm_campaign: 'UTM Campaign',
+  utm_term: 'UTM Term', utm_content: 'UTM Content', utm_id: 'UTM ID',
+  keyword: 'Keyword', click_id: 'Click ID', gclid: 'GCLID', gbraid: 'GBRAID',
+  gad_campaignid: 'GAD Campaign ID', gad_source: 'GAD Source', device: 'Device',
+  fbclid: 'FBCLID', campaign_id: 'Campaign ID', adset_id: 'Adset ID', ad_id: 'Ad ID',
+  landing_page: 'Landing Page', referrer: 'Referrer',
+  visit_source: 'Visit Source', visit_medium: 'Visit Medium',
+  visit_referrer: 'Visit Referrer', visit_landing_page: 'Visit Landing Page',
+  utm_recalled: 'UTM Recalled', utm_age_days: 'UTM Age Days', utm_expired: 'UTM Expired',
+  location: 'Location', lead_city: 'Lead City', lead_state: 'Lead State', lead_country: 'Lead Country'
+};
+
+function normHeaders_(sheet) {
+  var lastCol = sheet.getLastColumn();
+  if (lastCol < 1) return [];
+  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  var norm = [];
+  for (var i = 0; i < headers.length; i++) {
+    norm.push(String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_'));
+  }
+  return norm;
+}
+
+// Append headers for the keys given, skipping any the sheet already has.
+// Returns the refreshed normalised header row.
+function addMissingColumns_(sheet, keys) {
+  var norm = normHeaders_(sheet), added = 0;
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    if (!ATTR_HEADERS[k] || norm.indexOf(k) >= 0) continue;
+    sheet.getRange(1, sheet.getLastColumn() + 1).setValue(ATTR_HEADERS[k]);
+    norm.push(k); added++;
+  }
+  if (added) SpreadsheetApp.flush();
+  return norm;
+}
+
+// Which canonical columns the sheet does not have yet (reported by ?diag=1).
+function missingAttrColumns_() {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    if (!sheet) return { error: 'sheet_not_found' };
+    var norm = normHeaders_(sheet), out = [];
+    for (var k in ATTR_HEADERS) { if (norm.indexOf(k) < 0) out.push(ATTR_HEADERS[k]); }
+    return out;
+  } catch (err) { return { error: String(err) }; }
+}
+
+// Run this once from the editor to create every column in one go.
+function setupSheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sheet) { Logger.log('Sheet "' + SHEET_NAME + '" not found'); return; }
+  var before = normHeaders_(sheet).length;
+  var keys = []; for (var k in ATTR_HEADERS) keys.push(k);
+  addMissingColumns_(sheet, keys);
+  var after = normHeaders_(sheet);
+  Logger.log('Columns before: ' + before + ' | after: ' + after.length);
+  Logger.log('Row 1 is now: ' + after.join(', '));
+}
+
 // ============================================================
 // Diagnostic: report which campaign headers row 1 actually exposes, and where.
 // Hit  <exec-url>?diag=1  after deploying to confirm both the build AND the sheet
@@ -347,11 +417,7 @@ function writeAttr_(sheet, rowIndex, p) {
     if (!sheet || !rowIndex || rowIndex < 2) return;
     var lastCol = sheet.getLastColumn();
     if (lastCol < 1) return;
-    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-    var norm = [];
-    for (var i = 0; i < headers.length; i++) {
-      norm.push(String(headers[i] == null ? '' : headers[i]).trim().toLowerCase().replace(/\s+/g, '_'));
-    }
+    var norm = normHeaders_(sheet);
     var src = p.utm_source || '', med = p.utm_medium || '', camp = p.utm_campaign || '';
     var vals = {
       utm_source:     src,
@@ -386,6 +452,12 @@ function writeAttr_(sheet, rowIndex, p) {
       lead_state:     p.geo_region || '',
       lead_country:   p.geo_country || ''
     };
+    /* Create a column for anything we have a value for but no home for yet,
+       so a new field is never silently dropped waiting on a manual edit. */
+    var wanted = [];
+    for (var w in vals) { if (vals[w] && norm.indexOf(w) < 0 && ATTR_HEADERS[w]) wanted.push(w); }
+    if (wanted.length) norm = addMissingColumns_(sheet, wanted);
+
     for (var key in vals) {
       if (!Object.prototype.hasOwnProperty.call(vals, key)) continue;
       var col = norm.indexOf(key);
