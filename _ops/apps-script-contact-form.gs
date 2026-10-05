@@ -305,6 +305,38 @@ function handleLeadSave_(p, nowMs) {
 }
 
 
+
+// ============================================================
+// ONE-TIME: install the CRM secret when the Script Properties UI is unavailable.
+// Google has moved (and sometimes hidden) Project Settings -> Script Properties, so
+// this does the same thing from code.
+//   1. Paste the real secret between the quotes below — IN THE EDITOR ONLY, never in git.
+//      It must match the CRM's WEBSITE_LEAD_SECRET exactly.
+//   2. Run > setCrmSecret   (authorise if asked). The log confirms the length, never the value.
+//   3. Clear the quotes again and Save, so the secret lives only in Script Properties.
+// No redeploy needed: the property is read on every execution.
+// ============================================================
+var CRM_SECRET_TO_INSTALL = '';   // <-- paste here temporarily, then blank it again
+
+function setCrmSecret() {
+  var v = String(CRM_SECRET_TO_INSTALL || '').trim();
+  if (!v) {
+    Logger.log('Nothing to install. Put the secret in CRM_SECRET_TO_INSTALL (line above), Save, then Run > setCrmSecret again.');
+    return;
+  }
+  PropertiesService.getScriptProperties().setProperty('CRM_WEBHOOK_SECRET', v);
+  Logger.log('Stored CRM_WEBHOOK_SECRET (' + v.length + ' characters). The value itself is not logged.');
+  Logger.log('Now clear CRM_SECRET_TO_INSTALL back to \'\' and Save, so the secret is not left in the code.');
+}
+
+// Check it without revealing it. Run > checkCrmSecret, then read the log.
+function checkCrmSecret() {
+  var v = PropertiesService.getScriptProperties().getProperty('CRM_WEBHOOK_SECRET');
+  Logger.log(v ? ('CRM_WEBHOOK_SECRET is SET — ' + v.length + ' characters (value not shown).')
+               : 'CRM_WEBHOOK_SECRET is NOT SET. CRM pushes are being skipped and the sheet feed is closed.');
+  Logger.log('Leftover in code (should be empty): "' + CRM_SECRET_TO_INSTALL + '"');
+}
+
 // ============================================================
 // Columns are created automatically. Every field the website sends has a
 // canonical header here; when a lead carries a value and the sheet has no
