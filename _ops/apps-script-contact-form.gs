@@ -33,7 +33,12 @@ var SUBJECT_PREFIX = '[Website Lead] ';
 var CRM_WEBHOOK_URL    = 'https://crm.digiveritaz.tech/api/website/lead';
 // Redacted in the repo. In the live editor use the real value, or set a Script Property
 // named CRM_WEBHOOK_SECRET and this line will pick it up automatically.
-var CRM_WEBHOOK_SECRET = PropertiesService.getScriptProperties().getProperty('CRM_WEBHOOK_SECRET') || 'REDACTED_IN_REPO';
+var CRM_WEBHOOK_SECRET = PropertiesService.getScriptProperties().getProperty('CRM_WEBHOOK_SECRET') || '';
+// Never fall back to a literal. An earlier copy defaulted to 'REDACTED_IN_REPO', and when that
+// was pasted into the live editor without the Script Property set, the placeholder BECAME the
+// secret: CRM pushes were rejected by the CRM, and anyone sending ?secret=REDACTED_IN_REPO
+// could read the whole lead sheet. With '' the feed below denies every request until the
+// property is set in Project Settings -> Script Properties.
 
 // ============================================================
 // HARDENING TUNABLES
@@ -59,6 +64,7 @@ var OTP_REQUESTS_PER_HOUR = 3;
 function doGet(e) {
   // CRM — live sheet feed for the "Website Leads" tab
   if (e && e.parameter && e.parameter.action === 'list') {
+    if (!CRM_WEBHOOK_SECRET) return json({ ok: false, error: 'crm_secret_not_configured' });
     if (e.parameter.secret !== CRM_WEBHOOK_SECRET) return json({ ok: false, error: 'unauthorized' });
     return json({ ok: true, rows: readAllLeadRows_() });
   }
@@ -72,6 +78,7 @@ function doGet(e) {
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
+        crm_secret_set: !!CRM_WEBHOOK_SECRET,       // true once the Script Property exists (value never shown)
         attribution_columns: detectAttrHeaders_(),  // which campaign headers this sheet will fill
         missing_columns: missingAttrColumns_()      // headers not in the sheet yet (created automatically when a lead carries one)
       }
@@ -489,6 +496,11 @@ function findRowByLeadId_(sheet, leadId) {
 // ============================================================
 function postLeadToCRM_(p, services) {
   try {
+    if (!CRM_WEBHOOK_SECRET) {
+      console.error('CRM push skipped: Script Property CRM_WEBHOOK_SECRET is not set. ' +
+                    'Set it in Project Settings -> Script Properties to the CRM\'s WEBSITE_LEAD_SECRET.');
+      return;
+    }
     var payload = {
       fullname:     p.fullname || p.name || '',
       email:        p.email || '',
