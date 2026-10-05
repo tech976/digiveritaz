@@ -107,7 +107,7 @@ function doGet(e) {
     try { quota = MailApp.getRemainingDailyQuota(); } catch (qe) { quota = 'err:' + qe; }
     return json({
       status: 'DigiVeritaz lead-capture endpoint — POST only',
-      build: 'v12-auto-columns',
+      build: 'v13-external-request-auth',
       diag: {
         sheet_found: !!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME),
         mail_quota_remaining: quota,
@@ -369,6 +369,33 @@ function checkCrmSecret() {
   Logger.log(v ? ('CRM_WEBHOOK_SECRET is SET — ' + v.length + ' characters (value not shown).')
                : 'CRM_WEBHOOK_SECRET is NOT SET. CRM pushes are being skipped and the sheet feed is closed.');
   Logger.log('Leftover in code (should be empty): "' + CRM_SECRET_TO_INSTALL + '"');
+}
+
+// Grant the project permission to make outbound calls.
+// Symptom this fixes: leads save to the sheet but never reach the CRM, and
+// ?diag=crm answers {"reached": false, "error": "...do not have permission to
+// call UrlFetchApp.fetch..."}. The project needs the
+// https://www.googleapis.com/auth/script.external_request scope; replacing the
+// code or re-creating the project can leave it unauthorised.
+// Fix: Run > authorizeNow, accept Google's permission prompt (the list must
+// include "Connect to an external service"), then read the log.
+function authorizeNow() {
+  try {
+    var r = UrlFetchApp.fetch(CRM_WEBHOOK_URL, {
+      method: 'post',
+      contentType: 'application/json',
+      headers: { 'X-Webhook-Secret': 'authorization-probe-expect-401' },
+      payload: JSON.stringify({ probe: true }),
+      muteHttpExceptions: true
+    });
+    Logger.log('AUTHORIZED. The call left Apps Script and the CRM answered HTTP ' + r.getResponseCode() + '.');
+    Logger.log('A 401 or 403 here is the correct answer to a deliberately wrong secret — it proves the connection works.');
+    Logger.log('CRM pushes will now go through. No redeploy needed.');
+  } catch (err) {
+    Logger.log('STILL BLOCKED: ' + err);
+    Logger.log('If no permission prompt appeared, open Project Settings, tick "Show appsscript.json manifest file",');
+    Logger.log('and add the scopes listed in _ops/appsscript.json, then run this again.');
+  }
 }
 
 // ============================================================
