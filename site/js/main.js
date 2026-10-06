@@ -1181,10 +1181,30 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) { return null; }
   }
 
+  /* Did the stored campaign arrive in THIS visit?
+     utm_recalled separates "clicked the ad in this session" from "carrying a click
+     from days ago". It was deciding that purely on whether the CURRENT url still
+     has the tags, so the second page of every paid visit was already flagged as
+     recalled — and since almost nobody submits on the page they landed on, nearly
+     every paid lead came through marked recalled and the flag meant nothing.
+     A tagged click now stamps the session with the campaign it stored, so later
+     pages in the same visit recognise that click as their own. */
+  var SKEY = 'dv-attr-session';
+  function storedAt() {
+    try { var o = JSON.parse(localStorage.getItem('dv-attr') || 'null'); return (o && o._at) || 0; } catch (e) { return 0; }
+  }
+  if (taggedNow()) { try { sessionStorage.setItem(SKEY, String(storedAt())); } catch (e) {} }
+  function sameSession() {
+    try {
+      var mark = sessionStorage.getItem(SKEY);
+      return !!mark && mark !== '0' && mark === String(storedAt());
+    } catch (e) { return false; }
+  }
+
   var base = window.dvAttr;
   window.dvAttr = function () {
     var out = (typeof base === 'function' ? base() : {}) || {};
-    var fresh = taggedNow(), age = storedAgeDays();
+    var fresh = taggedNow() || sameSession(), age = storedAgeDays();
 
     /* A campaign recalled from storage, older than the window, no longer takes the
        credit — the visit's own source does. The click ids stay for platform matching. */
