@@ -290,6 +290,24 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/google-ai-overviews-blame-websites-content-accuracy/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/google-ai-overviews-blame-websites-content-accuracy.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.digiveritaz.com/blog/free-vs-paid-seo-tools-2026-india/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/free-vs-paid-seo-tools-2026-india.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/ai-informational-keywords-rebuild-seo-2026/</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
