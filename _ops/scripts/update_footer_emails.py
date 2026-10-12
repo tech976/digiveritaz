@@ -13,7 +13,7 @@ Handles two presentation patterns:
 """
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 
 # Pattern 1: footer column / contact strip — replace the 2-email block

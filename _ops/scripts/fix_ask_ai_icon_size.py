@@ -18,7 +18,7 @@ appears on other icons elsewhere on the page.
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 
 NEW_VER = "1785700000"

@@ -8,7 +8,7 @@ Wire up hreflang reciprocity for the 5 UK service pages:
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).parent / "site"
+ROOT = Path(__file__).resolve().parents[2] / "site"
 SLUGS = [
     "seo",
     "pay-per-click",

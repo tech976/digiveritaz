@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-SITE = Path(__file__).resolve().parent / "site"
+SITE = Path(__file__).resolve().parents[2] / "site"
 
 # --------------------------------------------------------------------------- #
 # 50 entries from the SEO sheet: (filename, meta_title, meta_description)

@@ -14,3 +14,7 @@ __pycache__/
 /*.jpg
 /*.jpeg
 .~lock.*#
+
+# Local scratch that is deliberately not part of the repo. The root-level
+# /*.png rule below only covers the root, so the folder needs its own rule.
+/_local/

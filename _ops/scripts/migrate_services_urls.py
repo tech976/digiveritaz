@@ -20,7 +20,7 @@ Do not deploy without it.
 import re, subprocess, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 
 PAIRS = [

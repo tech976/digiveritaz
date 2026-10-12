@@ -15,7 +15,7 @@ Script is inserted into <head> right before </head> so it fires before content p
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).parent / "site"
+ROOT = Path(__file__).resolve().parents[2] / "site"
 SLUGS = [
     "seo",
     "pay-per-click",

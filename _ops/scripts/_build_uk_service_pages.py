@@ -13,7 +13,7 @@ Run from repo root: python3 _build_uk_service_pages.py
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).parent / "site"
+ROOT = Path(__file__).resolve().parents[2] / "site"
 UK_DIR = ROOT / "uk"
 UK_DIR.mkdir(exist_ok=True)
 

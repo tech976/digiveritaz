@@ -16,7 +16,7 @@ so listings become eligible for the Google Jobs box.
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 SRC = SITE / "faq.html"
 OUT = SITE / "careers.html"

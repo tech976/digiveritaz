@@ -16,7 +16,7 @@ prose. That needs a copywriter pass before this should be promoted.
 import re
 from pathlib import Path
 
-SITE = Path(__file__).resolve().parent / "site"
+SITE = Path(__file__).resolve().parents[2] / "site"
 SRC = SITE / "services" / "index.html"
 DST = SITE / "uk" / "services" / "index.html"
 

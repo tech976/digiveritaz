@@ -25,7 +25,7 @@ incomplete. See the report it prints for per-page copy debt.
 import json, re, shutil
 from pathlib import Path
 
-SITE = Path(__file__).resolve().parent / "site"
+SITE = Path(__file__).resolve().parents[2] / "site"
 IN_SVC, UK_SVC = SITE / "services", SITE / "uk" / "services"
 
 EXISTING = {"seo", "pay-per-click", "performance-marketing-agency",

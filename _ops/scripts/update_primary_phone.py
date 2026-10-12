@@ -22,7 +22,7 @@ SUBS = [
     (OLD, NEW),                                       # any bare leftover
 ]
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 EXT = {".html", ".json", ".txt", ".xml", ".js", ".py", ".gs"}
 
 files = [p for p in ROOT.rglob("*")

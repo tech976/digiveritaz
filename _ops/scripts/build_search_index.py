@@ -2,7 +2,7 @@
 """Build /search-index.json — one entry per page, with its sections, for the header search."""
 import io, os, re, sys, json, html
 sys.stdout.reconfigure(encoding='utf-8')
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "site")
+ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "site")
 OUT = os.path.join(ROOT, 'search-index.json')
 
 SKIP_FILES = {'google86ad99dbc298dc03.html', 'thank-you.html', '404.html'}

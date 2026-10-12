@@ -13,7 +13,7 @@ regress to the old values.
 """
 from pathlib import Path
 
-SITE = Path(__file__).resolve().parent / "site"
+SITE = Path(__file__).resolve().parents[2] / "site"
 TARGETS = sorted(SITE.glob("*.html")) + [SITE / "build.py"]
 
 # Order matters: handle "Privacy Officer: Mihir Lunia · mihir@..." before

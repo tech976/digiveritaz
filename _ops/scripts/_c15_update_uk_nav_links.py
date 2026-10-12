@@ -14,7 +14,7 @@ Updates:
 """
 from pathlib import Path
 
-PAGE = Path(__file__).parent / "site" / "uk" / "index.html"
+PAGE = Path(__file__).resolve().parents[2] / "site" / "uk" / "index.html"
 
 # Top-5 audit priority — these have UK pages, so links should go to /uk/<slug>/
 UK_LINK_UPDATES = [

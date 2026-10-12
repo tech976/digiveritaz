@@ -11,7 +11,7 @@ injected across all of them plus the FOOT template in build.py.
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 CSS = SITE / "css"
 

@@ -12,7 +12,7 @@ that cannot collide with these exact paths.
 import json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 CFG = ROOT / "site" / "vercel.json"
 
 RENAME = {"organic-marketing-services": "organic-marketing",

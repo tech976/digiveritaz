@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 TODAY = "2026-08-24"
-SITE = Path(__file__).resolve().parent / "site"
+SITE = Path(__file__).resolve().parents[2] / "site"
 
 # --- child sitemap: only the /services/ entries ---
 p = SITE / "sitemap-in.xml"

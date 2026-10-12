@@ -14,7 +14,7 @@ i18n applier renders the <strong> instead of escaping it.
 """
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 
 OLD_TEXT = "Mumbai-based digital marketing agency helping brands across India achieve measurable ROI through SEO, paid media, and performance marketing."

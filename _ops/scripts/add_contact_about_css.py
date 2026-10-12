@@ -12,7 +12,7 @@ the CDN keep serving the previous stylesheet.
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 CSS = SITE / "css"
 

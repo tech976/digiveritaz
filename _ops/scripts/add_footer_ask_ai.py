@@ -15,7 +15,7 @@ the FOOT template in site/build.py so future builds keep it.
 from pathlib import Path
 from urllib.parse import quote
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 
 PROMPT = (
