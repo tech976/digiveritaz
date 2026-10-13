@@ -980,6 +980,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 
+
+<script>
+(function(){
+  document.querySelectorAll('.smm-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){q.parentElement.classList.toggle('open')});
+  });
+  var first=document.querySelector('.smm-faq-item');if(first)first.classList.add('open');
+})();
+</script>
 </main>
 <footer class="site-footer" role="contentinfo">
   <div class="container">
