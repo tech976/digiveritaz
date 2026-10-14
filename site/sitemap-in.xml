@@ -290,6 +290,15 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/microsoft-copilot-agentic-features-marketing/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/microsoft-copilot-agentic-features-marketing.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/google-ai-overviews-blame-websites-content-accuracy/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
