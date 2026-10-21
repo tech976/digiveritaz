@@ -8929,3 +8929,12 @@ details[open] .job-caret{transform:rotate(180deg)}
 [data-theme="dark"] .svc-hub3-hero .crumbs { color:#cbd5e1; }
 [data-theme="dark"] .smm-hero .crumbs a,
 [data-theme="dark"] .svc-hub3-hero .crumbs a { color:#cbd5e1; }
+/* ------------------------------------------------------------------ */
+/* Breadcrumb links must stay clickable inside the locked hero.        */
+/* The "NUCLEAR fix" above sets pointer-events:none on .smm-hero and   */
+/* .smm-hero .container > div to stop stray mobile taps on the eyebrow */
+/* and H1. pointer-events inherits, so the breadcrumb nav added inside */
+/* that div inherited none and its links did nothing. Re-enabled the   */
+/* same way the hero CTAs already are.                                 */
+.smm-hero .crumbs, .smm-hero .crumbs a,
+.svc-hub3-hero .crumbs, .svc-hub3-hero .crumbs a { pointer-events: auto; }
