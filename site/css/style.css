@@ -8917,3 +8917,15 @@ details[open] .job-caret{transform:rotate(180deg)}
 /* "link", so see the note in the hand-over about matching the prose    */
 /* link treatment (.blog-article .prose a) if that is wanted.           */
 .smm-faq-a a, .faq-a a { font-weight: 700; }
+/* ------------------------------------------------------------------ */
+/* Breadcrumbs in the service / services-hub hero.                     */
+/* .crumbs was only ever styled under .blog-hero, so the same markup   */
+/* dropped into a service hero inherited a{color:inherit} and rendered */
+/* as plain text with no hover. These mirror the blog treatment.       */
+.smm-hero .crumbs, .svc-hub3-hero .crumbs { color:var(--muted); font-size:.9rem; margin-bottom:14px; }
+.smm-hero .crumbs a, .svc-hub3-hero .crumbs a { color:var(--muted); text-decoration:none; }
+.smm-hero .crumbs a:hover, .svc-hub3-hero .crumbs a:hover { color:var(--green); }
+[data-theme="dark"] .smm-hero .crumbs,
+[data-theme="dark"] .svc-hub3-hero .crumbs { color:#cbd5e1; }
+[data-theme="dark"] .smm-hero .crumbs a,
+[data-theme="dark"] .svc-hub3-hero .crumbs a { color:#cbd5e1; }
