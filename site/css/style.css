@@ -8946,3 +8946,15 @@ details[open] .job-caret{transform:rotate(180deg)}
 /* same way the hero CTAs already are.                                 */
 .smm-hero .crumbs, .smm-hero .crumbs a,
 .svc-hub3-hero .crumbs, .svc-hub3-hero .crumbs a { pointer-events: auto; }
+/* ------------------------------------------------------------------ */
+/* Case-study screenshot. .svc-split-img could not be reused — it only  */
+/* carries its framing inside the .svc-split grid, and standalone it is */
+/* just order:2.                                                        */
+.cs-shot{max-width:940px;margin:0 auto;border-radius:24px;overflow:hidden;
+  border:1px solid var(--border);box-shadow:0 30px 70px rgba(15,23,42,.14);background:#fff}
+.cs-shot img{width:100%;height:auto;display:block}
+.cs-shot-cap{max-width:940px;margin:16px auto 0;text-align:center;font-size:.92rem;
+  line-height:1.6;color:var(--muted)}
+[data-theme="dark"] .cs-shot{border-color:#1e293b;background:#0f172a}
+[data-theme="dark"] .cs-shot-cap{color:#cbd5e1}
+@media(max-width:720px){.cs-shot{border-radius:16px}}
