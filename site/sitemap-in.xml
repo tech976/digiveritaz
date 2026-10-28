@@ -290,6 +290,15 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.digiveritaz.com/blog/why-hire-digital-marketing-agency-india-2026/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.digiveritaz.com/assets/Blogs/why-hire-digital-marketing-agency-india-2026.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.digiveritaz.com/blog/social-media-data-ai-content-coach/</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
