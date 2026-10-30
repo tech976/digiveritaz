@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function () {
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your full name" required></div>'
       +'<div class="dvm-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="you@company.com" required></div>'
-      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"></div></div>'
+      +'<div class="dvm-field"><label>Phone Number <span class="req">*</span></label><div style="display:flex;gap:8px;align-items:stretch"><input type="tel" name="phone" id="dvm-phone" placeholder="+91 9XXXXXXXXX" required style="flex:1 1 auto"><button type="button" id="dvm-getotp" style="flex:0 0 auto;white-space:nowrap;background:#22c55e;color:#fff;border:0;padding:0 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem">Get OTP</button></div><div id="dvm-otp-row" style="display:none;gap:8px;align-items:stretch;margin-top:8px"><input type="text" id="dvm-otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter OTP" style="flex:1 1 auto;padding:11px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:1rem;text-align:center;letter-spacing:.2em"><button type="button" id="dvm-verify" style="flex:0 0 auto;white-space:nowrap;background:#0f172a;color:#fff;border:0;padding:0 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem">Verify</button></div><div id="dvm-otp-msg" style="font-size:.85rem;margin-top:6px;color:#475569"></div></div>'
       +'</div>'
       +'<div class="dvm-row">'
       +'<div class="dvm-field"><label>Company Name</label><input type="text" name="company" placeholder="Company"></div>'
@@ -569,7 +569,9 @@ document.addEventListener('DOMContentLoaded', function () {
   function digits(){ var p=$('dvm-phone'); return ((p&&p.value)||'').replace(/[^0-9]/g,'').slice(-10); }
   function phoneOk(){ return /^[6-9][0-9]{9}$/.test(digits()); }
   function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim()); }
-  function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=false; b.style.opacity='1'; } }
+  /* The submit button is the OTP gate: it stays disabled until MSG91 has accepted
+     a code for this number, and goes back to disabled if the number is edited. */
+  function setSubmit(){ var b=$('dvm-submit'); if(b){ b.disabled=!verified; b.style.opacity=verified?'1':'.55'; b.title=verified?'':'Verify your mobile number to submit'; } }
 
   function initMsg91(){ if(ready) return true; if(typeof window.sendOtp==='function'){ ready=true; return true; } if(typeof window.initSendOTP!=='function') return false; try{ window.initSendOTP({widgetId:MSG91.widgetId,tokenAuth:MSG91.tokenAuth,exposeMethods:true,success:function(){},failure:function(){}}); ready=true; }catch(e){} return ready; }
   function loadMsg91(cb){ if(initMsg91()){ cb(true); return; } if(loadMsg91._loading){ loadMsg91._q.push(cb); return; } loadMsg91._loading=true; loadMsg91._q=[cb]; var urls=['https://verify.msg91.com/otp-provider.js','https://verify.phone91.com/otp-provider.js'], i=0; function done(ok){ loadMsg91._loading=false; var q=loadMsg91._q; loadMsg91._q=[]; q.forEach(function(fn){ try{ fn(ok); }catch(e){} }); } (function go(){ if(typeof window.initSendOTP==='function'){ done(initMsg91()); return; } var s=document.createElement('script'); s.src=urls[i]; s.async=true; s.onload=function(){ done(initMsg91()); }; s.onerror=function(){ i++; if(i<urls.length) go(); else done(false); }; document.head.appendChild(s); })(); }
@@ -616,6 +618,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if(!emailOk(d.email)){ fmsg('Please enter a valid email.','#dc2626'); return; }
     if(!phoneOk()){ fmsg('Please enter a valid 10-digit phone number.','#dc2626'); return; }
     if(!d.budget){ fmsg('Please select a budget range.','#dc2626'); return; }
+    /* Defence in depth: the button is disabled, but Enter or a devtools poke
+       can still reach this handler. */
+    if(!verified){ fmsg('Please verify your mobile number first \u2014 tap \u201cGet OTP\u201d.','#dc2626'); return; }
     var b=$('dvm-submit'); if(b){ b.disabled=true; b.style.opacity='.6'; } fmsg('Submitting…');
     saveLead(true);
     dvmFinish();
@@ -656,7 +661,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* CTAs are NOT wired to this wide popup. They open the "Get Your Free Proposal"
      phone popup, handled by dv-lead.js — which we load here on every page. */
-  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1789700000'; document.head.appendChild(s); }
+  function loadDvLead(){ if (window.__dvLeadV2 || document.getElementById('dvlead-js')) return; var s=document.createElement('script'); s.id='dvlead-js'; s.src='/js/dv-lead.min.js?v=1793349487'; document.head.appendChild(s); }
 
   /* Blog posts get the sidebar lead form + mid-article CTA. Loaded here (not hard-coded
      into each post) so all existing AND all future blog pages pick it up automatically. */

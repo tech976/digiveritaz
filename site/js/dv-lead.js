@@ -183,7 +183,7 @@
     + '</div>'
     + '<div class="dvl-step" data-step="otp">'
     +   '<p class="dvl-otpinfo">Enter the code we sent to <strong id="dvl-otpnum"></strong></p>'
-    +   '<div class="dvl-f"><input type="text" id="dvl-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="······"></div>'
+    +   '<div class="dvl-f"><input type="text" id="dvl-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter OTP"></div>'
     +   '<div class="dvl-actions"><button class="dvl-back" type="button" data-goto="1">Change number</button><button class="dvl-btn" type="button" id="dvl-verify">Verify &amp; Continue</button></div>'
     +   '<div class="dvl-resendrow">Didn’t get it? <a href="#" id="dvl-resend">Resend code</a></div>'
     + '</div>'
