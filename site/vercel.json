@@ -58,6 +58,11 @@
       "permanent": true
     },
     {
+      "source": "/case-study/twinkle-khanna-author-discovery-seo/",
+      "destination": "/case-study/",
+      "permanent": false
+    },
+    {
       "source": "/our-formula-for-foolproof-performance-marketing-wins/",
       "destination": "/blog/our-formula-for-foolproof-performance-marketing-wins/",
       "permanent": true
