@@ -160,35 +160,35 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     paid: {
       num: '02', title: 'Paid Advertising',
-      desc: 'From Meta to Google, we turn ad spend into profit with creative that stops the scroll and funnels that convert.',
+      desc: 'Meta Ads, Google Ads and Amazon Ads built to bring in more qualified leads at a lower cost. As a digital advertising agency, we test creative, audience and landing page together.',
       tags: ['Meta Ads','Google Ads','LinkedIn','Pinterest','Snapchat'],
       cta: 'Explore Paid Ads', href: 'paid-social-media-advertising.html',
       icon: '<svg viewBox="0 0 24 24"><path d="M3 6h14l4 4v6a2 2 0 0 1-2 2H3z"/><circle cx="8" cy="16" r="2"/><circle cx="17" cy="16" r="2"/></svg>'
     },
     perf: {
       num: '03', title: 'Performance Marketing',
-      desc: 'Smart funnels, smarter conversions across search, display, shopping and video — fully attributed and reported.',
+      desc: 'Full-funnel tracking, conversion optimisation and weekly reporting tied to revenue. Our growth marketing agency approach includes B2B marketing programmes that fill pipelines with decision-makers.',
       tags: ['Search','Shopping','Display','Video','PMax'],
       cta: 'Explore Performance', href: 'performance-marketing-agency.html',
       icon: '<svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="12" width="3" height="7" rx="1"/><rect x="11" y="8" width="3" height="11" rx="1"/><rect x="17" y="4" width="3" height="15" rx="1"/></svg>'
     },
     ecom: {
       num: '04', title: 'E-Commerce Management',
-      desc: 'End-to-end Amazon, Flipkart and D2C growth — from listing optimization and ads to retention and loyalty.',
+      desc: 'Amazon, Flipkart and quick commerce growth: listings, ads, creatives and analytics managed end to end.',
       tags: ['Amazon','Flipkart','Shopify','D2C','CRO'],
       cta: 'Explore E-Commerce', href: 'ecommerce-marketing.html',
       icon: '<svg viewBox="0 0 24 24"><path d="M3 7h15l-1.5 9A2 2 0 0 1 14.5 18h-8A2 2 0 0 1 4.5 16.3L3 7z"/><path d="M8 7V5a3 3 0 0 1 6 0v2"/></svg>'
     },
     wa: {
       num: '05', title: 'WhatsApp &amp; Native Ads',
-      desc: 'Conversational commerce and premium native placements that drive direct response and high engagement.',
+      desc: 'Click-to-WhatsApp campaigns and automated follow-ups that turn enquiries into booked appointments and sales.',
       tags: ['WhatsApp API','Swiggy','Zomato','Blinkit','Zepto'],
       cta: 'Explore WhatsApp', href: 'whatsapp-marketing-services.html',
       icon: '<svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 3.5 6.6L3 19l1.4-4.2A7.9 7.9 0 0 1 4 11z"/></svg>'
     },
     brand: {
       num: '06', title: 'Branding &amp; Design',
-      desc: 'Research-led branding, identity systems and creative direction that converts at every touchpoint.',
+      desc: 'Brand identity, ad creatives, landing pages and websites that look sharp and convert.',
       tags: ['Strategy','Identity','Content','Creative','Web'],
       cta: 'Explore Branding', href: 'branding-and-design.html',
       icon: '<svg viewBox="0 0 24 24"><path d="M9 3l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>'
