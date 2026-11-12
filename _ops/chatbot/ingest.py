@@ -15,9 +15,12 @@ Usage:
     python chatbot/ingest.py
 """
 import os, re, json, html
+import json
 from html.parser import HTMLParser
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# The script moved to _ops/chatbot/ in the repo reorg, so the repo root is three
+# levels up, not two. Left at two it resolved SITE to _ops/site and crashed.
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
 OUT  = os.path.join(SITE, "api", "kb_index.json")
 
@@ -108,12 +111,29 @@ def gather_files():
     for name in sorted(os.listdir(SITE)):
         if name.endswith(".html") and name not in SKIP_TOPLEVEL:
             files.append(os.path.join(SITE, name))
+    # Case studies now live one directory per client (case-study/<client>/index.html),
+    # so this has to walk rather than list, or it only ever sees the section index.
     cs = os.path.join(SITE, "case-study")
     if os.path.isdir(cs):
-        for name in sorted(os.listdir(cs)):
-            if name.endswith(".html"):
-                files.append(os.path.join(cs, name))
-    return files
+        for dirpath, dirnames, filenames in os.walk(cs):
+            for name in sorted(filenames):
+                if name.endswith(".html"):
+                    files.append(os.path.join(dirpath, name))
+    # Anything vercel.json redirects away is unreachable, so keep it out of the KB.
+    redirected = set()
+    try:
+        vj = json.loads(open(os.path.join(SITE, "vercel.json"), encoding="utf-8").read())
+        for r in vj.get("redirects", []):
+            src = str(r.get("source", ""))
+            if src.startswith("/"):
+                redirected.add("/" + src.strip("/") + "/")
+    except Exception as e:
+        print("note: could not read vercel.json redirects (%s)" % e)
+    def reachable(fp):
+        rel = os.path.relpath(fp, SITE).replace("\\", "/")
+        rel = rel[:-len("index.html")] if rel.endswith("index.html") else rel[:-len(".html")] + "/"
+        return ("/" + rel.lstrip("/")) not in redirected
+    return sorted(set(f for f in files if reachable(f)))
 
 
 def main():

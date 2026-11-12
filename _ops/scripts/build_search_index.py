@@ -105,6 +105,23 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
             's': out,
         })
 
+# A page that vercel.json redirects away is not reachable, so it must not sit in
+# site search either. Read the sources rather than hard-coding filenames, so a
+# page hidden later drops out of the index automatically.
+_redirected = set()
+try:
+    _vj = json.loads(R(os.path.join(ROOT, 'vercel.json')))
+    for _r in _vj.get('redirects', []):
+        _src = str(_r.get('source', ''))
+        if _src.startswith('/'):
+            _redirected.add('/' + _src.strip('/') + '/' if _src != '/' else '/')
+except Exception as _e:
+    print('note: could not read vercel.json redirects (%s)' % _e)
+_before = len(pages)
+pages = [p for p in pages if p['u'] not in _redirected]
+if _before != len(pages):
+    print('skipped redirected :', _before - len(pages))
+
 pages.sort(key=lambda p: (p['k'] != 'Page', p['u']))
 data = {'v': 1, 'n': len(pages), 'p': pages}
 io.open(OUT, 'w', encoding='utf-8', newline='').write(json.dumps(data, ensure_ascii=False, separators=(',', ':')))

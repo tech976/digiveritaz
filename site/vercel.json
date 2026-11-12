@@ -331,6 +331,256 @@
       "source": "/get-proposal/",
       "destination": "/enquiry/",
       "permanent": true
+    },
+    {
+      "source": "/case-study/aeroplane-rice-fmcg-social-first/",
+      "destination": "/case-study/aeroplane-rice/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/aeroplane-rice-product-discovery-seo/",
+      "destination": "/case-study/aeroplane-rice/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/case-study-gy3-fashion-sales-branding/",
+      "destination": "/case-study/gy3/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/ebco-forging-digital-success-with-integrated-campaigns/",
+      "destination": "/case-study/ebco/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/figure-slim-aesthetic-clinic-lead-generation/",
+      "destination": "/case-study/figure-slim/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/figure-slim-crm-lead-management-platform/",
+      "destination": "/case-study/figure-slim/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/green-and-beige-retention-and-roas/",
+      "destination": "/case-study/green-and-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/hiker-wolf-qualified-lead-generation/",
+      "destination": "/case-study/hiker-wolf/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/hiker-wolf-seo-foundation/",
+      "destination": "/case-study/hiker-wolf/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/hyundai-elite-i20-lead-generation-campaign/",
+      "destination": "/case-study/hyundai/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/hyundai-pledge-to-be-safe/",
+      "destination": "/case-study/hyundai/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/individual-design-handbags-meta-ads/",
+      "destination": "/case-study/individual-design/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/individual-design-ppc-revenue-scale/",
+      "destination": "/case-study/individual-design/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/jk-shah-classes-quality-leads/",
+      "destination": "/case-study/jk-shah-classes/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/khyber-cement-cementing-regional-awareness-through-digital-visibility/",
+      "destination": "/case-study/khyber-cement/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/legal-junction-building-a-long-term-lead-engine-for-rent-agreement-services/",
+      "destination": "/case-study/legal-junction/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/libre-brand-experience-build/",
+      "destination": "/case-study/libre/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/libre-non-alcoholic-wine-launch-social/",
+      "destination": "/case-study/libre/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/mai-wellbeing-womens-health-social-media/",
+      "destination": "/case-study/mai-wellbeing/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/my-bid-app-multi-platform-growth/",
+      "destination": "/case-study/my-bid/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/ppc-case-study-tulsi-realty-9-meraki-panvel-lead-generation/",
+      "destination": "/case-study/tulsi-realty/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/quint-home-headless-storefront/",
+      "destination": "/case-study/quint-home/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/rawood-sheed-timber-lead-generation/",
+      "destination": "/case-study/rawood-sheed/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/sarvah-campaign-led-social-page/",
+      "destination": "/case-study/sarvah/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/sarvah-google-ads-revenue-engine/",
+      "destination": "/case-study/sarvah/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/sarvah-integrative-health-nutrition-lead-generation/",
+      "destination": "/case-study/sarvah/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/seo-case-study-mayapuri-com/",
+      "destination": "/case-study/mayapuri/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/seo-case-study-themauve-co/",
+      "destination": "/case-study/the-mauve/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/shape-u-clinic-aesthetic-lead-generation/",
+      "destination": "/case-study/shape-u-clinic/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/shape-u-clinic-organic-social-growth/",
+      "destination": "/case-study/shape-u-clinic/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/shiamak-one-year-program-stepping-up-digital-engagement-for-aspiring-dancers/",
+      "destination": "/case-study/shiamak/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/shiorra-storefront-and-admin-build/",
+      "destination": "/case-study/shiorra/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/shoma-chaudhury-archive-discovery-seo/",
+      "destination": "/case-study/shoma-chaudhury/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/siws-college-admissions-seo-strategy/",
+      "destination": "/case-study/siws/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/siws-school-admissions-ppc/",
+      "destination": "/case-study/siws/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/siws-school-social-million-views/",
+      "destination": "/case-study/siws/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/siws-school-website-and-cms/",
+      "destination": "/case-study/siws/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/startupbase-startup-consulting-lead-generation/",
+      "destination": "/case-study/startupbase/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/stem-rx-regenerative-hospital-marketing/",
+      "destination": "/case-study/stem-rx/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/stylish-naari-ai-assisted-saree-shoots/",
+      "destination": "/case-study/stylish-naari/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/stylish-naari-brand-and-storefront-system/",
+      "destination": "/case-study/stylish-naari/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/target-wellness-aesthetic-clinic-campaigns/",
+      "destination": "/case-study/target-wellness/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/target-wellness-ai-qualified-leads/",
+      "destination": "/case-study/target-wellness/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/tatvyra-nutrition-website-build/",
+      "destination": "/case-study/tatvyra/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/transcon-triumph-building-leads-visibility-through-multi-platform-campaigns/",
+      "destination": "/case-study/transcon/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/variety-india-editorial-seo-roadmap/",
+      "destination": "/case-study/variety-india/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/yobo-ecommerce-seo-fit-and-discovery/",
+      "destination": "/case-study/yobo/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/yobo-ecommerce-website-redesign/",
+      "destination": "/case-study/yobo/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/yobo-made-in-europe-content-strategy/",
+      "destination": "/case-study/yobo/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/zedex-mobility-car-booking-campaigns/",
+      "destination": "/case-study/zedex-mobility/",
+      "permanent": true
     }
   ],
   "functions": {
