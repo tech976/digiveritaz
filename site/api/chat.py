@@ -39,8 +39,22 @@ _load_env()
 
 GROQ_KEYS    = [k for k in (os.environ.get("GROQ_API_KEY"), os.environ.get("GROQ_API_KEY_2")) if k]
 GEMINI_KEY   = os.environ.get("GEMINI_API_KEY", "")
-GROQ_MODEL   = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
+# Groq decommissioned llama-3.3-70b-versatile on 16 Aug 2026, which silently put
+# this bot into its "technical hiccup" fallback on every request. Models are now a
+# list and tried in order, so the next decommission degrades instead of dying.
+# GROQ_MODEL / GEMINI_MODEL still override, and whatever is set is tried first.
+GROQ_MODELS   = [m for m in [os.environ.get("GROQ_MODEL")] if m] + [
+    "openai/gpt-oss-120b",          # Groq's own replacement for llama-3.3-70b
+    "qwen/qwen3.6-27b",
+    "llama-3.1-8b-instant",
+]
+GEMINI_MODELS = [m for m in [os.environ.get("GEMINI_MODEL")] if m] + [
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+]
+# de-duplicate, keeping order
+GROQ_MODELS   = list(dict.fromkeys(GROQ_MODELS))
+GEMINI_MODELS = list(dict.fromkeys(GEMINI_MODELS))
 LEAD_WEBHOOK = os.environ.get("LEAD_WEBHOOK_URL", "")
 BOOKING_URL  = os.environ.get("BOOKING_URL", "/contact-us/")
 HTTP_TIMEOUT = 8  # keep under Vercel Hobby's 10s function limit
@@ -158,8 +172,8 @@ def _post_json(url, payload, headers):
     with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
         return json.loads(r.read().decode("utf-8"))
 
-def _groq(messages, key, tools=None):
-    payload = {"model": GROQ_MODEL, "messages": messages, "temperature": 0.4, "max_tokens": 700}
+def _groq(messages, key, tools=None, model=None):
+    payload = {"model": model or GROQ_MODELS[0], "messages": messages, "temperature": 0.4, "max_tokens": 700}
     if tools:
         payload["tools"] = tools
         payload["tool_choice"] = "auto"
@@ -167,7 +181,7 @@ def _groq(messages, key, tools=None):
                       {"Authorization": "Bearer " + key})
     return data["choices"][0]["message"]
 
-def _gemini(messages):
+def _gemini(messages, model=None):
     contents, sys_i = [], None
     for m in messages:
         if m["role"] == "system":
@@ -179,7 +193,7 @@ def _gemini(messages):
     payload = {"contents": contents}
     if sys_i:
         payload["systemInstruction"] = {"parts": [{"text": sys_i}]}
-    url = ("https://generativelanguage.googleapis.com/v1beta/models/" + GEMINI_MODEL
+    url = ("https://generativelanguage.googleapis.com/v1beta/models/" + (model or GEMINI_MODELS[0])
            + ":generateContent?key=" + urllib.parse.quote(GEMINI_KEY))
     data = _post_json(url, payload, {})
     return data["candidates"][0]["content"]["parts"][0]["text"]
@@ -478,9 +492,11 @@ def handle_chat(payload):
     otp_state = None
     known = _extract_contact(msgs_in)
 
+    last_err = []
     for key in GROQ_KEYS:
+      for _model in GROQ_MODELS:
         try:
-            m = _groq(messages, key, tools=TOOLS)
+            m = _groq(messages, key, tools=TOOLS, model=_model)
             content = m.get("content") or ""
             calls = [((tc.get("function") or {}).get("name"), _loadargs(tc)) for tc in (m.get("tool_calls") or [])]
             if not calls and "<function" in content:
@@ -525,13 +541,20 @@ def handle_chat(payload):
             used = "groq"
             break
         except Exception as e:
-            print("GROQ_ERROR " + str(e)); continue
+            last_err.append("groq/%s: %s" % (_model, e))
+            print("GROQ_ERROR model=%s %s" % (_model, e)); continue
+      if reply is not None:
+          break
 
     if reply is None and GEMINI_KEY:
-        try:
-            reply = _gemini(messages); used = "gemini"
-        except Exception as e:
-            print("GEMINI_ERROR " + str(e))
+        for _model in GEMINI_MODELS:
+            try:
+                reply = _gemini(messages, model=_model); used = "gemini"; break
+            except Exception as e:
+                last_err.append("gemini/%s: %s" % (_model, e))
+                print("GEMINI_ERROR model=%s %s" % (_model, e))
+    if reply is None and not GROQ_KEYS and not GEMINI_KEY:
+        last_err.append("no provider keys set in the environment")
 
     if not reply:
         reply = ("I'm having a brief technical hiccup. Please drop your name and email here, or leave "
@@ -573,7 +596,51 @@ class handler(BaseHTTPRequestHandler):
         self._send(200, {"ok": True})
 
     def do_GET(self):
-        self._send(200, {"ok": True, "service": "digiveritaz-chat"})
+        """GET /api/chat/            -> liveness
+           GET /api/chat/?diag=1     -> which provider/model actually answers.
+
+        When every provider fails the bot replies with a generic "technical
+        hiccup" and the real reason only reaches the Vercel function log, which
+        is how a decommissioned model went unnoticed. This reports the reason
+        over HTTP. It never returns a key -- only whether one is set, and the
+        provider's own error text."""
+        if "diag=1" not in (self.path or ""):
+            self._send(200, {"ok": True, "service": "digiveritaz-chat"})
+            return
+        out = {
+            "ok": True,
+            "keys": {"groq": len(GROQ_KEYS), "gemini": bool(GEMINI_KEY)},
+            "models": {"groq": GROQ_MODELS, "gemini": GEMINI_MODELS},
+            "kb": {},
+            "probe": [],
+        }
+        try:
+            kb = _kb()
+            out["kb"] = {"chunks": len(kb["chunks"]), "loaded": bool(kb["chunks"])}
+        except Exception as e:
+            out["kb"] = {"error": str(e)[:200]}
+        ping = [{"role": "user", "content": "ping"}]
+        for key in GROQ_KEYS:
+            for m in GROQ_MODELS:
+                try:
+                    _groq(ping, key, model=m)
+                    out["probe"].append({"provider": "groq", "model": m, "ok": True})
+                    break
+                except Exception as e:
+                    out["probe"].append({"provider": "groq", "model": m, "ok": False, "error": str(e)[:200]})
+            else:
+                continue
+            break
+        if GEMINI_KEY:
+            for m in GEMINI_MODELS:
+                try:
+                    _gemini(ping, model=m)
+                    out["probe"].append({"provider": "gemini", "model": m, "ok": True})
+                    break
+                except Exception as e:
+                    out["probe"].append({"provider": "gemini", "model": m, "ok": False, "error": str(e)[:200]})
+        out["working"] = any(p.get("ok") for p in out["probe"])
+        self._send(200, out)
 
     def do_POST(self):
         try:
